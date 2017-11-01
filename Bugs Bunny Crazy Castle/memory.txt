@@ -1,0 +1,45 @@
+0x000C        00 in level, 02 in menu
+
+0x0048        Goes to 0F after picking up a carrot, then quickly decays to 2, then to 1
+              Goes to 0F after killing sylvester, then quickly decays to 2, then to 1
+0x0068        Current floor (-1)
+0x0069        Highest floor (-1)
+0x007C        Remaining lives
+0x0081-0x0082 Bugs X
+0x0083-0x0084 Bugs Y
+0x008D-0x008E Bugs X (+16)
+0x008F-0x0090 Bugs Y (+16)
+
+0X00A2-0x00A9 BCD high score
+0X00B2-0x00B9 BCD score
+
+0x00F7        controller state B7=A b6=B b5=select b4=start b3=up b2=down b1=left b0=right
+
+0x01EB        00=nothing, A8=100, B8=500, E9=1UP
+0x01EC        44=normal,  00=100, 01=500, 03=1UP
+
+0x0500        Actor 1 status - b7=alive b6=? b5=no collision b4=? b3=facing left b2=moving left/right b1=moving up/down
+0x0501-0x0502 Actor 1 X
+0x0503-0x0504 Actor 1 Y
+0x0505-0x0506 Actor 1 X (previous?)
+0x0507-0x0508 Actor 1 Y (previous?)
+0x0509        Actor 1 type - 00=green bugs, 01=green sylvester, 02=sam, 03=daffy, 04=wile e,
+                             05=green bugs front, 
+0x0510        Becomes 0x04 when fall over
+0x0511        Death sequence [if 0x510 is 0x04 or 05]: 00/01=laying down, 02-05=smoke
+0x0518        Becomes 0xFF when bugs celebrates (completes level)
+
+0x0540        Actor 2 status - b7=alive b6=? b5=no collision b4=? b3=facing left b2=moving left/right b1=moving up/down
+0x0541-0x0542 Actor 2 X
+0x0543-0x0544 Actor 2 Y
+0x0545-0x0546 Actor 2 X (previous?)
+0x0547-0x0548 Actor 2 Y (previous?)
+0x0549        Actor 2 type - 00=green bugs, 01=green sylvester, 02=sam, 03=daffy, 04=wile e,
+                             05=green bugs front, 
+
+
+
+0x0610        Item 1 status - b7=visible b6=moving? b5=moving left/right b4=moving up/down b3=? b2=carried b1=dying b0=?
+0x0615        Item 1 type - 00=pail, 01=safe, 02=box, 03=juice, 04=glove, 05=10t, 06=no carrots
+
+Bi7 0x000500 = 1 > in game

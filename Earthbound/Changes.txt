@@ -1,0 +1,93 @@
+Please note: Many of these achievements rely on text pointers so they can trigger at certain points in a dialog tree. As such, they are not guaranteed to function when using translation patches.
+
+I have made the following changes:
+
+The following achievements have been modified so they trigger if using the "Talk" or "Check" menu options (previously, they only triggered when using the L button):
+* [ach=9334]
+* [ach=13931]
+* [ach=8941]
+* [ach=9010]
+* [ach=9330]
+
+The following achievements no longer require Jeff be the third member of the party. Additionally, I and IV will now work if the item being converted is in Jeff's 11th inventory slot:
+* [ach=8579]
+* [ach=8785]
+* [ach=10933]
+* [ach=14389]
+
+The following achievements have been modified so they will trigger if you tell your mother No and talk to her again:
+* [ach=15558]
+* [ach=15557]
+
+This achievement will now trigger if unsuccessful the first time:
+* [ach=9502]
+
+This achievement will now trigger if one or more party members is dead:
+* [ach=8510]
+
+This achievement now allows a larger valid area where it can be triggered:
+* [ach=8770]
+
+This achievement will no longer trigger during the transition from Ness/Paula to Jeff if the user recently used an item:
+* [ach=8273]
+
+This achievement was modified to watch the script pointer instead of the character position, which could vary slightly depending on where the event was started.
+* [ach=8552]
+
+This achievement was modified to watch the script pointer instead of a complex set of transitions on an address that's clearly used for more than this achievement:
+* [ach=13678]
+
+This achievement will no longer trigger when resetting the game:
+* [ach=8771]
+
+This achievement will no longer trigger if leaving the cave before all five guardians are defeated:
+* [ach=9105]
+
+This achievement will now trigger if the manager is paid without first talking to the band:
+* [ach=9152]
+
+This achievement will now trigger if the user is rapidly pressing the A button when it should pop:
+* [ach=9332]
+
+This achievement will no longer trigger if a character is taking damage but is not mortally wounded and another character or enemy takes more damage than the wounded character's remaining health:
+* [ach=8311]
+
+This achievement will no longer trigger if you try to escort the Dungeon Man back into the pyramid.
+* [ach=13616]
+
+This achievement will no longer trigger when Carbon Dog transforms to Diamond Dog if you arrive diamondized.
+* [ach=14386]
+
+This achievement will now trigger if the player has talked to anyone other than the boy out front of Polestar before parting ways with Paula:
+* [ach=15559]
+
+This achievement will now trigger if you talk to the maid on the way to the Clumsy Robot.
+* [ach=9336] 
+
+This achievement will now trigger if you have recently talked to someone.
+* [ach=7864]
+
+This achievement will no longer trigger if the Bracer of Kings ends up in the 11th slot of Poo's inventory:
+* [ach=16351]
+
+The titles of the following achievements have been changed to title-case:
+* [ach=9152]
+* [ach=7808]
+* [ach=7817]
+* [ach=8200]
+* [ach=8272]
+* [ach=13873]
+* [ach=8269]
+* [ach=14641]
+* [ach=7864]
+* [ach=8201]
+* [ach=15560]
+* [ach=9154]
+* [ach=15451]
+
+The descriptions of the following achievements have been changed to make the requirements more clear:
+* [ach=13596]
+* [ach=14516]
+* [ach=13873]
+* [ach=8313]
+

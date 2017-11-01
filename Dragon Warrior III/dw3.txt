@@ -1,0 +1,215 @@
+// Dragon Warrior III
+//  #ID = 1667
+
+function character_is_class_level(index, class, level) => 
+    byte(0x000718 + index) == class && byte(0x000700 + index) >= level
+
+function achievement_class_reaches_level(title, class, level, points, male_id) {
+    female_id = male_id + 8
+    achievement(
+        title = title,
+        description = class + " has reached level " + level,
+        points = points,
+        trigger = byte(0x000102) == 0 && (character_is_class_level(0, male_id, level) ||
+                                          character_is_class_level(0, female_id, level) ||
+                                          character_is_class_level(1, male_id, level) ||
+                                          character_is_class_level(1, female_id, level) ||
+                                          character_is_class_level(2, male_id, level) ||
+                                          character_is_class_level(2, female_id, level) ||
+                                          character_is_class_level(3, male_id, level) ||
+                                          character_is_class_level(3, female_id, level)))
+}
+
+class_hero = 0
+class_wizard = 1
+class_pilgrim = 2
+class_sage = 3
+class_soldier = 4
+class_merchant = 5
+class_fighter = 6
+class_goof_off = 7
+
+achievement_class_reaches_level("Baby Steps", "The hero", 5, 5, class_hero)
+achievement_class_reaches_level("Now You've Got the Hang of It", "The hero", 10, 5, class_hero)
+achievement_class_reaches_level("Apprentice Hero", "The hero", 20, 5, class_hero)
+achievement_class_reaches_level("Master Hero", "The hero", 40, 10, class_hero)
+
+achievement_class_reaches_level("Apprentice Wizard", "A wizard", 20, 5, class_wizard)
+achievement_class_reaches_level("Master Wizard", "A wizard", 40, 10, class_wizard)
+
+achievement_class_reaches_level("Apprentice Pilgrim", "A pilgrim", 20, 5, class_pilgrim)
+achievement_class_reaches_level("Master Pilgrim", "A pilgrim", 40, 10, class_pilgrim)
+
+achievement_class_reaches_level("Apprentice Sage", "A sage", 20, 5, class_sage)
+achievement_class_reaches_level("Master Sage", "A sage", 40, 10, class_sage)
+
+achievement_class_reaches_level("Apprentice Soldier", "A soldier", 20, 5, class_soldier)
+achievement_class_reaches_level("Master Soldier", "A soldier", 40, 10, class_soldier)
+
+achievement_class_reaches_level("Apprentice Merchant", "A merchant", 20, 5, class_merchant)
+achievement_class_reaches_level("Master Merchant", "A merchant", 40, 10, class_merchant)
+
+achievement_class_reaches_level("Apprentice Fighter", "A fighter", 20, 5, class_fighter)
+achievement_class_reaches_level("Master Fighter", "A fighter", 40, 10, class_fighter)
+
+achievement_class_reaches_level("Apprentice Goof-off", "A goof-off", 20, 5, class_goof_off)
+achievement_class_reaches_level("Master Goof-off", "A goof-off", 40, 10, class_goof_off)
+
+function is_in_game() => byte(0x000102) == 0 && byte(0x006000) == 0 && byte(0x000700) > 0
+
+function achievement_story_checkpoint(title, description, points, bit) {
+    achievement(
+        title = title,
+        description = description,
+        points = points,
+        trigger = is_in_game() && bit)
+}
+
+function achievement_world_location(title, description, points, x, y) {
+    achievement(
+        title = title,
+        description = description,
+        points = points,
+        trigger = byte(0x000100) == x && byte(0x000101) == y && byte(0x00002F) == 0 && byte(0x000700) > 0)
+}
+
+achievement_story_checkpoint("Now You Can Open Doors", "Get the Thief's Key", 10, bit1(0x0060BF))
+achievement_world_location("The Adventure Begins", "Reach the main continent", 10, 49, 93)
+achievement_story_checkpoint("Rise and Shine", "Wake up the residents of Noaniels", 10, bit2(0x0060B7))
+achievement_story_checkpoint("It's Good to Be the King", "Become royalty", 10, bit6(0x0060B7))
+achievement_story_checkpoint("You Can Open More Doors", "Get the Magic Key", 10, bit0(0x00609F))
+achievement_story_checkpoint("Bolef's Path", "Convince Norud to show you the secret passage through the mountains", 10, bit5(0x0060B6))
+achievement_story_checkpoint("Achoo!", "Get the Black Pepper", 10, bit7(0x0060BF))
+achievement_story_checkpoint("You Can Open All Doors", "Get the Final Key", 10, bit3(0x00608E))
+achievement_story_checkpoint("The Prisoner's Last Possession", "Get the Green Orb", 10, bit5(0x0060CE))
+achievement_story_checkpoint("The Man with Many Heads", "Get the Purple Orb", 10, bit3(0x0060CE))
+achievement_story_checkpoint("All By Myself", "Get the Blue Orb", 10, bit4(0x0060CE))
+achievement_story_checkpoint("Buried Treasure", "Get the Red Orb", 5, bit1(0x0060CE))
+achievement_story_checkpoint("The False King", "Get the Staff of Change", 10, bit1(0x0060A5))
+achievement_story_checkpoint("The Merchantville Rebellion", "Get the Yellow Orb", 10, bit2(0x0060CE))
+achievement_story_checkpoint("Land Bridge", "Set off a volcano", 10, bit3(0x0060B6))
+achievement_story_checkpoint("The Hidden Valley", "Get the Silver Orb", 10, bit0(0x0060CE))
+achievement_story_checkpoint("The Legendary Pheonix", "Hatch the giant egg in Liamland", 5, bit6(0x0060B9))
+achievement_story_checkpoint("The Archfiend is Vanquished!", "Defeat Baramos", 10, bit7(0x0060CB))
+achievement_story_checkpoint("The Statue Awakens", "Get the Sacred Amulet", 10, bit5(0x0060BA))
+achievement_story_checkpoint("It Only Takes One Drop", "Build the rainbow bridge", 10, bit7(0x0060B6))
+achievement_story_checkpoint("The Foretelling", "Defeat Zoma", 10, byte(0x0060C5) == 192)
+
+achievement(
+    title = "A Legend is Born",
+    description = "See the epilogue",
+    points = 5,
+    trigger = byte(0x0060C5) == 0 && prev(byte(0x0060C5)) == 160
+)
+
+achievement_story_checkpoint("I Didn't See Your Name on It", "Find the hidden item beneath Isis", 5, bit2(0x006094))
+achievement_story_checkpoint("Tomb Raider", "Find the hidden item beneath the pyramid", 5, bit1(0x0060CA))
+achievement_story_checkpoint("Drop Something?", "Visit the queen of Isis at night", 5, bit0(0x0060A7))
+achievement_story_checkpoint("Required Reading", "Get the Book of Satori", 5, bit7(0x0060A2))
+
+achievement(
+    title = "With a Little Help from My Friends",
+    description = "Build a full party",
+    points = 5,
+    trigger = is_in_game() && byte(0x000703) > 0
+)
+
+arena_battle_in_progress = byte(0x006A64)
+arena_actual_winner = byte(0x006A65)
+arena_selected_winner = byte(0x006A67)
+achievement(
+    title = "Winner!",
+    description = "Pick the winning monster in a stadium battle",
+    points = 5,
+    trigger = arena_battle_in_progress == 0 && prev(arena_battle_in_progress == 128) && // as the battle finishes
+              once(arena_selected_winner == arena_actual_winner) &&
+              never(arena_battle_in_progress == 128) // prevents triggering if previous winner matches newly selected winner
+)
+
+function character_class_changed(index) {
+    class = byte(0x000718 + index)
+    name_not_blank = byte(0x00075C + 8 * index) != 0
+    name_front = dword(0x00075C + 8 * index)
+    name_back = dword(0x000760 + 8 * index)
+    level = byte(0x000700 + index)
+    
+    return class != prev(class) && level == 1 && prev(level) >= 20 &&
+           name_front == prev(name_front) && name_back == prev(name_back) && name_not_blank
+}
+
+achievement(
+     title = "A New Line of Work",
+     description = "Have one of your characters change professions",
+     points = 5,
+     trigger = is_in_game() && (character_class_changed(0) || character_class_changed(1) ||
+                                character_class_changed(2) || character_class_changed(3))
+)
+
+achievement(
+     title = "Archaeologist",
+     description = "Open all 24 chests in the pyramid",
+     points = 5,
+     trigger = is_in_game() && bit0(0x006092) && bit1(0x006092) && bit2(0x006092) && bit3(0x006092) &&
+                               bit4(0x006092) && bit5(0x006092) && bit6(0x006093) && bit7(0x006093) &&
+                               bit0(0x00609F) && bit1(0x00609F) && bit2(0x00609F) &&
+                               bit0(0x0060A0) && bit1(0x0060A0) && bit2(0x0060A0) && bit3(0x0060A0) &&
+                               bit4(0x0060A0) && bit5(0x0060A0) && bit6(0x0060A0) && bit7(0x0060A0) &&
+                               bit3(0x0060A1) && bit4(0x0060A1) && bit5(0x0060A1) && bit6(0x0060A1) &&
+                               bit7(0x0060A1)
+)
+
+achievement(
+     title = "Spelunker",
+     description = "Open all 23 chests in the cave near Samanao",
+     points = 5,
+     trigger = is_in_game() && bit0(0x00609B) && bit1(0x00609B) && bit2(0x00609B) && bit3(0x00609B) &&
+                               bit4(0x00609B) && bit5(0x00609B) && 
+                               bit0(0x00609C) && bit1(0x00609C) && bit2(0x00609C) && bit3(0x00609C) &&
+                               bit4(0x00609C) && bit5(0x00609C) && bit6(0x00609C) && bit7(0x00609C) &&
+                               bit0(0x00609D) && bit1(0x00609D) && bit2(0x00609D) && bit3(0x00609D) &&
+                               bit4(0x00609D) && bit5(0x00609D) && bit6(0x00609D) && bit7(0x00609D) &&
+                               bit7(0x00609E)
+)
+
+function achievement_enemy_killed(title, description, points, enemy_id) {
+    enemy_hp = word(0x000500) // enemy 1 HP - assume boss always alone, or in first slot
+
+    achievement(
+        title = title,
+        description = description,
+        points = points,
+        trigger = byte(0x00056D) == enemy_id && enemy_hp == 0 && prev(enemy_hp) > 0
+    )
+}
+
+// when using the Sphere of Light, the active enemy id changes from 133 to 134.
+// suggestion for fighting: Add 10 or so levels to your characters after defeating him with the Sphere of Light.
+// Then have two characters attack and a third always use the Stone of Life. The fourth character should be a
+// Sage. Have them cast Barrier whenever it's down, then either Sap or secondary healing.
+achievement_enemy_killed("We're Not Scared", "Defeat Zoma without using the Sphere of Light", 20, 133)
+
+classes = {
+    class_hero: "hero",
+    class_wizard: "wizard",
+    class_pilgrim: "pilgrim",
+    class_sage: "sage",
+    class_soldier: "soldier",
+    class_merchant: "merchant",
+    class_fighter: "fighter",
+    class_goof_off: "goof-off"
+}
+
+for key in classes {
+    classes[key + 8] = classes[key]
+}
+
+pronouns = {
+    0: "his",
+    1: "her"
+}
+
+rich_presence_display("A level {0} {1} and {2} companions are on an epic quest",
+    rich_presence_value("Level", byte(0x000700)),
+    rich_presence_lookup("Class", byte(0x000718), classes),
+    rich_presence_lookup("Pronoun", bit3(0x000718), pronouns)
+)

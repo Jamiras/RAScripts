@@ -1,0 +1,1252 @@
+// Dragon Warrior IV
+//  #ID = 4612
+//  md5: d8a1d610c93b96ad98e55e09dfcc7533
+
+// http://www.woodus.com/den/games/dw4nes/maps.php?tp=maps_dungeon
+// http://www.woodus.com/den/games/dw4nes/walkthru2/walkthru4.php
+// https://www.gamefaqs.com/nes/563409-dragon-warrior-iv/faqs/73532
+
+maps = {
+    0x00: "Overworld",
+    0x01: "Haville", // also Shrine east of Mintos, Gottside
+    0x02: "Tempe",
+    0x03: "Izmit B1", // also Secret Playground Exit, Surlene 2F, Frenor 2F, Lakanaba 2F, Haville 2F/B1, Hometown B1
+    0x04: "Desert Bazaar", // also empty Foxville, Kievs, Woodsman's Shack, Island Shack
+    0x05: "Foxville", // also hero's home town, Aneaux
+    0x06: "Lakanaba", // also Monbaraba, Branca, Shrine of Colossus south
+    0x07: "Frenor", // also Soretta Castle
+    0x08: "Secret Playground", // also Shrine East of Desert Bazaar, Shrine NW of Endor, Endor Castle B1, Bonmalmo B1, Aktemto, Hometown, Desert Inn, Royal Crypt (inside)
+    0x09: "Burland Castle 2F", // also Santeem Castle 2F & 3F, Endor Castle 2F, Keeleon Castle 1F
+    0x0A: "Burland Town", // also Mintos, Stancia Castle, Gardenbur, Rosaville
+    0x0B: "Surlene", // also Endor village, Keeleon Castle, House of Prophecy, Royal Crypt (outside)
+    0x0C: "Bonmalmo Castle", // also Shrine of the Small Medal King
+    0x0D: "Burland Castle 1F", // also Santeem Castle 1F, Endor Castle 1F, Dire Palace
+    0x0E: "Izmit", // also Konenber, Seaside Village
+    0x0F: "Esturk's Palace", // Esturk's Throne Room
+    0x10: "Aktemto Mine", // also Royal Crypt (inside)
+    0x11: "Cave southeast of Gardenbur",
+    0x12: "Shrine of Breaking Waves",
+    0x13: "Cave of the Silver Statuette",
+    0x14: "Cave of the Silver Statuette",
+    0x15: "Cave of Betrayal",
+    0x16: "Cave west of Kievs",
+    0x17: "Cave south of Frenor",
+    0x18: "Cascade Cave",
+    0x19: "Cave of the Padequia",
+    0x1A: "Cave to the Dark World",
+    0x1B: "Colossus",
+    0x1C: "Colossus",
+    0x1D: "Cave to Izmit", // also Endor-Branca tunnel 
+    0x1E: "Necrosaro's Mountain",
+    0x1F: "Esturk's Palace", // deep below Aktemto Mine
+    0x20: "Zenithian Tower",
+    0x21: "Zenithian Tower",
+    0x22: "End Cinematic",
+    0x23: "World Tree",
+    0x24: "Elfville",
+    0x25: "Birdsong Tower",
+    0x26: "Loch Tower Basement",
+    0x27: "Birdsong Tower 4F",
+    0x28: "Great Lighthouse",
+    0x29: "Secret Playground Underground",
+    0x2A: "Cave north of Lakanaba",
+    0x2B: "Loch Tower",
+    0x2C: "Monbaraba Dance Hall",
+    0x2D: "Endor Arena",
+    0x2E: "Haville Boat",
+    0x2F: "Haville Boat",
+    0x30: "Shrine of the Horn",
+    0x31: "Necrosaro's Palace",
+    0x32: "Zenithian Castle",
+}
+
+function player_map() => byte(0x0028)
+
+location_bonmalmo = 0x4674
+location_burland = 0x2EA4
+location_cave_north_of_lakanaba = 0x1471
+location_cave_west_of_kievs = 0xBA1F
+location_desert_inn = 0x4DB2
+location_dire_palace = 0xCEA4
+location_endor = 0x6567
+location_frenor = 0x2860
+location_gardenbur = 0x2BC7
+location_izmit = 0x169A
+location_keeleon = 0xA640
+location_konenber = 0x88A9
+location_loch_tower = 0x1688
+location_mintos = 0xA8B5
+location_necrosaros_mountain = 0x1923
+location_necrosaros_palace = 0x1F23
+location_santeem = 0x4927
+location_secret_playground = 0x1AA2
+location_shrine_of_breaking_waves = 0x1BE7
+location_shrine_of_the_horn = 0x1B2D
+location_stancia = 0x1226
+location_tempe = 0x3947
+location_world_tree = 0x8FE3
+
+locations = {
+    0x1011: "the Cave to the Dark World", // from Gottside island
+    0x1211: "the Den of Infurnus Shadow",
+    location_stancia: "Stancia", // Castle
+    0x1236: "the Den of Radimvice",
+    location_cave_north_of_lakanaba: "the Cave north of Lakanaba",
+    location_izmit: "Izmit",
+    location_loch_tower: "the Loch Tower",
+    location_necrosaros_mountain: "Necrosaro's Mountain",
+    location_secret_playground: "the Secret Playground",
+    location_shrine_of_the_horn: "the Shrine of the Horn",
+    0x1B8D: "the Cave to Izmit", // North entrance
+    location_shrine_of_breaking_waves: "the Shrine of Breaking Waves",
+    0x1C20: "Gottside",
+    0x1C23: "Necrosaro's Palace", // from mountain
+    0x1F23: "Necrosaro's Palace", // from last refuge
+    0x1F8D: "the Cave to Izmit", // South entrance
+    0x23E8: "the Shrine of the Small Medal King",
+    0x2468: "Lakanaba",
+    location_frenor: "Frenor",
+    0x2A17: "the Den of Gigademon",
+    0x2A23: "the Last Refuge",
+    0x2A24: "the Cave to the Dark World", // from dark world
+    0x2A30: "the Den of Anderoug",
+    location_gardenbur: "Gardenbur",
+    location_burland: "Burland", // Castle
+    0x2F17: "the Zenithian Tower",
+    0x3191: "the hero's hometown",
+    0x347C: "Foxville",
+    location_tempe: "Tempe",
+    0x3A92: "the Woodsman's Shack",
+    0x3C58: "the Cave south of Frenor",
+    0x3CD7: "the Cave southeast of Gardenbur",
+    0x4081: "the Cave of the Silver Statuette",
+    0x4599: "Branca",
+    0x45DE: "the Cave of Betrayal",
+    location_bonmalmo: "Bonmalmo", // Castle
+    location_santeem: "Santeem", // Castle
+    0x4922: "Surlene",
+    0x4A3F: "Bazaar",
+    0x4D57: "the Shrine east of Bazaar",
+    location_desert_inn: "the Desert Inn",
+    0x5257: "the Shrine northwest of Endor",
+    0x56DA: "Cascade Cave",
+    0x5724: "Birdsong Tower",
+    0x5A84: "the Endor-Branca Tunnel", // Branca side
+    0x5D79: "the Endor-Branca Tunnel", // Endor sied
+    0x61BA: "Aneaux",
+    location_endor: "Endor", // Castle
+    0x66CC: "Rosaville",
+    0x6D16: "Seaside Village",
+    0x795E: "the Royal Crypt",
+    0x8044: "the Island Shack",
+    0x83C7: "the Great Lighthouse",
+    location_konenber: "Konenber",
+    location_world_tree: "the World Tree",
+    0x9A42: "Haville",
+    0x961E: "Aktemto Mine",
+    0xA02F: "the House of Prophecy",
+    0xA4DA: "the Shrine east of Mintos",
+    location_keeleon: "Keeleon", // Castle
+    location_mintos: "Mintos",
+    location_cave_west_of_kievs: "the Cave west of Kievs",
+    0xBD33: "Kievs",
+    0xC483: "the Shrine northwest of Riverton", // potentially excludable
+    0xC9EB: "Soretta", // Castle
+    0xCD91: "Riverton", // north
+    0xCF91: "Riverton", // south
+    location_dire_palace: "the Dire Palace",
+    0xD590: "the Colossus",
+    0xD990: "the Colossus",
+    0xE639: "Monbaraba",
+    0xE6D9: "the Cave of the Padequia",
+}
+
+function player_location() => word(0x0042)
+
+// 0x6110: NPC1 HP
+// 0x6112: NPC1 MP
+// 0x6114: NPC1 ID (0xC5=Healie, 0xC6=Orin, 0xC7=Laurent, 0xC8=Strom, 0xCA=Hector/Panon, 0xCB=Lucia)
+// 0x6116: NPC2 HP
+// 0x6118: NPC2 MP
+// 0x611A: NPC2 ID
+
+function debug_bit(bit, description) {
+    achievement(
+        title = description,
+        description = description,
+        points = 0,
+        trigger = bit != prev(bit)
+    )
+}
+
+// 0x625D: 1000 0000 - Boarding Pass, Keeleon Castle B1
+// 0x625D: 0100 0000 - Strength Seed, Keeleon Castle 1F
+// 0x625D: 0010 0000 - Flute of Uncovering, Keeleon Castle 1F
+// 0x625D: 0001 0000 - Magma Staff, Keeleon Castle 1F
+// 0x625D: 0000 1000 - Lifeforce Nuts, Burland Castle
+// 0x625D: 0000 0100 - 160G, Burland Castle
+// 0x625D: 0000 0010 - Iron Helmet, Burland Castle
+// 0x625D: 0000 0001 - Agility Seed, Burland Castle
+
+// 0x625E: 1000 0000 - Strength Seed, Burland Castle
+// 0x625E: 0100 0000 - 320G, Burland Castle
+// 0x625E: 0010 0000 - Small Medal, Dire Palace B1
+// 0x625E: 0001 0000 - Aeolus' Shield, Dire Palace B1
+// 0x625E: 0000 1000 - Mimic, Dire Palace B1
+// 0x625E: 0000 0100 - Mimic, Dire Palace B1
+
+debug_bit(bit1(0x625E), "625E-0000 0010")
+debug_bit(bit0(0x625E), "625E-0000 0001")
+
+// 0x625F: 0100 0000 - Strength Seed, Endor Armor Shop 2F
+// 0x625F: 0010 0000 - Multi-edge Sword, Endor Armor Shop 2F
+// 0x625F: 0001 0000 - Lifeforce Nuts, Endor Castle B1
+// 0x625F: 0000 1000 - Pink Leotard, King's Room, Endor Castle 3F
+// 0x625F: 0000 0100 - Feather Hat, King's Room, Endor Castle 3F
+
+debug_bit(bit1(0x625F), "625F-0000 0010")
+debug_bit(bit0(0x625F), "625F-0000 0001")
+
+// 0x6260: 0010 0000 - Mystic Acorns, Branca Castle 1F
+// 0x6260: 0001 0000 - 120G, Branca Castle 1F
+// 0x6260: 0000 1000 - Small Medal, Branca Castle 1F
+// 0x6260: 0000 0100 - Fire Claw, Gardenbur B1
+// 0x6260: 0000 0010 - Zenithian Shield, Gardenbur B1
+
+debug_bit(bit7(0x6260), "6260-1000 0000")
+debug_bit(bit6(0x6260), "6260-0100 0000")
+debug_bit(bit0(0x6260), "6260-0000 0001")
+
+// 0x6261: 1000 0000 - Agility Seed, Esturk's Palace 1F
+// 0x6261: 0100 0000 - Strength Seed, Esturk's Palace 1F
+// 0x6261: 0010 0000 - Strength Seed, Lakanaba B1
+// 0x6261: 0001 0000 - Ice Blade, Lakanaba B1
+// 0x6261: 0000 1000 - Chain Sickle, Lakanaba B1
+// 0x6261: 0000 0100 - Empty, Kievs B1
+// 0x6261: 0000 0010 - Lunch, Desert Inn
+// 0x6261: 0000 0001 - Silver Tarot Cards, Aktemto Mine B1
+
+// 0x6262: 1000 0000 - Mystic Acorn, Aktemto Mine B1
+// 0x6262: 0100 0000 - Gunpowder Jar, Aktemto Mine B3
+// 0x6262: 0010 0000 - Gas Canister, Esturk's Palace 1F
+// 0x6262: 0001 0000 - 2480G, Esturk's Palace 1F
+// 0x6262: 0000 1000 - Mimic, Esturk's Palace 1F
+// 0x6262: 0000 0100 - Small Medal, Esturk's Palace 1F
+// 0x6262: 0000 0010 - Small Medal, Esturk's Palace 1F
+// 0x6262: 0000 0001 - Mimic, Esturk's Palace 1F
+
+// 0x6263: 1000 0000 - Agility Seed, Esturk's Palace 1F
+// 0x6263: 0100 0000 - Strength Seed, Esturk's Palace 1F
+// 0x6263: 0010 0000 - Small Medal, Shrine of Breaking Waves B1
+// 0x6263: 0001 0000 - Small Medal, Shrine of Breaking Waves B2
+// 0x6263: 0000 1000 - Zenithian Armor, Shrine of Breaking Waves B2
+// 0x6263: 0000 0100 - Agility Seed, Cave of the Padequia B1
+// 0x6263: 0000 0010 - Mystic Acorns, Cave of the Padequia B2
+// 0x6263: 0000 0001 - 800G, Cave of the Padequia B2
+
+// 0x6264: 1000 0000 - Robe of Serenity, Cave of the Padequia B2
+// 0x6264: 0100 0000 - Padequia Seed, Cave of the Padequia B3
+// 0x6264: 0010 0000 - Man-Eater Chest, Cave of the Padequia B3
+// 0x6264: 0001 0000 - Agility Seed, Cave southeast of Gardenbur B1
+// 0x6264: 0000 1000 - 1200G, Cave southeast of Gardenbur B1
+// 0x6264: 0000 0100 - Small Medal, Cave southeast of Gardenbur B1
+// 0x6264: 0000 0010 - Strength Seed, Cave southeast of Gardenbur B2
+// 0x6264: 0000 0001 - Iron Mask, Cave southeast of Gardenbur B2
+
+// 0x6265: 1000 0000 - Dragon Shield, Cave southeast of Gardenbur B2
+// 0x6265: 0100 0000 - Wing of Wyvern, Cave west of Kievs B1
+// 0x6265: 0010 0000 - Lifeforce Nuts, Cave west of Kievs B2
+// 0x6265: 0001 0000 - 240G, Cave west of Kievs B2
+// 0x6265: 0000 1000 - Lamp of Darkness, Cave west of Kievs B4
+// 0x6265: 0000 0100 - Sphere of Silence, Cave west of Kievs B4
+// 0x6265: 0000 0010 - Magic Key, Edgar's Lab, Cave west of Kievs B5
+// 0x6265: 0000 0001 - Magic Potion, Cave south of Frenor B2
+
+// 0x6266: 1000 0000 - Golden Bracelet, Cave south of Frenor B2
+// 0x6266: 0100 0000 - 320G, Cave south of Frenor B1
+// 0x6266: 0010 0000 - Agility Seed, Cave south of Frenor B1
+// 0x6266: 0001 0000 - Wing of Wyvern, Cave south of Frenor B1
+// 0x6266: 0000 1000 - Medical Herb, SE Secret Playground B1
+// 0x6266: 0000 0100 - Flying Shoes, NW Secret Playground B2
+// 0x6266: 0000 0010 - 600G, E Secret Playground B2
+// 0x6266: 0000 0001 - Small Medal, Cascade Cave B2
+
+// 0x6267: 1000 0000 - Metal Babble Sword, Cascade Cave B4
+// 0x6267: 0100 0000 - Sanglass of Regression, Cascade Cave B1
+// 0x6267: 0010 0000 - 1040G, Cascade Cave B3
+// 0x6267: 0001 0000 - Mask of Corruption, Cascade Cave B3
+// 0x6267: 0000 1000 - Dress of Radiance, Cave to the Dark World B1
+// 0x6267: 0000 0100 - Small Medal, Cave to the Dark World B1
+// 0x6267: 0000 0010 - Demon Armor, Cave to the Dark World B1
+// 0x6267: 0000 0001 - Lifeforce Nuts, Cave to the Dark World B3
+
+// 0x6268: 1000 0000 - Water Flying Clothes, Cave to the Dark World B3
+// 0x6268: 0100 0000 - Staff of Jubilation, Cave to the Dark World B2
+// 0x6268: 0010 0000 - Lifeforce Nuts, Cave to the Dark World B2
+// 0x6268: 0001 0000 - 3280G, Cave to the Dark World B2
+// 0x6268: 0000 1000 - Agility Seed, Cave to the Dark World B2
+// 0x6268: 0000 0100 - Strength Seed, Cave to the Dark World B2
+// 0x6268: 0000 0010 - Mimic, Cave to the Dark World B2
+// 0x6268: 0000 0001 - Mirror Shield, Cave to the Dark World B6
+
+// 0x6269: 1000 0000 - Lifeforce Nuts, Cave to the Dark World B6
+// 0x6269: 0100 0000 - Chain Sickle, Cave north of Lakanaba B2
+// 0x6269: 0010 0000 - Iron Safe, Cave north of Lakanaba B5
+// 0x6269: 0001 0000 - Symbol of Faith, Cave of Betrayal B3
+// 0x6269: 0000 1000 - Iron Spear, Cave of Silver Statuette B2
+// 0x6269: 0000 0100 - Morning Star, Cave of Silver Statuette B2
+// 0x6269: 0000 0010 - 760G, Cave of Silver Statuette B2
+// 0x6269: 0000 0001 - Medical Herb, Cave of Silver Statuette B2
+
+// 0x626A: 1000 0000 - Half Plate Armor, Cave of Silver Statuette B3
+// 0x626A: 0100 0000 - Empty, Cave of Silver Statuette B3
+// 0x626A: 0010 0000 - Empty, Cave of Silver Statuette B3
+// 0x626A: 0001 0000 - Wing of Wyvern, Cave of Silver Statuette B3
+// 0x626A: 0000 1000 - Broad Sword, Cave of Silver Statuette B3
+// 0x626A: 0000 0100 - Silver Statuette, Cave of Silver Statuette B4
+// 0x626A: 0000 0010 - 40G, NW Cave of Izmit
+// 0x626A: 0000 0001 - Medical Herb, SE Cave of Izmit
+
+// 0x626B: 1000 0000 - Staff of Transform, Royal Crypt B1
+// 0x626B: 0100 0000 - Staff of Antimagic, Royal Crypt B3
+// 0x626B: 0010 0000 - Small Medal, Royal Crypt B3
+// 0x626B: 0001 0000 - Mysterious Bolero, Zenithian Tower 4F
+// 0x626B: 0000 1000 - Magic Potion, Zenithian Tower 2F
+// 0x626B: 0000 0100 - Mystic Acorns, Zenithian Tower 1F
+// 0x626B: 0000 0010 - Small Medal, Zenithian Tower 4F
+// 0x626B: 0000 0001 - Dragon Shield, Zenithian Tower 6F
+
+// 0x626C: 1000 0000 - Wing of Wyvern, Birdsong Tower 3F
+// 0x626C: 0100 0000 - Strength Seed, Birdsong Tower 3F
+// 0x626C: 0010 0000 - 1200G, Birdsong Tower 3F
+// 0x626C: 0001 0000 - Zenithian Sword, World Tree 6F
+// 0x626C: 0000 1000 - Dew of the World Tree, World Tree 4F
+// 0x626C: 0000 0100 - Staff of Healing, World Tree 2F
+// 0x626C: 0000 0010 - Strength Seed, Loch Tower 3F
+// 0x626C: 0000 0001 - Wing of Wyvern, Loch Tower 3F
+
+// 0x626D: 1000 0000 - 640G, Loch Tower 2F
+// 0x626D: 0100 0000 - Scale Shield, Loch Tower 2F
+// 0x626D: 0010 0000 - Sword of Malice, Loch Tower 1F
+// 0x626D: 0001 0000 - Luck Seed, Loch Tower 1F
+// 0x626D: 0000 1000 - Golden Barette, Lighthouse 5F
+// 0x626D: 0000 0100 - Fire of Serenity, Lighthouse 4F
+// 0x626D: 0000 0010 - Magic Potion, Lighthouse 3F
+// 0x626D: 0000 0001 - Full Moon Herb, Lighthouse 3F
+
+// 0x626E: 1000 0000 - Man-Eater Chest, Lighthouse 3F
+// 0x626E: 0100 0000 - Boomerang, Lighthouse 3F
+// 0x626E: 0001 0000 - Luck Seed, Lighthouse 1F
+// 0x626E: 0000 1000 - 400G, Lighthouse 1F
+// 0x626E: 0000 0100 - Sword of Decimation, Konenber 2F
+// 0x626E: 0000 0010 - Strength Seed, Lighthouse 2F
+
+debug_bit(bit5(0x626E), "626E-0010 0000")
+debug_bit(bit0(0x626E), "626E-0000 0001")
+
+// 0x626F: 0001 0000 - Zombie Mail, Lair of Radimvice 2F
+// 0x626F: 0000 1000 - Sage's Stone, Necrosaro's Castle Outside
+// 0x626F: 0000 0100 - Small Medal, Necrosaro's Castle 1F
+// 0x626F: 0000 0010 - Lifeforce Nuts, Necrosaro's Castle 3F
+// 0x626F: 0000 0001 - Staff of Thunder, Necrosaro's Castle 3F
+
+debug_bit(bit7(0x626F), "626F-1000 0000")
+debug_bit(bit6(0x626F), "626F-0100 0000")
+
+// 0x6270: 1100 0000 - Baron's Horn, Shrine of the Horn B3
+// 0x6270: 0010 0000 - Dress of Radiance, Shrine of the Horn B4
+// 0x6270: 0001 0000 - Small Medal, Shrine of the Colossus 1F
+// 0x6270: 0000 1000 - Agility Seed, Shrine of the Colossus 2F
+// 0x6270: 0000 0100 - 640G, Shrine of the Colossus B1
+// 0x6270: 0000 0010 - Mimic, Shrine of the Colossus 4F
+// 0x6270: 0000 0001 - Demon Hammer, Shrine of the Colossus 4F
+
+debug_bit(byte(0x6271), "6271-1111 1111")
+
+// 0X6272: 1000 0000 - Lifeforce Nuts, Ground, Dire Palace B1
+// 0x6272: 0100 0000 - Small Medal, Ground, Aktemto Mine B4
+// 0x6272: 0010 0000 - Small Medal, Ground, Riverton
+// 0x6272: 0001 0000 - Small Medal, Well, Mintos
+// 0x6272: 0000 1000 - Lifeforce Nuts, Platform, Tempe
+// 0x6272: 0000 0100 - Strength Seed, Grave, Aneaux
+// 0x6272: 0000 0010 - Feather Hat, Sandy Patch, Hometown
+
+debug_bit(bit0(0x6272), "6272-0000 0001")
+
+// 0x6273: 1000 0000 - Small Medal, Seaside Village
+// 0x6273: 0100 0000 - Small Medal, Shrine east of Mintos
+// 0x6273: 0010 0000 - Small Medal, Den of Gigademon
+// 0x6273: 0000 0100 - Small Medal, Dresser, Zenithian Castle
+// 0x6273: 0000 0010 - Wing of Wyvern, Dresser, Santeem Castle 1F
+// 0x6273: 0000 0001 - Fairy Water, Dresser, Santeem Castle 1F
+
+debug_bit(bit4(0x6273), "6273-0001 0000")
+debug_bit(bit3(0x6273), "6273-0000 1000")
+
+// 0x6274: 1000 0000 - Feather Hat, Dresser, Santeem Castle 3F
+// 0x6274: 0100 0000 - Medical Herb, Bookshelf, SE Burland Castle
+// 0x6274: 0010 0000 - Small Medal, Pot, Dire Palace B1
+// 0x6274: 0001 0000 - Small Medal, Dresser, King's Room, Endor Castle 3F
+// 0x6274: 0000 1000 - Small Medal, Vase, Kitchen, Gardenbur
+// 0x6274: 0000 0100 - Agility Seed, Dresser, Gardenbur
+// 0x6274: 0000 0010 - Small Medal, Dresser, Stancia Castle 1F
+// 0x6274: 0000 0001 - Small Medal, Vase, Stancia 2F
+
+// 0x6275: 1000 0000 - Strength Seed, Desert Bazaar
+// 0x6275: 0100 0000 - Gum Pod, Desert Bazaar
+// 0x6275: 0010 0000 - Small Medal, Pot, Haville B1
+// 0x6275: 0001 0000 - Small Medal, Pot, Haville B1
+// 0x6275: 0000 1000 - Medical Herb, Bookshelf, SE Izmit
+// 0x6275: 0000 0100 - Medical Herb, Pot, Hometown B1
+// 0x6275: 0000 0010 - Medical Herb, Pot, Monbaraba
+// 0x6275: 0000 0001 - Strength Seed, Dresser, Monbaraba B1
+
+// 0x6276: 1000 0000 - Medical Herb, Lakanaba
+// 0x6276: 0100 0000 - Lifeforce Nuts, Jar, Kievs
+// 0x6276: 0010 0000 - Small Medal, Dresser, Gottside B1
+// 0x6276: 0001 0000 - Small Medal, Dresser, Boat, Konenber
+// 0x6276: 0000 1000 - Small Medal, Dresser, Second Boat, Konenber
+// 0x6276: 0000 0100 - Small Medal, Pot, Island Shack
+// 0x6276: 0000 0010 - Small Medal, Pot, Edgar's Lab, Cave West of Kievs
+// 0x6276: 0000 0001 - Medical Herb, Secret Playground Exit
+
+// 0x6277: 0010 0000 - Mystic Acorns, Garden, Frenor, Night
+// 0x6277: 0001 0000 - Stone of Drought, Seaside Village
+// 0x6277: 0000 1000 - Agility Seed, Secret Playground Exit (TODO: Verify)
+// 0x6277: 0000 0100 - Leather Armor, Woodsman's Shack
+// 0x6277: 0000 0010 - Medical Herb, Woodsman's Shack
+// 0x6277: 0000 0001 - 50G, Woodsman's Shack
+
+debug_bit(bit7(0x6277), "6277-1000 0000")
+debug_bit(bit6(0x6277), "6277-0100 0000")
+
+// 0x6278: 0000 0010 - Lifeforce Nuts, Platform, Tempe [1->0]
+// 0x6278: 0000 1001 - Intro story for Ragnar
+
+// 0x6279: 1000 0000 - Return to Santeem after being summoned from Bazaar
+// 0x6279: 1000 0000 - Intro story for Ragnar
+// 0x6279: 1000 0000 - Open door in house of healing in Santeem Castle (briefly)
+// 0x6279: 1000 0000 - Enter Branca as hero
+// 0x6279: 1000 0000 - Open chest
+// 0x6279: 0000 1000 - Birdsong Nectar on ground
+// 0x6279: 0000 0101 - Use Flying Shoes to reach Loch Tower ??
+// 0x6279: 0000 0101 - Use Gunpowder Jar
+// 0x6279: 0000 0011 - Return to Santeem after being summoned from Bazaar
+// 0x6279: 0000 0010 - Give Royal Scroll to king of Bonmalmo
+
+debug_bit(byte(0x6279), "6279-1111 1111")
+
+// 0x627B: 0100 0000 - Rescue impostor princess - get Thief's Key
+// 0x627B: 0010 0000 - Watch princess tget taken from Frenor
+// 0x627B: 0001 0000 - Approach princess in Frenor Inn
+// 0x627B: 0000 0100 - Witness child being taken downstairs, Loch Tower 4F
+// 0x627B: 0000 0010 - Give Birdsong Nectar to King
+
+debug_bit(bit7(0x627B), "627B-1000 0000")
+debug_bit(bit3(0x627B), "627B-0000 1000")
+debug_bit(bit0(0x627B), "627B-0000 0001")
+
+// 0x627C: 0000 0010 - Voice at the secret playground.
+//                   - 02 when directing the player "come this way"
+//                   - 40 or 20 when correcting them "not that way"
+//                   - 00 after going the right way
+
+debug_bit(byte(0x627C), "627C-1111 1111")
+
+// 0x627D: 1111 1111 - Toggles value when transitioning between viewable areas within a map. Goes back to 0 when player moves
+
+// 0x627E: 1000 0000 - Finish talking to king after starting Chapter 2
+// 0x627E: 0100 0000 - Flora Brought to Alex
+// 0x627E: 0010 0000 - Tell Flora that Alex is in Izmet
+// 0x627E: 0001 0000 - Listen to King talk at start of Chapter 1
+// 0x627E: 0000 1000 - Talk to Cristo at start of Chapter 2
+// 0x627E: 0000 0100 - Talk to Brey at start of Chapter 2
+// 0x627E: 0000 0010 - Talk to left guard at entrance of castle at start of Chapter 2
+// 0x627E: 0000 0001 - Follow child being taken downstairs, Loch Tower 4F
+
+// 0x627F: 1000 0000 - Defeat Chameleon Humanoid (monster id = 40)
+// 0x627F: 0110 0000 - Cast Stepguard (goes to 10 when on pain tiles, then 00 once everyone off)
+// 0x627F: 0000 1000 - Start Chapter 4
+// 0x627F: 0000 0010 - Kick down wall at start of Chapter 2
+// 0x627F: 0000 0001 - Brey and Cristo join the party
+
+debug_bit(bit4(0x627F), "627F-0001 0000")
+debug_bit(bit2(0x627F), "627F-0000 0100")
+
+// 0x6280: 0100 0000 - Accept to become offering in Tempe
+// 0x6280: 0010 0000 - Accept to push old man across Lakanaba
+// 0x6280: 0001 0000 - Successfully push old man across Lakanaba
+// 0x6280: 0000 1000 - Talk to prince Reed
+// 0x6280: 0000 0100 - Give Wing of Wyvern to Tom's son in basement of Bonmalmo castle
+// 0x6280: 0000 0010 - Scare mayor out of Foxville
+// 0x6280: 0000 0011 - Deliver Prince Reed's letter
+
+debug_bit(bit7(0x6280), "6280-1000 0000")
+
+// 0x6281: 1000 0000 - Talk to Alex below Izmit at night
+// 0x6281: 0100 0000 - Healie in party
+// 0x6281: 0010 0000 - Escape castle at start of Chapter 2
+// 0x6281: 0001 0000 - Accept Mayor's request in Tempe
+// 0x6281: 0000 1000 - Accept to become offering in Tempe
+// 0x6281: 0000 0100 - Talk to man in Cave to Izmit (goes back to 0 after leaving cave)
+// 0x6281: 0000 0011 - Man in Cave to Izmit's dialogue (0 => "going to izmit", 1 => "not lost", 2 => "no help")
+
+// 0x6282: 1000 0000 - Complete Chapter 1
+// 0x6282: 0100 0000 - Complete Chapter 2 (briefly set when completing chapter 1)
+// 0x6282: 0010 0000 - Complete Chapter 3
+// 0x6282: 0001 0000 - Complete Chapter 4
+
+debug_bit(bit3(0x6282), "6282-0000 1000")
+debug_bit(bit2(0x6282), "6282-0000 0100")
+debug_bit(bit1(0x6282), "6282-0000 0010")
+debug_bit(bit0(0x6282), "6282-0000 0001")
+
+// 0x6283: 1000 0000 - Defeat Saro's Shadow (monster id = 179)
+// 0x6283: 0010 0000 - Rescued children in party
+// 0x6283: 0001 0000 - Enter Frenor
+// 0x6283: 0000 1000 - Talk to Santeem Guard at Desert Bazaar
+// 0x6283: 0000 0100 - Enter Throne Room after being summoned to Santeem
+// 0x6283: 0000 0010 - Give Birdsong Nectar to King of Santeem
+// 0x6283: 0000 0001 - Give Royal Scroll to King of Bonmalo
+
+debug_bit(bit6(0x6283), "6283-0100 0000")
+debug_bit(bit4(0x6283), "6283-0001 0000")
+
+// 0x6284: 1000 0000 - Have king of Endor request you enter the tournament
+// 0x6284: 0100 0000 - Win the Endor tournament
+// 0x6284: 0010 0000 - Have Orin join the party
+// 0x6284: 0001 0000 - Talk to everyone on the ship in Haville
+// 0x6284: 0000 1000 - Get consignment from King of Endor
+// 0x6284: 0000 0100 - Complete day working at shop in Lakanaba (resets on new day)
+// 0x6284: 0000 0010 - Get pulled into the Weapon Shop in Lakanaba
+// 0x6284: 0000 0001 - Start working at shop in Lakanaba (resets on new day)
+
+// 0x6285: 0100 0010 - Start the game
+// 0x6285: 1000 0000 - Lose Mara and Nara in Cave of Betrayal (
+// 0x6285: 0100 0000 - Finish talking to king after starting Chapter 2
+// 0x6285: 0010 0000 - Defeat Endor Tournament Opponent
+// 0x6285: 0001 0000 - Pay for tunnel construction
+// 0x6285: 0000 0100 - Talk to king after rescuing children
+// 0x6285: 0000 0010 - New day in Lakanaba
+// 0x6285: 0000 0001 - Watch princess get taken from Frenor Inn [goes back to 0 after leaving Frenor]
+//                   - Get pulled into the Weapon Shop in Lakanaba
+//                   - Defeat second set of Nara/Mara imposters
+//                   - Walk the Colossus across the river
+
+debug_bit(bit3(0x6285), "6285-0000 1000")
+
+// 0x6286: 1000 0000 - Sell the Silver Statuette to the collector
+// 0x6286: 0100 0000 - Get permission to open shop in Endor
+// 0x6286: 0010 0000 - Purchase the shop in Endor
+// 0x6286: 0001 0000 - Talk to King after rescuing da Garda
+// 0x6286: 0000 1000 - Return Tom's dog
+// 0x6286: 0000 0100 - Talk to Tom's son in Lakanaba (get dog to follow)
+// 0x6286: 0000 0010 - Scare elves in Birdsong Tower
+// 0x6286: 0000 0001 - Enter the Endor Casino (required to finish tunnel)
+
+// 0x6287: 1000 0000 - Talk to man doing tunnel construction on second day
+// 0x6287: 0100 0000 - Pay for tunnel construction
+// 0x6287: 0010 0000 - Get summoned back to Santeem after tournament
+// 0x6287: 0001 0000 - Find Santeem upstairs empty after tournament
+// 0x6287: 0000 1000 - Find Santeem Throne Room empty after tournament
+// 0x6287: 0000 0NNN - Endor Tournament Round
+
+// 0x6288: 1000 0000 - Rescued children from Loch Tower, win Endor tournament, resets to 0 between chapters
+// 0x6288: 0100 0000 - Briefly set to 1 when starting Chapter 2
+// 0x6288: 0010 0000 - Customer in Lakanaba shop
+// 0x6288: 0001 0000 - Completed Taloon's consignment
+// 0x6288: 0000 0001 - Use Boarding Pass
+
+debug_bit(bit6(0x6288), "6288-0100 0000")
+debug_bit(bit3(0x6288), "6288-0000 1000")
+debug_bit(bit2(0x6288), "6288-0000 0100")
+debug_bit(bit1(0x6288), "6288-0000 0010")
+
+// 0x6289: 1000 0000 - Goes to 1 when the guard reaches the bar at the eatery, resets when leaving town
+//                   - Goes to 1 when the contestants leave the Stancia throne room
+// 0x6289: 0100 0000 - Talk to Prince Reed in the Castle
+// 0x6289: 0010 0000 - Ragnar holds off guards in Keeleon Castle
+// 0x6289: 0001 0000 - Talk to Ragnar in Keeleon Castle
+// 0x6289: 0000 1000 - Take dog to Foxville
+// 0x6289: 0000 0100 - Brey and Cristo run after Alena, Talk to prince Reed
+// 0x6289: 0000 0010 - Ragnar takes party to Keeleon
+// 0x6289: 0000 0001 - Find Ragnar in Keeleon Castle
+
+// 0x628A: 1000 0000 - Talk to Hero's father
+// 0x628A: 0001 0000 - Take ship to Endor
+// 0x628A: 0000 1000 - Escape from prison
+// 0x628A: 0000 0100 - Get attacked by Keeleon after defeating Balzack (resets when knocked out)
+// 0x628A: 0000 0010 - Wake up in prison
+// 0x628A: 0000 0001 - Approach slot machines
+
+debug_bit(bit6(0x628A), "628A-0100 0000")
+debug_bit(bit5(0x628A), "628A-0010 0000")
+
+// 0x628C: 0000 0010 - Enter Tempe??
+// 0x628D: 0000 0010 - Enter Tempe??
+
+// 0x628C: 0000 0001 - Dream in Izmet
+// 0x628D: 0000 0001 - Dream in Izmet
+
+// 0x628C: 0000 00NN - Stay the night in Foxville (goes from 10 to 01)
+// 0x628D: 0000 00NN - Stay the night in Foxville (goes from 10 to 01)
+
+// 0x628E: 1000 0000 - Recruit Strom (briefly on)
+// 0x628E: 0100 0000 - Recruit Laurent (briefly on)
+// 0x628E: 0011 0000 - Talk to woodsman south of hero's hometown
+// 0x628E: 0000 1000 - 50G, woodsman's hut
+// 0x628E: 0000 0100 - Leave woodsman's hut (turns hut into an inn)
+// 0x628E: 0000 0010 - Get the Balloon
+// 0x628E: 0000 0001 - Get the Boat
+
+// 0x628F: NNNN 0000 - Taloon's consignment: Half Plate Armors delivered
+// 0x628F: 0000 NNNN - Taloon's consignment: Broad Swords delivered
+
+// 0x6291: 1000 0000 - Briefly set when completing Chapter 1
+// 0x6291: 0100 0000 - Briefly set when breaking through barriers in Cave of Betrayal
+// 0x6291: 0010 0000 - Be the 1000th person through the tunnel
+// 0x6291: 0001 0000 - Have dream about Rosa in Izmit
+// 0x6291: 0000 0100 - Defeat Keeleon
+// 0x6291: 0000 0001 - Approach Ragnar in Keeleon Castle
+
+debug_bit(bit7(0x6291), "6291-1000 0000") // triggers during new game load
+debug_bit(bit3(0x6291), "6291-0000 1000")
+debug_bit(bit1(0x6291), "6291-0000 0010")
+
+// 0x6292: 1000 0000 - Nara joins the hero's party
+// 0x6292: 0100 0000 - Mara joins the hero's party
+// 0x6292: 0010 0000 - Taloon joins the hero's party
+// 0x6292: 0001 0000 - Brey joins the hero's party
+// 0x6292: 0000 1100 - Cristo and Alena join the hero's party
+// 0x6292: 0000 0010 - Ragnar joins the hero's party
+// 0x6292: 0000 0001 - Hector joins the hero's party
+
+// 0x6293: 1000 0000 - Collect Symbol of Faith from Cave of Betrayal
+// 0x6293: 0010 0000 - Talk to Taloon in the Lighthouse
+// 0x6293: 0001 0000 - Use Fire of Serenity in the Lighthouse
+// 0x6293: 0000 1000 - Talk to the monster in the Lighthouse
+// 0x6293: 0000 0100 - Defeat the Lighthouse Bengal and his Flamers
+// 0x6293: 0000 0001 - Get the Padequia Seed
+
+debug_bit(bit6(0x6293), "6293-0100 0000")
+debug_bit(bit1(0x6293), "6293-0000 0010")
+
+// 0x6294: 1000 0000 - Plant the Padequia seed and get the Padequia root
+// 0x6294: 0100 0000 - Give the Padequia root to Cristo
+// 0x6294: 0010 0000 - Find out where Ragnar went
+// 0x6294: 0001 0000 - Get the horse and wagon
+// 0x6294: 0000 0100 - Nara joins the party (makes Mara willing to talk)
+// 0x6294: 0000 0001 - Defeat Keeleon
+
+debug_bit(bit3(0x6294), "6294-0000 1000")
+debug_bit(bit1(0x6294), "6294-0000 0010")
+
+// 0x6295: 1000 0000 - Defeat Balzack (monster id 181)
+// 0x6295: 0001 0000 - Fail to make the King of Stancia laugh
+// 0x6295: 0000 1100 - Get the Zenethian Helm (make the king laugh)
+// 0x6295: 0000 0010 - Recruit Panon
+// 0x6295: 0000 0001 - Listen to the conference of monsters at Dire Palace
+
+debug_bit(bit6(0x6295), "6295-0100 0000")
+debug_bit(bit5(0x6295), "6295-0010 0000")
+
+// 0x6296: 1111 1111 - Transform steps remaining
+// 0x6297: 1111 1111 - Transform shape
+
+// 0x6298: 1000 0000 - Witness thief steal necklace
+// 0x6298: 0100 0000 - Defeat Bakor (monster id 193)
+// 0x6298: 0010 0000 - Get Final Key
+// 0x6298: 0000 1000 - Defeat Saroknight (monster id 192)
+// 0x6298: 0000 0100 - Defeat Rhinoking and Bengal guarding Esturk (monster id 131)
+// 0x6298: 0000 0010 - Give Gas Canister to man in Riverton
+// 0x6298: 0000 0001 - Defeat Esturk (monster id 188)
+
+debug_bit(bit4(0x6298), "6298-0001 0000")
+
+// 0x629B: 1000 0000 - Panon is in the party
+// 0x629B: 0010 0000 - Lucia joins the party
+// 0x629B: 0001 0000 - Master Dragon enchants the Zenithian Sword
+// 0x629B: 0000 1000 - Doran joins the party
+// 0x629B: 0000 0100 - Get Dew of the World Tree from monster in Zenithian Castle
+// 0x629B: 0000 0010 - Lucia leaves the party
+
+// 0x62A1: 1000 0000 - Use Magma Staff
+// 0x62A1: 0100 0000 - Use Stone of Drought
+// 0x62A1: 0010 0000 - Defeat Necrosaro (monster id 174)
+// 0x62A1: 0001 0000 - Hector left the party
+// 0x62A1: 0000 1000 - Somehow related to Colossus, goes from 1 to 0 when crossing the river
+// 0x62A1: 0000 0100 - Defeat second set of Mara/Nara imposters
+// 0x62A1: 0000 0010 - Get the Treasure Map
+
+debug_bit(bit0(0x62A1), "62A1-0000 0001")
+
+// 0x62A4: 1000 0000 - Kill Gigademon (monster id 143)
+// 0x62A4: 0100 0000 - Kill Anderoug (monster id 144)
+// 0x62A4: 0010 0000 - Kill Infernus Shadow(monster id 147)
+// 0x62A4: 0001 0000 - Kill Radimvice (monster id 146)
+
+// 0x62AA: 1000 0000 - Press second button in Cave north of Lakanaba
+// 0x62AA: 0010 0000 - Press button in Cave of Silver Statuette
+// 0x62AA: 0001 0000 - Ride elevator in Necrosaro's palace
+// 0x62AA: 0000 1000 - Tell Taloon's wife that he's going on another journey
+// 0x62AA: 0000 0010 - Ride second elevator in Necrosaro's palace
+// 0x62AA: 0000 0001 - Survive attack on hero's hometown
+
+debug_bit(bit6(0x62AA), "62AA-0100 0000")
+debug_bit(bit2(0x62AA), "62AA-0000 0100")
+
+// character data (30 bytes):
+// 00: 0000 0000
+// 00: 0000 0000
+// 00: 0000 0000
+// 00: 0000 0000
+// 00: 0000 0000
+// 00: 0000 0000
+// 00: 0000 0000
+// 00: 0000 0000
+// 01: 1000 0000 - alive
+// 01: 0100 0000 - paralyzed (PR)
+// 01: 0010 0000 - poisoned (PO)
+// 01: 0000 0000
+// 01: 0000 0000
+// 01: 0000 0000
+// 01: 0000 0000
+// 01: 0000 0000
+// 02-03         - current HP
+// 04-05         - current MP
+// 06            - level
+// 07            - strength
+// 08            - agility
+// 09            - vitality
+// 0A            - intelligence
+// 0B            - luck
+// 0C            - cristo = 0, brey = 0, ragnar = 0, alena = 0
+// 0D-0E         - max HP
+// 0F-10         - max MP
+// 11-13         - experience
+// 14-1B         - inventory
+// 1C            - cristo = 2, brey = 3, ragnar = 0, alena = 0, hero = 1
+// 1D            - christo = 0, brey = 0, ragnar = 0, alena = 0, hero = 2
+// 1E            - christo = 1, brey = 0, ragnar = 0, alena = 0, hero = 3
+
+character_hero = 0
+character_cristo = 1
+character_nara = 2
+character_mara = 3
+character_brey = 4
+character_taloon = 5
+character_ragnar = 6
+character_alena = 7
+
+function character_status(character_id) => word(0x6000 + character_id * 30)
+function character_hp(character_id) => word(0x6002 + character_id * 30)
+function character_mp(character_id) => word(0x6004 + character_id * 30)
+function character_level(character_id) => byte(0x6006 + character_id * 30)
+function character_strength(character_id) => byte(0x6007 + character_id * 30)
+function character_agility(character_id) => byte(0x6008 + character_id * 30)
+function character_intelligence(character_id) => byte(0x6009 + character_id * 30)
+function character_luck(character_id) => byte(0x600A + character_id * 30)
+function character_max_hp(character_id) => word(0x600C + character_id * 30)
+function character_max_mp(character_id) => word(0x600E + character_id * 30)
+function character_exp(character_id) => word(0x6011 + character_id * 30) // actually three bytes
+function character_inventory_item(character_id, inventory_slot) => byte(0x6014 + character_id * 30 + inventory_slot)
+
+function party_character(party_index) => low4(0x616A + party_index)
+function party_gold() => word(0x6157) // actually three bytes
+function party_casino_coins() => word(0x62AD)
+
+// 00 = normal, 01 = sleep
+function party_character_status(party_index) => byte(0x721E + party_index)
+
+function character_x(party_index) => byte(0x6F60 + party_index)
+function character_y(party_index) => byte(0x6F80 + party_index)
+
+function player_world_x() => byte(0x0042)
+function player_world_y() => byte(0x0043)
+function player_map_x() => byte(0x0044)
+function player_map_y() => byte(0x0045)
+
+// 0x8000-0xFFFF is C1 after save and not continue, FB after reset after save and not continue
+// 0x616A is always 8 if player is present (but may be set to 8 in initial menu from previous run,
+// but all the other achievement triggers should also be set to the values from the previous run)
+function trigger_player_in_game() => high4(0x616A) == 8
+
+// monster data (14 bytes):
+// 00            - agility
+// 01            - attack
+// 02            - 00
+// 03            - defense
+// 04            - 00
+// 05            - 00
+// 06            - status (C0=Alive, 81=Dead, 01=Run away)
+// 07            - 00
+// 08            - 00
+// 09            - 00
+// 0A-0B         - current HP
+// 0C            - current MP
+// 0D            - letter*36 + group_index
+function monster_agility(monster_index) => byte(0x7274 + monster_index * 14)
+function monster_attack(monster_index) => byte(0x7275 + monster_index * 14)
+function monster_defense(monster_index) => byte(0x7277 + monster_index * 14)
+function monster_status(monster_index) => byte(0x727A + monster_index * 14)
+function monster_hp(monster_index) => word(0x727E + monster_index * 14)
+function monster_mp(monster_index) => byte(0x7280 + monster_index * 14)
+function monster_letter_group(monster_index) => byte(0x7281 + monster_index * 14)
+function monster_letter(monster_index) => monster_letter_group(monster_index) / 36
+//function monster_group(monster_index) => monster_letter_group(monster_index) % 36
+function monster_group_type(group_index) => byte(0x0440 + group_index)
+
+function battle_gold() => word(0x7201)
+function battle_xp() => word(0x7203) // actually three bytes
+function trigger_battle_over() => byte(0x7270) == 0
+
+function small_medals_turned_in() => byte(0x62A2) // collected?
+function current_chapter() => byte(0x615A)
+
+// 28 = wake up from inn. 78 = starts to get dark. 80 = slightly darker. 84 = dark. 
+// c0 = starts to get light. c4 = starts to get lighter. c8 = lighter. (cb=>00, light)
+function time_of_day() => byte(0x62ED)
+
+// =============================================
+// ------ Story Achievements x28 (200 points) ------
+
+function story_achievement_old(bit, map, points, title, description) {
+    if (points > 0) {
+        achievement(
+            title = title,
+            description = description,
+            points = points,
+            trigger = bit == 1 && prev(bit) != 1 && player_map() == map && trigger_player_in_game()
+        )
+    }
+}
+
+function story_achievement(bit, location, map, points, title, description) {
+    achievement(
+        title = title,
+        description = description,
+        points = points,
+        trigger = player_location() == location && player_map() == map && 
+                  trigger_player_in_game() &&
+                  bit == 1 && prev(bit) != 1 
+    )
+}
+
+// ------ Chapter 1 (20 points) ------
+//  5 - Reunite Alex and his wife
+//  5 - Healie joins the party
+// 10 - Complete Chapter 1
+
+story_achievement(bit6(0x627E), location_izmit, 0x03,  5, "Reunited", "Help Flora find her missing husband")
+story_achievement(bit6(0x6281), location_secret_playground, 0x29,  5, "Making Friends", "Let the Healer slime join your party")
+story_achievement(bit7(0x6282), location_burland, 0x0D, 10, "In Search of a Hero", "Complete Chapter 1")
+
+// ------ Chapter 2 (30 points) ------
+//  5 - Find a way out of the castle
+//  5 - Bring peace to Tempe
+//  5 - Save the fake princess
+//  5 - Restore the King's voice
+// 10 - Complete Chapter 2
+
+story_achievement(bit5(0x6281), location_santeem, 0x0D,  5, "Sneaking Out", "Find a way out of the Castle")
+story_achievement(bit7(0x627F), location_tempe, 0x02,  5, "The Offering", "Bring peace to Tempe")
+story_achievement(bit6(0x627B), location_frenor, 0x07,  5, "The Kidnapped Imposter", "Rescue the fake princess")
+story_achievement(bit1(0x6283), location_santeem, 0x09,  5, "Speak No Evil", "Restore the King's Voice")
+
+// can't use generic story_achievement_old here since the bit gets briefly toggled to 1 when completing chapter 1
+achievement(
+    title = "The Empty Castle",
+    description = "Complete Chapter 2",
+    points = 10,
+    trigger = bit6(0x6282) == 1 && prev(bit6(0x6282)) != 1 && 
+              player_location() == location_santeem && player_map() == 0x0D && 
+              trigger_player_in_game() && current_chapter() == 1
+)
+
+// ------ Chapter 3 (25 points) ------
+//  5 - Get the Iron Safe and leave
+//  5 - Repair the bridge to Endor
+//  5 - Purchase the shop
+// 10 - Complete Chapter 3
+
+achievement(
+    title = "It's a Trap",
+    description = "Collect the Iron Safe and leave",
+    points = 5,
+    trigger = once(bit5(0x6269)) == 0 && bit5(0x6269) == 1 && trigger_player_in_game() && 
+              player_map_x() == 12 && player_map_y() == 20 && never(player_location() != 0x1471)
+)
+
+story_achievement(bit4(0x6286), location_bonmalmo, 0x0C,  5, "The Architect", "Repair the bridge to Endor")
+story_achievement(bit5(0x6286), location_endor, 0x03,  5, "Moving In", "Purchase the shop in Endor")
+story_achievement(bit5(0x6282), 0x5A84, 0x00, 10, "The Traveling Merchant", "Complete Chapter 3")
+
+// ------ Chapter 4 (15 points) ------
+//  5 - Get Orin to join the party
+// 10 - Complete Chapter 4
+
+story_achievement(bit5(0x6284), location_cave_west_of_kievs, 0x16,  5, "Edgar's Pupil", "Get Orin to join your party")
+story_achievement(bit4(0x6282), location_endor, 0x00, 10, "Refugees", "Complete Chapter 4")
+
+// ------ Chapter 5 (110 points) ------
+// 10 - Get the wagon
+// 10 - Get the ship
+//  5 - Help Cristo recover
+//  5 - Defeat Keeleon
+//  5 - Defeat King Balzack
+//  5 - Get the Zenithian Helm
+//  5 - Get the Zenithian Shield
+//  5 - Get the Zenithian Armor
+//  5 - Attend the conference at the dire palace
+// 10 - Get the hot air balloon
+//  5 - Get the Zenithian Sword
+//  5 - Talk to the Master Dragon
+// 10 - Defeat the four guardians of the Dark World
+// 25 - Defeat Necrosaro
+
+story_achievement(bit4(0x6294), location_desert_inn, 0x08, 10, "Caravan", "Acquire the wagon")
+story_achievement(bit0(0x628E), 0x89A8, 0x0E, 10, "Starboard the Helm!", "Acquire the boat")
+story_achievement(bit6(0x6294), location_mintos, 0x03,  5, "Miracle Plant", "Help Cristo recover from his illness")
+story_achievement(bit0(0x6294), location_keeleon, 0x09,  5, "Rematch", "Defeat Keeleon")
+story_achievement(bit7(0x6295), location_santeem, 0x09,  5, "You've Changed", "Defeat the evolved Balzack")
+story_achievement(bit3(0x6295), location_stancia, 0x09,  5, "Not So Funny", "Get the Zenithian Helm")
+story_achievement(bit1(0x6260), location_gardenbur, 0x0C,  5, "Proof of Innocence", "Get the Zenithian Shield")
+story_achievement(bit3(0x6263), location_shrine_of_breaking_waves, 0x12,  5, "Underwater Oasis", "Get the Zenithian Armor")
+story_achievement(bit0(0x6295), location_dire_palace, 0x09,  5, "A Monstrous Announcement", "Attend the conference at the Dire Palace")
+
+// two entrances to Riverton at 0xCD91 and 0xCF91, just check for X=0x91
+achievement(
+    title = "There's Gas Inside",
+    description = "Acquire the hot air balloon",
+    points = 10,
+    trigger = player_world_x() == 0x91 && player_map() == 0x04 && 
+              trigger_player_in_game() &&
+              bit1(0x628E) == 1 && prev(bit1(0x628E)) != 1 
+)
+
+story_achievement(bit4(0x626C), location_world_tree, 0x23,  5, "The Highest Branches", "Get the Zenithian Sword")
+
+// Zenethia doesn't actually modify the world x/y
+achievement(
+    title = "Humans are Curious Creatures",
+    description = "Talk to the Master Dragon",
+    points = 5,
+    trigger = player_map() == 0x09 && 
+              trigger_player_in_game() &&
+              bit4(0x629B) == 1 && prev(bit4(0x629B)) != 1 
+)
+
+achievement(
+    title = "And Then There Were None",
+    description = "Defeat the four guardians of the Dark World",
+    points = 10,
+    trigger = high4(0x62A4) == 15 && prev(high4(0x62A4)) != 15 && trigger_player_in_game() && 
+              player_map() >=9 && player_map() <= 15 // SW=9 NW=9 NE=15 SE=12
+)
+
+story_achievement(bit5(0x62A1), location_necrosaros_mountain, 0x1E, 25, "Is This The End?", "Defeat Necrosaro")
+
+// =================================================
+// ------ Challenge Achievements x2 (90 points) ------
+//                                   290 total
+
+// 40 - We Don't Need Another Hero: Defeat Necrosaro without the hero in the party
+// 50 - Just the Two of Us: Defeat Necrosaro with a party of two
+
+function trigger_defeat_necrosaro() => once(monster_group_type(0) == 255) && // battle start
+                                       once(monster_group_type(0) == 174) && // necrosaro
+                                       never(monster_group_type(0) == 0) &&  // not in battle
+                                       trigger_battle_over() &&              // leave battle
+                                       monster_status(0) == 0x81             // defeated
+
+// Alena-46, Ragnar-43, Cristo-44, Nara-41 [Normal] - make sure Ragnar has the Sage's Stone
+// To force healing, switch to Defensive
+achievement(
+    title = "We Don't Need Another Hero",
+    description = "Defeat Necrosaro without the hero in the party",
+    points = 40,
+    trigger = trigger_defeat_necrosaro() &&
+              never(byte(0x616A) == 0x80) && // party_character(0) returns low4(0x616A), we need the whole byte
+              never(byte(0x616B) == 0x80) &&
+              never(byte(0x616C) == 0x80) &&
+              never(byte(0x616D) == 0x80)
+)
+
+// Hero-49, Alena-51 [Normal] - Attack unless HP < 200 on either char, then use Healusall
+achievement(
+    title = "Just the Two of Us",
+    description = "Defeat Necrosaro with a party of two",
+    points = 50,
+    trigger = trigger_defeat_necrosaro() &&
+              never(byte(0x616C) != 0x00) && // party_character(2) returns low4(0x616C), we need the whole byte
+              never(byte(0x616D) != 0x00)
+)
+
+// ================================================
+// ------ Optional Achievements x13 (110 points) ------
+//                                   400 total
+
+//  5 - Have at least 10000 Casino coins
+//  5 - Be the 5000th person through the tunnel between Branca and Endor
+//  5 - Find out what happened to Rosa
+//  5 - Try Pufpuf
+
+//  5 - Have Doran join the party
+
+//  5 - Defeat a King Metal
+
+//  5 - Find all three hidden chests in the Great Lighthouse
+//  5 - Find the hidden treasure in Endor
+//  5 - Find the hidden treasure in Gardenbur
+//  5 - Find the hidden treasure in the Shrine of the Horn
+//  5 - Find the hidden treasure in Necrosaro's Palace
+//  5 - Pluck a leaf from the World Tree
+
+// 50 - Find all 32 small medals
+
+// 0x005E settles on 2 when the Congratulations message is on screen, but may occasionally pass over it at other
+// times. Make sure it stays there for a full second (30 frames), then check the winnings (0x0032) to see if the
+// user earned at least 10 coins (3 cherries)
+// achievement(
+//     title = "One-Armed Bandit",
+//     description = "Get three cherries or better on a slot machine",
+//     points = 5,
+//     trigger = player_map() == 12 && player_location() == 0x6567 && player_map_y() == 3 &&
+//               repeated(30, byte(0x005E) == 2) && never(byte(0x005E) != 2) && word(0x0032) >= 10
+// )
+
+// not sure what 0x007E is exactly, but it's 1 when you win, and 0 when you lose.
+// similarly, 0x000F is 5 when you win and 1 when you lose, and 0x0552 is 8 when you win and 7 when you lose.
+// to get a royal flush, set 0x7600 to 27 2B 2F 33 03
+// function winning_poker_hand() => byte(0x0081)
+// achievement(
+//     title = "Card Shark",
+//     description = "Get a Flush or better at the poker table",
+//     points = 5,
+//     trigger = player_map() == 12 && player_location() == 0x6567 && player_map_x() == 19 && player_map_y() == 13 &&
+//               winning_poker_hand() <= 5 && byte(0x007E) == 1
+// )
+
+// achievement(
+//     title = "Called It",
+//     description = "Correctly pick the winner of an arena battle",
+//     points = 5,
+//     trigger = player_map() == 12 && player_location() == 0x6567 &&
+//               player_map_x() == 8 && player_map_y() == 12 &&
+//               once(monster_group_type(0) != 0) && once(trigger_battle_over()) &&
+//               high4(0x6E7F) == 4 && never(high4(0x6E7F) == 8) && 
+//               never(player_map_x() != 8) && never(player_map_y() != 12)
+//               
+// )
+
+achievement(
+    title = "High Roller",
+    description = "Have at least 10,000 Casino coins",
+    points = 5,
+    trigger = player_map() == 12 && player_location() == 0x6567 && 
+              (byte(0x62AF) > 0 || word(0x62AD) >= 10000)
+)
+
+story_achievement_old(bit5(0x6291), 0x1D,  5, "Tunnel Rat", "Be the 5000th person to use the new tunnel")
+
+// Stay at Izmit inn after killing Esturk
+// - Matches portions of > Necrosaro: `Those humans! I Will let them suffer for this! I promise!'
+achievement(
+    title = "Rosa's Fate",
+    description = "Find out what happened to Rosa",
+    points = 5,
+    trigger = player_map() == 1 && player_location() == 0x169A &&
+              byte(0x06EC) == 0x32 && // N
+              byte(0x06ED) == 0x0F && // e
+              byte(0x06EE) == 0x0D && // c ...
+              byte(0x06F4) == 0x19 && // o
+              byte(0x06F5) == 0x71 && // :
+              byte(0x072F) == 0x2D && // I
+              byte(0x0730) == 0x00 && //  
+              byte(0x0731) == 0x1A && // p
+              byte(0x0732) == 0x1C    // r
+)
+
+// Monbaraba at night, upstairs eatery, solo male character
+achievement(
+    title = "Private Dance",
+    description = "Try Pufpuf",
+    points = 5,
+    trigger = player_map() == 3 && byte(0x06C9) == 0x34 && // P
+                                   byte(0x06CA) == 0x1F && // u
+                                   byte(0x06CB) == 0x10 && // f
+                                   byte(0x06CC) == 0x1A && // p
+                                   byte(0x06CD) == 0x1F && // u
+                                   byte(0x06CE) == 0x10    // f
+)
+
+achievement(
+    title = "Zenithia's Finest",
+    description = "Doran joined the party",
+    points = 5,
+    trigger = player_map() == 0x05 && 
+              trigger_player_in_game() &&
+              bit3(0x629B) == 1 && prev(bit3(0x629B)) != 1 
+)
+
+// monster_group_type will change to 140 when encountering a King Slime, to 255 after defeating it, and 0 after leaving battle
+// metal king always show up as first group (0), so only need to assert group_type(0). this also ensures that the
+// first monster (0) is also a metal king. this makes checking for the first monster being defeated easy. if a group
+// of two shows up, the second monster will have letter_group of 0x24 (group0-B).
+// when the metal king shows up in arena fights, it's the second group (1), so this won't trigger there, if it actually dies.
+// the metal king fight usually ends up in a draw.
+achievement(
+    title = "The One That Didn't Get Away",
+    description = "Defeat a King Metal",
+    points = 5,
+    trigger = once(monster_group_type(0) == 140) && never(monster_group_type(0) == 0) &&
+              trigger_battle_over() &&
+              ((monster_status(0) == 0x81) || // killed first metal king
+               (monster_status(1) == 0x81 && monster_letter_group(1) == 0x24)) // killed second metal king
+)
+
+achievement(
+    title = "Hidden Treasure - Great Lighthouse", 
+    description = "Find all three hidden treasures in the Great Lighthouse",
+    points = 5,
+    trigger = bit3(0x626E) == 1 && bit4(0x626E) == 1 && bit3(0x626D) == 1 &&
+              player_location() == 0x83C7 && 
+              (prev(bit3(0x626E) != 1) || prev(bit4(0x626E) != 1) || prev(bit3(0x626D) != 1))
+)
+
+story_achievement(bit5(0x625F), location_endor, 0x03,  5, "Hidden Treasure - Endor", "Find the hidden treasure in Endor")
+story_achievement(bit2(0x6260), location_gardenbur, 0x0C,  5, "Hidden Treasure - Gardenbur", "Find the hidden treasure in Gardenbur")
+story_achievement(bit5(0x6270), location_shrine_of_the_horn, 0x0C,  5, "Hidden Treasure - Shrine of the Horn", "Find the hidden treasure in the Shrine of the Horn")
+story_achievement(bit3(0x626F), location_necrosaros_palace, 0x31,  5, "Hidden Treasure - Necrosaro's Palace", "Find the hidden treasure in Necrosaro's Palace")
+
+// two entrances to Necrosaro's Palace are 0x1C23 and 0x1F23, just check for X=0x23
+achievement(
+    title = "Hidden Treasure - Necrosaro's Palace",
+    description = "Find the hidden treasure in Necrosaro's Palace",
+    points = 5,
+    trigger = player_world_x() == 0x23 && player_map() == 0x31 && 
+              trigger_player_in_game() &&
+              bit1(0x628E) == 1 && prev(bit1(0x628E)) != 1 
+)
+
+achievement(
+    title = "Arboreal Vandal",
+    description = "Pluck a leaf from the World Tree",
+    points = 5,
+    trigger = byte(0x627A) == 0x57 && player_location() == location_world_tree
+)
+
+achievement(
+    title = "Small Medal Collector",
+    description = "Find all 32 small medals",
+    points = 50,
+    trigger = bit5(0x625E) == 1 && bit3(0x6260) == 1 && bit2(0x6262) == 1 && bit1(0x6262) == 1 &&
+              bit5(0x6263) == 1 && bit4(0x6263) == 1 && bit2(0x6264) == 1 && bit0(0x6266) == 1 &&
+              bit2(0x6267) == 1 && bit5(0x626B) == 1 && bit1(0x626B) == 1 && bit2(0x626F) == 1 &&
+              bit4(0x6270) == 1 && bit6(0x6272) == 1 && bit5(0x6272) == 1 && bit4(0x6272) == 1 &&
+              bit7(0x6273) == 1 && bit6(0x6273) == 1 && bit5(0x6273) == 1 && bit2(0x6273) == 1 &&
+              bit5(0x6274) == 1 && bit4(0x6274) == 1 && bit3(0x6274) == 1 && bit1(0x6274) == 1 &&
+              bit0(0x6274) == 1 && bit5(0x6275) == 1 && bit4(0x6275) == 1 && bit5(0x6276) == 1 &&
+              bit4(0x6276) == 1 && bit3(0x6276) == 1 && bit2(0x6276) == 1 && bit1(0x6276) == 1 &&
+              player_location() != 0 && (
+              prev(bit5(0x625E)) != 1 || prev(bit3(0x6260)) != 1 || prev(bit2(0x6262)) != 1 || prev(bit1(0x6262)) != 1 ||
+              prev(bit5(0x6263)) != 1 || prev(bit4(0x6263)) != 1 || prev(bit2(0x6264)) != 1 || prev(bit0(0x6266)) != 1 ||
+              prev(bit2(0x6267)) != 1 || prev(bit5(0x626B)) != 1 || prev(bit1(0x626B)) != 1 || prev(bit2(0x626F)) != 1 ||
+              prev(bit4(0x6270)) != 1 || prev(bit6(0x6272)) != 1 || prev(bit5(0x6272)) != 1 || prev(bit4(0x6272)) != 1 ||
+              prev(bit7(0x6273)) != 1 || prev(bit6(0x6273)) != 1 || prev(bit5(0x6273)) != 1 || prev(bit2(0x6273)) != 1 ||
+              prev(bit5(0x6274)) != 1 || prev(bit4(0x6274)) != 1 || prev(bit3(0x6274)) != 1 || prev(bit1(0x6274)) != 1 ||
+              prev(bit0(0x6274)) != 1 || prev(bit5(0x6275)) != 1 || prev(bit4(0x6275)) != 1 || prev(bit5(0x6276)) != 1 ||
+              prev(bit4(0x6276)) != 1 || prev(bit3(0x6276)) != 1 || prev(bit2(0x6276)) != 1 || prev(bit1(0x6276)) != 1)
+)
+
+// ===========================
+// ------ Rich Presence ------
+
+prefix = {
+    0: "waits for",
+    1: "and",
+}
+
+pronouns = {
+    0: "his",
+    1: "her"
+}
+
+suffix = {
+    0: "who are",
+    1: "are",
+}
+
+// built from maps lookup - more data needed
+location_verbs = {
+    0x00: "adventuring near",
+    0x01: "visiting",
+    0x02: "visiting",
+    0x03: "visiting",
+    0x04: "visiting",
+    0x05: "visiting",
+    0x06: "visiting",
+    0x07: "visiting",
+    0x08: "visiting",
+    0x09: "visiting",
+    0x0A: "visiting",
+    0x0B: "visiting",
+    0x0C: "visiting",
+    0x0D: "visiting",
+    0x0E: "visiting",
+    0x0F: "exploring the",
+    0x10: "exploring the",
+    0x11: "exploring the",
+    0x12: "exploring the",
+    0x13: "exploring the",
+    0x14: "exploring the",
+    0x15: "exploring the",
+    0x16: "exploring the",
+    0x17: "exploring the",
+    0x18: "exploring the",
+    0x19: "exploring the",
+    0x1A: "exploring the",
+    0x1B: "exploring the",
+    0x1C: "exploring the",
+    0x1D: "exploring the",
+    0x1E: "exploring the",
+    0x1F: "exploring the",
+    0x20: "exploring the",
+    0x21: "exploring the",
+    0x23: "exploring",
+    0x24: "visiting",
+    0x25: "exploring the",
+    0x26: "exploring the",
+    0x27: "exploring the",
+    0x28: "exploring the",
+    0x29: "exploring the",
+    0x2A: "exploring the",
+    0x2B: "exploring the",
+    0x2C: "visiting",
+    0x2D: "visiting",
+    0x2E: "visiting",
+    0x2F: "visiting",
+    0x30: "exploring the",
+    0x31: "exploring",
+}
+
+chapters = {
+    0: "in Chapter 1",
+    1: "in Chapter 2",
+    2: "in Chapter 3",
+    3: "in Chapter 4",
+    4: "",
+}
+
+function is_chapter_five() => bit2(0x615A)
+function hero_gender() => bit0(0x615C)
+
+rich_presence_display("A level {0} hero {1} {2} companions {3} exploring {4} {5}",
+    rich_presence_value("Level", character_level(character_hero)),
+    rich_presence_lookup("Prefix", is_chapter_five(), prefix),
+    rich_presence_lookup("Pronoun", hero_gender(), pronouns),
+    rich_presence_lookup("Suffix", is_chapter_five(), suffix),
+    //rich_presence_lookup("Verb", player_map(), location_verbs),
+    rich_presence_lookup("Location", player_location(), locations),
+    rich_presence_lookup("Chapter", current_chapter(), chapters)
+)

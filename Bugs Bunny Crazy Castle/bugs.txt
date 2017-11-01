@@ -1,0 +1,190 @@
+// The Bugs Bunny Crazy Castle
+// #ID = 1597
+
+function is_actor_alive(index) => bit7(0x000500 + index * 0x20)
+function is_actor_moving_vertically(index) => bit1(0x000500 + index * 0x20)
+function is_in_menu() => bit1(0x00000C)
+function is_in_level() => !is_in_menu() && is_actor_alive(0)
+function current_level() => byte(0x000068) + 1
+function max_level() => byte(0x000069) + 1
+function is_level_complete() => byte(0x000518) == 0xFF
+
+function complete_level_trigger(level) => is_in_level() && is_level_complete() && current_level() == level
+
+function achievement_complete_level(level) {
+    achievement(
+        title = "Level " + level + " Complete", 
+        description = "Complete level " + level, 
+        points = 5,
+        trigger = complete_level_trigger(level)
+    )
+}
+
+achievement_complete_level(10) // WZFS
+achievement_complete_level(20) // ZTPZ
+achievement_complete_level(30) // WYCZ
+achievement_complete_level(40) // TX9W
+achievement_complete_level(50) // 2TWX
+achievement_complete_level(60) // YTKX
+
+achievement(
+    title = "Marathon",
+    description = "Complete all 60 levels in one sitting without changing the selected level",
+    points = 30,
+    trigger = complete_level_trigger(60) && once(current_level() == 1) && never(current_level() < max_level())
+)
+
+function achievement_complete_secret_level(secret_level, level) {
+    achievement(
+        title = "Level S" + secret_level + " Complete", 
+        description = "Complete secret level " + secret_level, 
+        points = 15,
+        trigger = complete_level_trigger(level)
+    )
+}
+
+achievement_complete_secret_level(1, 64) // sign on 30 or YYOX
+achievement_complete_secret_level(2, 62) // sign on 41 or PYCX
+achievement_complete_secret_level(3, 61) // sign on 45 or PPMX
+achievement_complete_secret_level(4, 63) // sign on 60 or YPAX
+
+achievement(
+    title = "Under Construction",
+    description = "Visit a level higher than 64",
+    points = 5,
+    trigger = is_in_level() && current_level() > 64
+)
+
+achievement(
+    title = "Déjà vu",
+    description = "Select a level lower than the current level and play it",
+    points = 5,
+    trigger = is_in_level() && current_level() < max_level()
+)
+
+function points_10k() => low4(0x0000B5)
+function points_100k() => low4(0x0000B4)
+function points_1m() => low4(0x0000B3)
+function points_10m() => low4(0x0000B2)
+
+achievement(
+    title = "20000 Points",
+    description = "Have at least twenty thousand points",
+    points = 5,
+    trigger = is_in_level() && (points_10k() >= 2 || points_100k() > 0 || points_1m() > 0 || points_10m() > 0)
+)
+
+achievement(
+    title = "50000 Points",
+    description = "Have at least fifty thousand points",
+    points = 10,
+    trigger = is_in_level() && (points_10k() >= 5 || points_100k() > 0 || points_1m() > 0 || points_10m() > 0)
+)
+
+function is_actor_dead(index) {
+    actor_status_address = 0x000510 + index * 0x20
+    return bit2(actor_status_address) && !bit1(actor_status_address) // 4 or 5 but not 6 or 7
+}
+
+function actor_killed_trigger(index, type) {
+    actor_type = byte(0x000509 + index * 0x20)
+    actor_present = byte(0x000500 + index * 0x20) != 0
+    return actor_type == type && actor_present && is_actor_dead(index)
+}
+
+function achievement_actor_killed(type, label, achievement_title) {
+    achievement(
+        title = achievement_title,
+        description = "Eliminate a " + label,
+        points = 5,
+        trigger = is_in_level() && (actor_killed_trigger(1, type) || 
+                                    actor_killed_trigger(2, type) ||
+                                    actor_killed_trigger(3, type) || 
+                                    actor_killed_trigger(4, type) ||
+                                    actor_killed_trigger(5, type) || 
+                                    actor_killed_trigger(6, type) ||
+                                    actor_killed_trigger(7, type))
+    )
+}
+
+achievement_actor_killed(1, "Sylvester", "Sufferin' Succotash")
+achievement_actor_killed(2, "Yosemite Sam", "Say Yer Prayers Varmint")
+achievement_actor_killed(3, "Daffy Duck", "You're Deth-picable")
+achievement_actor_killed(4, "Wile E Coyote", "Yikes")
+
+function is_actor_moving_vertically(index) {
+    return bit1(0x000500 + index * 0x20)
+}
+
+achievement(
+    title = "Diving for Carrots",
+    description = "Complete any level by falling on the last carrot",
+    points = 5,
+    trigger = is_in_level() && is_level_complete() && is_actor_moving_vertically(0)
+)
+
+function is_actor_in_pipe(index) {
+    actor_status = low4(0x000510 + index * 0x20)
+    return actor_status == 6 || // going up
+           actor_status == 7    // going down
+}
+
+function achievement_no_pipes_challenge(level, points) {
+    achievement(
+        title = "Level " + level + " Claustrophobia",
+        description = "Complete level " + level + " without using pipes",
+        points = points,
+        trigger = complete_level_trigger(level) && 
+                  once(is_in_menu()) &&           // start the achievement any time the user is at the menu screen
+                  never(is_actor_in_pipe(0)) // stop the achievement any time they go in a pipe
+    )
+}
+
+// returns true if actor is not dead, or not present
+function is_actor_not_dead(index) {
+    actor_status = low4(0x000510 + index * 0x20)
+    return actor_status != 4 && actor_status != 5
+}
+
+function achievement_avoid_enemies_challenge(level, points) {
+    achievement(
+        title = "Level " + level + " Pacifist",
+        description = "Complete level " + level + " without eliminating anyone",
+        points = points,
+        trigger = complete_level_trigger(level) && is_actor_not_dead(1) &&
+                  is_actor_not_dead(2) && is_actor_not_dead(3) && is_actor_not_dead(4) &&
+                  is_actor_not_dead(5) && is_actor_not_dead(6) && is_actor_not_dead(7)
+    )
+}
+
+function achievement_kill_all_enemies_challenge(level, points, actor1, actor2, actor3, actor4, actor5) {
+    achievement(
+        title = "Level " + level + " Massacre",
+        description = "Complete level " + level + " after eliminating everyone",
+        points = points,
+        trigger = complete_level_trigger(level) && is_actor_dead(actor1) && is_actor_dead(actor2) &&
+                  is_actor_dead(actor3) && is_actor_dead(actor4) && is_actor_dead(actor5)
+    )
+}
+
+achievement_no_pipes_challenge        ( 7, 10)                // ZW4S
+achievement_avoid_enemies_challenge   ( 9, 10)                // WSRS
+achievement_kill_all_enemies_challenge( 9, 10, 2, 3, 4, 6, 6) // WSRS
+achievement_kill_all_enemies_challenge(13, 10, 1, 3, 4, 6, 6) // WWMS
+achievement_avoid_enemies_challenge   (14, 10)                // WXCS
+achievement_avoid_enemies_challenge   (23, 10)                // ZP4Z
+achievement_avoid_enemies_challenge   (31, 10)                // XPAZ
+achievement_kill_all_enemies_challenge(33, 10, 2, 3, 4, 6, 6) // 2SSW
+achievement_avoid_enemies_challenge   (38, 10)                // 2XEW
+achievement_avoid_enemies_challenge   (40, 10)                // TX9W
+achievement_kill_all_enemies_challenge(42, 10, 2, 3, 4, 7, 7) // PZFW
+achievement_avoid_enemies_challenge   (43, 10)                // YSJW
+achievement_avoid_enemies_challenge   (46, 10)                // PXCW
+achievement_kill_all_enemies_challenge(46, 10, 1, 2, 3, 4, 6) // PXCW
+achievement_avoid_enemies_challenge   (47, 10)                // YWAW
+achievement_avoid_enemies_challenge   (48, 10)                // YXOW
+achievement_avoid_enemies_challenge   (49, 10)                // 22SX
+achievement_avoid_enemies_challenge   (56, 15)                // TY9X
+achievement_avoid_enemies_challenge   (57, 15)                // P2RX
+achievement_avoid_enemies_challenge   (58, 15)                // PTFX
+achievement_avoid_enemies_challenge   (60, 15)                // YTKX
