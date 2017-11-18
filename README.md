@@ -163,3 +163,6 @@ When checking to see if an achievement should trigger, the following three thing
 
 If Alt groups are present (OR conditions), the Core group and one or more Alt groups must evaluate to true to trigger the achievement.
 Note that `PauseIf`s in Alt groups only pause the Alt group. `ResetIf`s in Alt groups reset all `HitCount`s (Core and all Alt groups).
+
+### Tricks
+* A value changes to N X times: `repeated(X, byte(address) == N) && unless(prev(byte(address) == N))`
