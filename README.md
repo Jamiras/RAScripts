@@ -43,6 +43,30 @@ Script files for my contributions to [http://www.retroachievements.org](RetroAch
 
 `left` and `right` must be comparisons or functions that evaluate to comparisons
 
+#### Order of Operations
+Operators are evaluated in this order (within a level, operators are evaluated left to right as they're read from the expression):
+* Parentheses
+* Multiplication and division
+* Addition and subtraction
+* Comparisons
+* Not
+* And
+* Or
+
+The following statement:
+`N + M * A < B && C > X || D / G * H > Y + Z`
+
+Would be interpreted as:
+`(((N + (M * A)) < B) && (C > X)) || (((D / G) * H) > (Y + Z))`
+
+It is particularly important to understand how this affects the creation of alt groups:
+`A == N && B == X || B == Y`
+Because AND has higher precedence than OR, the interpreter sees:
+`(A == N && B == X) || (B == Y)`
+Which is two alt groups and no core group. An achievement must have a core group, so this will generate a parsing error.You can use parentheses to force a different order. What was intended was:
+`A == N && (B == X || B == Y)`
+Here, `A == N` becomes the core group and there are two alt groups: `B == X` and `B == Y`.
+
 #### Variables
 * `name = value`
 
