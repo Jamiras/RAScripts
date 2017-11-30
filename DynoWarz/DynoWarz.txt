@@ -198,7 +198,7 @@ stage_achievements(7, 0x0B03, "Red Bronchiosaurus", "seventh")
 // as it starts diving. If the pteradactly doesn't hit you, run to the right corner where it can't get you and fight from there.
 // For bosses 3 and 6, you just need to kill it before it gets to you and duck under any bullets they send.
 
-function trigger_flawless_boss(boss_id) => trigger_defeat_boss(boss_id) && 
+function trigger_flawless_boss(boss_id) => trigger_defeat_boss(0, boss_id) && 
                                            once(enemy_id(0) != boss_id) &&
                                            never(player_energy() < prev(player_energy())) &&
                                            never(player_barrier() < prev(player_barrier()))

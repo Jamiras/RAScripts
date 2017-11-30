@@ -35,8 +35,8 @@ function trigger_score(score) {
         return trigger_in_game() && (byte(0x1f1c) >= hundred_thousands)
     
     return trigger_in_game() &&
-           byte(0x1f1c) > hundred_thousands ||
-           (byte(0x1f1c) == hundred_thousands && high4(0x1f1b) >= ten_thousands)
+           (byte(0x1f1c) > hundred_thousands ||
+            (byte(0x1f1c) == hundred_thousands && high4(0x1f1b) >= ten_thousands))
 }
 
 achievement(

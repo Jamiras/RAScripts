@@ -495,11 +495,11 @@ achievement(
     description = "Collect four animals of any type in the Circus mini-game",
     points = 10,
     trigger = table() == table_circus && tileset() == tileset_circus &&
-              (byte(0x00029B) == 4 && byte(0x00029C) != 0) || // lions
-              (byte(0x0002CB) == 4 && byte(0x0002CC) != 0) || // tigers
-              (byte(0x0002FB) == 4 && byte(0x0002FC) != 0) || // alligators
-              (byte(0x00032B) == 4 && byte(0x00032C) != 0) || // apes
-              (byte(0x00035B) == 4 && byte(0x00035C) != 0) || // seals
-              (byte(0x00038B) == 4 && byte(0x00038C) != 0) || // pandas
-              (byte(0x0003BB) == 4 && byte(0x0003BC) != 0)    // snakes
+              ((byte(0x00029B) == 4 && byte(0x00029C) != 0) || // lions
+               (byte(0x0002CB) == 4 && byte(0x0002CC) != 0) || // tigers
+               (byte(0x0002FB) == 4 && byte(0x0002FC) != 0) || // alligators
+               (byte(0x00032B) == 4 && byte(0x00032C) != 0) || // apes
+               (byte(0x00035B) == 4 && byte(0x00035C) != 0) || // seals
+               (byte(0x00038B) == 4 && byte(0x00038C) != 0) || // pandas
+               (byte(0x0003BB) == 4 && byte(0x0003BC) != 0))   // snakes
 )

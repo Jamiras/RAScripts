@@ -387,7 +387,7 @@ level_cones_achievement(20, level_5_1)
 
 // ==== Head Challenges (85) ====
 
-function level_headed_achievement(points, level, sprite) {
+function level_headed_achievement(points, level) {
     achievement(
         title = "Keep Your Head - " + level_data[level]["name"],
         description = "Complete " + level_data[level]["level"] + " without losing your head",
@@ -416,14 +416,14 @@ achievement(
               never(character_sprite() == sprites_slick["moving_forward"]) &&
               never(character_sprite() == sprites_spin["moving_forward"]) &&
               never(lives() == 0) &&
-              trigger_complete_level_headless(level_1_1) || // verified
-              trigger_complete_level_headless(level_1_2) ||
-              trigger_complete_level_headless(level_2_1) || // verified
-              trigger_complete_level_headless(level_2_2) ||
-              trigger_complete_level_headless(level_3_1) ||
-              trigger_complete_level_headless(level_3_2) || // verified
-              trigger_complete_level_headless(level_4_1) ||
-              trigger_complete_level_headless(level_5_1) 
+              (trigger_complete_level_headless(level_1_1) || // verified
+               trigger_complete_level_headless(level_1_2) ||
+               trigger_complete_level_headless(level_2_1) || // verified
+               trigger_complete_level_headless(level_2_2) ||
+               trigger_complete_level_headless(level_3_1) ||
+               trigger_complete_level_headless(level_3_2) || // verified
+               trigger_complete_level_headless(level_4_1) ||
+               trigger_complete_level_headless(level_5_1)) 
 )
 
 

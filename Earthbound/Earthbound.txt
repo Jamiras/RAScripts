@@ -58,10 +58,10 @@ achievement(
               byte(0x00A3B5) == 0 && // enemy 6 hp
               byte(0x00A403) == 0 && // enemy 7 hp
               byte(0x00A451) == 0 && // enemy 8 hp
-              (word(0x009a15) <= 1 && word(0x009a13) < prev(word(0x009a13))) || // ness losing hp towards 0/1
-              (word(0x009a74) <= 1 && word(0x009a72) < prev(word(0x009a72))) || // paula losing hp towards 0/1
-              (word(0x009ad3) <= 1 && word(0x009ad1) < prev(word(0x009ad1))) || // jeff losing hp towards 0/1
-              (word(0x009b32) <= 1 && word(0x009b30) < prev(word(0x009b30)))    // poo losing hp towards 0/1
+              ((word(0x009a15) <= 1 && word(0x009a13) < prev(word(0x009a13))) || // ness losing hp towards 0/1
+               (word(0x009a74) <= 1 && word(0x009a72) < prev(word(0x009a72))) || // paula losing hp towards 0/1
+               (word(0x009ad3) <= 1 && word(0x009ad1) < prev(word(0x009ad1))) || // jeff losing hp towards 0/1
+               (word(0x009b32) <= 1 && word(0x009b30) < prev(word(0x009b30))))   // poo losing hp towards 0/1
 )
 
 achievement(
@@ -226,20 +226,20 @@ achievement(
     trigger = byte(0x009AA7) >= 12 &&                                // jeff's IQ
               never(current_primary_map() != 0) && 
               current_secondary_map() == 0 &&
-              (prev(byte(0x009AAF)) == 6 && byte(0x009AAF) == 39) || 
-              (prev(byte(0x009AB0)) == 6 && byte(0x009AB0) == 39) || 
-              (prev(byte(0x009AB1)) == 6 && byte(0x009AB1) == 39) || 
-              (prev(byte(0x009AB2)) == 6 && byte(0x009AB2) == 39) || 
-              (prev(byte(0x009AB3)) == 6 && byte(0x009AB3) == 39) || 
-              (prev(byte(0x009AB4)) == 6 && byte(0x009AB4) == 39) || 
-              (prev(byte(0x009AB5)) == 6 && byte(0x009AB5) == 39) || 
-              (prev(byte(0x009AB6)) == 6 && byte(0x009AB6) == 39) || 
-              (prev(byte(0x009AB7)) == 6 && byte(0x009AB7) == 39) || 
-              (prev(byte(0x009AB8)) == 6 && byte(0x009AB8) == 39) || 
-              (prev(byte(0x009AB9)) == 6 && byte(0x009AB9) == 39) || 
-              (prev(byte(0x009ABA)) == 6 && byte(0x009ABA) == 39) || 
-              (prev(byte(0x009ABB)) == 6 && byte(0x009ABB) == 39) || 
-              (prev(byte(0x009ABC)) == 6 && byte(0x009ABC) == 39)
+              ((prev(byte(0x009AAF)) == 6 && byte(0x009AAF) == 39) || 
+               (prev(byte(0x009AB0)) == 6 && byte(0x009AB0) == 39) || 
+               (prev(byte(0x009AB1)) == 6 && byte(0x009AB1) == 39) || 
+               (prev(byte(0x009AB2)) == 6 && byte(0x009AB2) == 39) || 
+               (prev(byte(0x009AB3)) == 6 && byte(0x009AB3) == 39) || 
+               (prev(byte(0x009AB4)) == 6 && byte(0x009AB4) == 39) || 
+               (prev(byte(0x009AB5)) == 6 && byte(0x009AB5) == 39) || 
+               (prev(byte(0x009AB6)) == 6 && byte(0x009AB6) == 39) || 
+               (prev(byte(0x009AB7)) == 6 && byte(0x009AB7) == 39) || 
+               (prev(byte(0x009AB8)) == 6 && byte(0x009AB8) == 39) || 
+               (prev(byte(0x009AB9)) == 6 && byte(0x009AB9) == 39) || 
+               (prev(byte(0x009ABA)) == 6 && byte(0x009ABA) == 39) || 
+               (prev(byte(0x009ABB)) == 6 && byte(0x009ABB) == 39) || 
+               (prev(byte(0x009ABC)) == 6 && byte(0x009ABC) == 39))
 )
 
 // ========================================================
@@ -267,8 +267,8 @@ achievement(
     trigger = current_secondary_map() == 17211 && never(current_primary_map() != 18398) &&
               unless(current_music() != 51) &&
               current_music() == 51 &&
-              trigger_dialog(782, 3268) || // talk to black second
-              trigger_dialog(783, 3432)    // talk to white second
+              (trigger_dialog(782, 3268) || // talk to black second
+               trigger_dialog(783, 3432))    // talk to white second
 )
 
 // ========================================================
@@ -470,10 +470,10 @@ achievement(
     trigger = never(word(0xa268) != 83) &&     // enemy = diamond dog (27 = carbon dog)
               current_music() == 103 &&
               trigger_battle_won() &&
-              (bit1(0x0099DC) == 1) ||         // diamondized
-              (bit1(0x009A3B) == 1) ||         // diamondized 
-              (bit1(0x009A9A) == 1) ||         // diamondized
-              (bit1(0x009AF9) == 1)            // diamondized
+              ((bit1(0x0099DC) == 1) ||         // diamondized
+               (bit1(0x009A3B) == 1) ||         // diamondized 
+               (bit1(0x009A9A) == 1) ||         // diamondized
+               (bit1(0x009AF9) == 1))           // diamondized
 )
 
 // ========================================================
@@ -547,7 +547,7 @@ achievement(
               byte(0x009871) == 0 && // char3 = nobody
               byte(0x009872) == 0 && // char4 = nobody
               byte(0x00B53B) == 93 && // music
-              (byte(0x009870) == 2) || // char2 = paula 
-              (byte(0x009870) == 0)    // char2 = nobody
+              ((byte(0x009870) == 2) || // char2 = paula 
+               (byte(0x009870) == 0))   // char2 = nobody
 )
 

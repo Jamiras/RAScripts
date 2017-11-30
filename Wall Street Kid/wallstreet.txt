@@ -101,8 +101,8 @@ achievement(
 // 10 - Have at least 3 shares of five different companies  [XXX - Newspaper]
 // 10 - Complete the game without Prisila ever reminding you to spend time with her or work out [603 - Marriage]
 
-milestone_achievement("You Must Have Really Wanted That Boat", "Purchase the yacht on or before 5/15", 20, picture_harbor, 5, 15)
-milestone_achievement("Early Retirement", "Purchase the castle on or before 7/15", 20, picture_castle, 7, 15)
+milestone_achievement("You Must Have Really Wanted That Boat", "Purchase the yacht on or before 5-15", 20, picture_harbor, 5, 15)
+milestone_achievement("Early Retirement", "Purchase the castle on or before 7-15", 20, picture_castle, 7, 15)
 
 function trigger_no_loan() => bit7(0x03DE) == 0
 achievement(
@@ -122,11 +122,11 @@ achievement(
     description = "Have at least 30 shares of one company",
     points = 10,
     trigger = no_cheating() &&
-              (share_count(0) >= 30 && share_type(0) != 255) ||
-              (share_count(1) >= 30 && share_type(1) != 255) ||
-              (share_count(2) >= 30 && share_type(2) != 255) ||
-              (share_count(3) >= 30 && share_type(3) != 255) ||
-              (share_count(4) >= 30 && share_type(4) != 255)
+              ((share_count(0) >= 30 && share_type(0) != 255) ||
+               (share_count(1) >= 30 && share_type(1) != 255) ||
+               (share_count(2) >= 30 && share_type(2) != 255) ||
+               (share_count(3) >= 30 && share_type(3) != 255) ||
+               (share_count(4) >= 30 && share_type(4) != 255))
 )
 
 achievement(
@@ -143,7 +143,7 @@ achievement(
 
 achievement(
     title = "Keeping the Wife Happy",
-    description = "Complete the game without Prisila ever reminding you to spend time with her or exercise (cannot use password after wedding)",
+    description = "Play from the wedding to the end without Prisila reminding you to spend time with her or exercise",
     points = 10,
     trigger = once(word(0x03D7) == 0x0306) &&     // wedding day
               never(byte(0x03E5) <= 1) &&         // relationship level drops to a point where she'll call

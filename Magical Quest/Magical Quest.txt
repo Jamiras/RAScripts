@@ -45,7 +45,7 @@ achievement_damageless_subboss(28, "Hoopy", "Vine")
 achievement_damageless_subboss(31, "Bork", "Fire")
 
 achievement(
-    title = "Ha-ha! Not This Time Pete!"
+    title = "Ha-ha! Not This Time Pete!",
     description = "Defeat Pete without being harmed",
     points = 10, 
     trigger = repeated(10, current_screen() == 27) &&          // 0x02AD: on correct stage (1)

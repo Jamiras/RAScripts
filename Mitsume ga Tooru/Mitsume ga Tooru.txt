@@ -1,5 +1,5 @@
 // Mitsume ga Tooru
-// ID = 4986
+// #ID = 4986
 
 // Level select: hold A+B on controller 2, press A A A A B B B B A B A B A B A B on controller 1
 
@@ -37,7 +37,7 @@ achievement(
 function boss1_hp() => byte(0x0668)
 function boss2_hp() => byte(0x0669)
 
-achivement(
+achievement(
     title = "Veggie Salad",
     description = "Beat second boss without taking damage",
     points = 15,
@@ -53,8 +53,8 @@ achievement(
     points = 15,
     trigger = once(current_bgm() == bgm_final_boss_1) && never(current_scene() < 55) &&
               never(take_damage()) && 
-              (current_scene() == 55 && once(boss2_hp() == 64) && boss2_hp() > 250) ||
-              (current_scene() == 56 && once(boss1_hp() == 64) && boss1_hp() > 250)
+              ((current_scene() == 55 && once(boss2_hp() == 64) && boss2_hp() > 250) ||
+               (current_scene() == 56 && once(boss1_hp() == 64) && boss1_hp() > 250))
 )
 
 function things_on_screen() => byte(0x0095)

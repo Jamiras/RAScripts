@@ -202,8 +202,8 @@ achievement(
     title = "Easy Mode", description = "Complete the game on any difficulty", points = 5,
     id = 2401, published = "8/22/2013 8:29:32 PM", modified = "3/11/2014 4:05:55 AM",
     trigger = trigger_single_player() && 
-              (current_battle_index() == 10 && current_difficulty() == 0) || 
-              (current_battle_index() == 11 && current_difficulty() >= 3 && current_difficulty() < 6)
+              ((current_battle_index() == 10 && current_difficulty() == 0) || 
+               (current_battle_index() == 11 && current_difficulty() >= 3 && current_difficulty() < 6))
 )
 
 achievement(
