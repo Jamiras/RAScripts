@@ -20,7 +20,9 @@ rich_presence_display("Level {0}, {1} Lives",
     rich_presence_value("Lives", lives()-1)
 )
 
-function trigger_in_game() => current_health() > 0
+// health > 0 ensures we're in the game. health < 8 prevents accidental triggering when starting the game
+// and all memory is 0x55.
+function trigger_in_game() => current_health() > 0 && current_health() < 8
 
 function trigger_score(score) {
     hundred_thousands = score / 100000
