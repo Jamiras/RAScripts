@@ -141,15 +141,21 @@ achievement(
 achievement(
     title = "Labyrinth", description = "Defeat the Doppelganger", points = 14,
     id = 15198, badge = "14810", published = "10/12/2014 3:47:52 PM", modified = "10/12/2014 4:04:38 PM",
-    trigger = byte(0x000040) == 7 && byte(0x000439) == 0 && 
-              once(enemy_hp() == 32) &&
-              enemy_hp() == 0
+    trigger = byte(0x000040) == 7 &&
+              once(enemy_hp() == 32) &&                    // from 32 health
+              enemy_hp() == 0 &&                           // to 0
+              never(current_health() == 0)                 // without player dying
 )
 
 achievement(
     title = "Fake Firebrand", description = "Defeat the Doppelganger using only the Normal Attack", points = 24,
     id = 15199, badge = "14809", published = "10/12/2014 3:47:56 PM", modified = "10/12/2014 4:04:40 PM",
-    trigger = byte(0x000040) == 7 && never(current_weapon() != weapon_fire) && once(enemy_hp() == 0x20) && enemy_hp() == 0 && byte(0x000439) == 0 && never(current_health() == 0)
+    trigger = byte(0x000040) == 7 && 
+              never(current_weapon() != weapon_fire) &&    // using only the normal attack
+              once(enemy_hp() == 32) &&                    // from 32 health
+              enemy_hp() == 0 &&                           // to 0
+              byte(0x000439) == 0 &&                       // this seems unnecessary - it's a health counter for another enemy earlier in the stage
+              never(current_health() == 0)                 // without player dying
 )
 
 achievement(
