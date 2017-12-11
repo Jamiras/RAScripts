@@ -175,13 +175,20 @@ achievement(
 achievement(
     title = "Goza's Palace", description = "Defeat Goza", points = 19,
     id = 15202, badge = "14815", published = "10/12/2014 3:48:22 PM", modified = "10/12/2014 4:04:48 PM",
-    trigger = byte(0x000040) == 8 && byte(0x000439) == 0x00
+    trigger = byte(0x000040) == 8 && 
+              once(enemy_hp() == 120) &&                   // from 120 health
+              enemy_hp() == 0 &&                           // to 0
+              never(current_health() == 0)                 // without player dying
 )
 
 achievement(
     title = "More Powerful Than Goza", description = "Defeat Goza without taking damage", points = 24,
     id = 15203, badge = "14814", published = "10/12/2014 3:48:27 PM", modified = "10/12/2014 4:04:50 PM",
-    trigger = byte(0x000040) == 8 && once(enemy_hp() == 0x78) && enemy_hp() == 0 && byte(0x000439) == 0 && never(current_health() == 0) && never(byte(0x000544) != 0)
+    trigger = byte(0x000040) == 8 && 
+              once(enemy_hp() == 120) &&                       // from 120 health
+              enemy_hp() == 0 &&                               // to 0
+              never(current_health() == 0) &&                  // without player dying
+              never(current_health() < prev(current_health())) // without taking damage
 )
 
 // 10007: This Achievement triggered if you die against Breager.<br/>MD5: 95a84bf29a9de8db0d36cb62d6fe225d
