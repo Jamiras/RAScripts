@@ -169,7 +169,7 @@ achievement(
     trigger = current_mp() == 9 && 
               low4(0x0000EB) == 9 && low4(0x0000EC) == 9 && 
               never(current_lives() == 10) && 
-              current_stage() == 0 && byte(0x0000FB) == 0
+              once(current_stage() == 0) && once(byte(0x0000FB) == 0)
 )
 
 // 10199:  got 9,999 experience on the last level, killed the final boss and did not count the achievement. Unfortunately I did not make a screenshot, only saved the screenshot of the password after the game I had passed.<br/>MD5: b167c3d23b3bd2f0759e5901d6ec7ebb
@@ -182,7 +182,7 @@ achievement(
     id = 7939, badge = "07988", published = "5/3/2014 10:29:21 AM", modified = "5/5/2014 10:41:38 AM",
     trigger = low4(0x0000ED) == 9 && low4(0x0000EE) == 9 && low4(0x0000EF) == 9 && low4(0x0000F0) == 9 && 
               never(current_lives() == 10) && 
-              current_stage() == 0 && byte(0x0000FB) == 0
+              once(current_stage() == 0) && once(byte(0x0000FB) == 0)
 )
 
 achievement(
