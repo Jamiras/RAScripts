@@ -4,17 +4,6 @@
 
 // 17 zones, 3 with 10 levels each, 14 with 5 levels each = 100 levels
 
-// F2 = G-1
-// F3 = 3-10
-// F4 = 3-10 complete
-// F5 = 1-1
-// F6 = 1-1 complete
-// F7 = 1-2
-// F8 = 1-2 complete
-// F9 = title
-// F10 = map after starting game
-// F1 = map after leaving tower
-
 function current_character() => bit0(0x0052)
 character_lolo = 0
 character_lala = 1
