@@ -171,12 +171,12 @@ function player_location() => word(0x0042)
 // 0x611A: NPC2 ID
 
 function debug_bit(bit, description) {
-    achievement(
-        title = description,
-        description = description,
-        points = 0,
-        trigger = bit != prev(bit)
-    )
+//    achievement(
+//        title = description,
+//        description = description,
+//        points = 0,
+//        trigger = bit != prev(bit)
+//    )
 }
 
 // 0x625D: 1000 0000 - Boarding Pass, Keeleon Castle B1
