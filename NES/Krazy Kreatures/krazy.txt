@@ -1,8 +1,6 @@
 // Krazy Kreatures
 // #ID = 10361
-
-// TODO: verify rom checksum
-// TODO: try 2
+// md5: 786ddbe216cf0202009ba6a255570384
 
 // 0026 - cursor X
 // 0027 - cursor Y
@@ -232,7 +230,7 @@ function score_leaderboard(difficulty) {
     leaderboard(
         title = "High Score (" + difficulty_titlecase[difficulty] + ")", 
         description = "Highest score on " + difficulty_lowercase[difficulty] + " difficulty",
-        start = byte(0x002B) == 0x95 && current_difficulty() == difficulty,
+        start = byte(0x002B) == 0x95 && current_difficulty() == difficulty, // triggers on game over screen to not obscure puzzle
         cancel = byte(0x002B) == 0,
         submit = byte(0x002B) != 0x95,
         value = high4(0x00BC) * 100000 + low4(0x00BC) * 10000 + high4(0x00BB) * 1000 + low4(0x00BB) * 100 + high4(0x00BA) * 10 + low4(0x00BA)
