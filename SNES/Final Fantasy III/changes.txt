@@ -1,0 +1,35 @@
+* The following achievements no longer trigger if you die during the battle and return
+[ach=5130]
+
+* The following achievement no longer triggers when entering the rafters
+[ach=5943]
+
+* The following achievement no longer triggers when leaving Thamasa if some of the subconditions were met during the battle
+[ach=6156]
+
+* The following achievements will now work if using Mog's Water Rondo or Dusk Requiem dances. Note that certain skills within Mog's dancesets (like Antlion or Snare) will still prevent the achievements from triggering.
+[ach=6255]
+[ach=6535]
+[ach=7354]
+
+* The logic for calculating the group composition for these achievements was modified. They should trigger more reliably now
+[ach=6412]
+[ach=6887]
+[ach=7162]
+
+* The following achievement will now work regardless of which enemy groups you fought approaching the chest.
+[ach=6705]
+
+* The following achievement has been made less confusing.
+[ach=5987]
+Previously, you had to reach 50 points, where each kill was worth one point and using certain skills was worth 2-5 points per skill. Now, you only have to reach 23 points, where each kill is worth one point and each battle is worth one point. As a result, you still need to have at least three additional rats join the fight to trigger the achievement - more if you don't fight all five groups. But there's no longer any uncertainty around which skills generate how many points.
+
+* The following achievement will now work in towns
+[ach=4963]
+
+* The following achievement will no longer trigger if leave the relic menu with the shoes selected but not equipped
+[ach=5095]
+
+Updated the "Opera House Rush!" and "The Sky is Falling!" leaderboards so more time was considered better.
+
+Changed Rich Presence from static message "Overthrowing the General Keifa and Emperor Gestahl's Empire one fight at a time." to something dynamic.
