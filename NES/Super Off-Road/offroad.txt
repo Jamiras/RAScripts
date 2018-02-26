@@ -221,7 +221,7 @@ achievement(
 )
 
 // money (40) [400]
-function collected_money() => return byte(0x00033C)
+function collected_money() => byte(0x00033C)
 
 achievement(
     title = "Spare Change",

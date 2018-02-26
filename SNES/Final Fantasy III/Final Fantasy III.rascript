@@ -1302,7 +1302,7 @@ achievement(
 achievement(
     title = "Pro-Runic", description = "Use Runic to counter Atma's Ultima", points = 5,
     id = 7354, badge = "07457", published = "4/14/2014 5:17:55 AM", modified = "4/21/2014 4:44:09 PM",
-    trigger = never(monster_formation() != 482) && battle_background() <= 20 && once(word(0x00002A) == 65535) && 
+    trigger = never(monster_formation() != 482) && once(word(0x00002A) == 65535) && 
               once(enemy_mp() < prev(enemy_mp())) && once(word(0x0011A2) == 8705) && 
               once(word(0x0011A4) == 32) && once(spell_power() == 0) && once(hit_rate() == 0) && 
               once(battle_status() == 0) && once(character_status() == 0) && never(word(0x0011A4) == 5152) && 
@@ -1314,7 +1314,7 @@ achievement(
 // 7783: 
 // 5059: I navigated south through the maze in that room on the 3rd path, got the chest with the shield and no achievement.
 achievement(
-    title = "Shielded from view", description = "Find the well-hidden Aegis Shield in Kefka's Tower", points = 1,
+    title = "Shielded from View", description = "Find the well-hidden Aegis Shield in Kefka's Tower", points = 1,
     id = 6705, badge = "07071", published = "3/31/2014 4:06:29 AM", modified = "12/2/2014 5:42:28 PM",
     trigger = never(current_map() != 410) &&  // kefka's tower
               bit1(0x001E5E) == 1 &&          // aegis shield collected
@@ -1713,4 +1713,3 @@ achievement(
               unless(current_loaded_map() == 20) && unless(current_loaded_map() == 244) && 
               unless(current_loaded_map() == 18)
 )
-
