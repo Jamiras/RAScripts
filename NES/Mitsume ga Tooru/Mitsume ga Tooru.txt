@@ -69,7 +69,7 @@ achievement(
     title = "Stowaway Bird",
     description = "Find the first coin bird in Stage 4",
     points = 5,
-    trigger = current_scene() == 18 && once(things_on_screen()) == 4 && things_on_screen() == 0 &&
+    trigger = current_scene() == 18 && once(things_on_screen() == 4) && things_on_screen() == 0 &&
               never(player_x_high() <= 149) && never(player_x_high() >= 169)
 )
 

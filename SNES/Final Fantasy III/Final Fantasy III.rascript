@@ -1425,7 +1425,7 @@ achievement(
     id = 5095, badge = "05730", published = "2/15/2014 1:42:27 AM", modified = "4/21/2014 5:13:04 PM",
     trigger = never(current_map() == 3) && 
               never(current_sub_map() == 1800) && 
-              prev(menu_subscreen() == 4097) &&                // leave relic subscreen
+              prev(menu_subscreen()) == 4097 &&                // leave relic subscreen
               menu_subscreen() == 0xAF07 &&                    // main menu subscreen
               bit5(0x0011DF) == 1 &&                           // sprint shoes active
               (byte(0x0011CA) == 230 || byte(0x0011CB) == 230) // either equipped relic is sprint shoes              

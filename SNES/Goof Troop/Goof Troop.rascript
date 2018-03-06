@@ -163,7 +163,7 @@ function trigger_engage_boss(stage, room) => current_stage() == stage && never(c
 achievement(
     title = "Professional Thrower", description = "Kill the First Boss Without Taking Damage (1P)", points = 20,
     id = 22176, badge = "22102", published = "4/4/2015 1:41:47 AM", modified = "12/8/2016 12:19:43 AM",
-    trigger = trigger_engage_boss(0, 14) && once(boss1_hp()) == 7 && boss1_hp() == 0 && 
+    trigger = trigger_engage_boss(0, 14) && once(boss1_hp() == 7) && boss1_hp() == 0 && 
               trigger_no_damage() && trigger_1p_only()
 //    trigger = current_stage() == 0 && bit2(0x001144) == 1 && once(prev(bit2(0x001144)) == 0) && 
 //              prev(boss1_hp()) < boss1_hp() && boss1_hp() == 7 && trigger_no_damage() && 
@@ -177,7 +177,7 @@ achievement(
 achievement(
     title = "Firefighter", description = "Kill the Second Boss Without Taking Damage (1P)", points = 20,
     id = 22177, badge = "22103", published = "4/4/2015 1:41:53 AM", modified = "12/8/2016 12:19:48 AM",
-    trigger = trigger_engage_boss(1, 15) && once(boss2_hp()) == 48 && boss2_hp() == 0 && 
+    trigger = trigger_engage_boss(1, 15) && once(boss2_hp() == 48) && boss2_hp() == 0 && 
               trigger_no_damage() && trigger_1p_only()
 //    trigger = current_stage() == 1 && bit4(0x001144) == 1 && once(prev(bit4(0x001144)) == 0) && 
 //              prev(boss2_hp()) > boss2_hp() && boss2_hp() == 0 && trigger_no_damage() && 
