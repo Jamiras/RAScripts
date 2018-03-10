@@ -1,6 +1,7 @@
 // Anticipation!
 // #ID = 1542
-// md5: 14de068a0ea0b211c697d8795228c282
+// md5: 14de068a0ea0b211c697d8795228c282 (U)
+// md5: e6f6a99ac2ac889b9d70c0eabf52af69 (E)
 
 // ============================================================
 
@@ -192,7 +193,7 @@ achievement(
 
 achievement(
     title = "Passed the Pentagon", description = "Complete the third board", points = 10,
-    trigger = player_board_space(0) == 0x2F && prev(player_board_space(0) >= 0x20) && prev(player_board_space(0) <= 0x2E)
+    trigger = player_board_space(0) == 0x2F && prev(player_board_space(0)) >= 0x20 && prev(player_board_space(0)) <= 0x2E
 )
 
 achievement(
@@ -302,7 +303,8 @@ achievement(
 achievement(
     title = "Careful Guesser", description = "Win a game without entering any incorrect letters", points = 10,
     trigger = trigger_win_game() && never(bit5(0x00C4) == 1) &&     // never incorrect letter
-              once(word(0x0010) == 0x8393)                          // game setup screen
+              (once(word(0x0010) == 0x8393) ||                      // game setup screen (U)
+               once(word(0x0010) == 0x83B1))                        // game setup screen (E)
 )
 
 // === Puzzle Challenges(5) (50pts) ===
@@ -313,7 +315,7 @@ achievement(
 // 10 - Something Abstract - Solve a Whatchamacallit puzzle
 
 // 0x008A goes from 0 to 2 on a wrong answer, and from 0 to 1 for a frame, then 3 on a correct answer
-function trigger_win_puzzle() => guess_player() == 0 && byte(0x008A) == 3 && prev(byte(0x008A) == 1)
+function trigger_win_puzzle() => guess_player() == 0 && byte(0x008A) == 3 && prev(byte(0x008A)) == 1
 
 // 0=easy board 1, 1=easy board 2 or medium board 1, 2=easy board 3, medium board 2, or hard board 1, ...
 function dots_visible() => current_puzzle_difficulty() <= 1
