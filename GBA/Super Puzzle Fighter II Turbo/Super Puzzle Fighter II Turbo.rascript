@@ -41,6 +41,7 @@ character_hsienko = 4
 character_donovan = 5
 character_felicia = 6
 character_sakura = 7
+character_devilot = 8
 character_akuma = 9
 character_dan = 10
 
@@ -49,6 +50,7 @@ function arcade_difficulty() => byte(0x009235)
 difficulty_easy = 0
 difficulty_normal = 1
 difficulty_hard = 2
+difficulty_master = 3
 
 // $924E: Score but in game over
 // $9E54: 1e - music end and game over
@@ -62,9 +64,17 @@ characters = {
     character_donovan: "Donovan",
     character_felicia: "Felicia",
     character_sakura: "Sakura",
+    character_devilot: "Devilot",
     character_akuma: "Akuma",
     character_dan: "Dan",
 }
+
+function trigger_arcade_victory(character) => 
+    arcade_difficulty() >= difficulty_normal && 
+    current_character() == character &&
+    byte(0x0045B4) == 0 &&         // arcade mode selected in menu (does this really work?)
+    byte(0x009E54) == 30 &&        // victory music
+    byte(0x0045B0) == 5            // victory screen
 
 achievement(
     title = "Ryu SuperStar", description = "Complete Ryu with all star in Puzzle Mode", points = 10,
@@ -124,8 +134,7 @@ achievement(
 achievement(
     title = "I'm Cool, dude!!!", description = "Beat Game with Dan in Master Arcade", points = 50,
     id = 6153, badge = "06555", published = "3/12/2014 1:29:13 AM", modified = "3/18/2014 8:49:07 PM",
-    trigger = arcade_difficulty() == 3 && byte(0x009E54) == 30 && byte(0x0045B4) == 0 && current_character() == 4 && 
-              once(byte(0x00922A) == 10)
+    trigger = arcade_difficulty() == 3 && trigger_arcade_victory(character_dan)
 )
 
 // Ticket 11626: This achievement was unlocked upon loading Super Puzzle Fighter II (U)(Independent) in
@@ -134,7 +143,7 @@ achievement(
 achievement(
     title = "Danger Gems!!", description = "Drop 31 or more gems to the enemy", points = 15,
     id = 6157, badge = "06559", published = "3/12/2014 10:00:14 PM", modified = "5/4/2015 5:41:39 AM",
-    trigger = once(byte(0x002FE8) >= 31) && byte(0x008CA0) == 10 && never(byte(0x0045B4) == 5)
+    trigger = byte(0x002FE8) >= 31 && byte(0x0045B0) == 2 && byte(0x045DB) != 0
 )
 
 achievement(
@@ -156,34 +165,27 @@ achievement(
     trigger = byte(0x005081) == 1 && never(byte(0x005088) == 2) && word(0x005059) == 0
 )
 
-function trigger_arcade_victory(character) => 
-    arcade_difficulty() >= difficulty_normal && 
-    current_character() == character &&
-    byte(0x0045B4) == 0 &&         // arcade mode selected in menu (does this really work?)
-    byte(0x009E54) == 30 &&        // victory music
-    byte(0x0045B0) == 5            // victory screen
-
 // Ticket 969: i beat the game with dan but the ryu achievement trigger instead
 achievement(
-    title = "Ryu", description = "Beat game with Ryu in Normal or Hard", points = 15,
+    title = "Ryu", description = "Complete Arcade Mode as Ryu in Normal or Hard", points = 15,
     id = 6133, badge = "06535", published = "3/12/2014 1:28:33 AM", modified = "3/12/2014 8:49:47 PM",
     trigger = trigger_arcade_victory(character_ryu)
 )
 
 achievement(
-    title = "Chun-Li", description = "Beat game with Chun-Li in Normal or Hard", points = 15,
+    title = "Chun-Li", description = "Complete Arcade Mode as Chun-Li in Normal or Hard", points = 15,
     id = 6134, badge = "06536", published = "3/12/2014 1:28:37 AM", modified = "3/14/2014 3:36:26 PM",
-    trigger = trigger_arcade_victory(character_chunli) && byte(0x00922A) == 1
+    trigger = trigger_arcade_victory(character_chunli)
 )
 
 achievement(
-    title = "Sakura", description = "Beat game with Sakura in Normal or Hard", points = 15,
+    title = "Sakura", description = "Complete Arcade Mode as Sakura in Normal or Hard", points = 15,
     id = 6135, badge = "06537", published = "3/12/2014 1:28:39 AM", modified = "3/12/2014 8:49:43 PM",
     trigger = trigger_arcade_victory(character_sakura)
 )
 
 achievement(
-    title = "Ken", description = "Beat game with Ken in Normal or Hard", points = 15,
+    title = "Ken", description = "Complete Arcade Mode as Ken in Normal or Hard", points = 15,
     id = 6136, badge = "06538", published = "3/12/2014 1:28:41 AM", modified = "3/12/2014 8:49:41 PM",
     trigger = trigger_arcade_victory(character_ken)
 )
@@ -193,29 +195,25 @@ achievement(
 //               MD5: 14d0771c15676e2b3b75c4c149879586
 // Ticket 2784: The end with morrigan unlock Dan trophy, and Dan end unlock nothing, so Morrigan trophy is broken.
 achievement(
-    title = "Morrigan ", description = "Beat game with Morrigan in Normal or Hard", points = 15,
+    title = "Morrigan ", description = "Complete Arcade Mode as Morrigan in Normal or Hard", points = 15,
     id = 6137, badge = "06539", published = "3/12/2014 1:28:43 AM", modified = "3/21/2014 9:40:06 PM",
-    trigger = trigger_arcade_victory(character_morrigan) &&
-              byte(0x00922A) == 0 && 
-              never(byte(0x00922A) == 10) && 
-              never(byte(0x00922A) == 9) && 
-              never(byte(0x00922A) == 8)
+    trigger = trigger_arcade_victory(character_morrigan)
 )
 
 achievement(
-    title = "Hsien-Ko", description = "Beat game with Hsien-Ko in Normal or Hard", points = 15,
+    title = "Hsien-Ko", description = "Complete Arcade Mode as Hsien-Ko in Normal or Hard", points = 15,
     id = 6138, badge = "06540", published = "3/12/2014 1:28:45 AM", modified = "3/12/2014 8:49:35 PM",
     trigger = trigger_arcade_victory(character_hsienko)
 )
 
 achievement(
-    title = "Donovan", description = "Beat game with Donovan in Normal or Hard", points = 15,
+    title = "Donovan", description = "Complete Arcade Mode as Donovan in Normal or Hard", points = 15,
     id = 6139, badge = "06541", published = "3/12/2014 1:28:47 AM", modified = "3/12/2014 8:49:34 PM",
     trigger = trigger_arcade_victory(character_donovan)
 )
 
 achievement(
-    title = "Felicia", description = "Beat game with Felicia in Normal or Hard", points = 15,
+    title = "Felicia", description = "Complete Arcade Mode as Felicia in Normal or Hard", points = 15,
     id = 6140, badge = "06542", published = "3/12/2014 1:28:49 AM", modified = "3/12/2014 8:49:32 PM",
     trigger = trigger_arcade_victory(character_felicia)
 )
@@ -226,29 +224,23 @@ achievement(
 // Ticket 3229: It triggered when i finished normal arcade mode with Morrigan, i didn't play as Dan.
 // Ticket 3059: Triggered when finishing with Morrigan in Normal Mode. :)
 achievement(
-    title = "Dan", description = "Beat game with Dan in Normal or Hard", points = 30,
+    title = "Dan", description = "Complete Arcade Mode as Dan in Normal or Hard", points = 30,
     id = 6141, badge = "06543", published = "3/12/2014 1:28:50 AM", modified = "5/5/2015 12:26:27 AM",
-    trigger = trigger_arcade_victory(character_morrigan) &&
-              once(byte(0x00922A) == 10) &&  // player counter skill
-              never(byte(0x00922A) == 8)     // player counter skill
+    trigger = trigger_arcade_victory(character_dan)
 )
 
 // Ticket 9276: //               MD5: 14d0771c15676e2b3b75c4c149879586
 achievement(
-    title = "Akuma", description = "Beat game with Akuma in Normal or Hard", points = 15,
+    title = "Akuma", description = "Complete Arcade Mode as Akuma in Normal or Hard", points = 15,
     id = 6142, badge = "06544", published = "3/12/2014 1:28:52 AM", modified = "5/5/2015 12:26:31 AM",
-    trigger = trigger_arcade_victory(character_morrigan) &&
-              once(byte(0x00922A) == 9) && 
-              never(byte(0x00922A) == 8)
+    trigger = trigger_arcade_victory(character_akuma)
 )
 
 // Ticket 9279: //               MD5: 14d0771c15676e2b3b75c4c149879586
 achievement(
-    title = "Devilot", description = "Beat game with Devilot in Normal or Hard", points = 15,
+    title = "Devilot", description = "Complete Arcade Mode as Devilot in Normal or Hard", points = 15,
     id = 6143, badge = "06545", published = "3/12/2014 1:28:54 AM", modified = "5/4/2015 5:41:48 AM",
-    trigger = trigger_arcade_victory(character_morrigan) &&
-              once(byte(0x00922A) == 8) && 
-              never(byte(0x00922A) == 9)
+    trigger = trigger_arcade_victory(character_devilot)
 )
 
 
@@ -256,35 +248,36 @@ arcade_difficulties = {
     difficulty_easy: "Easy",
     difficulty_normal: "Normal",   
     difficulty_hard: "Hard",
+    difficulty_master: "Master",
 }
 
 rich_presence_conditional_display(byte(0x045B0) == 0, "Demo Mode")
-rich_presence_conditional_display(byte(0x045B0) == 1, "In a Menu")
+rich_presence_conditional_display(byte(0x045B0) == 1, "In a Menu") // main menu
 rich_presence_conditional_display(byte(0x045B0) == 4, "In a Menu") // Tutorial, Victory
-rich_presence_conditional_display(byte(0x045B0) == 5, "Changing Options")
+rich_presence_conditional_display(byte(0x045B0) == 5, "In a Menu") // Changing options, End credits
 rich_presence_conditional_display(byte(0x045B0) == 6, "In a Menu") // Continue screen
 rich_presence_conditional_display(byte(0x045B0) == 8, "Viewing Results")
 
 // puzzle mode
-rich_presence_conditional_display(byte(0x045E3) > 3, "{0} vs {1} (Puzzle)",
-    rich_presence_lookup("Char", current_character(), characters),
-    rich_presence_lookup("Char", current_opponent(), characters),
-    rich_presence_lookup("ArcDiff", byte(0x9230), arcade_difficulties)
+rich_presence_conditional_display(byte(0x045CF) == 1, "{0} vs {1} (Puzzle)",
+    rich_presence_lookup("Character", current_character(), characters),
+    rich_presence_lookup("Character", current_opponent(), characters),
+    rich_presence_lookup("Difficulty", byte(0x9230), arcade_difficulties)
 )
 
 // vs mode
 rich_presence_conditional_display(byte(0x045DB) == 3, "{0} vs {1} (Versus)",
-    rich_presence_lookup("Char", current_character(), characters),
-    rich_presence_lookup("Char", current_opponent(), characters),
-    rich_presence_lookup("ArcDiff", byte(0x9230), arcade_difficulties)
+    rich_presence_lookup("Character", current_character(), characters),
+    rich_presence_lookup("Character", current_opponent(), characters),
+    rich_presence_lookup("Difficulty", byte(0x9230), arcade_difficulties)
 )
 
 // arcade mode
-rich_presence_display("{0} vs {1} on {2} (Round {3})",
-    rich_presence_lookup("Char", current_character(), characters),
-    rich_presence_lookup("Char", current_opponent(), characters),
-    rich_presence_lookup("ArcDiff", byte(0x9235), arcade_difficulties),
-    rich_presence_value("Round", byte(0x3432)+1)
+rich_presence_display("{0} vs {1} on {2} (Stage {3})",
+    rich_presence_lookup("Character", current_character(), characters),
+    rich_presence_lookup("Character", current_opponent(), characters),
+    rich_presence_lookup("Difficulty", byte(0x9235), arcade_difficulties),
+    rich_presence_value("Stage", byte(0x3432)+1)
 )
     
     
