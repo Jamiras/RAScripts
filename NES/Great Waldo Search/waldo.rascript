@@ -61,14 +61,16 @@ achievement(title = "Magic Carpet Ride", points = 5,
             trigger = trigger_begin_level() && is_woof_found() && minigame_tickets() == 24
 )
 
-function trigger_time_limit(seconds) => seconds_elapsed() <= seconds && never(current_clocks() < prev(current_clocks()))
+function trigger_time_limit(seconds) => seconds_elapsed() > 0 &&  // prevents trigger if player loses level
+                                        seconds_elapsed() <= seconds && 
+                                        never(current_clocks() < prev(current_clocks()))
 achievement(title = "Rapid Target", points = 5,
             description = "Find Waldo within the first five seconds",
             trigger = trigger_begin_level() && is_waldo_found() && current_screen() <= screen_land_of_waldos && trigger_time_limit(5)
 )
 
 achievement(title = "Eagle Eyes", points = 5,
-            description = "Complete a level within twenty seconds",
+            description = "Find Waldo and the Scroll within twenty seconds",
             trigger = trigger_begin_level() && trigger_complete_level() && trigger_time_limit(20)
 )
 
