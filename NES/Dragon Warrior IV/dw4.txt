@@ -873,7 +873,7 @@ achievement(
     title = "It's a Trap",
     description = "Collect the Iron Safe and leave",
     points = 5,
-    trigger = once(bit5(0x6269)) == 0 && bit5(0x6269) == 1 && trigger_player_in_game() && 
+    trigger = once(bit5(0x6269) == 0) && bit5(0x6269) == 1 && trigger_player_in_game() && 
               player_map_x() == 12 && player_map_y() == 20 && never(player_location() != 0x1471)
 )
 
@@ -1111,7 +1111,7 @@ achievement(
     points = 5,
     trigger = bit3(0x626E) == 1 && bit4(0x626E) == 1 && bit3(0x626D) == 1 &&
               player_location() == 0x83C7 && 
-              (prev(bit3(0x626E) != 1) || prev(bit4(0x626E) != 1) || prev(bit3(0x626D) != 1))
+              (prev(bit3(0x626E)) != 1 || prev(bit4(0x626E)) != 1 || prev(bit3(0x626D)) != 1)
 )
 
 story_achievement(bit5(0x625F), location_endor, 0x03,  5, "Hidden Treasure - Endor", "Find the hidden treasure in Endor")
@@ -1162,19 +1162,9 @@ achievement(
 // ===========================
 // ------ Rich Presence ------
 
-prefix = {
-    0: "waits for",
-    1: "and",
-}
-
 pronouns = {
     0: "his",
     1: "her"
-}
-
-suffix = {
-    0: "who are",
-    1: "are",
 }
 
 // built from maps lookup - more data needed
@@ -1241,12 +1231,43 @@ chapters = {
 function is_chapter_five() => bit2(0x615A)
 function hero_gender() => bit0(0x615C)
 
-rich_presence_display("A level {0} hero {1} {2} companions {3} exploring {4} {5}",
+rich_presence_conditional_display(dword(0x0042) == 0, "Titles")
+rich_presence_conditional_display(!trigger_player_in_game(), "Titles")
+
+rich_presence_conditional_display(current_chapter() == 4 && byte(0x6292) == 0, "A level {0} hero is exploring {1}",
     rich_presence_value("Level", character_level(character_hero)),
-    rich_presence_lookup("Prefix", is_chapter_five(), prefix),
-    rich_presence_lookup("Pronoun", hero_gender(), pronouns),
-    rich_presence_lookup("Suffix", is_chapter_five(), suffix),
-    //rich_presence_lookup("Verb", player_map(), location_verbs),
-    rich_presence_lookup("Location", player_location(), locations),
-    rich_presence_lookup("Chapter", current_chapter(), chapters)
+    rich_presence_lookup("Location", player_location(), locations)
 )
+
+rich_presence_conditional_display(current_chapter() == 4, "A level {0} hero and {1} companions are exploring {2}",
+    rich_presence_value("Level", character_level(character_hero)),
+    rich_presence_lookup("Pronoun", hero_gender(), pronouns),
+    rich_presence_lookup("Location", player_location(), locations)
+)
+
+protagonists = {
+    0: "Ragnar is",
+    1: "Alena is",
+    2: "Taloon is",
+    3: "Mara and Nara are",
+}
+
+protagonist_parties = {
+    0: "Ragnar and his",
+    1: "Alena and her",
+    2: "Taloon and his",
+    3: "Mara and Nara and their",
+}
+
+rich_presence_conditional_display(party_character(1) == 0, "{0} exploring {1} in Chapter {2}",
+    rich_presence_lookup("Protagonist", current_chapter(), protagonists),
+    rich_presence_lookup("Location", player_location(), locations),
+    rich_presence_value("Chapter", current_chapter() + 1)
+)
+
+rich_presence_display("{0} companions are exploring {1} in Chapter {2}",
+    rich_presence_lookup("ProtagonistParty", current_chapter(), protagonist_parties),
+    rich_presence_lookup("Location", player_location(), locations),
+    rich_presence_value("Chapter", current_chapter() + 1)
+)
+
