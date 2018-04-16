@@ -241,11 +241,10 @@ achievement(
 //               restarted this level several time without resseting emulator. I played with Hardcore mode on.
 //               MD5: 6808b453828d6a6f228e3225055df4c4
 achievement(
-    title = "Tomator With Claws And Wings", description = "Defeat Tomator Phase 1 without beeing hit and without additional help", points = 50,
+    title = "Tomator With Claws And Wings", description = "Defeat Tomator Phase 1 without being hit and without additional help", points = 50,
     id = 23622, badge = "24039", published = "6/11/2015 10:10:41 AM", modified = "6/11/2015 10:51:57 AM",
-    trigger = byte(0x000202) == 0 && never(char1_hp() < prev(char1_hp())) && never(char2_hp() < prev(char2_hp())) && 
-              never(char3_hp() < prev(char3_hp())) && once(byte(0x001AA2) != 105) && byte(0x001AA2) == 67 && 
-              unless(prev(byte(0x001AA2)) != 105) && unless(byte(0x001A93) != 5)
+    trigger = byte(0x000202) == 0 && trigger_no_damage() && once(prev(byte(0x001AA2)) != 105) && byte(0x001AA2) == 67 && 
+              prev(byte(0x001AA2)) == 105 && never(byte(0x001A93) != 5)
 )
 
 // Ticket 4349: I took a cheap hit to both Eric and Baelog, but this still triggered. Keeping it because, well, cheap
@@ -253,6 +252,6 @@ achievement(
 achievement(
     title = "Tomator Puree, Again!", description = "Defeat Tomator Phase 2 without beeing hit and without additional help", points = 50,
     id = 23621, badge = "24040", published = "6/11/2015 10:10:38 AM", modified = "12/21/2015 4:28:45 PM",
-    trigger = prev(current_world()) == 1281 && current_world() == 2049 && byte(0x000202) == 0 && 
-              trigger_no_damage() && once(word(0x001AA2) != 323)
+    trigger = byte(0x000202) == 0 && trigger_no_damage() && once(prev(word(0x001AA2)) != 323) && 
+              prev(word(0x001AA2)) == 323 && word(0x001AA2) == 327
 )
