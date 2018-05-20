@@ -1,0 +1,96 @@
+Rally Days 1 (city)
+[ ] Rally Days 1
+[ ] Extra Credit - Rally Days 1 :: behind the buildings between the track and checkpoint 3
+[ ] Unlockables Checklist :: win without collecting any pick-ups
+[ ] Pig and Elephant DNA Just Don't Splice :: have the rat, cow, and dog items (red + blue boxes)
+
+Rally Days 2 (city)
+[ ] Rally Days 2
+[ ] Extra Credit - Rally Days 2 :: western end of tracks
+[ ] Mr. Garrison :: activate all four checkpoints
+[ ] Pip :: activate checkpoints 1 and 4
+[ ] Drugs are Bad, Mmmkay? :: win without picking up any items
+
+Cow Days (farm)
+[ ] Cow Days
+[ ] Extra Credit - Cow Days :: southwest corner of barn behind haystacks
+[ ] Pinkeye - Farm :: near hut in northwest section
+[ ] Bebe :: lose without touching the cure
+[ ] I'm Super! Thanks for Asking :: win at least 80% ahead of everyone else
+
+Valentine's Day (Big Gay Al's)
+[ ] Valentine's Day
+[ ] Extra Credit - Valentine's Day :: at beginning of boat ride near dance floor
+[ ] Pinkeye - Big Gay Al's
+[ ] Shelly :: find the three golden cows (both parapets and hidden tunnel)
+[ ] They're Coming Right For Us! :: hit all five opponents without losing the bow and arrow
+
+Spring Cleaning (sewers)
+[ ] Spring Cleaning
+[ ] Extra Credit - Spring Cleaning :: behind northwest small ramp near checkpoint 2
+[ ] Pinkeye - Sewers
+[ ] Mr. Mackey :: win without continuing
+[ ] Tweek :: collect five caffeine pick-ups (blue boxes)
+[ ] Phase 3 - Profit :: hold all three pairs of underpants
+
+Read-a-Book Day (forest)
+[ ] Read-a-Book Day
+[ ] Extra Credit - Read-a-Book Day :: behind the toolbooth near Stark's pond
+[ ] Cartman Cop :: hit the van with salty balls five times (red boxes)
+
+Easter (mountain)
+[ ] Easter
+[ ] Extra Credit - Easter :: on the hill just forward and right of the start
+[ ] Pinkeye - Mountain
+
+Pink Lemonade (Big Gay Al's)
+[ ] Pink Lemonade
+[ ] Extra Credit - Pink Lemonade :: ramp between balcony and roof
+[ ] Pinkeye - Big Gay Al's
+[ ] Big Gay Al :: win without continuing
+
+Memorial Day (volcano)
+[ ] Memorial Day
+[ ] Extra Credit - Memorial Day :: on the outside ledge near where you originally find the laser
+[ ] Ike :: find the golden cow (on the plane) (green box for phillip phart)
+[ ] Visitor :: Collect both pot pies
+[ ] No Kitty! This is My Pot-Pie :: Collect a pie while holding a kitty (yellow box)
+
+Independence Day (mountain)
+[ ] Independance Day
+[ ] Extra Credit - Independence Day :: behind the radio tower west of checkpoint 2
+[ ] Pinkeye - Mountain
+[ ] Mephesto :: win without continuing
+[ ] Ned :: collect 12 terrance turbos
+
+Halloween (forest) - ** need to verify candy addresses for all characters
+[ ] Halloween
+[ ] Extra Credit - Halloween :: behind the trees in the shopping square
+[ ] Grandpa :: win without continuing
+[ ] Death :: win by dropping off four candies at a time
+[ ] Hello There, Children :: deliver at least 15 candies
+
+Thanksgiving (farm)
+[ ] Thanksgiving
+[ ] Extra Credit - Thanksgiving :: in the ring in the barn
+[ ] Pinkeye - Farm 
+[ ] Marvin :: lose without collecting any turkeys
+
+Christmas (city)
+[ ] Christmas
+[ ] Extra Credit - Christmas :: next to the cars near checkpoint 3
+[ ] Jesus :: win without continuing
+[ ] Terrance and Phillip :: find four golden cows
+    One is behind a house to the right of the starting point. One is behind the southwest building near checkpoint 3.
+    One is in a small ditch north of the road north of checkpoint 2. The last is behind a house west of checkpoint 4.
+
+New Years (volcano)
+[ ] New Years
+[ ] Extra Credit - New Years :: enter southern cave, follow wall to left
+[ ] Satan :: win without continuing
+[ ] Damien :: be the only player to hold the key
+
+Other
+[ ] Respect Mah Authoritah :: have 10 credits
+[ ] Screw You Guys, I'm Going Home :: quit after winning
+[ ] And Meet Some Friends of Mine :: watch the title song
