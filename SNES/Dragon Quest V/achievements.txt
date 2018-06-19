@@ -1,0 +1,131 @@
+The following achievements are missable:
+
+*Act I* (start a new game)
+* defeat the walking statue
+
+*Act II* (save when prompted after watching Papas fight Gema)
+* examine the pot
+* reunite with kitty without recruiting
+
+*Act II* (save before picking a wife)
+* declare your love for ludman
+* spend the night with bianca (can be done at the end of the game, but not if you choose Flora)
+* collect ludman's dowry
+
+*Act II* (save before completing the Cave of Trials)
+* inquire about puff-puff
+* try on the zenithian helm
+
+*Act III* (save before going to the Great Temple)
+* use the staff on your wife
+* use ivol's book during ivol's battle
+
+There are several other achievements that aren't required to complete the game, but can still be earned with an end game save. 
+
+I really struggled with this decision, but all wife-specific achievements can be earned shortly after getting married. There are no wife-specific achievements in Act III. I didn't want to force the player to choose one wife over the other just to earn some late-game achievements.
+
+----
+
+feedback thread:
+http://retroachievements.org/viewtopic.php?t=6770&c=33938
+
+---
+
+Key: [ ] required, ( ) missable, { } not required, but can be done at end of game
+
+=== Child (28pts - ~2 1/2 hours) ===
+[ ] 4 - free the trapped explorer
+( ) 3 - defeat the Walking Statue in Lenoire castle [missable]
+[ ] 5 - defeat the boss ghost in Lenoire castle
+{ } 2 - reward for freeing trapped explorer [missable]
+[ ] 3 - learn how to unlock wooden doors
+[ ] 5 - retrieve the Flute of Spring
+[ ] 6 - rescue prince Henry
+
+=== Young Adult (92 pts - ~10 1/2 hours) ===
+[ ] 3 - become a teenager
+( ) 2 - examine the pot in the sleeping quarters at the slavery camp [missable]
+[ ] 5 - escape from the slavery camp
+[ ] 2 - purchase the caravan (boat won't arrive in Vista Harbor without it)
+{ } 5 - collect the Zenithian sword and letter from Papas
+[ ] 3 - obtain the Reinhart's key
+[ ] 5 - defeat the imposter Empress
+{ } 4 - stop the beast terrorizing Kabochi
+[ ] 3 - learn Return (cannot get back to reinhart without it)
+( ) 3 - inquire about puff-puff [missable - teen only]
+[ ] 7 - collect the Ring of Fire
+[ ] 3 - collect the Ring of Water
+{ } 2 - purchase the traveler's map
+( ) 2 - declare your love for Ludman [missable]
+[ ] 5 - get married
+{ } 3 - spend the night with Bianca at the alcapa inn
+( ) 3 - try on the Zenithian Helm [missable - teen only]
+( ) 3 - collect all the presents from Ludman for marrying Flora
+{ } 2 - spend the night with your wife deep under mountain pass
+{ } 5 - defeat all three mimics and both man-eater chests in mountain pass
+{ } 5 - find the hidden treasure in Mountain Pass
+{ } 5 - find the hidden treasure in Granvania
+[ ] 5 - be crowned king
+[ ] 8 - defeat Jahmi
+
+=== Fatherhood (72 pts - 10 hours) ===
+{ } 4 - acquire the hat of wind
+{ } 3 - acquire the Zenithian helm
+{ } 2 - check in on the woman you didn't marry
+[ ] 3 - acquire the magic carpet
+[ ] 5 - zenithia crashes flashback
+[ ] 5 - trade the glowing orb for the golden orb
+[ ] 5 - defeat Buorn
+{ } 4 - banish all the monsters from Emblem Cave
+{ } 4 - acquire the royal cloak
+{ } 2 - talk to the elopers in Castle Lenoire
+{ } 4 - learn the Chance spell
+[ ] 9 - avenge your father's death (defeat Gema)
+[ ] 4 - restore master dragon
+{ } 3 - acquire the Zenithian armor
+( ) 2 - use the Staff of Stoross on your wife [missable]
+{ } 2 - find out what happened to Maria's brother
+( ) 4 - use Ivol's Book during Ivol's battle [missable]
+[ ] 7 - defeat Ivol
+
+=== Dark World (76 pts - 3 hours) ===
+{ } 5 - find and defeat all three of kandar's henchmen
+{ } 30- find 29 hidden small medals (not from chests)
+{ } 2 - unlock all 17 return locations 
+[ ] 4 - reunite with your mother
+{ } 7 - defeat a King Metal
+[ ] 3 - solve the sliding puzzle
+[ ] 10- defeat Mildrath
+{ } 10- defeat Mildrath using only members of your family
+{ } 15- defeat Mildrath using only recruited monsters
+
+=== Bonus Dungeon (65 pts - 2 hours) ===
+{ } 15- find 19 small medals in chests
+{ } 20- defeat Esturk
+{ } 30- defeat Esturk in 25 turns or less
+
+=== Recruiting (23 pts) ===
+{ } 2 - recruit your first wild monster
+{ } 4 - recruit five unique monsters
+{ } 7 - recruit ten unique monsters
+{ } 10- recruit twenty unique monsters (there are 40+kitty, which isn't counted for this achievements)
+
+=== Other (33 pts) ===
+{ } 6 - do at least 500 damage in a single attack
+{ } 5 - Equip the Sun Crown, Dragon Staff, Royal Cloak, and Shield of Radiance
+{ } 8 - purchase the King Metal Sword
+{ } 4 - purchase the King Metal Shield
+( ) 10- reunite with kitty without recruiting any monsters [missable]
+
+--- Total 400! ---
+
+=== Bonus Set (200pts) ===
+{?} 30- recruit three of any monster
+{?} 20- recruit a rare monster (Attackbot, Farewell Crag, Lionex, Metal Babble)
+        http://shrines.rpgclassics.com/snes/dq5/monstercatch.shtml
+{?} 50- recruit one of every monster
+{?} 40- defeat Esturk in under 20 turns
+{?} 10- reach level 60
+{?} 30- complete the game with only 10? return locations (start with 5 + El Heven, Zenithia, Granvania, 
+                                                                         Shahhanna and Evil Mountain)
+{?} 20- purchase a Gringham Whip (250000 casino coins)
