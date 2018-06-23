@@ -1,39 +1,39 @@
 The following achievements are missable:
 
 *Act I* (start a new game)
-* defeat the walking statue
+* [ach=40116]
 
 *Act II* (save when prompted after watching Papas fight Gema)
-* examine the pot
-* reunite with kitty without recruiting
+* [ach=61365]
+* [ach=61418]
 
 *Act II* (save before picking a wife)
-* declare your love for ludman
-* spend the night with bianca (can be done at the end of the game, but not if you choose Flora)
-* collect ludman's dowry
+* [ach=61377]
+* [ach=61379]
+* [ach=61381]
 
-*Act II* (save before completing the Cave of Trials)
-* inquire about puff-puff
-* try on the zenithian helm
+*Act II* (save before doing the Cave of Trials)
+* [ach=61373]
+* [ach=61380]
 
 *Act III* (save before going to the Great Temple)
-* use the staff on your wife
-* use ivol's book during ivol's battle
+* [ach=61401]
+* [ach=61403]
 
-There are several other achievements that aren't required to complete the game, but can still be earned with an end game save. 
+There are several other achievements that aren't required to complete the game, but can still be earned with an end game save. I've ordered the achievements (up until the recruiting achievements) in the order that seems most natural for doing them.
 
 I really struggled with this decision, but all wife-specific achievements can be earned shortly after getting married. There are no wife-specific achievements in Act III. I didn't want to force the player to choose one wife over the other just to earn some late-game achievements.
 
 ----
 
 feedback thread:
-http://retroachievements.org/viewtopic.php?t=6770&c=33938
+http://retroachievements.org/viewtopic.php?t=6770
 
 ---
 
 Key: [ ] required, ( ) missable, { } not required, but can be done at end of game
 
-=== Child (28pts - ~2 1/2 hours) ===
+=== Child (7x - 28pts - ~2 1/2 hours) ===
 [ ] 4 - free the trapped explorer
 ( ) 3 - defeat the Walking Statue in Lenoire castle [missable]
 [ ] 5 - defeat the boss ghost in Lenoire castle
@@ -42,7 +42,7 @@ Key: [ ] required, ( ) missable, { } not required, but can be done at end of gam
 [ ] 5 - retrieve the Flute of Spring
 [ ] 6 - rescue prince Henry
 
-=== Young Adult (92 pts - ~10 1/2 hours) ===
+=== Young Adult (24x - 93 pts - ~10 1/2 hours) ===
 [ ] 3 - become a teenager
 ( ) 2 - examine the pot in the sleeping quarters at the slavery camp [missable]
 [ ] 5 - escape from the slavery camp
@@ -68,7 +68,7 @@ Key: [ ] required, ( ) missable, { } not required, but can be done at end of gam
 [ ] 5 - be crowned king
 [ ] 8 - defeat Jahmi
 
-=== Fatherhood (72 pts - 10 hours) ===
+=== Fatherhood (18x - 72 pts - 10 hours) ===
 { } 4 - acquire the hat of wind
 { } 3 - acquire the Zenithian helm
 { } 2 - check in on the woman you didn't marry
@@ -88,10 +88,7 @@ Key: [ ] required, ( ) missable, { } not required, but can be done at end of gam
 ( ) 4 - use Ivol's Book during Ivol's battle [missable]
 [ ] 7 - defeat Ivol
 
-=== Dark World (76 pts - 3 hours) ===
-{ } 5 - find and defeat all three of kandar's henchmen
-{ } 30- find 29 hidden small medals (not from chests)
-{ } 2 - unlock all 17 return locations 
+=== Dark World (6x - 49 pts - 3 hours) ===
 [ ] 4 - reunite with your mother
 { } 7 - defeat a King Metal
 [ ] 3 - solve the sliding puzzle
@@ -99,33 +96,36 @@ Key: [ ] required, ( ) missable, { } not required, but can be done at end of gam
 { } 10- defeat Mildrath using only members of your family
 { } 15- defeat Mildrath using only recruited monsters
 
-=== Bonus Dungeon (65 pts - 2 hours) ===
-{ } 15- find 19 small medals in chests
+=== Bonus Dungeon (2x - 50 pts - 2 hours) ===
 { } 20- defeat Esturk
 { } 30- defeat Esturk in 25 turns or less
 
-=== Recruiting (23 pts) ===
+=== Recruiting (4x - 23 pts) ===
 { } 2 - recruit your first wild monster
 { } 4 - recruit five unique monsters
 { } 7 - recruit ten unique monsters
 { } 10- recruit twenty unique monsters (there are 40+kitty, which isn't counted for this achievements)
 
-=== Other (33 pts) ===
-{ } 6 - do at least 500 damage in a single attack
-{ } 5 - Equip the Sun Crown, Dragon Staff, Royal Cloak, and Shield of Radiance
-{ } 8 - purchase the King Metal Sword
-{ } 4 - purchase the King Metal Shield
+=== Other (9x - 85 pts) ===
 ( ) 10- reunite with kitty without recruiting any monsters [missable]
+{ } 5 - find and defeat all three of kandar's henchmen
+{ } 30- find 29 hidden small medals (not from chests)
+{ } 15- find 19 small medals in chests
+{ } 4 - purchase the King Metal Shield
+{ } 8 - purchase the King Metal Sword
+{ } 5 - Equip the Sun Crown, Dragon Staff, Royal Cloak, and Shield of Radiance
+{ } 2 - unlock all 17 return locations 
+{ } 6 - do at least 500 damage in a single attack
 
 --- Total 400! ---
 
 === Bonus Set (200pts) ===
+{?} 10- reach level 60
 {?} 30- recruit three of any monster
 {?} 20- recruit a rare monster (Attackbot, Farewell Crag, Lionex, Metal Babble)
         http://shrines.rpgclassics.com/snes/dq5/monstercatch.shtml
 {?} 50- recruit one of every monster
-{?} 40- defeat Esturk in under 20 turns
-{?} 10- reach level 60
-{?} 30- complete the game with only 10? return locations (start with 5 + El Heven, Zenithia, Granvania, 
-                                                                         Shahhanna and Evil Mountain)
+{?} 40- defeat Esturk in 20 turns or less (under 20?)
+{?} 30- complete the game with only 9? return locations (start with 4 + El Heven, Zenithia, Granvania, 
+                                                                        Shahhanna and Evil Mountain)
 {?} 20- purchase a Gringham Whip (250000 casino coins)

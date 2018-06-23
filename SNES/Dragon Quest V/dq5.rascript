@@ -60,7 +60,7 @@ sprite_curer = 0x94            // $29FE
 sprite_king_slime = 0x95
 sprite_mad_dragon = 0x96       // $2A00
 sprite_minidemon = 0x97        // $2A01
-sprite_messala = 0x98
+sprite_messala = 0x98          // $2A02
 sprite_orc_king = 0x99         // $2A03
 sprite_leaonar = 0x9A
 sprite_eliminator = 0x9B       // $2A05
@@ -196,7 +196,7 @@ locations = {
     location_ice_mansion: "the Ice Mansion",
     location_tunnel_to_reinhart: "the tunnel to Reinhart",
     location_reinhart: "Reinhart",
-    location_thieves_cave: "the Thieves' Cave",
+    location_thieves_cave: "the Ancient Ruins",
     location_great_temple: "the Great Temple",
     location_nunnery: "the Nunnery",
     location_oracleberry: "Oracleberry",
@@ -232,7 +232,7 @@ locations = {
     location_salabona_tower: "Salabona",
     location_emblem_cave: "Emblem Cave",
     location_sky_tower: "Sky Tower",
-    location_cave_to_underwater_castle: "the Cave to the Underwater Castle",
+    location_cave_to_underwater_castle: "the Trolley Cave",
     location_zenithia_castle: "Zenithia Castle",
     location_forest_of_illusions: "the Forest of Illusions",
     location_mysterious_lake: "the Mysterious Lake",
@@ -581,7 +581,7 @@ achievement(
               dword(0x00C0) == 0x01451E78                   // hero X/Y within room    
 )
 
-story_achievement(location_evil_mountain_2, bit0(0x21E1), 10, "Demon Lord No More", "Defeat Mildreath")
+story_achievement(location_evil_mountain_2, bit0(0x21E1), 10, "Demon Lord No More", "Defeat Mildrath")
 
 function trigger_no_non_monsters_in_party(slot)
 {
@@ -631,7 +631,9 @@ achievement(
               enemy_type(0) >= enemy_mildrath2 && enemy_type(0) <= enemy_mildrath5 && 
               once(!trigger_in_battle()) &&          // before battle
               unless(dword(0x07C0) == 0x000080E7) && // attempt to prevent resetting 'before battle' flag between forms
-              (trigger_no_non_family_in_party(0) || trigger_no_non_family_in_party(1) || trigger_no_non_family_in_party(2))
+              byte(0x001D) > 0 && byte(0x001D) < 16 && // prevent resurrection after battle
+              (trigger_no_non_family_in_party(0) || trigger_no_non_family_in_party(1) || trigger_no_non_family_in_party(2) || 
+               (byte(0) == byte(0))) // dummy alt to ensure at least one alt is true - actually "1 == 1" in published achievement
 )
 
 achievement(
@@ -641,7 +643,9 @@ achievement(
               enemy_type(0) >= enemy_mildrath2 && enemy_type(0) <= enemy_mildrath5 && 
               once(!trigger_in_battle()) &&          // before battle
               unless(dword(0x07C0) == 0x000080E7) && // attempt to prevent resetting 'before battle' flag between forms
-              (trigger_no_non_monsters_in_party(0) || trigger_no_non_monsters_in_party(1) || trigger_no_non_monsters_in_party(2))
+              byte(0x001D) > 0 && byte(0x001D) < 16 && // prevent resurrection after battle
+              (trigger_no_non_monsters_in_party(0) || trigger_no_non_monsters_in_party(1) || trigger_no_non_monsters_in_party(2) ||
+               (byte(0) == byte(0))) // dummy alt to ensure at least one alt is true - actually "1 == 1" in published achievement
 )
 
 
@@ -652,13 +656,13 @@ enemy_esturk = 0xE5
 battle_achievement(location_bonus_dungeon, enemy_esturk, 20, "Until Next Time", "Defeat Esturk")
 achievement(
     title = "Underworld Challenge", points = 30, 
-    description = "Defeat Esturk in 25 turns or less", 
-    trigger = trigger_win_battle(location_bonus_dungeon, enemy_esturk) && byte(0x0046) <= 25
+    description = "Defeat Esturk in 25 turns or less (no cheating)", 
+    trigger = trigger_win_battle(location_bonus_dungeon, enemy_esturk) && byte(0x101A) <= 25 && trigger_not_cheating()
 )    
 
 achievement(
     title = "That's Got To Hurt", points = 6,
-    description = "Do at least 500 damage to one enemy with a single attack",
+    description = "Do at least 500 damage to one enemy with a single attack (no cheating)",
     trigger = trigger_in_game() && trigger_in_battle() &&
               high4(0x10F5) == 0 &&   // party member attacking
               high4(0x10F6) != 0 &&   // attacking non-party member
@@ -709,7 +713,7 @@ item_royal_cloak = 0x60
 item_shield_of_radiance = 0x83
 achievement(
     title = "The Sacred Raiment", points = 5,
-    description = "Equip the main character with the Sun Crown, Dragon Staff, Royal Cloak, and Shield of Radiance",
+    description = "Equip the main character with the Sun Crown, Dragon Staff, Royal Cloak, and Shield of Radiance (and no accessories)",
     trigger = trigger_in_game() && 
               trigger_equipped(0, item_sun_crown, item_dragon_staff, item_royal_cloak, item_shield_of_radiance)
 )
@@ -1846,7 +1850,7 @@ function monster_capture(sprite) => byte(0x296A + sprite) // 1 = first, 3 = seco
 
 function trigger_recruit_unique(count)
 {
-    return trigger_in_game() &&
+    return trigger_in_game() && byte(0x182F) != 0x55 && // everything = 0x55 on initial load
            (bit0(0x29EC) + bit0(0x29ED) + bit0(0x29EE) + bit0(0x29EF) +
             bit0(0x29F0) + bit0(0x29F1) + bit0(0x29F2) + bit0(0x29F3) +
             bit0(0x29F4) + bit0(0x29F5) + bit0(0x29F6) + bit0(0x29F7) +
@@ -1939,7 +1943,7 @@ chest_small_medals = {
 }
 
 other_small_medals = {
-    1: bit0(0x22E0), // pot in room behind bar, Alcapa (teen) [tell bunny lady "no"]
+    1: bit0(0x2230), // pot in room behind bar, Alcapa (teen) [tell bunny lady "no"]
     2: bit3(0x222C), // pot in room across hallway after two dragon pups (teen)
     3: bit5(0x2234), // dresser in lighthouse, Port Selmi (teen)
     4: bit3(0x2241), // flowers outside church, Port Selmi (teen)

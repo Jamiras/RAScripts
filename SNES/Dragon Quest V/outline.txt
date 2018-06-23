@@ -1,0 +1,834 @@
+SHIP (Lv1)
+
+[ ] Medical Herb, dresser, initial room
+
+VISTA HARBOR (Lv1)
+
+[ ] None
+
+SANTA ROSA (Lv2)
+
+[ ] Leather Hat, Sancho's House, 2F dresser (equip it!)
+[ ] Medical Herb, Sancho's House, 1F dresser
+[ ] Strength Seed, Sancho's House, B1 pot (use it!)
+[ ] Medical Herb, weapon store, 2F dresser
+
+SANTA ROSA CAVE, 1st FLOOR (Lv2)
+
+[ ] Medical Herb, 1F chest
+[ ] Grind to Lv4, when hero learns Heal
+
+SANTA ROSA CAVE, deeper (Lv4)
+
+[ ] 50G, 2F chest
+[ ] Leather Shield, 2F chest (equip it!)
+[ ] Rescue trapped man, 3F (achievement!)
+[ ] Wayfarers Clothes, 3F chest (equip it!)
+
+=== 01 - Alcapa ===
+
+ALCAPA (Lv5)
+
+[ ] Defense Seed, Inn, 3F dresser (use it!)
+[ ] Wing of Wyvern, Inn, 3F dresser
+[ ] Grind to Lv7 (Bianca will probably be Lv6)
+[ ] Buy boomerang for hero (420g) (equip it!)
+[ ] Buy wooden hat for hero (120g) (equip it!)
+[ ] Buy leather armor for hero (180g) (if enough money left) (equip it!)
+[ ] Keep leather hat for Bianca, sell everything else
+[ ] Talk to Bianca to transition back to night
+[ ] Equip Bianca with leather hat
+
+LENOIRE (Lv7)
+
+[ ] Wing of Wyvern, 4F chest
+[ ] Medical Herb, B3 pot
+[ ] Torch, B3 pot
+[ ] Defeat Walking Statue, 2F (achievement!) [weak to surround] (use defense seed)
+[ ] Medical Herb, 3F pot
+[ ] Defeat Boss Ghost, 2F (achievement!) [use surround and decrease]
+[ ] Gold Orb
+
+ALCAPA (Lv8)
+
+[ ] Buy wooden hat for kitty (120g) (equip it!)
+[ ] Bianca's Ribbon
+
+SANTA ROSA (Lv8)
+
+[ ] Handwoven Cape (achievement!) (equip on kitty)
+
+=== 02 - Faerie Village ===
+
+FAERIE VILLAGE (Lv8)
+
+[ ] Buy bronze shield (370g) (equip it!)
+[ ] Holy Water, pot next to inn
+[ ] Buy stone fang (240g) (equip on kitty) (item shop in inn)
+[ ] Grind kitty to at least level 5
+
+DWARF CAVE (Lv9)
+
+[ ] 100G, 1F chest
+[ ] 25G, 1F chest
+[ ] Agility Seed, B2 chest (use it!)
+[ ] Secrets of the Key, B3 chest (achievement!)
+[ ] 120G, B3 chest
+[ ] Acorns of Life, B3 chest (use it!)
+
+ICE PALACE (Lv10)
+
+[ ] Intelligence Seed, 1F chest
+[ ] 5G, B1 chest
+[ ] Wing of Wyvern, B1 chest
+[ ] Defeat Zaile 
+[ ] Defeat Snow Queen (double decrease)
+[ ] Boomerang, 2F chest
+[ ] Flute of Spring, 2F chest (achievement!)
+
+FAERIE VILLAGE (Lv11)
+
+[ ] Give Flute to Queen
+
+REINHART CASTLE (Lv11)
+
+[ ] Acorns of Magic, room north of church, 1F dresser (use it!)
+
+REINHART (Lv11)
+
+[ ] Buy half plate armor from travelling merchant (1200g) (equip it!)
+[ ] Grind to Lv13 (kitty will be Lv~10)
+
+=== 03 - Ancient Ruins ===
+
+ANCIENT RUINS (Lv13)
+
+[ ] 180G, 1F chest
+[ ] Antidote Herb, 1F chest
+[ ] Strength Seed, 1F chest (use it!)
+[ ] Find Papas
+[ ] Monster Lure, 1F chest
+[ ] Elven Medicine, 1F chest
+[ ] Grind to Lv14 (Papas makes it easy)
+[ ] Rescue Henry (achievement!)
+[ ] Lose to Gema
+
+=== 04 - Ten Years Later ===
+
+SLAVERY (Lv14)
+
+[ ] Become a teen (achievement!)
+[ ] Talk to Henry
+
+SLAVERY ROOM (Lv14)
+
+[ ] Examine the pot (achievement!)
+
+SLAVERY (Lv14)
+
+[ ] Defeat Whip Men (upper + attack/heal or gale)
+[ ] Escape (achievement!)
+
+NAMELESS NUNNERY (Lv14)
+
+[ ] 1000G, talk to Maria
+
+ORACLEBERRY (Lv14)
+
+[ ] Buy bladed boomerang (1500g) (equip it!)
+[ ] Buy chain whip for Henry (1200g) (equip it!)
+[ ] Buy bronze shield for Henry (370g) (equip it!)
+[ ] If you still have the wooden hat, give it to Henry and equip it (or buy one for 120g)
+[ ] Defense Seed, 2F dresser, above armor shop (use it!)
+[ ] Silver Barrette, 1F dresser, dressing room, casino
+[ ] Silk Robe, 1F dresser, dressing room, casino
+[ ] Pot Cover, 1B pot, monster gramps room
+[ ] Monster Lure, 1B pot, monster gramps room
+[ ] Deposit Torch, Bianca's Ribbon, Silk Robe, and Silver Barette
+[ ] Grind until nightfall
+
+ORACLEBERRY NIGHT (Lv14)
+
+[ ] Buy the wagon (300g) (achievement!)
+[ ] Grind until Henry is Lv8
+ *  Capturable monsters: Slime, Brownie, Kukkle? (ignore for achievement later)
+                         Bomb Baby, Drakee (near tunnel to Reinhart)
+
+SANTA ROSA RUINS (Lv14)
+
+[ ] Intelligence Seed, pot, old man's house
+
+=== 05 - Santa Rosa 2 ===
+
+SANTA ROSA CAVE PT. 2 (Lv14)
+
+ *  Capturable monsters: Slime, Hork, Brownie
+
+[ ] 850G, B2 chest
+[ ] Agility Seed, B3 chest (use it!)
+[ ] Breast Plate, B3 chest (equip it on henry!)
+[ ] Lamp of Darkness, B3 chest
+[ ] Strength Seed, B5 pot (use it!)
+[ ] Leather Loincloth, B5 dresser
+[ ] Zenithian Sword
+[ ] Papas Letter (achievement!)
+
+ALCAPA (Lv15)
+
+ *  Capturable monsters: Drakee
+
+[ ] Small Medal (O1), pot, behind bunny girl
+[ ] Buy iron helm for henry (1100g)
+[ ] Spend the night (required to open pass to Reinhart)
+
+REINHART CASTLE (Lv15)
+
+ *  Capturable monsters: Slime Knight, Hork, Dancing Needle, Yeti
+
+[ ] Steel Fang, B2 chest
+[ ] Shell Hat, B2 chest
+[ ] Reinhart Key (achievement!)
+[ ] Half Plate Armor, 2F chest (behind damaging floor) (have henry equip it)
+[ ] 1200G, 2F chest (behind damaging floor)
+[ ] Acorns of Life, 2F chest (behind damaging floor) (use it!)
+[ ] Small Medal (O2), pot, room across hallway from dragon pups
+
+ORACLEBERRY (Lv16)
+
+[ ] Deposit: Lamp of Darkness, Papas' Letter, Zenithian Sword, Reinhart's Key
+
+NUNNERY (Lv16)
+
+[ ] Talk to nun playing piano
+
+=== 06 - Southern Tower ===
+
+TOWER (Lv16)
+
+ *  Capturable monsters: Slime Knight, Big Eye, Dragon Pup
+
+[ ] 650G, 2F chest
+[ ] Scale Shield, 3F chest
+[ ] Acorns of Magic, 3F chest (use it!)
+[ ] Magic Water, 4F pot
+[ ] Mirror of Ra, 5F
+
+REINHART CASTLE (Lv17)
+
+[ ] Defeat Impostor (use surround) (achievement!)
+
+VISTA HARBOR (Lv17)
+
+[ ] Take boat to Port Selmi
+
+PORT SELMI (Lv17)
+
+[ ] Small Medal (O3), dresser, top of lighthouse
+[ ] Small Medal (O4), flowers on right side of church
+[ ] 100G, flowers on left side of church
+[ ] Deposit (basement of church): Mirror of Ra
+[ ] Withdraw: Bianca's Ribbon
+
+* If you're trying for the no recruiting challenge, you'll probably want to deposit all of your gold too
+
+[ ] Fight Bandit Wolves in Inn
+[ ] Silk Apron, dresser, dancer's changing room, Inn
+[ ] 50G, 2F pot, Inn     
+
+KABOCHI (Lv17)
+
+[ ] Armband of Sacrifice, B1, under the movable tile (equip it!)
+[ ] Strength Seed, Pot, middle northern house (use it!)
+[ ] Leather Hat, barrel, northeastern building
+[ ] Small Medal (O5), northwest corner, cave in grassy knoll
+[ ] Magic Water, pot, 2F elder's house
+[ ] Small Medal (O6), pot, 2F elder's house
+
+=== 07 - Monster Cave ===
+
+CAVE (Lv17)
+
+ *  Capturable monsters: Magician
+
+* If you're trying for the no recruiting challenge, you'll be all by yourself for this part.
+  You'll probably want to run from most encounters.
+
+[ ] Small Medal (O7), just north of skeleton in middle of 1F
+[ ] Stone Axe, 1F chest
+[ ] Iron Helm, B2 chest
+[ ] Use Bianca's Ribbon on Killer Panther (achievement!) (kitty can also equip the ribbon for +10 int)
+[ ] Get here without recruiting (achievement!)
+[ ] Papas Sword, B2 chest (equip it!)
+
+KABOCHI (Lv17)
+
+[ ] 1500g, talk to elder
+
+[ ] Grind to Lv18
+
+RURAPHIN (Lv18)
+
+ *  Capturable monsters: Magician, Big Eye, Healer, Dragon Pup
+
+[ ] Small Medal (O8), pot, 2F inn
+[ ] Agility Seed, pot, pit
+[ ] Small Medal (O9), pot, pit
+[ ] Medical Herb, pot, 1F magician's house
+[ ] Magic Water, barrel, 1F magician's house
+[ ] offer to help magician
+
+RURAPHIN NIGHT (Lv18)
+
+[ ] Acorn of Magic, barrel, upstairs inn kitchen
+[ ] Wing of Wyvern, barrel, behind bartender
+
+FIELD WEST OF RURAPHIN (Lv18)
+
+ *  Capturable monsters: Puppet Man, Killer Panther?
+
+[ ] RuraMoon Herb
+
+RURAPHIN (Lv18)
+
+[ ] Give RuraMoon Herb to magician
+[ ] Cast Return (Oracleberry) (achievement!)
+
+ORACLEBERRY (Lv18)
+
+[ ] Wayfarers Map (1000g, night) (achievement!)
+[ ] Wander down to the Nunnery and up to Santa Rosa and over to Alcapa to add them to the return list
+[ ] Wander up to Reinhart and capture a Slime Knight (if you haven't already)
+[ ] Grind to Lv19 capturing things around Reinhart
+
+REINHART (Lv19)
+
+[ ] Talk to bunny girl, 2F inn (have to use Return at night) (acheivement!)
+[ ] Talk to Henry
+
+PORT SELMI (Lv19)
+
+[ ] Return to Port Selmi, and wander down to Kabochi to add it to the return list
+
+RUMOR SHRINE (Lv20)
+
+[ ] Small Medal (O10), well
+
+CAVE TO SALABONA (Lv20)
+
+[ ] Small Medal (C1), 1F chest
+
+SALABONA (Lv20)
+
+[ ] Small Medal (O11), 1F dresser, Andy's house
+[ ] Iron Shield, dresser, inn
+[ ] Intelligence Seed, 1F dresser, southwest house
+[ ] Silver Barrette, 2F dresser, Ludman's house
+
+[ ] Grind to Lv 23
+ * Capturable monsters (on the way): Bomb Crag, Wyvern
+ * You can also try to catch a Puppet Man up west of Ruraphin
+
+=== 08 - Volcano ===
+
+VOLCANO (Lv23)
+
+* Capturable monsters: Bomb Crag, Wyvern, Dancing Jewel, Curer (summoned by Beast Master)
+                       Metal Slime (?)
+
+[ ] 450G, 1F chest
+[ ] Staff of Antimagic, B1 chest
+[ ] Iron Helm, B1 chest
+[ ] Defense Seed, B2 chest
+[ ] 1500G, B2 chest
+[ ] Defeat Lava Savages (just keep health over 70, use increase if you have it)
+[ ] Ring of Flames, B3 (achievement!)
+
+SALABONA (Lv24)
+
+[ ] Give ring to Ludman
+
+MOUNTAIN VILLAGE (Lv24)
+
+[ ] Strength Seed, pot, general store (use it!)
+[ ] Small Medal (O12), right gravestone
+[ ] Small Medal (O13), barrel, inn basement
+[ ] Medical Herb, dresser, 2F inn
+
+[ ] Grind Bianca to Lv15
+
+WATERFALL CAVE (Lv25)
+
+ * Capturable monsters: Curer, Dancing Jewel
+
+[ ] Robe of Serenity, chest, outside B4 (give to Bianca)
+[ ] Elven Medicine, B7 chest
+[ ] 1200G, B5 submerged chest
+[ ] Ring of Water (achievement!)    
+
+SALABONA (Lv26)
+
+[ ] Give ring to Ludman
+
+=== 09 - Wedding Bells ===
+
+SALABONA (Lv26)
+
+[ ] Propose to Ludman (achievement!)
+[ ] Pick a wife
+
+MOUNTAIN VILLAGE (Lv26)
+
+[ ] Silk Veil
+
+SALABONA (Lv26)
+
+[ ] Get married (achievement!)
+[ ] 2000G, chest, Ludman's house
+[ ] Zenethian Shield, chest, Ludman's house
+[ ] Equip Silk Veil on wife
+
+SHRINE WEST OF MOUNTAIN VILLAGE (Lv26)
+
+ * Skip this section if you married Bianca
+ 
+[ ] Grind Flora up to Lv10
+[ ] Look at jar
+[ ] Return to Ludman
+
+TODO: visit nunnery with Flora as teen
+
+ALCAPA (Lv26)
+
+ * Skip this section if you married Flora
+
+[ ] Stay at the inn (achievement!)
+
+PORT SELMI (Lv26)
+
+[ ] Deposit (church basement): Zenithian Shield
+[ ] Get boat
+
+OASIS (Lv26)
+
+[ ] Small Medal (O14), pot
+
+TELEPADOR (Lv26)
+
+[ ] 2000G (If you married Flora)
+
+[ ] Wing of Wyvern, pot, B1 weapon shop
+[ ] Buy Silver Mail and Magic Shield for hero
+[ ] Defense Seed, pot, kitchen
+[ ] Small Medal (O15), well, B1
+[ ] Try on the Zenithian Helm (achievement?)
+
+MEDAL KING'S ISLAND (Lv26)
+
+ * Capturable monsters: Curer, King Slime
+
+[ ] Iron Mask, outside, behind castle
+[ ] Grind to 28, metal slimes here
+
+NEDS INN (Lv28)
+
+ * Capturable monsters: Mad Dragon
+ 
+MOUNTAIN PASS (Lv28)
+
+ * Capturable monsters: Mad Dragon
+
+[ ] 550G, chest, entrance
+[ ] Small Medal (C2), chest, entrance
+[ ] Ring of Prayer, chest, entrance
+[ ] Small Medal (O16), B1 pot 
+[ ] Demon Jar, B1 pot [for achievement]
+[ ] Talk to old woman, B2
+[ ] Water Flying Clothes, dowry, entrance (if you married Flora) (equip it on Flora)
+[ ] Small Medal (C3), B1 chest
+
+CHIZOD (Lv28)
+
+[ ] Monster Lure, pot, inn
+[ ] Small Medal (O17), barrel, under porch
+[ ] Fighter's Hair, pot, under porch
+
+MOUNTAIN PASS PART 2 (Lv28)
+
+ * Capturable monsters: Mad Dragon, Messala, Metal Babble, Orc King, Minidemon
+
+[ ] 1500G, 9F chest
+[ ] Mimic, 9F chest [for achievement]
+[ ] Small Medal (C4), 9F chest
+[ ] Rogue Armor, 5F chest, outside
+[ ] Leaf of the World Tree, 4F chest
+[ ] Mimic, 4F chest [for achievement]
+[ ] Small Medal (C5), 4F chest
+[ ] Small Medal (C6), 4F chest, outside
+[ ] 270G, 3F chest
+[ ] Bomb Stone, B1 chest
+[ ] 1600G, 5F chest
+[ ] Mimic, 7F chest [for achievement]
+[ ] Man-eater Chest, 8F chest [for achievement]
+[ ] Wing of Wyvern, 8F chest
+[ ] Staff of Punishment, 7F chest (go down stairs to 7F, then south)
+[ ] Stone of Life, 1F chest, outside
+[ ] Agility Seed, 1F chest
+[ ] Man-eater Chest, 1F chest (achievement!)
+
+GRANVANIA (Lv29)
+
+ * Capturable monsters: Orc King, Messala, Mad Dragon
+
+[ ] Boxer Shorts, dresser, Sancho's house
+[ ] Acorns of Life, pot, Sancho's house
+[ ] Stone of Life, dresser, Queen's chamber
+[ ] Lace Bisuche, dresser, Queen's chamber
+[ ] Small Medal (O18), ground, 4F, balcony outside Queen's chamber
+[ ] Defense Seed, dresser, King's chamber
+[ ] Small Medal (O19), dresser, 2F dresser
+[ ] Intelligence Seed, barrel, behind item shop owner
+[ ] Small Medal (O20), 2nd pot, room with five pots, 1F
+[ ] Strength Seed, 4th pot, room with five pots, 1F
+[ ] Ring of Prayer, hidden room 1F
+[ ] Naughty Underwear, hidden room 1F
+[ ] Hat of Happiness, hidden room 1F (achievement!)
+
+CAVE OF TRIALS (Lv29)
+
+ * Capturable monsters: Metal Babble
+
+[ ] Small Medal (C7), 1F Chest
+[ ] Swordedge Armor, B2 Chest
+[ ] Symbol of Royalty, B4
+[ ] Defeat Kandar and Shield Hippo (just beat em up)
+
+GRANVANIA (Lv29)
+
+[ ] Talk to Ojiron
+[ ] Talk to Wife
+[ ] Become King (achievement!)
+[ ] Search under wife's bed
+[ ] Flying Shoes, dresser, chancellor's room
+[ ] Grind to Lv31 - just inside cave from Chizod has metal babbles
+
+DEMON TOWER (Lv31)
+
+ *  Capturable monsters: Mesalla, Metal Babble, Leaonar
+
+[ ] Strength Seed, 2F chest
+[ ] Wizard's Robe, 2F chest
+[ ] Small Medal (O21), 2F pot
+[ ] Magic Water, 5F outside
+[ ] 880G, 5F outside
+[ ] Armband of Sacrifice, 3F, room with spears
+[ ] Zombie Mail, 5F outside
+[ ] Leaf of the World Tree, 8F chest
+[ ] Small Medal (C8), 8F chest
+[ ] Small Medal (O22), 3F pot
+[ ] Wing of Wyvern, 3F chest
+[ ] Defeat Lv. 20 Orc, 10F (just beat em up)
+[ ] Defeat Lv. 35 Wyvern, 10F (decrease, then beat em up)
+[ ] Defeat Jahmi, 10F (first part, parry and heal; second part, beat em up)
+
+GRANVANIA (Lv31)
+
+[ ] Talk to Ojiron
+[ ] Talk to Sancho
+[ ] Talk to Pippin (guard in room behind inn)
+
+ORACLEBERRY (Lv31)
+
+ * NOTE: your children are weak, move them out of the primary party until they get a few levels under their 
+   belt. Unfortunately, the game thinks they're important, so will frequently move them back into the main party.
+
+[ ] Deposit: Symbol of Royalty, Flying Shoes
+[ ] Withdraw: Zenithian Sword, Zenithian Shield (equip both on Son)
+[ ] equip Hat of Happiness of Daughter
+
+TELEPADOR (Lv31)
+
+[ ] Talk to Queen Isis
+[ ] Get Zenithian Helm (achievement!)
+
+REINHART (Lv32)
+
+[ ] Defeat Kandar's Henchman, west side of castle (demon armor)
+[ ] Talk to Henry
+[ ] Find Collins
+[ ] Talk to Collins (achievement!)
+
+MOUTAIN VILLAGE (Lv32)
+
+[ ] Defeat Kandar's Henchman, behind Duncan's house (give silk bisuche to daughter)
+
+GIGO'S HOUSE (Lv32)
+
+[ ] Small Medal (O23), dresser
+
+FARTHEST SHRINE (Lv32)
+
+[ ] Intelligence Seed, 1F pot
+[ ] Stone of Life, B1 chest
+[ ] Small Medal (O24), 1F water bucket
+
+WATER SHRINE (Lv32)
+
+[ ] Satan Helm, 1F chest
+[ ] Small Medal (C9), 1F chest     
+
+EL HEVEN (Lv32)
+
+ *  Capturable monsters: Golem, Eliminator
+
+[ ] Buy Helm of Wisdom for hero (13000g)
+[ ] Buy Magical Armor for hero (12000g)
+[ ] Small Medal (O25), pot behind couple
+[ ] Defense Seed, pot behind couple
+[ ] Magic Key, chest, hidden part to northwest corner
+[ ] Magic Carpet, B1 chest, hidden path to northeast corner (achievement!)     
+[ ] Grind children to at least level 20, try to capture a golem
+
+ALCAPA (Lv32)
+
+[ ] 15G, chest behind bar (say no)
+[ ] Stone Fang, chest behind bar (say no)
+
+PORT SELMI (Lv32)
+
+[ ] Thorn Whip, 2F chest, stairs behind stage
+[ ] Acorns of Life, 2F chest, stairs behind stage
+
+GRANVANIA (Lv32)
+
+[ ] 3000G, 2F Chest
+[ ] Meteorite Armband, 2F Chest (equip it!)
+
+SKY TOWER (Lv32)
+
+ *  Capturable monsters: Centaurus, Golem, Soldier Bull, King Healer
+
+[ ] Leaf of the World Tree, 3F chest
+[ ] Small Medal (C10), 4F chest
+[ ] Magma Staff, 7F chest
+[ ] Recruit a King Healer - they're worth it! golems are really good too
+
+TROLLEY CAVE (Lv33)
+
+ * Capturable monsters: Soldier Bull
+
+[ ] 950G, B1 chest
+[ ] Small Medal (C11), B1 chest
+[ ] Acorns of Life, B1 chest
+[ ] 750G, B2 chest
+[ ] Magic Water, B2 chest
+[ ] Staff of Benediction, B2 chest
+
+ZENETHIA (Lv33)
+
+[ ] Watch Pusan meditate (achievement!)
+
+FOREST OF ILLUSIONS (Lv34)
+
+ *  Capturable monsters: Eigerhorn, Farewell Crag
+ *  Must bring son or daughter to reach the village
+
+[ ] Elven Medicine, dresser, house
+[ ] Small Medal (O26), pot, house
+[ ] Faerie Sword, chest
+[ ] 1500G, chest
+
+FAERIE VILLAGE (Lv34)
+
+[ ] Faerie Horn
+
+FAERIE PALACE (Lv34)
+
+[ ] Glowing Orb, talk to queen
+[ ] Staff of Thunder, B1 chest
+[ ] Princess Robe, B1 chest (equip on daughter)
+[ ] Gold Orb
+
+ZENETHIA CASTLE (Lv34)
+
+[ ] Small Medal (O27), 2F dresser
+[ ] Grappling Hook, 2F dresser
+[ ] Sap of the World Tree, 2F ground
+
+SHRINE NORTHWEST OF SALABONA (Lv35)
+
+[ ] Examine pot
+
+SALABONA TOWER (Lv35)
+
+[ ] Defeat Buorn (achievement!) (barrier, bikill hero, increase, repeat decrease+attack)
+[ ] Final Key, chest
+
+ORACLEBERRY (Lv35)
+
+[ ] Deposit: Faerie Horn
+[ ] Small Medal (O28), free prisoner, search left of chair
+
+MEDAL KING'S CASTLE (Lv35)
+
+ *  Capturable monstesr: King Slime, Curer
+
+[ ] Small Medal (C12), behind prison door
+[ ] Golden Tiara, behind prison door (equip on daughter)
+[ ] Small Medal (C13), behind prison door
+[ ] Buy King Medal Shield (43 medals) (achievement!) (equip it!)
+
+=== 15 - Emblem Cave ===
+  
+EMBLEM CAVE (Lv35)
+
+ *  Capturable monsters: Metal Babble, Soldier Bull?
+
+[ ] Small Medal (C14), B3 chest
+[ ] Elven Amulet, B3 chest
+[ ] Cover all face tiles on all four floors (achievement!)
+[ ] Royal Cloak, cover all face tiles (achievement!) (equip it) [sacred treasure 1/4]
+[ ] Demon Hammer, B4 chest
+
+LENOIRE CASTLE (Lv35)
+
+[ ] Talk to the new inhabitants (achievement!)
+
+RURAPHIN (Lv35)
+
+[ ] Talk to magician, learn Chance (achievement!)
+[ ] Purchase Ivol's Book (3000 gold)
+
+=== 16 - Tower of Boble ===
+
+TOWER OF BOBLE (Lv35)
+
+ * Capturable monsters (outside): Drakee
+ * Capturable monsters: Blizzard Hawk, Eigerhorn, Farewell Crag, Springer, Golem
+
+[ ] Small Medal (C15), 5F chest
+[ ] 2700G, 2F chest
+[ ] Devil's Armor, 1F chest
+[ ] Shield of Darkness, B3 chest
+[ ] Elven Medicine, B2 chest
+[ ] Small Medal (C16), B3 chest
+[ ] Defeat Gonz (decrease, sap, surround)
+[ ] Dragon's Left Eye, B1 chest
+[ ] Grind to Lv37
+
+[ ] Defeat Gema (barrier, increase, bikill) (make sure hero has Elven Amulet equipped)
+[ ] Dragon's Right Eye
+[ ] Dragon Staff [sacred treasure 2/4]
+[ ] Dragon Orb
+
+ZENITHIA (Lv38)
+
+[ ] Heaven Bell
+
+ORACLEBERRY (Lv38)
+
+[ ] Deposit Grappling Hook
+
+=== 17 - Grand Temple ===
+
+GRAND TEMPLE (Lv38)
+
+[ ] Zenethian Armor
+[ ] Defeat Ramada (increase, barrier)
+[ ] Use Staff of Stoross on statue (achievement!)
+[ ] Demon Claw, B2 chest (equip on kitty)
+[ ] Examine skeleton, B2 (achievement?)
+[ ] Shield of Ruin, B2 chest
+[ ] Slave Clothes, B2 chest
+[ ] Use Ivol's Book when fighting Ivol (achievement!)
+[ ] Defeat Ivol (barrier, bikill) (achievement!)
+[ ] Ring of Life
+
+GRANVANIA (Lv39)
+
+[ ] Talk to Ojiron
+[ ] Talk to Sancho
+[ ] Talk to Ruida (everyone has left your party!)
+[ ] Withdraw: Ring of Life, Ring of Water, Ring of Fire, Final Key
+
+EL HEVEN (Lv39)
+
+[ ] Grind to 40 (mostly to get your party members caught up)
+
+WATER SHRINE (Lv40)
+
+[ ] Place Ring of Flames in left statue
+[ ] Place Ring of Water in right statue
+[ ] Place Ring of Life in top statue
+
+THE DEMON WORLD (Lv40)
+
+[ ] Sage's Stone
+
+SHAHANNA (Lv40)
+
+ * Capturable Monsters: Blizzard Hawk, Great Dragon, Attackbot, Metal Babble, Gigantes
+ * Demon Spear can be purchased here, it has a chance to instantly kill an enemy
+
+[ ] Small Medal (O29), barrel, walk around outside of town (achievement!)
+[ ] Defeat Kandar's Henchman (achievement!)
+[ ] Sands of Time, chest Kandar's Henchman was guarding
+[ ] Elven Medicine, dresser, inn
+[ ] Defense Seed, barrel behind couple
+[ ] Walk to Evil Mountain to get Return location
+[ ] Grind to 41 (to get party members caught up, and recruit stuff)
+
+=== 18 - Evil Mountain ===
+
+EVIL MOUNTAIN (Lv41)
+
+ * Capturable Monsters: Lionex, Springer, Gigantes, Great Dragon
+
+[ ] Robe of Darkness, 4F chest
+[ ] Ogre Shield, 5F chest, outside
+[ ] Small Medal (C17), 4F chest
+[ ] Talk to Martha, 5F outside (achievement!)
+[ ] Multi-edged Sword, 5F chest, outside
+[ ] Echoing Hat, 4F chest (give to a caster)
+[ ] Small Medal (C18), 4F chest
+[ ] Holy Chamberpot, 4F chest
+[ ] Sun Crown, 4F Chest (equip it)
+[ ] King Metal Helm, 4F chest (give to a fighter)
+[ ] 3300G, 4F chest
+[ ] Defeat Hell Battlers, 6F
+[ ] Orihalcon Fang, 6F chest
+[ ] Exit and save
+
+EVIL MOUNTAIN (Lv43)
+
+[ ] Defeat Mildrath (barrier, increase, bikill, sage's stone)
+[ ] Defeat Mildrath using only recruited monsters
+    * Give Drum of War (if you have it) and Sage's Stone to King Healer, and bring two or more melee 
+      fighters (Golem, Slime Knight).
+[ ] Defeat Mildrath using only family members
+
+=== 19 - Bonus Dungeon ===
+
+BONUS DUNGEON (Lv43)
+
+ * Capturable monsters: Hellbattler, Lionex, Springer, Farewell Crag, Great Dragon, Attackbot
+
+[ ] Small Medal, B1 chest
+[ ] Restoration Orb, B1 chest
+[ ] Shield of Radiance, B1 chest
+[ ] Drum of War, B2 chest
+[ ] Hell Sabre, B2 chest
+[ ] Sword of Decimation, B2 chest (cursed)
+[ ] King Metal Armor,  B3 chest
+[ ] Elven Medicine, B4 chest
+[ ] Iron Ball of Decimation, B5 chest
+
+[ ] Defeat Esturk (drum of war and barrier whenever they're down, keep hp above 200)
+    * King Healer has HealUsAll and Barrier, take him, hero and son - give sage's stone to King Healer
+      for rounds where HealUsAll or Barrier aren't required, and Drums of War to hero. If Barrier and
+      HealUsAll required in same round, have son cast Barrier.
+
+
+
+The perverted old man in the spa at Mountain Village has some choice comments if Bianca is in your
+party.  Finally, the General Store owner tells you he made a veil for a king
+once but it was when he was a prince...  Prince Papas...
