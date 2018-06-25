@@ -265,7 +265,7 @@ function is_before_race() => byte(0x086CB8) == 0
 function is_winner() => byte(0x086374) == 0xA0 // is this reliable?
 function trigger_start_race() => once(is_before_race()) && byte(0x86CB8) == 1 && !is_demo()
 function trigger_in_race(race) => current_screen() == screen_in_game && never(current_race() != race) && is_championship()
-function trigger_win_race(race, end_trigger) => trigger_start_race() && end_trigger && is_winner() && trigger_in_race(race)
+function trigger_win_race(race, end_trigger) => trigger_start_race() && is_winner() && trigger_in_race(race) && end_trigger 
 
 // ----------------------------------------------------------------------------
 // Races (117pts)
@@ -293,6 +293,7 @@ achievement(
     title = "Cow Days", points = 5,
     description = "Win the Cow Days championship race",
     trigger = trigger_start_race() && is_winner() && trigger_in_race(race_cow_days) &&
+              never(current_tokens() < prev(current_tokens())) &&
               ((once(racer_health(0) == 0x42F00000) && racer_health(0) == 0) ||
                (once(racer_health2(0) == 0x42F00000) && racer_health2(0) == 0) ||
                (once(racer_health3(0) == 0x42F00000) && racer_health3(0) == 0))
@@ -370,13 +371,13 @@ achievement(
 achievement(
     title = "New Year's Eve", points = 20,
     description = "Win the New Year's Eve championship race",
-    trigger = trigger_win_race(race_new_years_eve, 
-                               (once(word(0x0B7D72) == 0x42F0) && dword(0x0B7D70) == 0) || // Death, Ike
-                               (once(word(0x0B7D92) == 0x42F0) && dword(0x0B7D90) == 0) || // Bebe, Big Gay Al, Cartman, Chef, Damien, Grandpa,
-                                                                                           // Jesus, Jimbo, Kenny, Kyle, Marvin, Mephesto, 
-                                                                                           // Mr. Garrison, Mr. Mackey, Pip, Satan, Shelly, 
-                                                                                           // Terrance and Phillip, Tweek, Visitor, Wendy 
-                               (once(word(0x0B7D8A) == 0x42F0) && dword(0x0B7D88) == 0))   // Barbrady, Cartman Cop, Ned
+    trigger = trigger_win_race(race_new_years_eve, never(current_tokens() < prev(current_tokens())) &&
+                               ((once(word(0x0B7D72) == 0x42F0) && dword(0x0B7D70) == 0) || // Death, Ike
+                                (once(word(0x0B7D92) == 0x42F0) && dword(0x0B7D90) == 0) || // Bebe, Big Gay Al, Cartman, Chef, Damien, Grandpa,
+                                                                                            // Jesus, Jimbo, Kenny, Kyle, Marvin, Mephesto, 
+                                                                                            // Mr. Garrison, Mr. Mackey, Pip, Satan, Shelly, 
+                                                                                            // Terrance and Phillip, Tweek, Visitor, Wendy 
+                                (once(word(0x0B7D8A) == 0x42F0) && dword(0x0B7D88) == 0)))   // Barbrady, Cartman Cop, Ned
 )
 
 // ----------------------------------------------------------------------------
