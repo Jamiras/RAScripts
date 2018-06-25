@@ -1877,8 +1877,8 @@ achievement(
 
 achievement(
     title = "Monster Collector", points = 10,
-    description = "Recruit twenty unique monsters",
-    trigger = trigger_recruit_unique(20)
+    description = "Recruit sixteen unique monsters",
+    trigger = trigger_recruit_unique(16)
 )
 
 // === Return Locations ===============
