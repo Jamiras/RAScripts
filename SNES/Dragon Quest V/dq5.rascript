@@ -4,8 +4,6 @@
 // MD5: 5651c58a1c87c42f6b91519969658a88 (DeJap) [no header] (matches one found online)
 // MD5: 4e0f3fff55fc08063f5dd0c74ae87689 (DeJap) [header]
 
-// TODO: merge game 1406 > 2148
-
 function current_window() => byte(0x000B04)
 window_none = 0
 window_menu = 1
@@ -280,7 +278,7 @@ function story_achievement(location, bit, points, title, description)
 
 function trigger_win_battle(location, monster_id)
 {
-    trigger = trigger_in_battle() && trigger_battle_over() && enemy_type(0) == monster_id
+    trigger = trigger_in_game() && trigger_in_battle() && trigger_battle_over() && enemy_type(0) == monster_id
     if (location != location_any)
         trigger = trigger && current_location() == location
 
@@ -654,11 +652,14 @@ achievement(
 
 enemy_esturk = 0xE5
 battle_achievement(location_bonus_dungeon, enemy_esturk, 20, "Until Next Time", "Defeat Esturk")
+
 achievement(
     title = "Underworld Challenge", points = 30, 
     description = "Defeat Esturk in 25 turns or less (no cheating)", 
-    trigger = trigger_win_battle(location_bonus_dungeon, enemy_esturk) && byte(0x101A) <= 25 && trigger_not_cheating()
+    trigger = trigger_win_battle(location_bonus_dungeon, enemy_esturk) && byte(0x101A) <= 24 && trigger_not_cheating()
 )    
+
+// === Other =============
 
 achievement(
     title = "That's Got To Hurt", points = 6,
