@@ -512,7 +512,12 @@ story_achievement(location_zenithia_castle, bit4(0x21B5), 4, "The Master Reveale
 
 story_achievement(location_great_temple, bit3(0x223D), 3, "Power Armor", "Acquire the Zenithian Armor")
 
-dialog_achievement(location_great_temple, 0x34E073, 0x09A8C3, 2, "A Stronger Curse", "Attempt to free your wife as you were freed.")
+achievement(
+    title = "A Stronger Curse", points = 2,
+    description = "Attempt to free your wife as you were freed",
+    trigger = byte(0x21C8) == 0x02 && // great temple "stage"
+              dialog_trigger(location_great_temple, 0x34E073, 0x09A8C3)
+)
 
 // skeleton in room with shield of ruin left a message on the wall - he's Joshua (Maria's brother from earlier that helped you escape slave camp)
 achievement(
