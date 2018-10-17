@@ -183,7 +183,7 @@ location_evil_mountain_2 = 0x54
 location_bonus_dungeon = 0x16
 
 locations = {
-    location_boat: "a boat",
+//    location_boat: "a boat",
     location_santa_rosa: "Santa Rosa",
     location_vista_harbor: "Vista Harbor",
     location_vista_harbor_2: "Vista Harbor",
@@ -492,8 +492,8 @@ achievement(
               bit0(0x219F) == 1 && // B1
               bit1(0x219F) == 1 && // B2
               bit2(0x219F) == 1 && // B3
-              bit7(0x219F) == 1 && // B4
-              (prev(bit0(0x219F)) == 0 || prev(bit1(0x219F)) == 0 || prev(bit2(0x219F)) == 0 || prev(bit7(0x219F)) == 0)
+              bit3(0x219F) == 1 && // B4
+              (prev(bit0(0x219F)) == 0 || prev(bit1(0x219F)) == 0 || prev(bit2(0x219F)) == 0 || prev(bit3(0x219F)) == 0)
 )
 
 story_achievement(location_emblem_cave, bit6(0x223D), 4, "Sealed Away", "Acquire the Royal Cloak")
