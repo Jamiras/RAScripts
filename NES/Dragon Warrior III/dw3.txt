@@ -1,69 +1,145 @@
 // Dragon Warrior III
 //  #ID = 1667
+//  MD5:
 
-function character_is_class_level(index, class, level) => 
-    byte(0x000718 + index) == class && byte(0x000700 + index) >= level
+function player_location() => byte(0x0000)
+location_aliahan = 0
+location_cave_on_the_promontory = 0
+location_tower_of_najima = 0
+location_reeve = 0
+location_cave_of_enticement = 0
+location_romaly = 0
+location_kanave = 0
+location_noaniels = 0
+location_elf_village = 0
+location_cave_west_of_noaniels = 0
+location_tower_of_shanpane = 0
+location_assaram = 0
+location_isis = 0
+location_pyramid = 0
+location_portoga = 0
+location_noruds_cave = 0
+location_baharata = 0
+location_cave_east_of_baharata = 0
+location_dhama = 0
+location_tower_of_garuna = 0
+location_muor = 0
+location_tedanki = 0
+location_lancel = 0
+location_eginbear = 0
+location_shrine_in_the_shoals = 0
+location_tower_of_arp = 0
+location_jipang = 0
+location_cave_of_jipang = 0
+location_navel_of_the_earth = 0
+location_house_of_pirates = 0
+location_luzami = 0
+location_soo = 0
+location_merchantville = 0
+location_samanao = 0
+location_cave_southeast_of_samanao = 0
+location_greenlad = 0
+location_phantom_ship = 0
+location_shrine_jail = 0
+location_cave_of_necrogond = 0
+location_shrine_of_necrogond = 0
+location_shrine_of_liamland = 0
+location_castle_baramos = 0
+location_castle_of_the_dragon_queen = 0
+location_pit_of_giaga = 0
+location_tantegel = 0
+location_cave_southwest_of_tantegel = 0
+location_garins_house = 0
+location_kol = 0
+location_hauksness = 0
+location_cantlin = 0
+location_rimuldar = 0
+location_cave_northwest_of_tantegel = 0
+location_tower_west_of_kol = 0
+location_castle_zoma = 0
 
-function achievement_class_reaches_level(title, class, level, points, male_id) {
-    female_id = male_id + 8
-    achievement(
-        title = title,
-        description = class + " has reached level " + level,
-        points = points,
-        trigger = byte(0x000102) == 0 && (character_is_class_level(0, male_id, level) ||
-                                          character_is_class_level(0, female_id, level) ||
-                                          character_is_class_level(1, male_id, level) ||
-                                          character_is_class_level(1, female_id, level) ||
-                                          character_is_class_level(2, male_id, level) ||
-                                          character_is_class_level(2, female_id, level) ||
-                                          character_is_class_level(3, male_id, level) ||
-                                          character_is_class_level(3, female_id, level)))
+locations = {
+    location_aliahan: "Aliahan",
+    location_cave_on_the_promontory: "the Cave on the Promontory",
+    location_tower_of_najima: "the Tower of Najima",
+    location_reeve: "Reeve",
+    location_cave_of_enticement: "the Cave of Enticement",
+    location_romaly: "Romaly",
+    location_kanave: "Kanave",
+    location_noaniels: "Noaniels",
+    location_elf_village: "the Elf Village",
+    location_cave_west_of_noaniels: "the Cave west of Noaniels",
+    location_tower_of_shanpane: "the Tower of Shanpane",
+    location_assaram: "Assaram",
+    location_isis: "Isis",
+    location_pyramid: "the Pyramid",
+    location_portoga: "Portoga",
+    location_noruds_cave: "Norud's Cave",
+    location_baharata: "Baharata",
+    location_cave_east_of_baharata: "the Cave east of Baharata",
+    location_dhama: "the Shrine of Dhama",
+    location_tower_of_garuna: "the Tower of Garuna",
+    location_muor: "Muor",
+    location_tedanki: "Tedanki",
+    location_lancel: "Lancel",
+    location_eginbear: "Eginbear",
+    location_shrine_in_the_shoals: "the Shrine in the Shoals",
+    location_tower_of_arp: "the Tower of Arp",
+    location_jipang: "Jipang",
+    location_cave_of_jipang: "the Cave of Jipang",
+    location_navel_of_the_earth: "the Navel of the Earth",
+    location_house_of_pirates: "the House of Pirates",
+    location_luzami: "Luzami",
+    location_soo: "Soo",
+    location_merchantville: "the Merchant Village",
+    location_samanao: "Samanao",
+    location_cave_southeast_of_samanao: "the Cave southeast of Samanao",
+    location_greenlad: "Greenlad",
+    location_phantom_ship: "the Phantom Ship",
+    location_shrine_jail: "the Shrine Jail",
+    location_cave_of_necrogond: "the Cave of Necrogond",
+    location_shrine_of_necrogond: "the Shrine of Necrogond",
+    location_shrine_of_liamland: "the Shrine of Liamland",
+    location_castle_baramos: "Baramos's Castle",
+    location_castle_of_the_dragon_queen: "the Castle of the Dragon Queen",
+    location_pit_of_giaga: "the Pit of Giaga",
+    location_tantegel: "Tantegel",
+    location_cave_southwest_of_tantegel: "the Cave southwest of Tantegel",
+    location_garins_house: "Garin's House",
+    location_kol: "Kol",
+    location_hauksness: "Hauksness",
+    location_cantlin: "Cantlin",
+    location_rimuldar: "Rimuldar",
+    location_cave_northwest_of_tantegel: "the Cave northwest of Tantegel",
+    location_tower_west_of_kol: "the Tower west of Kol",
+    location_castle_zoma: "Zoma's Castle",
 }
-
-class_hero = 0
-class_wizard = 1
-class_pilgrim = 2
-class_sage = 3
-class_soldier = 4
-class_merchant = 5
-class_fighter = 6
-class_goof_off = 7
-
-achievement_class_reaches_level("Baby Steps", "The hero", 5, 5, class_hero)
-achievement_class_reaches_level("Now You've Got the Hang of It", "The hero", 10, 5, class_hero)
-achievement_class_reaches_level("Apprentice Hero", "The hero", 20, 5, class_hero)
-achievement_class_reaches_level("Master Hero", "The hero", 40, 10, class_hero)
-
-achievement_class_reaches_level("Apprentice Wizard", "A wizard", 20, 5, class_wizard)
-achievement_class_reaches_level("Master Wizard", "A wizard", 40, 10, class_wizard)
-
-achievement_class_reaches_level("Apprentice Pilgrim", "A pilgrim", 20, 5, class_pilgrim)
-achievement_class_reaches_level("Master Pilgrim", "A pilgrim", 40, 10, class_pilgrim)
-
-achievement_class_reaches_level("Apprentice Sage", "A sage", 20, 5, class_sage)
-achievement_class_reaches_level("Master Sage", "A sage", 40, 10, class_sage)
-
-achievement_class_reaches_level("Apprentice Soldier", "A soldier", 20, 5, class_soldier)
-achievement_class_reaches_level("Master Soldier", "A soldier", 40, 10, class_soldier)
-
-achievement_class_reaches_level("Apprentice Merchant", "A merchant", 20, 5, class_merchant)
-achievement_class_reaches_level("Master Merchant", "A merchant", 40, 10, class_merchant)
-
-achievement_class_reaches_level("Apprentice Fighter", "A fighter", 20, 5, class_fighter)
-achievement_class_reaches_level("Master Fighter", "A fighter", 40, 10, class_fighter)
-
-achievement_class_reaches_level("Apprentice Goof-off", "A goof-off", 20, 5, class_goof_off)
-achievement_class_reaches_level("Master Goof-off", "A goof-off", 40, 10, class_goof_off)
 
 function is_in_game() => byte(0x000102) == 0 && byte(0x006000) == 0 && byte(0x000700) > 0
 
-function achievement_story_checkpoint(title, description, points, bit) {
+function story_achievement(bit, points, location, title, description) {
     achievement(
         title = title,
         description = description,
         points = points,
-        trigger = is_in_game() && bit)
+        trigger = is_in_game() && player_location() == location &&
+                  bit == 1 && prev(bit) != 1)
 }
+
+// ===========================
+// 00 - New Game
+
+achievement(
+    title = "With a Little Help from My Friends",
+    description = "Build a full party",
+    points = 3,
+    trigger = is_in_game() && byte(0x000703) > 0
+)
+
+// ===========================
+// 01 - Tower of Najima
+
+story_achievement(bit1(0x60BF), 5, location_tower_of_najima, "Now You Can Open Doors", "Get the Thief's Key")
 
 function achievement_world_location(title, description, points, x, y) {
     achievement(
@@ -73,58 +149,52 @@ function achievement_world_location(title, description, points, x, y) {
         trigger = byte(0x000100) == x && byte(0x000101) == y && byte(0x00002F) == 0 && byte(0x000700) > 0)
 }
 
-achievement_story_checkpoint("Now You Can Open Doors", "Get the Thief's Key", 10, bit1(0x0060BF))
 achievement_world_location("The Adventure Begins", "Reach the main continent", 10, 49, 93)
-achievement_story_checkpoint("Rise and Shine", "Wake up the residents of Noaniels", 10, bit2(0x0060B7))
-achievement_story_checkpoint("It's Good to Be the King", "Become royalty", 10, bit6(0x0060B7))
-achievement_story_checkpoint("You Can Open More Doors", "Get the Magic Key", 10, bit0(0x00609F))
-achievement_story_checkpoint("Bolef's Path", "Convince Norud to show you the secret passage through the mountains", 10, bit5(0x0060B6))
-achievement_story_checkpoint("Achoo!", "Get the Black Pepper", 10, bit7(0x0060BF))
-achievement_story_checkpoint("You Can Open All Doors", "Get the Final Key", 10, bit3(0x00608E))
-achievement_story_checkpoint("The Prisoner's Last Possession", "Get the Green Orb", 10, bit5(0x0060CE))
-achievement_story_checkpoint("The Man with Many Heads", "Get the Purple Orb", 10, bit3(0x0060CE))
-achievement_story_checkpoint("All By Myself", "Get the Blue Orb", 10, bit4(0x0060CE))
-achievement_story_checkpoint("Buried Treasure", "Get the Red Orb", 5, bit1(0x0060CE))
-achievement_story_checkpoint("The False King", "Get the Staff of Change", 10, bit1(0x0060A5))
-achievement_story_checkpoint("The Merchantville Rebellion", "Get the Yellow Orb", 10, bit2(0x0060CE))
-achievement_story_checkpoint("Land Bridge", "Set off a volcano", 10, bit3(0x0060B6))
-achievement_story_checkpoint("The Hidden Valley", "Get the Silver Orb", 10, bit0(0x0060CE))
-achievement_story_checkpoint("The Legendary Pheonix", "Hatch the giant egg in Liamland", 5, bit6(0x0060B9))
-achievement_story_checkpoint("The Archfiend is Vanquished!", "Defeat Baramos", 10, bit7(0x0060CB))
-achievement_story_checkpoint("The Statue Awakens", "Get the Sacred Amulet", 10, bit5(0x0060BA))
-achievement_story_checkpoint("It Only Takes One Drop", "Build the rainbow bridge", 10, bit7(0x0060B6))
-achievement_story_checkpoint("The Foretelling", "Defeat Zoma", 10, byte(0x0060C5) == 192)
+
+// ===========================
+// 02 - Dream Ruby
+
+story_achievement(bit0(0x0000), 5, location_kanave, "Something from the Back Room", "Get the Poison Needle")
+
+story_achievement(bit2(0x60B7), 10, location_noaniels, "Rise and Shine", "Wake up the residents of Noaniels")
+
+// ===========================
+// 02 - Kandar
+
+story_achievement(bit6(0x60B7), 5, location_romaly, "It's Good to Be the King", "Become royalty")
+story_achievement(bit0(0x0000), 7, location_assaram, "How Fortunate", "Enjoy the nightlife")
+
+// ===========================
+// 03 - Isis
+
+story_achievement(bit2(0x6094), 8, location_isis, "I Didn't See Your Name on It", "Find the hidden item beneath Isis")
+story_achievement(bit0(0x609F), 8, location_pyramid, "You Can Open More Doors", "Get the Magic Key")
 
 achievement(
-    title = "A Legend is Born",
-    description = "See the epilogue",
-    points = 5,
-    trigger = byte(0x0060C5) == 0 && prev(byte(0x0060C5)) == 160
+     title = "Archaeologist",
+     description = "Open all 24 chests in the pyramid",
+     points = 10,
+     trigger = is_in_game() && current_location() == location_pyramid &&
+               bit0(0x6092) && bit1(0x6092) && bit2(0x6092) && bit3(0x6092) &&
+               bit4(0x6092) && bit5(0x6092) && bit6(0x6093) && bit7(0x6093) &&
+               bit0(0x609F) && bit1(0x609F) && bit2(0x609F) &&
+               bit0(0x60A0) && bit1(0x60A0) && bit2(0x60A0) && bit3(0x60A0) &&
+               bit4(0x60A0) && bit5(0x60A0) && bit6(0x60A0) && bit7(0x60A0) &&
+               bit3(0x60A1) && bit4(0x60A1) && bit5(0x60A1) && bit6(0x60A1) &&
+               bit7(0x60A1)
 )
 
-achievement_story_checkpoint("I Didn't See Your Name on It", "Find the hidden item beneath Isis", 5, bit2(0x006094))
-achievement_story_checkpoint("Tomb Raider", "Find the hidden item beneath the pyramid", 5, bit1(0x0060CA))
-achievement_story_checkpoint("Drop Something?", "Visit the queen of Isis at night", 5, bit0(0x0060A7))
-achievement_story_checkpoint("Required Reading", "Get the Book of Satori", 5, bit7(0x0060A2))
+story_achievement(bit1(0x60CA), 8, location_pyramid, "Tomb Raider", "Find the hidden item beneath the pyramid")
+story_achievement(bit0(0x60A7), 6, location_isis, "Drop Something?", "Visit the queen of Isis at night")
 
-achievement(
-    title = "With a Little Help from My Friends",
-    description = "Build a full party",
-    points = 5,
-    trigger = is_in_game() && byte(0x000703) > 0
-)
+// ===========================
+// 04 - Pepper
 
-arena_battle_in_progress = byte(0x006A64)
-arena_actual_winner = byte(0x006A65)
-arena_selected_winner = byte(0x006A67)
-achievement(
-    title = "Winner!",
-    description = "Pick the winning monster in a stadium battle",
-    points = 5,
-    trigger = arena_battle_in_progress == 0 && prev(arena_battle_in_progress == 128) && // as the battle finishes
-              once(arena_selected_winner == arena_actual_winner) &&
-              never(arena_battle_in_progress == 128) // prevents triggering if previous winner matches newly selected winner
-)
+story_achievement(bit5(0x60B6), 7, location_noruds_cave, "Bolef's Path", "Convince Norud to show you the secret passage through the mountains")
+story_achievement(bit7(0x60BF), 10, location_cave_east_of_baharata, "Achoo!", "Get the Black Pepper")
+
+// ===========================
+// 05 - Dhama
 
 function character_class_changed(index) {
     class = byte(0x000718 + index)
@@ -140,36 +210,103 @@ function character_class_changed(index) {
 achievement(
      title = "A New Line of Work",
      description = "Have one of your characters change professions",
-     points = 5,
-     trigger = is_in_game() && (character_class_changed(0) || character_class_changed(1) ||
-                                character_class_changed(2) || character_class_changed(3))
+     points = 4,
+     trigger = is_in_game() && current_location() == location_dhama &&
+               (character_class_changed(0) || character_class_changed(1) ||
+                character_class_changed(2) || character_class_changed(3))
 )
 
-achievement(
-     title = "Archaeologist",
-     description = "Open all 24 chests in the pyramid",
-     points = 5,
-     trigger = is_in_game() && bit0(0x006092) && bit1(0x006092) && bit2(0x006092) && bit3(0x006092) &&
-                               bit4(0x006092) && bit5(0x006092) && bit6(0x006093) && bit7(0x006093) &&
-                               bit0(0x00609F) && bit1(0x00609F) && bit2(0x00609F) &&
-                               bit0(0x0060A0) && bit1(0x0060A0) && bit2(0x0060A0) && bit3(0x0060A0) &&
-                               bit4(0x0060A0) && bit5(0x0060A0) && bit6(0x0060A0) && bit7(0x0060A0) &&
-                               bit3(0x0060A1) && bit4(0x0060A1) && bit5(0x0060A1) && bit6(0x0060A1) &&
-                               bit7(0x0060A1)
-)
+story_achievement(bit7(0x60A2), 8, location_tower_of_garuna, "Required Reading", "Get the Book of Satori")
+
+// ===========================
+// 06 - Exploration
+
+story_achievement(bit0(0x0000), 6, location_muor, "A Child's Toy", "Get the Water Blaster")
+story_achievement(bit0(0x0000), 5, location_tedanki, "Night Time Anytime", "Get the Lamp of Darkness")
+
+// ===========================
+// 07 - Green Orb
+
+story_achievement(bit0(0x0000), 7, location_eginbear, "Boulder Mover", "Get the Vase of Drought")
+story_achievement(bit3(0x608E), 5, location_shrine_of_the_shoals, "You Can Open All Doors", "Get the Final Key")
+story_achievement(bit5(0x60CE), 6, location_tedanki, "The Prisoner's Last Possession", "Get the Green Orb")
+
+// ===========================
+// 08 - Tower of Arp
+
+story_achievement(bit0(0x0000), 7, location_tower_of_arp, "Sonic Finder", "Get the Echoing Flute")
+
+// ===========================
+// 09 - Purple Orb
+
+story_achievement(bit3(0x60CE), 10, location_jipang, "The Man with Many Heads", "Get the Purple Orb")
+
+// ===========================
+// 10 - Blue Orb
+
+story_achievement(bit4(0x60CE), 10, location_navel_of_the_earth, "All By Myself", "Get the Blue Orb")
+
+// ===========================
+// 11 - Exploration
+
+story_achievement(bit1(0x60CE), 5, location_house_of_pirates, "Buried Treasure", "Get the Red Orb")
+story_achievement(bit0(0x0000), 7, location_soo, "Who Left That There", "Get the Staff of Thunder")
+
+// ===========================
+// 12 - False King
 
 achievement(
      title = "Spelunker",
      description = "Open all 23 chests in the cave near Samanao",
-     points = 5,
-     trigger = is_in_game() && bit0(0x00609B) && bit1(0x00609B) && bit2(0x00609B) && bit3(0x00609B) &&
-                               bit4(0x00609B) && bit5(0x00609B) && 
-                               bit0(0x00609C) && bit1(0x00609C) && bit2(0x00609C) && bit3(0x00609C) &&
-                               bit4(0x00609C) && bit5(0x00609C) && bit6(0x00609C) && bit7(0x00609C) &&
-                               bit0(0x00609D) && bit1(0x00609D) && bit2(0x00609D) && bit3(0x00609D) &&
-                               bit4(0x00609D) && bit5(0x00609D) && bit6(0x00609D) && bit7(0x00609D) &&
-                               bit7(0x00609E)
+     points = 10,
+     trigger = is_in_game() && current_location() == location_cave_southeast_of_samanao &&
+               bit0(0x609B) && bit1(0x609B) && bit2(0x609B) && bit3(0x609B) &&
+               bit4(0x609B) && bit5(0x609B) && 
+               bit0(0x609C) && bit1(0x609C) && bit2(0x609C) && bit3(0x609C) &&
+               bit4(0x609C) && bit5(0x609C) && bit6(0x609C) && bit7(0x609C) &&
+               bit0(0x609D) && bit1(0x609D) && bit2(0x609D) && bit3(0x609D) &&
+               bit4(0x609D) && bit5(0x609D) && bit6(0x609D) && bit7(0x609D) &&
+               bit7(0x609E)
 )
+
+story_achievement(bit1(0x60A5), 7, location_samanao, "The False King", "Get the Staff of Change")
+
+// ===========================
+// 13 - Exploration
+
+story_achievement(bit2(0x60CE), 10, location_merchantville, "The Merchantville Rebellion", "Get the Yellow Orb")
+story_achievement(bit0(0x0000), 7, 0, "Lost in the Forest", "Get a Leaf of the World Tree")
+story_achievement(bit3(0x60B6), 8, 0, "Land Bridge", "Set off a volcano")
+
+// ===========================
+// 14 - Silver Orb
+
+story_achievement(bit0(0x60CE), 10, location_shrine_of_necrogond, "The Hidden Valley", "Get the Silver Orb")
+story_achievement(bit6(0x60B9), 5, location_shrine_of_liamland, "The Legendary Pheonix", "Hatch the giant egg in Liamland")
+
+// ===========================
+// 15 - Baramos
+
+story_achievement(bit7(0x60CB), 15, location_castle_baramos, "The Archfiend is Vanquished!", "Defeat Baramos")
+story_achievement(bit0(0x0000), 6, location_portoga, "Made for a Woman", "Get the Sword of Illusion")
+
+// ===========================
+// 16 - Dark World
+
+story_achievement(bit0(0x0000), 5, location_garins_house, "Music for Monsters", "Get the Silver Harp")
+story_achievement(bit0(0x0000), 6, location_cave_northwest_of_tantegel, "Heroic Blocker", "Get the Shield of Heroes")
+
+// ===========================
+// 17 - Dark World 2
+
+story_achievement(bit0(0x0000), 9, location_kol, "Forged", "Get the Sword of Kings")
+story_achievement(bit5(0x60BA), 8, location_tower_west_of_kol, "The Statue Awakens", "Get the Sacred Amulet")
+story_achievement(bit7(0x60B6), 8, 0, "It Only Takes One Drop", "Build the rainbow bridge")
+
+// ===========================
+// 18 - Zoma
+
+achievement_story_checkpoint("The Foretelling", "Defeat Zoma", 10, byte(0x0060C5) == 192)
 
 function achievement_enemy_killed(title, description, points, enemy_id) {
     enemy_hp = word(0x000500) // enemy 1 HP - assume boss always alone, or in first slot
@@ -182,11 +319,56 @@ function achievement_enemy_killed(title, description, points, enemy_id) {
     )
 }
 
-// when using the Sphere of Light, the active enemy id changes from 133 to 134.
-// suggestion for fighting: Add 10 or so levels to your characters after defeating him with the Sphere of Light.
-// Then have two characters attack and a third always use the Stone of Life. The fourth character should be a
-// Sage. Have them cast Barrier whenever it's down, then either Sap or secondary healing.
-achievement_enemy_killed("We're Not Scared", "Defeat Zoma without using the Sphere of Light", 20, 133)
+// Suggestion for this achievement: Add 10 or so levels to your characters after defeating him 
+// with the Sphere of Light (~55). Then have two characters attack and a third always use the Sage's
+// Stone. The fourth character should be a Sage. Have them cast Barrier whenever it's down, then 
+// either Sap or provide secondary healing.
+// When using the Sphere of Light, the active enemy id changes from 133 to 134.
+achievement_enemy_killed("We're Not Scared", "Defeat Zoma without using the Sphere of Light", 25, 133)
+
+achievement(
+    title = "A Legend is Born",
+    description = "See the epilogue",
+    points = 5,
+    trigger = byte(0x0060C5) == 0 && prev(byte(0x0060C5)) == 160
+)
+
+// TODO: Zoma with a party of two (20pts)
+
+// ===========================
+// Miscellaneous
+
+arena_battle_in_progress = byte(0x006A64)
+arena_actual_winner = byte(0x006A65)
+arena_selected_winner = byte(0x006A67)
+achievement(
+    title = "Winner!",
+    description = "Pick the winning monster in a stadium battle",
+    points = 5,
+    trigger = arena_battle_in_progress == 0 && prev(arena_battle_in_progress == 128) && // as the battle finishes
+              once(arena_selected_winner == arena_actual_winner) &&
+              never(arena_battle_in_progress == 128) // prevents triggering if previous winner matches newly selected winner
+)
+
+achievement_enemy_killed("Slippery Experience", "Defeat a Metal Babble", 7, 133) // TODO: metal babble id
+
+// TODO: cast blazemore as a soldier (7pts)
+// TODO: cast healmore as a soldier (7pts)
+// TODO: two sages in the party (7pts)
+// TODO: bikill as a fighter (7pts)
+
+// + repurpose gambling achievement (1x)
+// ? find yayoi hiding in jipang (missable)
+// ? get the intelligence seed from luzami
+// ? revisit the elf village as elves [buy a wizard ring] (missble)
+// ? get the sage's stone from zoma's castle
+
+// NOTE: GBC version has blasphemous warning using LOTO as name
+
+// pilgrim (vivify:24)->wizard (bikill:21)->soldier = sturdy healer
+// wizard (bikill:21)->fighter = 
+// goofoff->sage = 
+
 
 classes = {
     class_hero: "hero",
@@ -208,8 +390,9 @@ pronouns = {
     1: "her"
 }
 
-rich_presence_display("A level {0} {1} and {2} companions are on an epic quest",
+rich_presence_display("A level {0} {1} and {2} companions are exploring {3}",
     rich_presence_value("Level", byte(0x000700)),
     rich_presence_lookup("Class", byte(0x000718), classes),
-    rich_presence_lookup("Pronoun", bit3(0x000718), pronouns)
+    rich_presence_lookup("Pronoun", bit3(0x000718), pronouns),
+    rich_presence_lookup("Location", current_location(), locations)
 )
