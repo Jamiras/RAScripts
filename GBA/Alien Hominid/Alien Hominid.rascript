@@ -25,10 +25,12 @@ levels = {
 
 // $000126: difficulty?
 function current_difficulty() => byte(0x000126)
+difficulty_thumb_sucker = 0
 difficulty_easy = 1
 difficulty_normal = 2
 difficulty_hard = 3
 difficulties = {
+    difficulty_thumb_sucker: "Thumb Sucker",
     difficulty_easy: "Easy",
     difficulty_normal: "Medium",
     difficulty_hard: "Hard",
@@ -58,6 +60,7 @@ rich_presence_conditional_display(current_screen() == 0x17, "Titles") // score
 
 rich_presence_conditional_display(current_screen() == 0x28, "Playing Chicken Lickin'")
 rich_presence_conditional_display(current_screen() == 0x29, "Playing Missile Mastar")
+rich_presence_conditional_display(current_screen() == 0x2A, "Playing Chipper")
 
 rich_presence_display("{0}, {1}, {2} Continues",
     rich_presence_lookup("Level", current_level(), levels),
@@ -207,13 +210,17 @@ achievement(
     trigger = current_level() == 11 && current_difficulty() < 4
 )
 
+function trigger_end_game() => once(enemy_hp() == 200) && enemy_hp() == 0 && 
+                               never(current_level() != 11) &&   // Level 3-4
+                               never(current_screen() < 0x1A) && // reset if quit level
+                               never(word(0x033E) < 256)         // prevent trigger after restarting level
+
 // Ticket 12870: Cheevo didn't triggered after doing the requisites, more than 3 times.
 //               MD5: 18ef4ec828a4bf14b6fd241230bb349a
 achievement(
     title = "Phone Home", description = "Complete Alien Hominid.. It's Harder than you think.", points = 30,
     id = 15223, badge = "14843", published = "10/12/2014 8:33:59 PM", modified = "5/17/2018 10:00:25 PM",
-    trigger = current_level() == 11 && current_difficulty() < 4 && enemy_hp() < 3 && enemy_hp() != 0 && 
-              byte(0x000485) > 0
+    trigger = trigger_end_game() && current_difficulty() < 4
 )
 
 // Ticket 12871: Cheevo didn't triggered after doing the requisites, more than 3 times.
@@ -224,6 +231,5 @@ achievement(
 achievement(
     title = "The Behemoth", description = "Beat Alien Hominid on Hard Difficulty.", points = 80,
     id = 15224, badge = "14841", published = "10/12/2014 8:34:03 PM", modified = "5/17/2018 10:00:27 PM",
-    trigger = current_level() == 11 && current_difficulty() == 3 && enemy_hp() < 3 && enemy_hp() != 0 && 
-              byte(0x000485) > 0
+    trigger = trigger_end_game() && current_difficulty() == 3
 )
