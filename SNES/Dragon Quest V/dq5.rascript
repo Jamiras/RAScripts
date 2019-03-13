@@ -553,6 +553,7 @@ achievement(
     title = "King Metal Sword", points = 8,
     description = "Purchase the King Metal Sword", // 50000 casino coins
     trigger = trigger_in_game() && current_location() == location_oracleberry && 
+              byte(0x0F19) == 0x0C && // talking to prize vendor
               current_casino_coins() < prev(current_casino_coins()) && byte(0x0F22) == item_king_metal_sword
 )
 
