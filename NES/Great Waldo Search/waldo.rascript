@@ -26,8 +26,8 @@ difficulty_normal = 0
 difficulty_expert = 1
 
 function is_demo_mode() => bit7(0x0044) == 1
-function is_clue_mode() => bit7(0x00BD) == 1
-function is_clue_found() => bit6(0x00BD) == 1
+function is_clue_mode() => byte(0x0036) == 1
+function is_clue_found() => bit6(0x00BD) == 1 
 
 function is_waldo_found() => bit7(0x0068) == 1
 function is_scroll_found() => bit6(0x0068) == 1
@@ -90,7 +90,7 @@ achievement(title = "No Time to Spare", points = 5,
 achievement(title = "Treasure Hunter", points = 5,
             description = "Find the thing described by a clue",
             trigger = trigger_begin_level() && current_difficulty() == difficulty_expert &&
-                      is_clue_found() && byte(0x009D) > 0
+                      is_clue_mode() && is_clue_found() && byte(0x009D) > 0
 )
 
 function trigger_found_item(index) => bit7(0x0607 + index * 8) == 1
