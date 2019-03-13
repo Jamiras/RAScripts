@@ -193,7 +193,7 @@ achievement(title = "Trust Your Intuition", points = 15,
     description = "Find the suspect using one clue at each location",
     trigger = once(trigger_before_mission()) && never(is_demo()) &&
               trigger_find_suspect() &&
-              (byte(0) == byte(0) ||                                      // dummy alt group
+              (always_true() ||                                           // dummy alt group
                (never(byte(0xA12D) + byte(0xA12F) + byte(0xA131) < 2) &&  // more than one clue used
                 unless(location3_text() == 0)))                           // no text selected for location 3
 )
@@ -205,7 +205,7 @@ achievement(title = "Trust Your Intuition II", points = 20,
     description = "Find the suspect using one clue at each location as an Ace Detective",
     trigger = once(trigger_before_mission()) && never(is_demo()) &&
               trigger_find_suspect() && current_rank() == 4 &&
-              (byte(0) == byte(0) ||                                      // dummy alt group
+              (always_true() ||                                           // dummy alt group
                (never(byte(0xA12D) + byte(0xA12F) + byte(0xA131) < 2) &&  // more than one clue used
                 unless(location3_text() == 0)))                           // no text selected for location 3
 )
@@ -220,7 +220,7 @@ achievement(title = "I Knew It Was You All Along", points = 10,
             description = "Arrest the suspect with a warrant collected before leaving the first city",
             trigger = once(trigger_before_mission()) && never(is_demo()) &&
                       trigger_arrest_suspect() && 
-                      ((byte(0) == byte(0)) ||
+                      (always_true() ||
                        (never(!in_first_city()) && unless(warrant_for() == prev(warrant_for())) ||
                        (never(!in_first_city()) && unless(warrant_for() != 255))))
 )
