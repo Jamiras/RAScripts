@@ -3,7 +3,7 @@
 
 function is_actor_alive(index) => bit7(0x000500 + index * 0x20)
 function is_actor_moving_vertically(index) => bit1(0x000500 + index * 0x20)
-function is_in_menu() => bit1(0x00000C)
+function is_in_menu() => bit1(0x00000C) == 1
 function is_in_level() => !is_in_menu() && is_actor_alive(0)
 function current_level() => byte(0x000068) + 1
 function max_level() => byte(0x000069) + 1

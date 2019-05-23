@@ -390,7 +390,7 @@ rich_presence_conditional_display(is_title_screen(), "Title Screen")
 
 rich_presence_conditional_display(!trigger_game_started() && is_game_summary_screen(), "Starting a game")
 
-rich_presence_conditional_display(current_level() == 0xFFFF, "{0} Custom Map in {1}",
+rich_presence_conditional_display(word(0x007C) == 0xFFFF, "{0} Custom Map in {1}",
     rich_presence_lookup("Verb", bit0(0x011E), verbs),
     rich_presence_lookup("Landscape", current_landscape(), landscapes)
 )
