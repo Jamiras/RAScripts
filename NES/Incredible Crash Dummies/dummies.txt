@@ -74,7 +74,7 @@ function current_screen() => byte(0x001A) // screen/level
 screens = {
    0x00: "Title Screen", // 1P/2P select (also game over)
    0x78: "Title Screen", // LJN logo
-   0x5C: "Title Screen", // also descriptive (no-image) cutscenes, like between 2-1 and puzzle room
+//   0x5C: "Title Screen", // also descriptive (no-image) cutscenes, like between 2-1 and puzzle room
    0x58: "Title Screen", // full screen logo
    0x6A: "Title Screen", // seatbelt
    0x82: "Intro",
@@ -90,25 +90,25 @@ screens = {
    0xB2: "Level 1-1", // ending cutscene
    0xAC: "Level 1-2",                             // F2
    0x6C: "Level 1-2", // ending cutscene
-   0xB4: "Level 2-1", // beginning cutscene
-   0x70: "Level 2-1", // beginning cutscene
+   0xB4: "Between Levels", // beginning cutscene
+   0x70: "Between Levels", // beginning cutscene
    0xB8: "Level 2-1",                             // F3
-   0xA6: "Level 2-1", // puzzle room              // F4
+//   0xA6: "Level 2-1", // puzzle room              // F4
    0xC2: "Level 2-2",                             // F5
    0x66: "Level 2-2", // ending cutscene
-   0xB4: "Level 3-1", // beginning cutscene
-   0x70: "Level 3-1", // beginning cutscene
+//   0xB4: "Level 3-1", // beginning cutscene
+//   0x70: "Level 3-1", // beginning cutscene
    0xC6: "Level 3-1",                             // F6
    0xCE: "Level 3-1", // ending cutscene
    0xCA: "Level 3-2",                             // F7
-   0xCA: "Level 3-2", // -> 0x5C -> back to 0xCA for boss fight
+//   0xCA: "Level 3-2", // -> 0x5C -> back to 0xCA for boss fight
    0x62: "Level 3-2", // ending cutscene
-   0xB4: "Level 4-1", // beginning cutscene
-   0x70: "Level 4-1", // beginning cutscene
+//   0xB4: "Level 4-1", // beginning cutscene
+//   0x70: "Level 4-1", // beginning cutscene
    0xD2: "Level 4-1",                             // F8
    0xE6: "Level 4-1", // ending cutscene
    0xD6: "Level 5-1",                             // F9  
-   0xD6: "Level 5-2",                             // F0
+//   0xD6: "Level 5-2",                             // F0
    0xE2: "Level 5-2", // ending cutscene
    0x7A: "Level 5-2", // ending cutscene
 }
@@ -325,12 +325,14 @@ level_achievement(10, level_4_1)
 level_achievement(15, level_5_1)
 level_achievement(15, level_5_2)
 
-achievement(
+achievement(id=53107,
     title = "The Full Story",
     description = "Complete the game from the start",
     points = 50,
     trigger = once(current_screen() == level_data[level_1_1]["screen"]) &&      // 1-1
+              once(current_screen() == level_data[level_1_2]["screen"]) &&      // 1-2
               current_screen() == level_data[level_5_2]["completion_screen"] && // complete 5-2
+              never(word(0x06D4) == 0x09FF) &&                                  // cheat menu
               never(current_screen() == 0x00)                                   // game over
 )
 
@@ -349,13 +351,14 @@ achievement(
 )
 
 function weight_y() => byte(0x470)
-achievement(
+achievement(id=53123,
     title = "Careful Crusher",
     description = "Defeat Junkman without being hit",
     points = 20,
     trigger = once(current_level() == level_5_2) &&                             // start anywhere in level
               never(current_level() != level_5_2) &&                            // prevents trigger during final cutscene
               once(screen_x() < 0x380) &&                                       // reset until engaged with boss
+              screen_x() >= 0x300 &&                                            // prevent trigger if using invincibility on fire
               byte(0x00DC) == 0x59 &&                                           // death animation??
               trigger_no_damage()                                               // without getting hit
 )
