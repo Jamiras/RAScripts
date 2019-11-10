@@ -372,8 +372,8 @@ achievement("The Full Story", "Complete the game with a perfect score", 25,
 // the epilogue anyway. For the lowest possible score (which I think is 179), you don't even get to see the
 // epilogue, so I went that route.
 
-achievement("Skipped a Few Chapters", "Complete the game with less than 190 points", 25, id=84702,
-    trigger = current_score() < 190 &&
+achievement("Skipped a Few Chapters", "Complete the game with less than 195 points", 25, id=84702,
+    trigger = current_score() < 195 &&
             // -- jump in cauldron --
             ((trigger_scene(scene_castle_crypt_cauldron) &&
               word(0x8072) == 0x1EDB &&                    // text pointer - immediately following "We hope you'll try again and again."
@@ -591,7 +591,7 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 190 poin
 //   (6) CLIMB ROPE [5>15]
 // Climb to the top of the cliff [6>21], then go north [5>26].
 // Hide in the cart [18>44]
-// Inside the castle, walk north into the wine cellar
+// Inside the castle {I}, walk north into the wine cellar
 //   Stand between the back casks on the right and you'll fall into the dungeons [6>50]
 //   Princess Eilonwy will talk to you [10>60]
 // Go south, west twice, and north
@@ -603,7 +603,7 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 190 poin
 //   (6) USE STATUE
 // Climb ladder, walk north
 //   If the henchman in there (4) USE SWORD
-// Go west, up the stairs twice, and east {K}
+// Go west, up the stairs twice, and east twice {K}
 //   Wait for Hen Wen to start prophecizing
 //   (6) JUMP OFF THE BALCONY
 //   (6) TALK TO HEN WEN
@@ -619,12 +619,12 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 190 poin
 //   (6) TALK TO KING
 //   (4) GIVE LUTE [10>121]*
 //   (4) USE FLYING DUST and go up
-// Go west twice, north, then west near the top of the screen {E}
+// Go west twice, north, then west near the top of the screen {N}
 //   Jump across rocks (L, D, R, D, R, D, D, L)*
 // Go south [15>136]
 //   (6) OPEN DOOR
 // Go inside
-//   (6) OPEN CHEST (must have seen eidelowg)
+//   (6) OPEN CHEST (must have seen eidelowg) {O}
 //   (6) TALK TO WITCHES
 //   (4) GIVE SWORD TO WITCHES [18>154]
 // Approach the cauldron - a Gwythaint will steal it.
@@ -632,10 +632,10 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 190 poin
 // Fly north, then east, and wait for it to wear off. Then go north
 //   (6) GET DAGGER
 // Make your way back to the castle (north, west, up the cliff).
-// Swim across the moat {N}, climb the wall
+// Swim across the moat {P}, climb the wall
 //   (6) USE DAGGER to break into window*
-// Go east, downstairs twice, east {O}
+// Go east, downstairs twice, east {Q}
 //   (6) MOVE GRATE
 //   (6) JUMP IN CAULDRON [25>179]*
 
-// TODO: possible to get <190 using mirror?
+// Can also get minimum score by using the mirror, but taking one of the non-sword rewards from the witches
