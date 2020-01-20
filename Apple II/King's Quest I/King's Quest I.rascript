@@ -404,8 +404,15 @@ flag_achievement(10, "The Hint Line is Only 95 Cents per Minute", "Figure out th
 
 // MAX
 function climbing_beanstalk() => byte(0x6E71) == 1
+// the beans can be planted in any of the following: 
+// * 38 - "the bed of wildflowers"
+// * 35 - the room where the dwarf attacks with the mesa in the distance
+// * 31 - the room where the magic bowl was found
+// *  6 - the room with the rotten stump and log
+// * 22 - the room with the cave and condor.
+// by limiting the start room to < 49, we allow all of the main map
 achievement("Expert Free Climbing", "Climb the beanstalk without falling or reloading", 10,
-    trigger = once(current_scene() == scene_beanstalk_dirt) &&
+    trigger = once(current_scene() < 49) &&                                   // the beans can be planted in several locations
               once(current_scene() == scene_beanstalk1) &&
               once(current_scene() == scene_beanstalk2) &&
               current_scene() == scene_beanstalk3 && !climbing_beanstalk() && // dismount at top
@@ -506,7 +513,7 @@ achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the 
 //   IFNKOVHGROGHPRM [5>82] (don't SAY it, just type it - must be first try for 5 points)
 //   GET BEANS [4>86]
 // Go east twice
-//   PLANT BEANS [2>88]
+//   PLANT BEANS [2>88] (SAVE A)
 //   CLIMB BEANSTALK
 // Go up three times
 // Go east twice, south, and east twice to the southeast corner of the cloud land
