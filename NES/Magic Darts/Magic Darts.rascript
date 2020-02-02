@@ -266,7 +266,7 @@ achievement(
 achievement(
     title = "Count Up vs",
     description = "Win a game of Count Up against three CPUs",
-    points = 20,
+    points = 25,
     trigger = game_variant() == variant_countup &&
               trigger_win() && never_using_alien_aim() &&
               player_is_player(0) && player_is_cpu(1) && player_is_cpu(2) && player_is_cpu(3)
@@ -275,7 +275,7 @@ achievement(
 achievement(
     title = "Double In, Double Out",
     description = "Win a game of 301/501/701 on Double In, Double Out",
-    points = 5,
+    points = 10,
     trigger = mode_inout() == mode_doublein_doubleout && 
               trigger_win() && never_using_alien_aim() &&
               (game_variant() == variant_301 || game_variant() == variant_501 || game_variant() == variant_701)
@@ -293,7 +293,7 @@ achievement(
 achievement(
     title = "Rapid 301 Double In, Double Out",
     description = "Win a game of 301 on Double In, Double Out in six rounds or less",
-    points = 20,
+    points = 25,
     trigger = game_variant() == variant_301 && mode_inout() == mode_doublein_doubleout && 
               trigger_win() && never_using_alien_aim() && 
               current_round() <= 6
@@ -302,7 +302,7 @@ achievement(
 achievement(
     title = "Rapid 701",
     description = "Win a game of 701 in eleven rounds or less",
-    points = 20,
+    points = 25,
     trigger = game_variant() == variant_701 && 
               trigger_win() && never_using_alien_aim() && 
               current_round() <= 11
@@ -311,7 +311,7 @@ achievement(
 achievement(
     title = "701 vs", 
     description = "Win a game of 701 against at least one CPU",
-    points = 15,
+    points = 10,
     trigger = game_variant() == variant_701 && player_vs_cpu() && 
               trigger_win() && never_using_alien_aim()
 )
@@ -319,7 +319,7 @@ achievement(
 achievement(
     title = "Time is Fleeting",
     description = "Win a game of Round the Clock using less than 20 darts",
-    points = 15,
+    points = 25,
     trigger = game_variant() == variant_roundtheclock && 
               trigger_win() && never_using_alien_aim() &&
               current_round() < 8 // 21 darts to reach round 8
@@ -328,7 +328,7 @@ achievement(
 achievement(
     title = "Round the Clock vs",
     description = "Win a game of Round the Clock against at least one CPU",
-    points = 20,
+    points = 25,
     trigger = game_variant() == variant_roundtheclock && player_vs_cpu() && 
               trigger_win() && never_using_alien_aim()              
 )
@@ -336,7 +336,7 @@ achievement(
 achievement(
     title = "Strong Finish",
     description = "Finish a game of Half It with at least 300 points",
-    points = 20,
+    points = 25,
     trigger = game_variant() == variant_halfit &&
               player_is_player(0) && trigger_game_complete() && never_using_alien_aim() &&
               (byte(0x04F4) > 1 || (byte(0x04F4) == 1 && byte(0x04F5) >= 44)) // score
@@ -345,7 +345,7 @@ achievement(
 achievement(
     title = "Half It vs",
     description = "Win a game of Half It against at least one CPU",
-    points = 15,
+    points = 10,
     trigger = game_variant() == variant_halfit && player_vs_cpu() &&
               trigger_win() && never_using_alien_aim()
                
@@ -354,7 +354,7 @@ achievement(
 achievement(
     title = "T20",
     description = "Hit the treble 20",
-    points = 5,
+    points = 3,
     trigger = current_player_is_player() && throwing_phase() == phase_scoring &&
               current_player_last_score() == 60 && never_using_alien_aim()
 )
@@ -362,7 +362,7 @@ achievement(
 achievement(
     title = "Bullseye",
     description = "Hit the bullseye",
-    points = 5,
+    points = 4,
     trigger = current_player_is_player() && throwing_phase() == phase_scoring &&
               current_player_last_score() == 50 && never_using_alien_aim()
 )
@@ -370,7 +370,7 @@ achievement(
 achievement(
     title = "Hat Trick",
     description = "Land all three darts in one round in the inner ring or bullseye",
-    points = 15,
+    points = 10,
     trigger = current_player_is_player() && 
               repeated(3, current_player_last_score() == 25 || current_player_last_score() == 50) &&
               unless(player_score(0) == prev(player_score(0))) && // only check when the score updates
@@ -388,7 +388,7 @@ for i in range(1, 20)
 achievement(
     title = "Shanghai",
     description = "Hit a single, double, and triple of the same number in one round",
-    points = 15,
+    points = 10,
     trigger = current_player_is_player() && never(using_alien_aim()) &&
               never(current_dart_within_round() == 0) &&
               never(current_round() != prev(current_round())) &&  // reset counter between rounds
@@ -428,14 +428,14 @@ achievement(
 achievement(
     title = "Fully Extended",
     description = "Use the robot's trick shot",
-    points = 5,
+    points = 2,
     trigger = trigger_trick_shot(character_rom)
 )
 
 achievement(
     title = "Reverse Monkey",
     description = "Use the monkey's trick shot",
-    points = 5,
+    points = 2,
     trigger = byte(0x0068) == 16 && throwing_phase() == phase_in_flight &&
               current_player_is_player() && player_character(0) == character_rio
 )
@@ -443,21 +443,21 @@ achievement(
 achievement(
     title = "Macho Shake",
     description = "Use the strong man's trick shot",
-    points = 5,
+    points = 2,
     trigger = trigger_trick_shot(character_max)
 )
 
 achievement(
     title = "Telekinesis",
     description = "Use the alien's trick shot",
-    points = 5,
+    points = 2,
     trigger = trigger_trick_shot(character_ebe) || trigger_trick_shot(character_ebe2)
 )
 
 achievement(
     title = "They Walk Among Us",
     description = "Hit a fly with the alien's trick shot",
-    points = 10,
+    points = 5,
     trigger = once(player_character(0) == character_ebe) &&  // along with next line, requires
               never(player_score(0) == 0) &&                 // ensure player has earned points as normal alien
               once(player_character(0) == character_ebe2) &&
