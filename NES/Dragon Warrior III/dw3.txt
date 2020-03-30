@@ -507,11 +507,12 @@ function achievement_enemy_killed_group(title, description, points, enemy_id)
     for i in range(0,7)
         trigger = trigger && !enemy_alive(i)         // battle is over when no more enemies are left
 
-    trigger_alt = always_false() ||                  // use alt group to segregate PauseIf
-                  (once(byte(0x0059) == enemy_id) && // type of monster defeated
-                   unless(byte(0x0072) != 0x48))     // but only if displaying monster defeated message
+    trigger_alt = (once(byte(0x0059) == enemy_id && // type of monster defeated
+                        byte(0x0072) == 0x48)) ||   // "X is defeated!"
+                  (once(byte(0x0059) == enemy_id && // type of monster defeated
+                        byte(0x0072) == 0x5D))      // "You have defeated X" - poison needle message is slightly different
     
-    achievement(
+    achievement(id=50424,
         title = title,
         description = description,
         points = points,
@@ -543,7 +544,7 @@ function achievement_all_chests(title, description, points, chests)
 achievement(
     title = "With a Little Help from My Friends",
     description = "Build a full party",
-    points = 3,
+    points = 1,
     trigger = is_in_game() && character_level(3) > 0
 )
 
@@ -555,12 +556,12 @@ story_achievement(bit1(0x60BF), 5, location_tower_of_najima_3F, "Now You Can Ope
 // ===========================
 // 02 - Cave of Enticement (Lv9)
 
-achievement_world_location("The Adventure Begins", "Reach the main continent", 8, 49, 93)
+achievement_world_location("The Adventure Begins", "Reach the main continent", 10, 49, 93)
 
 // ===========================
 // 03 - Dream Ruby (Lv11)
 
-story_achievement(bit2(0x608F), 7, location_kanave, "Something from the Back Room", "Get the Poison Needle from Kanave")
+story_achievement(bit2(0x608F), 4, location_kanave, "Something from the Back Room", "Get the Poison Needle from Kanave")
 story_achievement(bit2(0x60B7), 10, location_noaniels, "Rise and Shine", "Wake up the residents of Noaniels")
 
 // ===========================
@@ -575,10 +576,10 @@ story_achievement(bit4(0x60BA), 5, location_assaram_2F, "Fortune Favors the Bold
 // ===========================
 // 05 - Isis (Lv16)
 
-story_achievement(bit2(0x6094), 7, location_isis_castle_B2, "I Didn't See Your Name on It", "Find the hidden item beneath Isis")
-story_achievement(bit0(0x609F), 8, location_pyramid_3F, "You Can Open More Doors", "Get the Magic Key")
+story_achievement(bit2(0x6094), 4, location_isis_castle_B2, "I Didn't See Your Name on It", "Find the hidden item beneath Isis")
+story_achievement(bit0(0x609F), 10, location_pyramid_3F, "You Can Open More Doors", "Get the Magic Key")
 
-achievement_all_chests("Archaeologist", "Open all 24 chests in the pyramid", 12, [
+achievement_all_chests("Archaeologist", "Open all 24 chests in the pyramid", 10, [
     [location_pyramid,    bit5(0x6092)], // NW chest 1/3 1F (empty)
     [location_pyramid,    bit4(0x6092)], // NW chest 2/3 1F (empty)
     [location_pyramid,    bit3(0x6092)], // NW chest 3/3 1F (empty)
@@ -605,23 +606,23 @@ achievement_all_chests("Archaeologist", "Open all 24 chests in the pyramid", 12,
     [location_pyramid_5F, bit3(0x60A1)], // chest 5F (flashy clothes)
 ])
 
-story_achievement(bit1(0x60CA), 8, location_pyramid_B2, "Tomb Raider", "Find the hidden item beneath the pyramid")
-story_achievement(bit0(0x60A7), 7, location_isis_castle_3F, "Drop Something?", "Find the Wizard's Ring in the queen's chambers in Isis")
+story_achievement(bit1(0x60CA), 10, location_pyramid_B2, "Tomb Raider", "Find the hidden item beneath the pyramid")
+story_achievement(bit0(0x60A7), 4, location_isis_castle_3F, "Drop Something?", "Find the Wizard's Ring in the queen's chambers in Isis")
 
 // ===========================
 // 06 - Pepper (Lv17)
 
-story_achievement(bit5(0x60B6), 6, location_noruds_cave_west, "Bolef's Path", "Convince Norud to show you the secret passage through the mountains")
-story_achievement(bit7(0x60BF), 9, location_baharata, "Achoo!", "Get the Black Pepper")
+story_achievement(bit5(0x60B6), 5, location_noruds_cave_west, "Bolef's Path", "Convince Norud to show you the secret passage through the mountains")
+story_achievement(bit7(0x60BF), 10, location_baharata, "Achoo!", "Get the Black Pepper")
 
 // ===========================
 // 07 - Green Orb (Lv18)
 
-story_achievement(bit6(0x6097), 5, location_tedanki_2F, "Night Time Anytime", "Get the Lamp of Darkness")
-story_achievement(bit3(0x6094), 7, location_eginbear_B1, "Boulder Mover", "Get the Vase of Drought")
-story_achievement(bit4(0x60A7), 7, location_soo, "Who Left That There", "Find the Staff of Thunder in Soo")
-story_achievement(bit3(0x608E), 5, location_shrine_in_the_shoals, "You Can Open All Doors", "Get the Final Key")
-story_achievement(bit5(0x60CE), 6, location_tedanki, "The Prisoner's Last Possession", "Get the Green Orb")
+story_achievement(bit6(0x6097), 4, location_tedanki_2F, "Night Time Anytime", "Get the Lamp of Darkness")
+story_achievement(bit3(0x6094), 5, location_eginbear_B1, "Boulder Mover", "Get the Vase of Drought")
+story_achievement(bit4(0x60A7), 4, location_soo, "Who Left That There", "Find the Staff of Thunder in Soo")
+story_achievement(bit3(0x608E), 10, location_shrine_in_the_shoals, "You Can Open All Doors", "Get the Final Key")
+story_achievement(bit5(0x60CE), 10, location_tedanki, "The Prisoner's Last Possession", "Get the Green Orb")
 
 // ===========================
 // 08 - Dhama (Lv19)
@@ -641,21 +642,21 @@ function character_class_changed(index)
 achievement(
      title = "A New Line of Work",
      description = "Have one of your characters change professions",
-     points = 4,
+     points = 5,
      trigger = is_in_game() && current_location() == location_dhama &&
                (character_class_changed(0) || character_class_changed(1) ||
                 character_class_changed(2) || character_class_changed(3))
 )
 
 item_water_blaster = 0x6D
-item_achievement(item_water_blaster, 6, current_location() == location_muor_2F, "A Child's Toy", "Get the Water Blaster")
+item_achievement(item_water_blaster, 4, current_location() == location_muor_2F, "A Child's Toy", "Get the Water Blaster")
 
-story_achievement(bit7(0x60A2), 8, location_tower_of_garuna_2F, "Required Reading", "Get the Book of Satori")
+story_achievement(bit7(0x60A2), 10, location_tower_of_garuna_2F, "Required Reading", "Get the Book of Satori")
 
 // ===========================
 // 09 - Tower of Arp (Lv21)
 
-story_achievement(bit3(0x60A2), 7, location_tower_of_arp_3F, "Sonic Finder", "Get the Echoing Flute")
+story_achievement(bit3(0x60A2), 4, location_tower_of_arp_3F, "Sonic Finder", "Get the Echoing Flute")
 
 // ===========================
 // 10 - Purple Orb (Lv23 - wizard gets bikill at 23)
@@ -668,12 +669,12 @@ story_achievement(bit3(0x60CE), 10, location_jipang, "The Man with Many Heads", 
 story_achievement(bit4(0x60CE), 10, location_navel_of_the_earth_B3, "All By Myself", "Get the Blue Orb")
 story_achievement(bit1(0x60CE), 5, location_house_of_pirates_B1, "Buried Treasure", "Get the Red Orb")
 
-story_achievement(bit1(0x60A7), 6, location_luzami, "In Memoriam", "Find the Intelligence Seed in Luzami")
+story_achievement(bit1(0x60A7), 4, location_luzami, "In Memoriam", "Find the Intelligence Seed in Luzami")
 
 // ===========================
 // 12 - False King (Lv26)
 
-achievement_all_chests("Spelunker", "Open all 23 chests in the cave near Samanao", 12, [
+achievement_all_chests("Spelunker", "Open all 23 chests in the cave near Samanao", 10, [
     [location_cave_southeast_of_samanao_B2, bit5(0x609B)], // B2-J - mimic
     [location_cave_southeast_of_samanao_B2, bit4(0x609B)], // B2-K - mimic
     [location_cave_southeast_of_samanao_B2, bit3(0x609B)], // B2-G - acorns of life
@@ -699,7 +700,7 @@ achievement_all_chests("Spelunker", "Open all 23 chests in the cave near Samanao
     [location_cave_southeast_of_samanao_B3, bit7(0x609E)]  // B3-V - animal suit
 ])
 
-story_achievement(bit1(0x60A5), 7, location_samanao_castle_2F, "The False King", "Get the Staff of Change")
+story_achievement(bit1(0x60A5), 10, location_samanao_castle_2F, "The False King", "Get the Staff of Change")
 
 // ===========================
 // 13 - Yellow Orb (Lv27)
@@ -707,34 +708,34 @@ story_achievement(bit1(0x60A5), 7, location_samanao_castle_2F, "The False King",
 story_achievement(bit2(0x60CE), 10, location_merchantville_4, "The Merchantville Rebellion", "Get the Yellow Orb")
 
 item_leaf_of_the_world_tree = 0x69
-item_achievement(item_leaf_of_the_world_tree, 9, world_x() == 0x7B && world_y() == 0x4C && is_on_world_map(), 
+item_achievement(item_leaf_of_the_world_tree, 5, world_x() == 0x7B && world_y() == 0x4C && is_on_world_map(), 
                  "Lost in the Forest", "Get a Leaf from the World Tree")
 
-story_achievement_world_location(bit3(0x60B6), 8, 0x4A, 0x90, "Land Bridge", "Set off a volcano")
+story_achievement_world_location(bit3(0x60B6), 10, 0x4A, 0x90, "Land Bridge", "Set off a volcano")
 
 // ===========================
 // 14 - Silver Orb (Lv32)
 
 story_achievement(bit0(0x60CE), 10, location_shrine_of_necrogond, "The Hidden Valley", "Get the Silver Orb")
-story_achievement(bit6(0x60B9), 6, location_shrine_of_liamland, "The Legendary Pheonix", "Hatch the giant egg in Liamland")
+story_achievement(bit6(0x60B9), 5, location_shrine_of_liamland, "The Legendary Pheonix", "Hatch the giant egg in Liamland")
 
 // ===========================
 // 15 - Baramos (Lv35)
 
-story_achievement(bit7(0x60CB), 15, location_castle_baramos_B2, "The Archfiend is Vanquished!", "Defeat Baramos")
+story_achievement(bit7(0x60CB), 25, location_castle_baramos_B2, "The Archfiend is Vanquished!", "Defeat Baramos")
 
 // ===========================
 // 16 - Dark World (Lv35)
 
-story_achievement(bit4(0x60BF), 7, location_portoga, "Made for a Woman", "Get the Sword of Illusion")
-story_achievement(bit2(0x6097), 5, location_garins_house_B1, "Music for Monsters", "Get the Silver Harp")
-story_achievement(bit6(0x609E), 7, location_cave_northwest_of_tantegel_B3, "Heroic Blocker", "Get the Shield of Heroes")
+story_achievement(bit4(0x60BF), 4, location_portoga, "Made for a Woman", "Get the Sword of Illusion")
+story_achievement(bit2(0x6097), 4, location_garins_house_B1, "Music for Monsters", "Get the Silver Harp")
+story_achievement(bit6(0x609E), 4, location_cave_northwest_of_tantegel_B3, "Heroic Blocker", "Get the Shield of Heroes")
 
 item_sword_of_kings = 0x1C
-item_achievement(item_sword_of_kings, 9, current_location() == location_kol_2F, "Forged", "Get the Sword of Kings")
+item_achievement(item_sword_of_kings, 10, current_location() == location_kol_2F, "Forged", "Get the Sword of Kings")
 
-story_achievement(bit5(0x60BA), 8, location_tower_west_of_kol_5F, "The Statue Awakens", "Get the Sacred Amulet")
-story_achievement_dark_world_location(bit7(0x60B6), 8, 0x54, 0x3A, "It Only Takes One Drop", "Build the rainbow bridge")
+story_achievement(bit5(0x60BA), 5, location_tower_west_of_kol_5F, "The Statue Awakens", "Get the Sacred Amulet")
+story_achievement_dark_world_location(bit7(0x60B6), 5, 0x54, 0x3A, "It Only Takes One Drop", "Build the rainbow bridge")
 
 // ===========================
 // 17 - Zoma (Lv45)
@@ -750,7 +751,7 @@ story_achievement_dark_world_location(bit7(0x60B6), 8, 0x54, 0x3A, "It Only Take
 achievement(
     title = "The Foretelling",
     description = "Defeat Zoma",
-    points = 15,
+    points = 25,
     trigger = is_in_game() && current_location() == location_castle_zoma_B5 && byte(0x60C5) == 0xC0
 )
 
@@ -760,7 +761,7 @@ achievement(
 // should use their most damaging attacks. He still only has 1000 HP and recovers about 100 HP per round, but
 // has much higher physical defense. Depending on party composition, you should be able to do this at Lv~47.
 // When using the Sphere of Light, the active enemy id changes from 133 to 134.
-achievement_enemy_killed("We're Not Scared", "Defeat Zoma without using the Sphere of Light", 30, 133)
+achievement_enemy_killed("We're Not Scared", "Defeat Zoma without using the Sphere of Light", 25, 133)
 
 achievement(
     title = "A Legend is Born",
@@ -778,14 +779,14 @@ function arena_selected_winner() => byte(0x6A67)
 achievement(
     title = "Winner!",
     description = "Pick the winning monster in a stadium battle",
-    points = 4,
+    points = 5,
     trigger = arena_battle_in_progress() == 0 && prev(arena_battle_in_progress()) == 128 && // as the battle finishes
               once(arena_selected_winner() == arena_actual_winner()) &&
               never(arena_battle_in_progress() == 128) // prevents triggering if previous winner matches newly selected winner
 )
 
 enemy_metal_babble = 0x6C
-achievement_enemy_killed_group("Slippery Experience", "Defeat a Metal Babble", 7, enemy_metal_babble)
+achievement_enemy_killed_group("Slippery Experience", "Defeat a Metal Babble", 5, enemy_metal_babble)
 
 spell_blazemore = 1
 spell_healmore = 0x1B
@@ -820,18 +821,18 @@ function multi_class_achievement(title, description, points, class, spell, actio
 // pilgrim (vivify:24) -> wizard/sage (bikill:23) -> soldier = sturdy healer
 
 // wizard (blazemore:17) -> soldier
-multi_class_achievement("Mage Knight", "Cast Blazemore as a soldier", 8, class_soldier, spell_blazemore, action_spell_enemy)
+multi_class_achievement("Mage Knight", "Cast Blazemore as a soldier", 10, class_soldier, spell_blazemore, action_spell_enemy)
 
 // pilgrim (healmore:14) -> soldier
-multi_class_achievement("Paladin", "Cast Healmore (in battle) as a soldier", 8, class_soldier, spell_healmore, action_spell_ally)
+multi_class_achievement("Paladin", "Cast Healmore (in battle) as a soldier", 10, class_soldier, spell_healmore, action_spell_ally)
 
 // wizard (bikill:23) -> fighter
-multi_class_achievement("Berserker", "Cast Bikill as a fighter", 8, class_fighter, spell_bikill, action_spell_ally)
+multi_class_achievement("Berserker", "Cast Bikill as a fighter", 10, class_fighter, spell_bikill, action_spell_ally)
 
 achievement(
     title = "So Much Magic", 
     description = "Have two sages in your party", 
-    points = 8, 
+    points = 10, 
     trigger = never(character_class(0) != prev(character_class(0))) &&
               never(character_class(1) != prev(character_class(1))) &&
               never(character_class(2) != prev(character_class(2))) &&

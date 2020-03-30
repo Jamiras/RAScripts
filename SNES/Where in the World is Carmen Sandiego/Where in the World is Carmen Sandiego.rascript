@@ -189,7 +189,7 @@ achievement(title = "Hot on the Trail", points = 10,
 // $A12D, $A12F, and $A131 are 1 when arriving in a new area, and 0 after searching. If no locations have been searched, the sum will be 3.
 // one location searched sums to 2, two locations searched sums to 1, and all three searched sums to 0.
 // TODO: can you apprehend the suspect without searching multiple locations?
-achievement(title = "Trust Your Intuition", points = 15,
+achievement(title = "Trust Your Intuition", points = 10,
     description = "Find the suspect using one clue at each location",
     trigger = once(trigger_before_mission()) && never(is_demo()) &&
               trigger_find_suspect() &&
@@ -201,7 +201,7 @@ achievement(title = "Trust Your Intuition", points = 15,
 // sum of the three bytes will be 3 when first visiting a city, 2 after the first interrogation, and 1 after the second
 // have to allow 0 or the before mission trigger won't get set
 // TODO: need to pause when starting the mission - the bytes aren't populated in the same frame
-achievement(title = "Trust Your Intuition II", points = 20,
+achievement(title = "Trust Your Intuition II", points = 25,
     description = "Find the suspect using one clue at each location as an Ace Detective",
     trigger = once(trigger_before_mission()) && never(is_demo()) &&
               trigger_find_suspect() && current_rank() == 4 &&
@@ -230,7 +230,7 @@ achievement(title = "Rapid Recovery", points = 10,
     trigger = trigger_arrest_suspect() && current_day() <= 2 && never(is_demo())
 )
 
-achievement(title = "Rapid Recovery II", points = 15,
+achievement(title = "Rapid Recovery II", points = 10,
     description = "Arrest the suspect before the end of Friday as an Ace Detective",
     trigger = trigger_arrest_suspect() && current_day() <= 4 && current_rank() == 4 && never(is_demo())
 )
@@ -254,9 +254,9 @@ function achievement_promotion(title, missions_completed, points)
 achievement_promotion("Sleuth", 1, 5)          // new game
 achievement_promotion("Private Eye", 5, 5)     // kbB
 achievement_promotion("Investigator", 12, 10)  // vbb
-achievement_promotion("Ace Detective", 20, 15) // HbN
+achievement_promotion("Ace Detective", 20, 10) // HbN
  
-achievement(title = "Retirement", points = 20, // WbL
+achievement(title = "Retirement", points = 25, // WbL
             description = "Complete your final mission",
             trigger = trigger_arrest_suspect() && never(is_demo()) &&
                       current_case() == 30
@@ -290,7 +290,7 @@ achievement(title = "Getting to Know Your Suspects", points = 5,
 // male, jewelry => Fast Eddie B. (7)
 // female, motorcycle => Katherine Drib (9)
 // male, motorcycle => Nick Brunch (6)
-achievement(title = "The One Armed, One Legged Man", points = 10,
+achievement(title = "The One Armed, One Legged Man", points = 5,
             description = "Get a warrant with only two pieces of information",
             trigger = never(warrant_for() == prev(warrant_for())) && // ignore unless warrant is changing
                       warrant_for() != 255 && current_mode() == mode_searching &&

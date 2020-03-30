@@ -99,44 +99,44 @@ rich_presence_display("Mickey is looking for the number {0} in {1} on {2}",
 )
 
 achievement(
-    title = "Gum Collector", points = 6,
+    title = "Gum Collector", points = 3,
     description = "Complete a level with 9 gumballs",
     trigger = trigger_start_level() && trigger_score_level() && current_gumballs() >= 9
 )
 
 achievement(
-    title = "Agile Mouse", points = 10,
+    title = "Agile Mouse", points = 5,
     description = "Find the magic number and complete a level without being hit (advanced or super advanced)",
     trigger = trigger_start_level() && trigger_complete_level() &&
               never(trigger_damage_taken()) && current_difficulty() >= difficulty_advanced
 )
 
 achievement(
-    title = "Careful Counter", points = 6,
+    title = "Careful Counter", points = 4,
     description = "Find the magic number and complete a level without touching an incorrect number",
     trigger = trigger_start_level() && trigger_complete_level() && never(trigger_wrong_number())
 )
 
 achievement(
-    title = "Very Careful Counter", points = 6,
+    title = "Very Careful Counter", points = 5,
     description = "Find the magic number and complete a level without touching an incorrect number (advanced or super advanced)",
     trigger = trigger_start_level() && trigger_complete_level() && never(trigger_wrong_number()) && current_difficulty() >= difficulty_advanced
 )
 
 achievement(
-    title = "Stargazer", points = 4,
+    title = "Stargazer", points = 3,
     description = "Collect two or more stars in a single level (advanced or super advanced)",
     trigger = trigger_start_level() && trigger_score_level() && current_stars() >= 2 && current_difficulty() >= difficulty_advanced
 )
 
 achievement(
-    title = "Super Star", points = 5,
+    title = "Super Star", points = 4,
     description = "Collect three or more stars in a single level (advanced or super advanced)",
     trigger = trigger_start_level() && trigger_score_level() && current_stars() >= 3 && current_difficulty() >= difficulty_advanced
 )
 
 achievement(
-    title = "All-Star", points = 7,
+    title = "All-Star", points = 5,
     description = "Collect four or more stars in a single level (advanced or super advanced)",
     trigger = trigger_start_level() && trigger_score_level() && current_stars() >= 4 && current_difficulty() >= difficulty_advanced
 )
@@ -157,13 +157,13 @@ achievement(
 )
 
 achievement(
-    title = "Rail Grinder", points = 3,
+    title = "Rail Grinder", points = 2,
     description = "Slide down a banister in the city stage",
     trigger = trigger_in_level() && current_state() == state_sliding && current_location() == location_number_city
 )
 
 achievement(
-    title = "All Heart", points = 6,
+    title = "All Heart", points = 5,
     description = "Have five hearts", // advanced only
     trigger = trigger_in_level() && current_hearts() == 5 && current_difficulty() == difficulty_super_advanced
 )
@@ -187,17 +187,17 @@ function zone_achievement(zone_name, points, location)
     )
 }
 
-zone_achievement("The City", 5, location_number_city)
-zone_achievement("The Number Factory", 5, location_number_factory)
-zone_achievement("The Space Center", 5, location_space_center)
-zone_achievement("The Museum", 5, location_number_museum)
-zone_achievement("Bad Pete's Hideout", 10, location_petes_hideout)
+zone_achievement("The City", 3, location_number_city)
+zone_achievement("The Number Factory", 3, location_number_factory)
+zone_achievement("The Space Center", 3, location_space_center)
+zone_achievement("The Museum", 3, location_number_museum)
+zone_achievement("Bad Pete's Hideout", 5, location_petes_hideout)
 
 function trigger_complete_game() => once(current_screen() == screen_ending) && current_screen() == screen_credits && 
                                     never(current_screen() < 4)
 
 achievement(
-    title = "Way to Go!", points = 15,
+    title = "Way to Go!", points = 10,
     description = "Return all the number molds on super advanced difficulty",
     trigger = trigger_complete_game() && current_difficulty() == difficulty_super_advanced
 )

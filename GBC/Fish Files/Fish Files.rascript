@@ -553,7 +553,7 @@ dialog_achievement(scene_city_inside_beppos, 0x0395, 5, "The Ultimate Tool", "Ge
 // - Use the [sugar] with the [mug] full of water.
 // - Use the [mug] full of sugar and water with the man stuck to the post to free him. 
 
-dialog_achievement(scene_city_pole, 0x093C, 6, "Free At Last", "Help the Electrician")
+dialog_achievement(scene_city_pole, 0x093C, 5, "Free At Last", "Help the Electrician")
 
 // - Use the [multi-use] with the sewer.
 // - Talk to the agents. Get [badge] and [film].
@@ -585,14 +585,14 @@ dialog_achievement(scene_city_outside_police_station, 0x0255, 5, "Gotta Slobber 
 // - Go right and use the [lighter] with the smoke detector (upper left corner).
 // - Enter the chemistry lab. Mix the acids (green, white, red) [4,1,2]. Receive [acid].
 
-dialog_achievement(scene_univ_chem_lab, 0x02E8, 7, "Breaking Not-So-Bad", "Make the acid")
+dialog_achievement(scene_univ_chem_lab, 0x02E8, 10, "Breaking Not-So-Bad", "Make the acid")
 
 // - Go to the kitchen. Use the [multi-use] on the [sauerkraut].
 // - Mix the [sauerkraut] with the [milk]. You get the [mush].
 // - Beat the [mush] with the [multi-use]. You get the [cream].
 // - Give the [cream] to the chef.
 
-dialog_achievement(scene_univ_kitchen, 0x00C3, 7, "Sous-chef", "Complete the Chef's request")
+dialog_achievement(scene_univ_kitchen, 0x00C3, 5, "Sous-chef", "Complete the Chef's request")
 
 // - Go to the trailer (road to the right of the fountain).
 // - Collect the [antenna].
@@ -643,7 +643,7 @@ dialog_achievement(scene_univ_principals_office, 0x0335, 10, "Be Kind, Rewind", 
 
 // - Talk to Beppo. Leave. It becomes night.
 
-dialog_achievement(scene_city_outside_beppos_night, 0x0974, 3, "Time Flies When You're Solving a Mystery", "Night has arrived")
+dialog_achievement(scene_city_outside_beppos_night, 0x0974, 2, "Time Flies When You're Solving a Mystery", "Night has arrived")
 
 // - Go to Xavoc. Talk to the club guard [3].
 // - Go back to the school library and use the [multi-use] with the red book to get the [pictures].
@@ -651,7 +651,7 @@ dialog_achievement(scene_city_outside_beppos_night, 0x0974, 3, "Time Flies When 
 // - Give them the [pictures]. Get updated [document].
 // - Go to Xavoc. Talk to the club guard [3].
 
-dialog_achievement(scene_city_outside_xavoc_night, 0x03AA, 6, "Papers Please", "Gain access to Xavoc")
+dialog_achievement(scene_city_outside_xavoc_night, 0x03AA, 5, "Papers Please", "Gain access to Xavoc")
 
 // - Inside the club, talk to the army man [1].
 // - On the right, take a deflated [balloon].
@@ -671,7 +671,7 @@ dialog_achievement(scene_city_outside_military_base_night, 0x0334, 5, "Attention
 // - Go to the trailer. Read the note.
 // - In the university library, use the [insect] with the safe.
 
-dialog_achievement(scene_univ_book_room, 0x0366, 6, "Not-so-safe", "Break into the safe in the library")
+dialog_achievement(scene_univ_book_room, 0x0366, 5, "Not-so-safe", "Break into the safe in the library")
 
 // - Get the [book] from the safe.
 // - Talk with Fabropulos. Trade the [book] for the [tickets].
@@ -695,7 +695,7 @@ dialog_achievement(scene_alt1_dantes_room, 0x09A6, 10, "Witchery!", "Arrive in a
 // - Use the [knife] on the [curtain] to get the [tunic].
 // - Take the [boots] to put them on (and the tunic).
 
-dialog_achievement(scene_alt1_warehouse, 0x09A9, 6, "Proper Attire", "Find a military uniform for Fabropulos")
+dialog_achievement(scene_alt1_warehouse, 0x09A9, 5, "Proper Attire", "Find a military uniform for Fabropulos")
 
 // - Go to the kitchen. Talk to the chef.
 // - Use the [mask] with the garbage bag to the left of the door.
@@ -739,7 +739,7 @@ dialog_achievement(scene_alt1_major_gaids_office, 0x09F7, 10, "Major Help", "Ret
 // - Give the [ball] of wool to the cat where the police station would have been.
 // - Use the [oil] with the rusted gate.
 
-dialog_achievement(scene_alt2_alley, 0x067C, 6, "Beware of Cat", "Gain access to the abandoned factory")
+dialog_achievement(scene_alt2_alley, 0x067C, 5, "Beware of Cat", "Gain access to the abandoned factory")
 
 // - Inside the abandoned factory, take the glass [jar].
 // - Use the [rope] with the left end of the chain.
@@ -749,7 +749,7 @@ dialog_achievement(scene_alt2_alley, 0x067C, 6, "Beware of Cat", "Gain access to
 // - Use the [suspenders] with the [blender].
 // - Give Beppo the [blender].
 
-dialog_achievement(scene_alt2_flowershop, 0x0740, 9, "Does it Blend?", "Give Beppo the ultra-powerful blender")
+dialog_achievement(scene_alt2_flowershop, 0x0740, 10, "Does it Blend?", "Give Beppo the ultra-powerful blender")
 
 // - Use the [wood] with the carnivorous plant.
 // - Use the [flashlight] with the carnivorous plant. Find the [pliers].
@@ -765,7 +765,7 @@ dialog_achievement(scene_alt2_flowershop, 0x0740, 9, "Does it Blend?", "Give Bep
 
 // - Give the [ants] to Beppo.
 
-dialog_achievement(scene_alt2_beppos, 0x06A1, 8, "Far Out, Man", "Return with Mark")
+dialog_achievement(scene_alt2_beppos, 0x06A1, 10, "Far Out, Man", "Return with Mark")
 
 // - Take the [acetone].
 // - Go out and talk with Folder [any-3-2-any].
@@ -809,7 +809,7 @@ dialog_achievement(scene_alt3_outside_mummy, 0x0A59, 10, "The Haunting", "Scare 
 
 // - Go to the theater where we found Puse and give the new [gadget] to Beppo.
 
-dialog_achievement(scene_alt3_amplitheatre_depart, 0x0A75, 6, "A Great Performance", "Return with Puse")
+dialog_achievement(scene_alt3_amplitheatre_depart, 0x0A75, 10, "A Great Performance", "Return with Puse")
 
 // - Back in the original universe, Beppo gives you a [pan] and a [projector].
 // - Talk to principal Fisher in his office.
@@ -830,7 +830,7 @@ dialog_achievement(scene_alt3_amplitheatre_depart, 0x0A75, 6, "A Great Performan
 // - Go down to the sewers. Look at the papers at the top of the screen. Go in the direction of the 
 //   symbol you recognize from the apron [left, left, center, right].
 
-dialog_achievement(scene_home_lake, 0x0747, 7, "A-Maze-ing", "Find your way through the sewer maze")
+dialog_achievement(scene_home_lake, 0x0747, 4, "A-Maze-ing", "Find your way through the sewer maze")
 
 // - Go with the fisherman and give him the [liquor].
 // - Take the [horn] that is in the boat.
@@ -840,7 +840,7 @@ dialog_achievement(scene_home_lake, 0x0747, 7, "A-Maze-ing", "Find your way thro
 // - Ring the bell of the bicycle.
 // - Use the [horn] on the bull.
 
-achievement(title = "Big Gray Door Opener", description = "Break into the barn", points = 6, 
+achievement(title = "Big Gray Door Opener", description = "Break into the barn", points = 5, 
     trigger = current_scene() == scene_home_barn && is_dialog_visible() == 0 && prev(is_dialog_visible()) == 1 &&
               (current_dialog_message() == 0x0854 || // horn last
                current_dialog_message() == 0x07C8)   // bike last
@@ -876,11 +876,11 @@ dialog_achievement(scene_ship_prison, 0x0877, 5, "Pod People", "Free the prisone
 
 // * Here you have the option to pull the lever. There is no apparent effect.
 
-dialog_achievement(scene_ship_cockpit, 0x0895, 3, "I Wonder What This Does", "Pull the lever in the spaceship cockpit")
+dialog_achievement(scene_ship_cockpit, 0x0895, 2, "I Wonder What This Does", "Pull the lever in the spaceship cockpit")
 
 // - Talk to the lead fish.
 
-dialog_achievement(scene_ship_cockpit, 0x089A, 7, "So Long, and Thanks for All the Fish", "Convince the aliens to leave")
+dialog_achievement(scene_ship_cockpit, 0x089A, 10, "So Long, and Thanks for All the Fish", "Convince the aliens to leave")
 
 // - Give the [pictures] to the man with the camera. Receive the [camera].
 // - Go back to the university and take a use the [camera] on Frau Kruger to get new [pictures].
