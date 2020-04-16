@@ -307,11 +307,18 @@ achievement(
 function trigger_start_quest() => once(tileset() == tileset_rpg_intro) && never(tileset() == tileset_menu)
 function trigger_complete_quest() => table() == table_rpg_basement && tileset() == tileset_rpg_ending_credits
 
-// This is not working correctly. It also triggers when hitting the ghost with the ball. The only accurate way
-// I could find to identify ball out was to watch for the Y position to be > 11C0, which happens for ball out
-// on every table. As such, this should only be used on a per-table basis, and since leaving every table but the
-// garden results in proceeding to the previous table, I can only reliably use this in the garden.
-function trigger_rpg_ball_out() => word(0x00006A) > 0x11C0 
+// The only accurate way I could find to identify ball out was to watch for the Y position to be > 11C0, which 
+// happens for ball out on every table. As such, this should only be used on a per-table basis, and since leaving 
+// every table but the garden results in proceeding to the previous table, I can only reliably use this in the 
+// garden. Also note that if you ball out in the garden and leave the game, upon returning the Y position will
+// still be > 11C0 (see ticket 26333).
+//function trigger_rpg_ball_out() => word(0x00006A) > 0x11C0 
+
+// I'm not sure exactly what this means, but word(0x0176) becomes 0xA9A4 just before displaying the "Do you want 
+// to try again?" message. Setting it to 0x0000 in the frame where it's set prevents the dialog from showing (and 
+// softlocks the game). Once it's set, it remains set until the player advances to the next board, where it changes
+// to 0xA5BF (regardless of whether or not the player ball'd out)
+function trigger_rpg_ball_out() => byte(0x000176) == 0xA4
 
 achievement(
     title = "Gated Garden",
