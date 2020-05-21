@@ -116,7 +116,7 @@ achievement_complete_level(13, difficulty_easy, 5)
 achievement_complete_level(19, difficulty_easy, 5)
 achievement_complete_level(24, difficulty_easy, 5)
 achievement_complete_level(28, difficulty_easy, 5)
-achievement_complete_level(32, difficulty_easy, 5)
+achievement_complete_level(32, difficulty_easy, 10)
 
 // Medium (80)
 achievement_complete_level(7, difficulty_medium, 10)
@@ -124,17 +124,17 @@ achievement_complete_level(11, difficulty_medium, 10)
 achievement_complete_level(13, difficulty_medium, 10)
 achievement_complete_level(19, difficulty_medium, 10)
 achievement_complete_level(24, difficulty_medium, 10)
-achievement_complete_level(28, difficulty_medium, 15)
-achievement_complete_level(32, difficulty_medium, 15)
+achievement_complete_level(28, difficulty_medium, 10)
+achievement_complete_level(32, difficulty_medium, 25)
 
 // Hard (125)
 achievement_complete_level(7, difficulty_hard, 10)
 achievement_complete_level(11, difficulty_hard, 10)
-achievement_complete_level(13, difficulty_hard, 15)
-achievement_complete_level(19, difficulty_hard, 15)
-achievement_complete_level(24, difficulty_hard, 20)
+achievement_complete_level(13, difficulty_hard, 10)
+achievement_complete_level(19, difficulty_hard, 10)
+achievement_complete_level(24, difficulty_hard, 10)
 achievement_complete_level(28, difficulty_hard, 25)
-achievement_complete_level(32, difficulty_hard, 30)
+achievement_complete_level(32, difficulty_hard, 50)
 
 // ========================================================
 // Perfect levels (80 points)
@@ -151,11 +151,11 @@ function achievement_perfect_level(level, points) {
 
 achievement_perfect_level(1, 5)
 achievement_perfect_level(2, 10)
-achievement_perfect_level(8, 20)
+achievement_perfect_level(8, 10)
 achievement_perfect_level(15, 10)
 achievement_perfect_level(16, 10)
 achievement_perfect_level(18, 10)
-achievement_perfect_level(25, 15)
+achievement_perfect_level(25, 10)
 
 // ========================================================
 // Match achievements (55 points)
@@ -174,14 +174,14 @@ function achievement_match_length(label, count, points) {
     )
 }
 
-achievement_match_length("Seven", 7, 5)
-achievement_match_length("Nine", 9, 10)
-achievement_match_length("Eleven", 11, 15)
+achievement_match_length("Seven", 7, 2)
+achievement_match_length("Nine", 9, 5)
+achievement_match_length("Eleven", 11, 10)
 
 achievement(
     title = "Medium Cross",
     description = "Match a vertical column of at least 5 tiles and a horizontal row of at least 5 tiles with one tile",
-    points = 5,
+    points = 3,
     trigger = trigger_in_game() && vertical_match_length() >= 5 && horizontal_match_length() >= 5
 )
 
@@ -212,12 +212,12 @@ achievement(
 achievement(
     title = "Higher Score",
     description = "Score at least 100,000 points",
-    points = 15,
+    points = 10,
     trigger = trigger_in_game() && byte(0x00BC) >= 0x10
 )
 
 achievement(
-    title = "Stuff?",
+    title = "Klux",
     description = "Score at least 3,000 points in Klux",
     points = 5,
     trigger = trigger_in_klux() && (byte(0x00BC) >= 0 || byte(0x00BB) >= 0x30)

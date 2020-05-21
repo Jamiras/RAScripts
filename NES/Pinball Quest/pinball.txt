@@ -210,7 +210,7 @@ achievement(
 achievement(
     title = "The Skeletal Knight",
     description = "Defeat the skeleton guard and enter the castle",
-    points = 10,
+    points = 5,
     trigger = table() == table_rpg_garden && byte(0x000176) == 0xBF
 )
 
@@ -224,28 +224,28 @@ achievement(
 achievement(
     title = "King of the Goblins",
     description = "Defeat the goblin king and proceed to the river",
-    points = 15,
+    points = 10,
     trigger = table() == table_rpg_mines && byte(0x000176) == 0xD3
 )
 
 achievement(
     title = "Reanimated Armor",
     description = "Defeat the suits of armor and enter the throne room",
-    points = 20,
+    points = 10,
     trigger = table() == table_rpg_river && byte(0x000176) == 0x41
 )
 
 achievement(
     title = "The Harpy",
     description = "Defeat the harpy and enter the basement",
-    points = 25,
+    points = 10,
     trigger = table() == table_rpg_throne_room && byte(0x000176) == 0xC0
 )
 
 achievement(
     title = "The Dark Lord",
     description = "Defeat the dark lord and rescue the princess",
-    points = 30,
+    points = 25,
     trigger = table() == table_rpg_basement && byte(0x0004D6) == 0x6A
 )
 
@@ -268,7 +268,7 @@ achievement(
 achievement(
     title = "Animal Control",
     description = "Eliminate all of the witch's familiars",
-    points = 5,
+    points = 10,
     trigger = table() == table_rpg_castle && tileset() == tileset_rpg_castle &&
               once(byte(0x0001AF) == 10) && never(tileset() != tileset_rpg_castle) &&
               byte(0x0001AF) == 0 && byte(0x0004AF) == 0 &&
@@ -279,7 +279,7 @@ achievement(
 achievement(
     title = "Reptile Round-up",
     description = "Eliminate all four turtles at the river",
-    points = 5,
+    points = 10,
     trigger = table() == table_rpg_river && tileset() == tileset_rpg_river &&
               once(byte(0x00045F) == 1) && never(tileset() != tileset_rpg_river) &&
               byte(0x00045F) == 0 && byte(0x00048F) == 0 && 
@@ -289,7 +289,7 @@ achievement(
 achievement(
     title = "Darkness",
     description = "Extinguish all 13 candles in the basement",
-    points = 30,
+    points = 50,
     trigger = table() == table_rpg_basement && tileset() == tileset_rpg_basement &&
               once(byte(0x00042F) == 1) && never(tileset() != tileset_rpg_basement) &&
               byte(0x00042F) == 0 && byte(0x00045F) == 0 && byte(0x00048F) == 0 && // middle three
@@ -323,14 +323,14 @@ function trigger_rpg_ball_out() => byte(0x000176) == 0xA4
 achievement(
     title = "Gated Garden",
     description = "Leave the garden without letting your ball fall off the bottom of the table",
-    points = 20,
+    points = 10,
     trigger = trigger_start_quest() && byte(0x000176) == 0xBF && never(trigger_rpg_ball_out()) 
 )    
 
 achievement(
     title = "Confidence",
     description = "Complete the quest without using stoppers",
-    points = 40,
+    points = 50,
     trigger = trigger_start_quest() && trigger_complete_quest() &&
               never(high4(0x000494) == 15) && // throne room stopper 1
               never(high4(0x0004C4) == 15) && // throne room stopper 2
@@ -368,6 +368,19 @@ function achievement_score_X00k(table, tileset, score, title, description, point
     )
 }
 
+function achievement_score_XX0k(table, tileset, score, title, description, points) {
+    score_100k = score / 100000
+    score_10k = (score % 100000) / 10000
+    
+    achievement(
+        title = title,
+        description = description,
+        points = points,
+        trigger = table() == table && tileset() == tileset &&
+                 (low4(0x000100) > 0 || (low4(0x000101) > score_100k) || (low4(0x000101) == score_100k && low4(0x000102) >= score_10k))
+    )
+}
+
 function achievement_score_X0k(table, tileset, score, title, description, points) {
     score_10k = score / 10000
     
@@ -394,7 +407,7 @@ function remaining_balls() => byte(0x0006F8)
 achievement_score_X00k(table_pop_pop, tileset_pop_pop, 500000, "Pop! Pop! Beginner", 
                        "Score at least 500,000 points on the Pop! Pop! table", 10)
 achievement_score_Xm(table_pop_pop, tileset_pop_pop, 5000000, "Pop! Pop! Expert", 
-                     "Score at least 5,000,000 points on the Pop! Pop! table", 30)
+                     "Score at least 5,000,000 points on the Pop! Pop! table", 25)
 
 achievement(
     title = "Bowling for Billiards",
@@ -425,14 +438,14 @@ achievement(
 // Viva! Golf (55)
 // ===============
 //  10 Beginner - Score 30,000 points
-//  30 Expert - Score 200,000 points
+//  30 Expert - Score 150,000 points
 //   5 Whack-a-mole - Knock out the large gopher
 //  10 Whack-another-mole - Knock out the small gopher near the upper paddle
  
 achievement_score_X0k(table_viva_golf, tileset_viva_golf, 30000, "Viva! Golf Beginner", 
                       "Score at least 30,000 points on the Viva! Golf table", 10)
-achievement_score_X00k(table_viva_golf, tileset_viva_golf, 200000, "Viva! Golf Expert", 
-                       "Score at least 200,000 points on the Viva! Golf table", 30)
+achievement_score_XX0k(table_viva_golf, tileset_viva_golf, 150000, "Viva! Golf Expert", 
+                       "Score at least 150,000 points on the Viva! Golf table", 25)
 
 // Similar to "Pop! Pop! Extra", this triggers when returning to the menu - add a tileset check to fix
 achievement(
@@ -463,8 +476,8 @@ achievement(
 
 achievement_score_X0k(table_circus, tileset_circus, 50000, "Circus Beginner", 
                       "Score at least 50,000 points on the Circus table", 10)
-achievement_score_X00k(table_circus, tileset_circus, 300000, "Circus Expert", 
-                       "Score at least 300,000 points on the Circus table", 30)
+achievement_score_XX0k(table_circus, tileset_circus, 250000, "Circus Expert", 
+                       "Score at least 250,000 points on the Circus table", 25)
 
 achievement(
     title = "Juggling Act",
@@ -476,7 +489,7 @@ achievement(
 achievement(
     title = "Target Practice",
     description = "Knock down the indicated target once lit on the Circus table",
-    points = 5,
+    points = 10,
     trigger = table() == table_circus && tileset() == tileset_circus && byte(0x0000BD) == 6 // 5 = lit, 6 = triggered, then resets to 0 
 )
 

@@ -142,7 +142,7 @@ function stage_achievements(stage_id, boss_id, boss_name, stage_sequence) {
     achievement(
         title = boss_name + " Brawler",
         description = "Defeat the " + stage_sequence + " guardian without a weapon",
-        points = 15,
+        points = 10,
         trigger = location() == stage_id * 16 && 
                   weapon() == 0 &&
                   trigger_boss_fight 
@@ -160,14 +160,10 @@ function stage_achievements(stage_id, boss_id, boss_name, stage_sequence) {
     if (stage_id == 1)
         start_id = 4
     
-    points = 10
-    if (stage_id == 7)
-        points = 15
-        
     achievement(
         title = "Stage " + stage_id + " Expert",
         description = "Complete stage " + stage_id + " without continuing",
-        points = points,
+        points = 10,
         trigger = once(location() == start_id) && 
                   location() == stage_id * 16 + 4 &&
                   trigger_returning_to_robosaur() && 
@@ -215,7 +211,7 @@ achievement(
 achievement(
     title = "Pteradactyl Shutout",
     description = "Defeat any pteradactyl guardian without being hit",
-    points = 25,
+    points = 10,
     trigger = low4(0x0089) == 0x00 &&
               (trigger_flawless_boss(0x0902) || // stage 2
                trigger_flawless_boss(0x1403) || // stage 4
@@ -270,8 +266,8 @@ function weapon_achievement(title, weapon_id, points) {
    )
 }
    
-weapon_achievement("Rocket Fists", 1, 10)
-weapon_achievement("Great Balls of Fire", 2, 10)
-weapon_achievement("Pew Pew", 3, 10)
-weapon_achievement("Incoming", 4, 10)
+weapon_achievement("Rocket Fists", 1, 5)
+weapon_achievement("Great Balls of Fire", 2, 5)
+weapon_achievement("Pew Pew", 3, 5)
+weapon_achievement("Incoming", 4, 5)
 weapon_achievement("Double Barrels", 5, 5)

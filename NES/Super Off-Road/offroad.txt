@@ -89,21 +89,21 @@ function achievement_race_time(track, title, seconds, points) {
 
 // race times (7 tracks x20 = 140 + 1 track x40 = 180pts)
 achievement_race_time(track_fandango,        "Challenger", 55,  5) // <  1, 6,15,28,44,60,76,92
-achievement_race_time(track_fandango,        "Pro",        50, 15) // >  3,10,21,36,52,68,84
+achievement_race_time(track_fandango,        "Pro",        50, 10) // >  3,10,21,36,52,68,84
 achievement_race_time(track_sidewinder,      "Challenger", 46,  5) // <  2, 7,16,29,37,45,61,77,93
-achievement_race_time(track_sidewinder,      "Pro",        41, 15) // >  4,11,22,53,69,85
+achievement_race_time(track_sidewinder,      "Pro",        41, 10) // >  4,11,22,53,69,85
 achievement_race_time(track_wipeout,         "Challenger", 46,  5) // >  5,12,23,38,54,70,86
-achievement_race_time(track_wipeout,         "Pro",        41, 15) // <  8,17,30,46,62,78,94
+achievement_race_time(track_wipeout,         "Pro",        41, 10) // <  8,17,30,46,62,78,94
 achievement_race_time(track_big_dukes,       "Challenger", 45,  5) // <  9,18,31,63,79,95
-achievement_race_time(track_big_dukes,       "Pro",        40, 15) // > 13,24,39,47,55,71,87
+achievement_race_time(track_big_dukes,       "Pro",        40, 10) // > 13,24,39,47,55,71,87
 achievement_race_time(track_blaster,         "Challenger", 52,  5) // > 14,32,56,72,88
-achievement_race_time(track_blaster,         "Pro",        47, 15) // < 19,25,40,48,64,80,96
+achievement_race_time(track_blaster,         "Pro",        47, 10) // < 19,25,40,48,64,80,96
 achievement_race_time(track_cliffhanger,     "Challenger", 46,  5) // < 20,33,49,65,81,97
-achievement_race_time(track_cliffhanger,     "Pro",        41, 15) // > 26,41,57,73,89
+achievement_race_time(track_cliffhanger,     "Pro",        41, 10) // > 26,41,57,73,89
 achievement_race_time(track_huevos_grande,   "Challenger", 49,  5) // > 27,42,58,74,90
-achievement_race_time(track_huevos_grande,   "Pro",        44, 15) // < 34,50,66,82,98
-achievement_race_time(track_hurricane_gulch, "Challenger", 48, 10) // < 35,51,67,83,99
-achievement_race_time(track_hurricane_gulch, "Pro",        43, 30) // > 43,59,75,91
+achievement_race_time(track_huevos_grande,   "Pro",        44, 10) // < 34,50,66,82,98
+achievement_race_time(track_hurricane_gulch, "Challenger", 48,  5) // < 35,51,67,83,99
+achievement_race_time(track_hurricane_gulch, "Pro",        43, 10) // > 43,59,75,91
 
 // reach races (45pts) [225]
 function trigger_complete_race(race) {
@@ -121,14 +121,14 @@ achievement(
 achievement(
     title = "Veteran Racer",
     description = "Complete the fiftieth race",
-    points = 20,
+    points = 25,
     trigger = trigger_complete_race(50)
 )
 
 achievement(
     title = "Checkered Flag",
     description = "Complete the last race",
-    points = 40,
+    points = 25,
     trigger = trigger_complete_race(99)
 )
 
@@ -146,8 +146,8 @@ function achievement_repeat_winner(title, times, points) {
 }
 
 achievement_repeat_winner("Hat Trick", 3, 5)
-achievement_repeat_winner("Champion Driver", 4, 10)
-achievement_repeat_winner("World Class Driver", 5, 20)
+achievement_repeat_winner("Champion Driver", 4, 5)
+achievement_repeat_winner("World Class Driver", 5, 10)
 
 // special win conditions (70pts) [330]
 
@@ -168,7 +168,7 @@ achievement(
 achievement(
     title = "Comeback",
     description = "Win after starting the last lap in last place",
-    points = 15,
+    points = 10,
     
     // the once() clause ensures the achievement only becomes active while the player is on their third lap.
     // the never() clauses disable the achievement if any of the competitors are not on their last lap.
@@ -189,7 +189,7 @@ achievement(
 achievement(
     title = "No Rush",
     description = "Win a race without using any nitros",
-    points = 10,
+    points = 5,
     trigger = trigger_win_any_race() && trigger_within_race() && never(nitro_used())
 )
 
@@ -236,7 +236,7 @@ function cash_ten_millions() => byte(0x000305)
 achievement(
     title = "Millionaire",
     description = "Have $1M in cash",
-    points = 15,
+    points = 10,
     trigger = is_single_player() && (cash_ten_millions() > 0 || cash_millions() > 0)
 )
 

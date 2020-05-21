@@ -192,12 +192,12 @@ achievement(
 )
 
 achievement(
-    title = "Passed the Pentagon", description = "Complete the third board", points = 10,
+    title = "Passed the Pentagon", description = "Complete the third board", points = 5,
     trigger = player_board_space(0) == 0x2F && prev(player_board_space(0)) >= 0x20 && prev(player_board_space(0)) <= 0x2E
 )
 
 achievement(
-    title = "Hopped the Holes", description = "Complete the fourth board", points = 15,
+    title = "Hopped the Holes", description = "Complete the fourth board", points = 10,
     trigger = trigger_complete_board(3)
 )
 
@@ -222,17 +222,17 @@ achievement(
 )
 
 achievement(
-    title = "Winner's Circle", description = "Win a game on Medium against at least one CPU", points = 20,
+    title = "Winner's Circle", description = "Win a game on Medium against at least one CPU", points = 10,
     trigger = trigger_win_on_difficulty(difficulty_medium) && computer_players() > 1
 )
 
 achievement(
-    title = "Not So Hard", description = "Win a game on Hard against at least one CPU", points = 30,
+    title = "Not So Hard", description = "Win a game on Hard against at least one CPU", points = 25,
     trigger = trigger_win_on_difficulty(difficulty_hard) && computer_players() > 1
 )
 
 achievement(
-    title = "What a Challenge", description = "Win a game on Very Hard against at least one CPU", points = 50,
+    title = "What a Challenge", description = "Win a game on Very Hard against at least one CPU", points = 25,
     trigger = trigger_win_on_difficulty(difficulty_very_hard) && computer_players() > 1
 )
 
@@ -247,7 +247,7 @@ achievement(
 )
 
 achievement(
-    title = "Full Party", description = "Win a game against three CPUs", points = 15,
+    title = "Full Party", description = "Win a game against three CPUs", points = 10,
     trigger = trigger_win_against_cpu_players(3)
 )
 
@@ -260,7 +260,7 @@ achievement(
 // 10 - Careful Guesser - Win a game without entering any incorrect letters
 
 achievement(
-    title = "A Lap Ahead", description = "Win a game against three CPUs without any CPU players on the last board", points = 5,
+    title = "A Lap Ahead", description = "Win a game against three CPUs without any CPU players on the last board", points = 10,
     trigger = trigger_win_against_cpu_players(3) && 
         ((player_board(1) < 2 && player_board(2) < 2 && player_board(3) < 2) ||
          (player_board(1) < 3 && player_board(2) < 3 && player_board(3) < 3 && current_difficulty() >= difficulty_hard))
@@ -273,7 +273,7 @@ achievement(
 )
 
 achievement(
-    title = "Shut Out", description = "Win a game against three CPUs without letting any CPU player solve a puzzle", points = 40,
+    title = "Shut Out", description = "Win a game against three CPUs without letting any CPU player solve a puzzle", points = 25,
     trigger = trigger_win_against_cpu_players(3) && 
               player_board(1) == 0 && player_board(2) == 0 && player_board(3) == 0 &&
               dword(0x0433) == 0 && dword(0x0437) == 0 && dword(0x043B) == 0 && dword(0x043F) == 0
@@ -336,7 +336,7 @@ achievement(
 )
 
 achievement(
-    title = "Intuition", description = "Solve a non-dot puzzle when the die is on five or six", points = 20,
+    title = "Intuition", description = "Solve a non-dot puzzle when the die is on five or six", points = 10,
     trigger = trigger_win_puzzle() && !dots_visible() && current_die_face() >= 5
 )
 
@@ -361,7 +361,7 @@ achievement(
 //  5 - That's Not a Valid Space - Fall off the fourth board
 
 achievement(
-    title = "Perfect Board", description = "Complete a board in only four puzzles", points = 20,
+    title = "Perfect Board", description = "Complete a board in only four puzzles", points = 10,
     trigger = once(!player_has_color(0, color_yellow)) &&
               once(!player_has_color(0, color_blue)) &&
               once(!player_has_color(0, color_green)) &&
@@ -377,7 +377,7 @@ achievement(
 )
 
 achievement(
-    title = "Surplus", description = "Collect a color that you already have", points = 5,
+    title = "Surplus", description = "Collect a color that you already have", points = 2,
     trigger = trigger_win_puzzle() &&
               ((current_puzzle_color() == color_yellow && player_has_color(0, color_yellow)) ||
                (current_puzzle_color() == color_blue && player_has_color(0, color_blue)) ||
@@ -386,7 +386,7 @@ achievement(
 )
 
 achievement(
-    title = "Threepeat", description = "Win the same color three times in a row", points = 10,
+    title = "Threepeat", description = "Win the same color three times in a row", points = 5,
     trigger = trigger_win_puzzle() && 
               never(current_player() != 0) &&                    // another player answered
               never(trigger_no_one_can_answer()) &&              // no-one can answer
@@ -399,7 +399,7 @@ achievement(
 // 10 points are awared for each roll of a 1 on the first three puzzles, then 40 points for advancing to the
 // next board, regardless of the roll on the fourth puzzle.
 achievement(
-    title = "Puzzle Pauper", description = "Complete the first board with only 70 points", points = 5,
+    title = "Puzzle Pauper", description = "Complete the first board with only 70 points", points = 10,
     trigger = trigger_complete_board(0) && byte(0x0573) == 0xF0 && byte(0x0577) == 0xF3
 )
 
@@ -424,7 +424,7 @@ achievement(
 )
 
 achievement(
-    title = "Spin Out", description = "Land on a gray tile", points = 5,
+    title = "Spin Out", description = "Land on a gray tile", points = 3,
     trigger = current_puzzle_color() == color_gray && player_board_space(0) != 0x2F &&
               unless(byte(0x03DD) == 0x0D) &&            // prevents triggering between floors
               current_player() == 0 && player_board(0) >= 2
@@ -435,6 +435,3 @@ achievement(
     trigger = player_board(0) == 2 && prev(player_board(0)) == 3 &&
               player_board_space(0) != 0x2F && current_player() == 0
 )
-
-// TOTAL: 400pts
-

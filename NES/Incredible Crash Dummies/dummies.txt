@@ -299,7 +299,7 @@ function level_achievement(points, level) {
     )
 }
 
-level_achievement(10, level_1_1)
+level_achievement(5, level_1_1)
 level_achievement(10, level_1_2)
 level_achievement(10, level_2_1)
 
@@ -322,13 +322,13 @@ achievement(
 )
 
 level_achievement(10, level_4_1)
-level_achievement(15, level_5_1)
-level_achievement(15, level_5_2)
+level_achievement(10, level_5_1)
+level_achievement(10, level_5_2)
 
 achievement(id=53107,
     title = "The Full Story",
     description = "Complete the game from the start",
-    points = 50,
+    points = 25,
     trigger = once(current_screen() == level_data[level_1_1]["screen"]) &&      // 1-1
               once(current_screen() == level_data[level_1_2]["screen"]) &&      // 1-2
               current_screen() == level_data[level_5_2]["completion_screen"] && // complete 5-2
@@ -344,7 +344,7 @@ function pirate_hp() => byte(0x4B6)
 achievement(
     title = "Discus Dodger",
     description = "Defeat the Pirate without being hit",
-    points = 15,
+    points = 10,
     trigger = once(current_level() == level_3_boss) &&                      // start anywhere in level
               once(pirate_hp() == 14) && pirate_hp() >250 &&                // boss full health to dead
               trigger_no_damage()                                           // without getting hit
@@ -354,7 +354,7 @@ function weight_y() => byte(0x470)
 achievement(id=53123,
     title = "Careful Crusher",
     description = "Defeat Junkman without being hit",
-    points = 20,
+    points = 25,
     trigger = once(current_level() == level_5_2) &&                             // start anywhere in level
               never(current_level() != level_5_2) &&                            // prevents trigger during final cutscene
               once(screen_x() < 0x380) &&                                       // reset until engaged with boss
@@ -384,9 +384,9 @@ level_cones_achievement(10, level_1_2)
 level_cones_achievement(10, level_2_1) 
 level_cones_achievement(10, level_2_2) 
 level_cones_achievement(10, level_3_1) 
-level_cones_achievement(25, level_3_2) 
+level_cones_achievement(10, level_3_2) 
 level_cones_achievement(10, level_4_1) 
-level_cones_achievement(20, level_5_1) 
+level_cones_achievement(10, level_5_1) 
 
 // ==== Head Challenges (85) ====
 
@@ -402,9 +402,9 @@ function level_headed_achievement(points, level) {
     )
 }
 
-level_headed_achievement(20, level_2_1)
-level_headed_achievement(15, level_2_2)
-level_headed_achievement(40, level_3_2) // verified
+level_headed_achievement(25, level_2_1)
+level_headed_achievement(25, level_2_2)
+level_headed_achievement(50, level_3_2) // verified
 
 function trigger_complete_level_headless(level) {
     return (trigger_complete_level_core(level) && once(character_sprite() == level_data[level]["sprites"]["lost_head"])) ||
@@ -414,7 +414,7 @@ function trigger_complete_level_headless(level) {
 achievement(
     title = "It's Not a Disability",
     description = "Complete any level without your head",
-    points = 10,
+    points = 5,
     trigger = current_level() != 0 &&
               never(character_sprite() == sprites_slick["moving_forward"]) &&
               never(character_sprite() == sprites_spin["moving_forward"]) &&
@@ -483,7 +483,7 @@ function is_rocket_active() => byte(0x05B9) != 0
 achievement(
     title = "Reckless Speeding",
     description = "Maintain motion lines for at least 5 seconds",
-    points = 10,
+    points = 5,
     
     // NOTE: 5 seconds is 300 frames (60 * 5), I use 280  (4.66 seconds) to give the player a little lee-way
     // since counting it themselves might seem a bit faster than 5 actual seconds.
