@@ -265,9 +265,9 @@ achievement("My Favorite Reruns", "Correctly answer all the questions in a categ
 achievement("Off the Air", "Clear out all the questions in four channels in a single round", 5,
     current_screen() == screen_contestants && 
     never(trigger_round_change()) &&
-    repeated(4, once(channel_completed(1)) || once(channel_completed(2)) || once(channel_completed(3)) ||
-                once(channel_completed(4)) || once(channel_completed(5)) || once(channel_completed(6)) ||
-                once(channel_completed(7)) || once(channel_completed(8)) || once(channel_completed(9)))
+    tally(4, once(channel_completed(1)), once(channel_completed(2)), once(channel_completed(3)),
+             once(channel_completed(4)), once(channel_completed(5)), once(channel_completed(6)),
+             once(channel_completed(7)), once(channel_completed(8)), once(channel_completed(9)))
 )
 
 // GOOD

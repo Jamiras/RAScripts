@@ -215,16 +215,16 @@ type_kangaroo = 0xC4
 type_mammoth = 0xC7
 type_dino = 0xCA          // dino power-up counts as an enemy/sprite
 
-enemies_stunned = always_false()
-enemies_falling = always_false()
-enemies_eliminated = always_false()
+enemies_stunned = []
+enemies_falling = []
+enemies_eliminated = []
 enemies_cleared = always_true()
 for i in range(0,2)
 {
-    enemies_stunned = enemies_stunned || once(enemy_state(i) == state_stunned && prev(enemy_state(i)) == state_normal)
-    enemies_falling = enemies_falling || once(enemy_state(i) == state_falling && prev(enemy_state(i)) != state_falling)
-    enemies_eliminated = enemies_eliminated || 
-        (enemy_state(i) == state_dying && prev(enemy_state(i)) != state_dying && prev(enemy_state(i)) != state_falling)
+    array_push(enemies_stunned, once(enemy_state(i) == state_stunned && prev(enemy_state(i)) == state_normal))
+    array_push(enemies_falling, once(enemy_state(i) == state_falling && prev(enemy_state(i)) != state_falling))
+    array_push(enemies_eliminated,
+        (enemy_state(i) == state_dying && prev(enemy_state(i)) != state_dying && prev(enemy_state(i)) != state_falling))
     enemies_cleared = enemies_cleared && enemy_state(i) == state_dying
 }
 
@@ -246,7 +246,7 @@ achievement("Thwack!", "Knock out at least two enemies with a single swing of th
     trigger = trigger_in_level() && 
               never(current_animation() < animation_club_right) &&
               never(current_animation() == animation_dying) &&
-              repeated(2, enemies_stunned)
+              tally(2, enemies_stunned)
 )
 
 function is_falling(index) => byte(0xc563 + index * 15) == 3
@@ -258,7 +258,7 @@ for i in range(0,18)
 achievement("Going Down", "Make at least two enemies fall when dropping a single ingredient", 4,
     trigger = trigger_in_level() && 
               never(ingredient_falling_sum != 3) && // only one ingredient falling
-              repeated(2, enemies_falling)
+              tally(2, enemies_falling)
 )
 
 // GOOD - IMG: dino_chase
@@ -268,7 +268,7 @@ achievement("All Clear", "Eliminate all enemies in a level at the same time", 5,
 
 // GOOD - IMG: extermination
 achievement("Extermination", "Eliminate six or more enemies in a single level", 5,
-    trigger = repeated(6, enemies_eliminated) && 
+    trigger = tally(6, enemies_eliminated) && 
               never(current_level() != prev(current_level())) &&
               never(current_screen() == screen_continue) &&
               never(current_screen() == screen_main_menu) &&

@@ -837,14 +837,14 @@ achievement(
               never(character_class(1) != prev(character_class(1))) &&
               never(character_class(2) != prev(character_class(2))) &&
               never(character_class(3) != prev(character_class(3))) &&
-              repeated(2, once(character_class(0) == class_sage) ||
-                          once(character_class(0) == class_sage + 8) ||
-                          once(character_class(1) == class_sage) ||
-                          once(character_class(1) == class_sage + 8) ||
-                          once(character_class(2) == class_sage) ||
-                          once(character_class(2) == class_sage + 8) ||
-                          once(character_class(3) == class_sage) ||
-                          once(character_class(3) == class_sage + 8))
+              tally(2, once(character_class(0) == class_sage) ||
+                       once(character_class(0) == class_sage + 8) ||
+                       once(character_class(1) == class_sage) ||
+                       once(character_class(1) == class_sage + 8) ||
+                       once(character_class(2) == class_sage) ||
+                       once(character_class(2) == class_sage + 8) ||
+                       once(character_class(3) == class_sage) ||
+                       once(character_class(3) == class_sage + 8))
 )
 
 // + repurpose gambling achievement (1x)

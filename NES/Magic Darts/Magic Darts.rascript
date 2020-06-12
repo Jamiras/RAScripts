@@ -372,7 +372,7 @@ achievement(
     description = "Land all three darts in one round in the inner ring or bullseye",
     points = 10,
     trigger = current_player_is_player() && 
-              repeated(3, current_player_last_score() == 25 || current_player_last_score() == 50) &&
+              tally(3, current_player_last_score() == 25, current_player_last_score() == 50) &&
               unless(player_score(0) == prev(player_score(0))) && // only check when the score updates
               never(using_alien_aim()) &&                         // put resets in alt groups so they aren't paused
               (never(current_player() != 1) ||                    // reset counter if its not the player's turn
