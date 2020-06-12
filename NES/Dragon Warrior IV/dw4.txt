@@ -964,7 +964,7 @@ function trigger_defeat_necrosaro() => once(monster_group_type(0) == 255) && // 
 achievement(
     title = "We Don't Need Another Hero",
     description = "Defeat Necrosaro without the hero in the party",
-    points = 40,
+    points = 25,
     trigger = trigger_defeat_necrosaro() &&
               never(byte(0x616A) == 0x80) && // party_character(0) returns low4(0x616A), we need the whole byte
               never(byte(0x616B) == 0x80) &&
@@ -976,7 +976,7 @@ achievement(
 achievement(
     title = "Just the Two of Us",
     description = "Defeat Necrosaro with a party of two",
-    points = 50,
+    points = 25,
     trigger = trigger_defeat_necrosaro() &&
               never(byte(0x616C) != 0x00) && // party_character(2) returns low4(0x616C), we need the whole byte
               never(byte(0x616D) != 0x00)

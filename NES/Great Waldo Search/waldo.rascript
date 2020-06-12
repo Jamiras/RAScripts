@@ -41,22 +41,22 @@ function trigger_complete_level() => is_waldo_found() && is_scroll_found() && cu
 
 // ========================================================
 
-achievement(title = "There's Waldo", points = 10,
+achievement(title = "There's Waldo", points = 5,
             description = "Complete all of the Normal levels",
             trigger = trigger_begin_level() && current_screen() == screen_normal_victory && current_difficulty() == difficulty_normal
 )
 
-achievement(title = "Come Out, Come Out, Wherever You Are", points = 20,
+achievement(title = "Come Out, Come Out, Wherever You Are", points = 10,
             description = "Complete all of the Expert levels",
             trigger = trigger_begin_level() && current_screen() == screen_normal_victory && current_difficulty() == difficulty_expert
 )
 
-achievement(title = "Lost His Shoe Again", points = 15,
+achievement(title = "Lost His Shoe Again", points = 10,
             description = "Complete all of the levels in the Waldo Challenge",
             trigger = trigger_begin_level() && current_screen() == screen_waldo_victory
 )
 
-achievement(title = "Magic Carpet Ride", points = 5,
+achievement(title = "Magic Carpet Ride", points = 4,
             description = "Collect all the score markers in the magic carpet mini-game", 
             trigger = trigger_begin_level() && is_woof_found() && minigame_tickets() == 24
 )
@@ -64,22 +64,22 @@ achievement(title = "Magic Carpet Ride", points = 5,
 function trigger_time_limit(seconds) => seconds_elapsed() > 0 &&  // prevents trigger if player loses level
                                         seconds_elapsed() <= seconds && 
                                         never(current_clocks() < prev(current_clocks()))
-achievement(title = "Rapid Target", points = 5,
+achievement(title = "Rapid Target", points = 3,
             description = "Find Waldo within the first five seconds",
             trigger = trigger_begin_level() && is_waldo_found() && current_screen() <= screen_land_of_waldos && trigger_time_limit(5)
 )
 
-achievement(title = "Eagle Eyes", points = 5,
+achievement(title = "Eagle Eyes", points = 3,
             description = "Find Waldo and the Scroll within twenty seconds",
             trigger = trigger_begin_level() && trigger_complete_level() && trigger_time_limit(20)
 )
 
-achievement(title = "Time to Spare", points = 5,
+achievement(title = "Time to Spare", points = 3,
             description = "Find Waldo and the Scroll with four spare clocks",
             trigger = trigger_begin_level() && trigger_complete_level() && current_clocks() == 4
 )
 
-achievement(title = "No Time to Spare", points = 5,
+achievement(title = "No Time to Spare", points = 2,
             description = "Find Waldo and the Scroll without collecting any clocks",
             trigger = trigger_begin_level() && trigger_complete_level() && 
                       never(current_clocks() > prev(current_clocks())) && 
@@ -87,14 +87,14 @@ achievement(title = "No Time to Spare", points = 5,
                       unless(current_screen() == screen_carpet_ride)
 )
 
-achievement(title = "Treasure Hunter", points = 5,
+achievement(title = "Treasure Hunter", points = 2,
             description = "Find the thing described by a clue",
             trigger = trigger_begin_level() && current_difficulty() == difficulty_expert &&
                       is_clue_mode() && is_clue_found() && byte(0x009D) > 0
 )
 
 function trigger_found_item(index) => bit7(0x0607 + index * 8) == 1
-achievement(title = "Gotta Find Them All", points = 5,
+achievement(title = "Gotta Find Them All", points = 3,
             description = "Find five clocks and and five point markers in a level",
             trigger = trigger_begin_level() && never(current_screen() == screen_lvl_victory) && 
                       trigger_found_item(3) && trigger_found_item(4) && trigger_found_item(5) &&
@@ -103,7 +103,7 @@ achievement(title = "Gotta Find Them All", points = 5,
                       trigger_found_item(11) && trigger_found_item(12)
 )
 
-achievement(title = "Gotta Find Them All Again", points = 10,
+achievement(title = "Gotta Find Them All Again", points = 5,
             description = "Find five clocks, five point markers, and both clues in an expert level",
             trigger = trigger_begin_level() && never(current_screen() == screen_lvl_victory) && 
                       current_difficulty() == difficulty_expert &&
@@ -114,7 +114,7 @@ achievement(title = "Gotta Find Them All Again", points = 10,
                       trigger_found_item(13) && trigger_found_item(14)
 )
 
-achievement(title = "Score!", points = 10,
+achievement(title = "Score!", points = 5,
             description = "Score 50,000 points or more",
             trigger = trigger_begin_level() && byte(0x0095) >= 5
 )

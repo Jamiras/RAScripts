@@ -64,9 +64,9 @@ function spending_achievement(title, description, points, event_picture, month, 
 }
 
 milestone_achievement("A Place of Your Own", "Purchase the house", 10, picture_house, 4, 0)
-milestone_achievement("O Captain! My Captain!", "Purchase the yacht", 15, picture_harbor, 5, 0)
-spending_achievement("That's Just the Down Payment", "Win the auction", 20, picture_auction, 7, 1)
-milestone_achievement("A Room for Every Day of the Year", "Purchase the castle", 30, picture_castle, 7, 0)
+milestone_achievement("O Captain! My Captain!", "Purchase the yacht", 10, picture_harbor, 5, 0)
+spending_achievement("That's Just the Down Payment", "Win the auction", 10, picture_auction, 7, 1)
+milestone_achievement("A Room for Every Day of the Year", "Purchase the castle", 25, picture_castle, 7, 0)
 
 // ==== Frivolous Spending (35) ====
 // 5 - Buy a dog (4/15)  [415 - Dog]
@@ -101,14 +101,14 @@ achievement(
 // 10 - Have at least 3 shares of five different companies  [XXX - Newspaper]
 // 10 - Complete the game without Prisila ever reminding you to spend time with her or work out [603 - Marriage]
 
-milestone_achievement("You Must Have Really Wanted That Boat", "Purchase the yacht on or before 5-15", 20, picture_harbor, 5, 15)
-milestone_achievement("Early Retirement", "Purchase the castle on or before 7-15", 20, picture_castle, 7, 15)
+milestone_achievement("You Must Have Really Wanted That Boat", "Purchase the yacht on or before 5-15", 10, picture_harbor, 5, 15)
+milestone_achievement("Early Retirement", "Purchase the castle on or before 7-15", 25, picture_castle, 7, 15)
 
 function trigger_no_loan() => bit7(0x03DE) == 0
 achievement(
     title = "Debt-free Castle", 
     description = "Purchase the castle without any outstanding loans",
-    points = 20,
+    points = 25,
     trigger = current_picture() == picture_castle &&
               current_month() == 7 &&
               trigger_no_loan() && no_cheating()
@@ -120,7 +120,7 @@ function share_count(index) => word(0x03EB + index * 5)
 achievement(
     title = "Concentrated Investment",
     description = "Have at least 30 shares of one company",
-    points = 10,
+    points = 5,
     trigger = no_cheating() &&
               current_month() != 255 &&                          // prevent trigger on initial load
               ((share_count(0) >= 30 && share_type(0) != 255) ||

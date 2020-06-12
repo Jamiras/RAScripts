@@ -182,7 +182,7 @@ achievement(title = "Quicker than Quicksand", description = "Cast the swamp spel
             trigger = trigger_in_game() && trigger_cast_swamp())
 
 function trigger_cast_knight(count) => trigger_cast(spell_knight, count) && once(prev(spell_being_cast2()) == spell2_knight)
-achievement(title = "The Mighty Warrior", description = "Cast the knight spell", points = 4,
+achievement(title = "The Mighty Warrior", description = "Cast the knight spell", points = 5,
             trigger = trigger_in_game() && trigger_cast_knight(1))
 
 function trigger_cast_volcano(count) => trigger_cast(spell_volcano, count)
@@ -190,12 +190,12 @@ achievement(title = "Instant Mountain", description = "Cast the volcano spell", 
             trigger = trigger_in_game() && trigger_cast_volcano(1))
 
 function trigger_cast_flood(count) => trigger_cast(spell_knight, count) && once(prev(spell_being_cast2()) == spell2_flood)
-achievement(title = "Strange Tides", description = "Cast the flood spell", points = 7,
+achievement(title = "Strange Tides", description = "Cast the flood spell", points = 5,
             trigger = trigger_in_game() && trigger_cast_flood(1))
 
 // armageddon => $000C => 00C0 => 01C1 (buildings disappear) => 01FA (start moving to center)
 function trigger_cast_armageddon() => trigger_cast(spell_knight, 1) && repeated(2, prev(spell_being_cast2()) == spell2_armageddon)
-achievement(title = "There Can Be Only One", description = "Cast the armageddon spell", points = 9,
+achievement(title = "There Can Be Only One", description = "Cast the armageddon spell", points = 5,
             trigger = trigger_in_game() && trigger_cast_armageddon())
 
 // ===== Terrain (10x 70) =====
@@ -242,15 +242,15 @@ function landscape_achievement(landscape, points) {
 }
 
 landscape_achievement(landscape_grassy_plains, 5)
-landscape_achievement(landscape_desert, 6)
-landscape_achievement(landscape_snow_and_ice, 8)
-landscape_achievement(landscape_rock_and_lava, 7)
-landscape_achievement(landscape_japanesque, 7)
-landscape_achievement(landscape_francaise, 6)
-landscape_achievement(landscape_silly_land, 8)
-landscape_achievement(landscape_bit_land, 7)
-landscape_achievement(landscape_cake_land, 7)
-landscape_achievement(landscape_piglet_world, 9)
+landscape_achievement(landscape_desert, 5)
+landscape_achievement(landscape_snow_and_ice, 10)
+landscape_achievement(landscape_rock_and_lava, 10)
+landscape_achievement(landscape_japanesque, 10)
+landscape_achievement(landscape_francaise, 10)
+landscape_achievement(landscape_silly_land, 10)
+landscape_achievement(landscape_bit_land, 10)
+landscape_achievement(landscape_cake_land, 10)
+landscape_achievement(landscape_piglet_world, 10)
 
 // ===== Progression (8x 110) =====
 //  5 - - Complete Genesis (0)
@@ -279,13 +279,13 @@ function level_range_achievement(min_level, max_level, points, title, descriptio
                 trigger = trigger_win_game() && current_level() >= min_level && current_level() <= max_level)
 }
 level_range_achievement(  0,   0,  5, "In the Beginning", "Conquer 'Genesis' (battle ID 0)")
-level_range_achievement(  1,  99,  7, "Well Done Mortal", "Conquer a world with a battle ID between 1 and 99")
-level_range_achievement(100, 199,  9, "Well Done Immortal", "Conquer a world with a battle ID between 100 and 199")
-level_range_achievement(200, 399, 11, "Well Done Eternal", "Conquer a world with a battle ID between 200 and 399")
-level_range_achievement(400, 599, 13, "Well Done Greater Being", "Conquer a world with a battle ID between 400 and 599")
-level_range_achievement(600, 799, 15, "Well Done Greater Diety", "Conquer a world with a battle ID between 600 and 799")
-level_range_achievement(800, 987, 20, "Well Done Greater King", "Conquer a world with a battle ID between 800 and 987")
-level_range_achievement(988, 988, 30, "You Have Conquered Evil", "Conquer 'V4RY5ZL2N' (battle ID 988)")
+level_range_achievement(  1,  99,  5, "Well Done Mortal", "Conquer a world with a battle ID between 1 and 99")
+level_range_achievement(100, 199, 10, "Well Done Immortal", "Conquer a world with a battle ID between 100 and 199")
+level_range_achievement(200, 399, 10, "Well Done Eternal", "Conquer a world with a battle ID between 200 and 399")
+level_range_achievement(400, 599, 10, "Well Done Greater Being", "Conquer a world with a battle ID between 400 and 599")
+level_range_achievement(600, 799, 10, "Well Done Greater Diety", "Conquer a world with a battle ID between 600 and 799")
+level_range_achievement(800, 987, 25, "Well Done Greater King", "Conquer a world with a battle ID between 800 and 987")
+level_range_achievement(988, 988, 25, "You Have Conquered Evil", "Conquer 'V4RY5ZL2N' (battle ID 988)")
 
 // ===== Challenges (15x 190) =====
 //  5 - - Score at least 90000 points
@@ -309,7 +309,7 @@ achievement(title = "Diety in Training", description = "Conquer a world with at 
             trigger = trigger_win_game() && ((low4(0x034C) >= 1) || (low4(0x034D) >= 9)))
 achievement(title = "Apprentice Diety", description = "Conquer a world with at least 120,000 points", points = 10,
             trigger = trigger_win_game() && ((low4(0x034C) == 1 && low4(0x034D) >= 2) || low4(0x034C) > 1))
-achievement(title = "Master Diety", description = "Conquer a world with at least 150,000 points", points = 20,
+achievement(title = "Master Diety", description = "Conquer a world with at least 150,000 points", points = 10,
             trigger = trigger_win_game() && ((low4(0x034C) == 1 && low4(0x034D) >= 5) || low4(0x034C) > 1))
             
 function num_castles() => byte(0x0126)
@@ -323,9 +323,9 @@ achievement(title = "Feudal Dispute", description = "Conquer a world with at lea
             trigger = trigger_win_game() && num_battles() >= 25)
 achievement(title = "Warring Tribes", description = "Conquer a world with at least 100 battles", points = 10,
             trigger = trigger_win_game() && num_battles() >= 100)
-achievement(title = "The Army Victorious", description = "Conquer a world with at least 300 battles", points = 15,
+achievement(title = "The Army Victorious", description = "Conquer a world with at least 300 battles", points = 10,
             trigger = trigger_win_game() && num_battles() >= 300)
-achievement(title = "Divine Wrath", description = "Conquer a world without any battles", points = 30,
+achievement(title = "Divine Wrath", description = "Conquer a world without any battles", points = 25,
             trigger = trigger_win_game() && num_battles() == 0)
 
 // earthquake, swamp, knight, volcano, floor, and armageddon all give points. this achievement works by turning itself
@@ -335,7 +335,7 @@ achievement(title = "Divine Wrath", description = "Conquer a world without any b
 // flag so it won't trigger when they do win. for worlds with less than 5 followers, this means it's safe to cast 
 // earthquake once (shhh).
 // put the PauseIf in an alt group so it doesn't prevent the once() in trigger_game_from_start()
-achievement(title = "Trust Thy Followers", points = 30,
+achievement(title = "Trust Thy Followers", points = 25,
             description = "Conquer a world without using any divine powers other than raise+lower land and papal magnet",
             trigger = trigger_game_from_start() && trigger_game_started() && never(is_cpu_vs_cpu()) &&
                       (is_game_won() && (unless(current_score() <= 45) && never(!is_game_summary_screen())) || 

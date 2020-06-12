@@ -390,7 +390,7 @@ dialog_achievement(location_reinhart, 0x35B208, 0x09D8CA, 3, "A Pretty Little Th
 
 // === 08 - Salabona ==================
 
-story_achievement(location_volcano, bit3(0x21AB), 7, "From the Heart of the Volcano", "Collect the Ring of Flames")
+story_achievement(location_volcano, bit3(0x21AB), 5, "From the Heart of the Volcano", "Collect the Ring of Flames")
 story_achievement(location_waterfall_cave_entrance, bit1(0x223C), 3, "The Second Ring", "Collect the Ring of Water")
 
 story_achievement(location_oracleberry, bit5(0x21B6), 2, "You Are Here", "Purchase the Wayfarer's Map")
@@ -436,7 +436,7 @@ achievement(
 )
 
 story_achievement(location_granvania, bit3(0x21AD), 5, "A Kingdom of Your Own", "Be crowned king")
-story_achievement(location_demons_tower, bit7(0x21C1), 8, "Guardian of the Tower", "Defeat Jahmi")
+story_achievement(location_demons_tower, bit7(0x21C1), 10, "Guardian of the Tower", "Defeat Jahmi")
 
 // === 10 - Eight Years Later =========
 
@@ -504,7 +504,7 @@ story_achievement(location_ruraphin, bit0(0x21BD), 4, "Another Ancient Spell", "
 
 // === 14 - Tower of Boble =======
 
-story_achievement(location_tower_of_boble, bit3(0x21D5), 9, "Avenged", "Avenge your father's death")
+story_achievement(location_tower_of_boble, bit3(0x21D5), 10, "Avenged", "Avenge your father's death")
 story_achievement(location_zenithia_castle, bit4(0x21B5), 4, "The Master Revealed", "Restore Master Dragon to his true form")
 
 
@@ -543,14 +543,14 @@ achievement(
                (trigger_battle_text(0x078AB8) && byte(0x1075) == item_ivols_book))   // jp
 )
 
-story_achievement(location_great_temple, bit3(0x21BC), 7, "End of the Cult", "Defeat Ivol")
+story_achievement(location_great_temple, bit3(0x21BC), 10, "End of the Cult", "Defeat Ivol")
 
 // make sure to rebuild your party at Ruida's, grab the Ring of Life, Ring of Water, Ring of Flames, and Final Key from the depository
 
 item_king_metal_sword = 0x19
 function current_casino_coins() => dword(0x203C) // actually only 24-bit, but the last byte won't matter for comparative purposes
 achievement(
-    title = "King Metal Sword", points = 8,
+    title = "King Metal Sword", points = 5,
     description = "Purchase the King Metal Sword", // 50000 casino coins
     trigger = trigger_in_game() && current_location() == location_oracleberry && 
               byte(0x0F19) == 0x0C && // talking to prize vendor
@@ -572,7 +572,7 @@ story_achievement(location_evil_mountain_2, bit1(0x21E0), 4, "A Mother's Love", 
 
 enemy_king_metal = 0xA2
 achievement(
-    title = "Quicker than Quicksilver", points = 7,
+    title = "Quicker than Quicksilver", points = 5,
     description = "Defeat a King Metal",
     trigger = trigger_in_game() && trigger_win_battle(location_any, enemy_king_metal) && 
               (word(0x10FC) >= 30000 || byte(0x010FE) > 0)
@@ -641,7 +641,7 @@ achievement(
 )
 
 achievement(
-    title = "Heroic Trainer", points = 15,
+    title = "Heroic Trainer", points = 25,
     description = "Defeat Mildrath using only recruited monsters",
     trigger = trigger_in_game() && trigger_in_battle() && trigger_battle_over() && current_location() == location_evil_mountain_2 &&
               enemy_type(0) >= enemy_mildrath2 && enemy_type(0) <= enemy_mildrath5 && 
@@ -657,10 +657,10 @@ achievement(
 // $2000:80 - indicates bonus dungeon available
 
 enemy_esturk = 0xE5
-battle_achievement(location_bonus_dungeon, enemy_esturk, 20, "Until Next Time", "Defeat Esturk")
+battle_achievement(location_bonus_dungeon, enemy_esturk, 25, "Until Next Time", "Defeat Esturk")
 
 achievement(
-    title = "Underworld Challenge", points = 30, 
+    title = "Underworld Challenge", points = 25, 
     description = "Defeat Esturk in 25 turns or less (no cheating)", 
     trigger = trigger_win_battle(location_bonus_dungeon, enemy_esturk) && byte(0x101A) <= 24 && trigger_not_cheating()
 )    
@@ -668,7 +668,7 @@ achievement(
 // === Other =============
 
 achievement(
-    title = "That's Got To Hurt", points = 6,
+    title = "That's Got To Hurt", points = 5,
     description = "Do at least 500 damage to one enemy with a single attack (no cheating)",
     trigger = trigger_in_game() && trigger_in_battle() &&
               high4(0x10F5) == 0 &&   // party member attacking
@@ -1871,13 +1871,13 @@ function trigger_recruit_unique(count)
 }
 
 achievement(
-    title = "Monster Recruiter", points = 4,
+    title = "Monster Recruiter", points = 3,
     description = "Recruit five unique monsters",
     trigger = trigger_recruit_unique(5)
 )
 
 achievement(
-    title = "Monster Hunter", points = 7,
+    title = "Monster Hunter", points = 5,
     description = "Recruit ten unique monsters",
     trigger = trigger_recruit_unique(10)
 )
@@ -1997,13 +1997,13 @@ function trigger_small_medals(small_medals)
 }
 
 achievement(
-    title = "Small Medal Collector", points = 15,
+    title = "Small Medal Collector", points = 25,
     description = "Collect 19 small medals from treasure chests",
     trigger = trigger_small_medals(chest_small_medals)
 )
 
 achievement(
-    title = "Small Medal Hunter", points = 30,
+    title = "Small Medal Hunter", points = 25,
     description = "Find 29 small medals hidden in pots, barrels, dressers, and other places",
     trigger = trigger_small_medals(other_small_medals)
 )

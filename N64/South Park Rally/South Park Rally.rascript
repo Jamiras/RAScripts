@@ -314,38 +314,38 @@ achievement(
 )
 
 achievement(
-    title = "Spring Cleaning", points = 6,
+    title = "Spring Cleaning", points = 5,
     description = "Win the Spring Cleaning championship race",
     trigger = trigger_win_race(race_spring_cleaning, byte(0x0872C0) == 1)
 )
 
 achievement(
-    title = "Read-a-Book Day", points = 6,
+    title = "Read-a-Book Day", points = 5,
     description = "Win the Read-a-Book Day championship race",
     trigger = trigger_win_race(race_read_a_book_day, byte(0x0872A0) == 1)
 )
 
 // $0B7B8C = eggs
 achievement(
-    title = "Easter", points = 7,
+    title = "Easter", points = 5,
     description = "Win the Easter championship race",
     trigger = trigger_win_race(race_easter, byte(0x0872B0) == 1)
 )
 
 achievement(
-    title = "Pink Lemonade", points = 7,
+    title = "Pink Lemonade", points = 5,
     description = "Win the Pink Lemonade championship race",
     trigger = trigger_win_race(race_pink_lemonade, byte(0x0872D4) == 1)
 )
 
 achievement(
-    title = "Memorial Day", points = 8,
+    title = "Memorial Day", points = 10,
     description = "Win the Memorial Day championship race",
     trigger = trigger_win_race(race_memorial_day, byte(0x087240) == 1)
 )
 
 achievement(
-    title = "Independance Day", points = 9,
+    title = "Independance Day", points = 10,
     description = "Win the 4th of July championship race",
     trigger = trigger_win_race(race_fourth_of_july, byte(0x087270) == 1)
 )
@@ -357,19 +357,19 @@ achievement(
 )
 
 achievement(
-    title = "Thanksgiving", points = 12,
+    title = "Thanksgiving", points = 10,
     description = "Win the Thanksgiving championship race",
     trigger = trigger_win_race(race_thanksgiving, byte(0x0872F0) == 1)
 )
 
 achievement(
-    title = "Christmas", points = 15,
+    title = "Christmas", points = 10,
     description = "Win the Christmas championship race",
     trigger = trigger_win_race(race_christmas, byte(0x087230) == 1)
 )
 
 achievement(
-    title = "New Year's Eve", points = 20,
+    title = "New Year's Eve", points = 25,
     description = "Win the New Year's Eve championship race",
     trigger = trigger_win_race(race_new_years_eve, never(current_tokens() < prev(current_tokens())) &&
                                ((once(word(0x0B7D72) == 0x42F0) && dword(0x0B7D70) == 0) || // Death, Ike
@@ -425,8 +425,8 @@ function pinkeye_achievement(track, points)
     )    
 }
 
-pinkeye_achievement(track_farm, 2)
-pinkeye_achievement(track_mountain, 2)
+pinkeye_achievement(track_farm, 3)
+pinkeye_achievement(track_mountain, 3)
 pinkeye_achievement(track_sewers, 3)
 
 // pinkeye timer is a $0B349C on the valentine's day track, but something else also uses that timer (hit by bow?)
@@ -465,13 +465,13 @@ function trigger_unlock(unlockable, race) => trigger_unlock_immediate(unlockable
                                              word(0x0F1334) == 0x0140 && word(0x0F1336) != 0x0078 && prev(word(0x0F1336)) == 0x0078
 
 achievement(
-    title = "Unlockables Checklist", points = 6,
+    title = "Unlockables Checklist", points = 5,
     description = "Win the Rally Days 1 championship race without driving over a single item or boost box",
     trigger = trigger_unlock(unlockable_cheat_sheet, race_rally_days_1)
 )
 
 achievement(
-    title = "Mr. Garrison", points = 3,
+    title = "Mr. Garrison", points = 5,
     description = "Be the only racer to activate all four checkpoints in the Rally Days 2 championship race",
     trigger = trigger_unlock(unlockable_garrison, race_rally_days_2)
 )
@@ -483,7 +483,7 @@ achievement(
 )
 
 achievement(
-    title = "Bebe", points = 3,
+    title = "Bebe", points = 5,
     description = "Lose the Cow Days championship race without touching the cure",
     trigger = trigger_unlock(unlockable_bebe, race_cow_days)
 )
@@ -492,7 +492,7 @@ achievement(
 // Second ow on other parapet - launch from upstairs
 // Third cow behind ice skater painting in boat ride - cow tunnel leads to roof
 achievement(
-    title = "Shelly", points = 9,
+    title = "Shelly", points = 10,
     description = "Find the three golden cows in the Valentine's Day championship race",
     trigger = trigger_unlock_immediate(unlockable_shelly, race_valentines_day)
 )
@@ -522,19 +522,19 @@ achievement(
 )
 
 achievement(
-    title = "Ike", points = 9,
+    title = "Ike", points = 10,
     description = "Find the golden cow in the Memorial Day championship race", // green box for phillip fart power, hit phillip booster,
     trigger = trigger_unlock_immediate(unlockable_ike, race_memorial_day)      // then fart onto plane wing
 )
 
 achievement(
-    title = "Visitor", points = 5,
+    title = "Visitor", points = 10,
     description = "Collect both pot pies in the Memorial Day championship race", // One is in a narrow cliff area just above checkpoint 1. The
     trigger = trigger_unlock_immediate(unlockable_visitor, race_memorial_day)    // other is on a narrow passage next to checkpoint 4. 
 )
 
 achievement(
-    title = "Mephesto", points = 7,
+    title = "Mephesto", points = 5,
     description = "Win the 4th of July championship race without continuing",
     trigger = trigger_unlock(unlockable_mephesto, race_fourth_of_july)
 )
@@ -558,13 +558,13 @@ achievement(
 )
 
 achievement(
-    title = "Marvin", points = 4,
+    title = "Marvin", points = 5,
     description = "Lose the Thanksgiving championship race without collecting any turkeys",
     trigger = trigger_unlock(unlockable_marvin, race_thanksgiving)
 )
 
 achievement(
-    title = "Jesus", points = 12,
+    title = "Jesus", points = 10,
     description = "Win the Christmas championship race without continuing",
     trigger = trigger_unlock(unlockable_jesus, race_christmas)
 )
@@ -584,7 +584,7 @@ achievement(
 )
 
 achievement(
-    title = "Satan", points = 15,
+    title = "Satan", points = 10,
     description = "Win the New Years Eve championship race without continuing",
     trigger = trigger_unlock(unlockable_satan, race_new_years_eve)
 )
@@ -595,7 +595,7 @@ achievement(
 // rat - red box
 // cow/dog - blue box
 achievement(
-    title = "Pig and Elephant DNA Just Don't Splice", points = 4,
+    title = "Pig and Elephant DNA Just Don't Splice", points = 5,
     description = "Have the rat, cow, and dog items in your inventory at the same time during the Rally Days 1 championship race",
     trigger = trigger_in_race(race_rally_days_1) && 
               ((byte(0x0B4683) == weapon_rat && byte(0x0B468B) == weapon_cow && byte(0x0B4693) == weapon_dog) ||
@@ -607,7 +607,7 @@ achievement(
 )
 
 achievement(
-    title = "Drugs Are Bad, Mmmkay?", points = 6,
+    title = "Drugs Are Bad, Mmmkay?", points = 5,
     description = "Win the Rally Days 2 championship race without picking up any items",
     trigger = trigger_win_race(race_rally_days_2, byte(0x087230) == 1) &&
               never(byte(0x0B46EB) != 0xFF)
@@ -622,7 +622,7 @@ achievement(
 // $0B7E4C = opponent 5
 health_80_percent = 0x42BEFFFE
 achievement(
-    title = "I'm Super! Thanks for Asking", points = 6,
+    title = "I'm Super! Thanks for Asking", points = 5,
     description = "Win the Cow Days championship race at least 80% ahead of everyone else",
     trigger = trigger_win_race(race_cow_days, is_winner()) &&
               ((once(racer_health(0) == 0x42F00000) && racer_health(0) == 0 &&
@@ -646,7 +646,7 @@ achievement(
 )
 
 achievement(
-    title = "They're Coming Right For Us!", points = 14,
+    title = "They're Coming Right For Us!", points = 10,
     description = "Hit all five opponents in the Valentine's Day championship race without losing the bow and arrow",
     trigger = trigger_in_race(race_valentines_day) &&
               never(dword(0x0B145F) == 0) &&   // $0B145C is 0x800B6C98 when holding the bow
@@ -657,7 +657,7 @@ achievement(
 
 // $0B22AC/$0B22B0/$0B22B4 = non-zero when holding underpants, 0 when not
 achievement(
-    title = "Phase 3 - Profit", points = 9,
+    title = "Phase 3 - Profit", points = 10,
     description = "Hold all three pairs of underpants in the Spring Cleaning championship race",
     trigger = trigger_in_race(race_spring_cleaning) && trigger_start_race() &&
               dword(0x0B22AC) != 0 && dword(0x0B22B0) != 0 && dword(0x0B22B4) != 0
@@ -665,7 +665,7 @@ achievement(
 
 function collect_pot_pie(index) => dword(0x0B7AEC + index * 8) > prev(dword(0xB7AF0 + index * 8))
 achievement(
-    title = "No Kitty! This is My Pot-Pie", points = 4,
+    title = "No Kitty! This is My Pot-Pie", points = 5,
     description = "Collect a pot pie in the Memorial Day championship race while having a kitty in your inventory",
     trigger = trigger_in_race(race_memorial_day) && trigger_start_race() &&
              (byte(0x0B271B) == weapon_kitty && collect_pot_pie(0) ||
@@ -688,7 +688,7 @@ achievement(
 //)
 
 achievement(
-    title = "Hello There, Children", points = 6,
+    title = "Hello There, Children", points = 10,
     description = "Deliver at least 15 candies during the Halloween championsip race",
     trigger = trigger_in_race(race_halloween) &&
               ((byte(0x0B8B44) >= 15 && byte(0x0B8B45) == 0) || // Cartman, Chef, Death, Ike, Kenny, Kyle, Stan, Terrance and Phillip
@@ -706,7 +706,7 @@ achievement(
 )
 
 achievement(
-    title = "Screw You Guys, I'm Going Home", points = 4,
+    title = "Screw You Guys, I'm Going Home", points = 5,
     description = "Quit the championship after winning a race",
     trigger = once(is_before_race()) && never(current_race() != prev(current_race())) && is_winner() && // win race
               once(word(0xF1334) == 0x03E8) && // race results screen - prevents quitting during race if winning
@@ -714,7 +714,7 @@ achievement(
 )
 
 achievement(
-    title = "And Meet Some Friends of Mine", points = 2,
+    title = "And Meet Some Friends of Mine", points = 1,
     description = "Watch the complete theme song",
     trigger = current_screen() == screen_title_song && word(0x086CA6) == 0x41E0
 )

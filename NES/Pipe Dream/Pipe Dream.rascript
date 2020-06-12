@@ -90,26 +90,26 @@ function achievement_game_a(level, points) {
 }
 
 achievement_game_a(1, 5)
-achievement_game_a(2, 6)
-achievement_game_a(3, 7)
-achievement_game_a(4, 8)
-achievement_game_a(5, 9)
-achievement_game_a(6, 10)
-achievement_game_a(7, 11)
-achievement_game_a(8, 12)
-achievement_game_a(9, 13)
-achievement_game_a(10, 14)
-achievement_game_a(11, 15)
-achievement_game_a(12, 16)
-achievement_game_a(13, 17)
-achievement_game_a(14, 18)
-achievement_game_a(15, 19)
-achievement_game_a(16, 20)
+achievement_game_a(2, 5)
+achievement_game_a(3, 5)
+achievement_game_a(4, 5)
+achievement_game_a(5, 5)
+achievement_game_a(6, 5)
+achievement_game_a(7, 10)
+achievement_game_a(8, 10)
+achievement_game_a(9, 10)
+achievement_game_a(10, 10)
+achievement_game_a(11, 10)
+achievement_game_a(12, 10)
+achievement_game_a(13, 10)
+achievement_game_a(14, 10)
+achievement_game_a(15, 25)
+achievement_game_a(16, 25)
 
 achievement(
     title = "Apprentice Plumber",
     description = "Complete level 10 in mode B",
-    points = 20,
+    points = 10,
     trigger = once(current_level() == 1) &&
               current_level() == 10 &&
               current_mode() == mode_b &&
@@ -120,7 +120,7 @@ achievement(
 achievement(
     title = "Master Plumber",
     description = "Complete level 16 in mode B",
-    points = 30,
+    points = 25,
     trigger = once(current_level() == 1) &&
               current_level() == 16 &&
               current_mode() == mode_b &&
@@ -169,7 +169,7 @@ function trigger_pipes(count) => repeated(count, word(0x00B8) != prev(word(0x00B
 achievement(
     title = "A Series of Tubes",
     description = "Have flooz pass through at least 50 sections of pipe on a single level",
-    points = 10,
+    points = 5,
     trigger = trigger_during_level() &&
               trigger_no_cheating() &&
               trigger_pipes(50)
@@ -232,7 +232,7 @@ function trigger_tunnels(count) => byte(0x0071) == count
 achievement(
     title = "Four Dimensional Plumbing",
     description = "Pass through four tunnels on a single level",
-    points = 15,
+    points = 10,
     trigger = trigger_during_level() &&
               trigger_no_cheating() &&
               trigger_tunnels(4) 
@@ -253,7 +253,7 @@ achievement(
 achievement(
     title = "The Long Way Around",
     description = "Earn at least 50,000 points from a single loop",
-    points = 20,
+    points = 25,
     trigger = trigger_during_level() &&
               trigger_no_cheating() &&
               trigger_complete_loop() &&
@@ -330,7 +330,7 @@ achievement(
 achievement(
     title = "Reservoir of Flooz",
     description = "Have at least 1,000,000 points",
-    points = 15,
+    points = 25,
     trigger = trigger_in_game() &&
               trigger_no_cheating() &&
               trigger_score(1000000)
@@ -339,7 +339,7 @@ achievement(
 achievement(
     title = "So Much Flooz",
     description = "Have at least 500,000 points in mode C",
-    points = 15,
+    points = 25,
     trigger = trigger_in_game() &&
               trigger_no_cheating() &&
               current_mode() == mode_c &&

@@ -240,20 +240,20 @@ function flawless_level_achievement(location, points, title, description) {
                           never(die_as_lala()))
 }
 
-level_achievement(location_level_1, 3, "Which Came First?", "Collect the rainbow egg")
-level_achievement(location_level_2, 3, "The Key to the Kingdom", "Collect the key")
-level_achievement(location_level_3, 7, "The Eastern Reaches", "Reach the eastern part of the realm")
+level_achievement(location_level_1, 4, "Which Came First?", "Collect the rainbow egg")
+level_achievement(location_level_2, 4, "The Key to the Kingdom", "Collect the key")
+level_achievement(location_level_3, 5, "The Eastern Reaches", "Reach the eastern part of the realm")
 level_achievement(location_level_4, 5, "Bested Snakey", "Defeat the Snakey boss")
 level_achievement(location_level_5, 5, "Bested Alma", "Defeat the Alma boss")
 level_achievement(location_level_6, 5, "Bested Rocky", "Defeat the Rocky boss")
 level_achievement(location_level_7, 5, "Bested Leeper", "Defeat the Leeper boss")
-level_achievement(location_level_8, 6, "All Aboard", "Complete the lakeside castle")
-level_achievement(location_level_9, 7, "Bested Skull", "Defeat the Skull boss")
-level_achievement(location_level_10, 7, "Bested Gol", "Defeat the Gol boss")
-level_achievement(location_level_11, 7, "Bested Medusa", "Defeat the Medusa boss")
-level_achievement(location_level_12, 7, "Bested Don Medusa", "Defeat the Don Medusa boss")
+level_achievement(location_level_8, 5, "All Aboard", "Complete the lakeside castle")
+level_achievement(location_level_9, 5, "Bested Skull", "Defeat the Skull boss")
+level_achievement(location_level_10, 5, "Bested Gol", "Defeat the Gol boss")
+level_achievement(location_level_11, 5, "Bested Medusa", "Defeat the Medusa boss")
+level_achievement(location_level_12, 5, "Bested Don Medusa", "Defeat the Don Medusa boss")
 
-achievement(title = "Captured", description = "Confront King Egger", points = 12,
+achievement(title = "Captured", description = "Confront King Egger", points = 10,
             trigger = current_location() == location_level_13 &&
                       progress(location_level_13) == progress_boss &&
                       high4(0x0052) == 0x5)
@@ -262,27 +262,27 @@ level_achievement(location_level_14, 10, "Underworld I", "Complete the first und
 level_achievement(location_level_15, 10, "Underworld II", "Complete the second underworld palace")
 level_achievement(location_level_16, 10, "Underworld III", "Complete the third underworld palace")
 
-achievement(title = "Happily Ever After", description = "Cure the inhabitants of Eggerland", points = 20,
+achievement(title = "Happily Ever After", description = "Cure the inhabitants of Eggerland", points = 25,
             trigger = current_location() == location_level_17 && 
                       byte(0x003F) == 0x0C)
 
-flawless_level_achievement(location_level_1, 7, "Flawless Egg Cave", "the egg cave")
-flawless_level_achievement(location_level_2, 7, "Flawless Key Cave", "the key cave")
-flawless_level_achievement(location_level_3, 14, "Flawless Towers", "both towers")
+flawless_level_achievement(location_level_1, 5, "Flawless Egg Cave", "the egg cave")
+flawless_level_achievement(location_level_2, 5, "Flawless Key Cave", "the key cave")
+flawless_level_achievement(location_level_3, 10, "Flawless Towers", "both towers")
 flawless_level_achievement(location_level_4, 10, "Flawless Snakey's Cave", "Snakey's cave")
 flawless_level_achievement(location_level_5, 10, "Flawless Alma's Cave", "Alma's cave")
 flawless_level_achievement(location_level_6, 10, "Flawless Rocky's Cave", "Rocky's cave")
 flawless_level_achievement(location_level_7, 10, "Flawless Leeper's Cave", "Leeper's cave")
-flawless_level_achievement(location_level_8, 12, "Flawless Lakeside Castle", "the lakeside castle")           
-flawless_level_achievement(location_level_9, 14, "Flawless Skull's Pyramid", "Skull's pyramid")
-flawless_level_achievement(location_level_10, 14, "Flawless Gol's Pyramid", "Gol's pyramid")
-flawless_level_achievement(location_level_11, 14, "Flawless Medusa's Pyramid", "Medusa's pyramid")
-flawless_level_achievement(location_level_12, 14, "Flawless Don Medusa's Pyramid", "Don Medusa's pyramid")
-flawless_level_achievement(location_level_13, 24, "Flawless Castle Egger", "King Egger's castle")
-flawless_level_achievement(location_level_14, 20, "Flawless Underworld I", "the first underworld palace")
-flawless_level_achievement(location_level_15, 20, "Flawless Underworld II", "the second underworld palace")
-flawless_level_achievement(location_level_16, 20, "Flawless Underworld III", "the third underworld palace")
-flawless_level_achievement(location_level_17, 40, "Flawless Egger's Palace", "the final underworld palace")
+flawless_level_achievement(location_level_8, 10, "Flawless Lakeside Castle", "the lakeside castle")           
+flawless_level_achievement(location_level_9, 10, "Flawless Skull's Pyramid", "Skull's pyramid")
+flawless_level_achievement(location_level_10, 10, "Flawless Gol's Pyramid", "Gol's pyramid")
+flawless_level_achievement(location_level_11, 10, "Flawless Medusa's Pyramid", "Medusa's pyramid")
+flawless_level_achievement(location_level_12, 10, "Flawless Don Medusa's Pyramid", "Don Medusa's pyramid")
+flawless_level_achievement(location_level_13, 25, "Flawless Castle Egger", "King Egger's castle")
+flawless_level_achievement(location_level_14, 25, "Flawless Underworld I", "the first underworld palace")
+flawless_level_achievement(location_level_15, 25, "Flawless Underworld II", "the second underworld palace")
+flawless_level_achievement(location_level_16, 25, "Flawless Underworld III", "the third underworld palace")
+flawless_level_achievement(location_level_17, 25, "Flawless Egger's Palace", "the final underworld palace")
 
 achievement(title = "Not a Helpless Princess", description = "Defeat a boss other than King Egger as Lala", points = 3,
             trigger = current_character() == character_lala &&
@@ -292,7 +292,7 @@ achievement(title = "Not a Helpless Princess", description = "Defeat a boss othe
                       ((once(boss_hp() > 0) && boss_hp() == 0) ||
                        (once(boss2_hp() > 0) && boss2_hp() == 0)))
             
-achievement(title = "Forgot Something?", description = "Reach the top of the tower without the rainbow egg", points = 4,
+achievement(title = "Forgot Something?", description = "Reach the top of the tower without the rainbow egg", points = 5,
             trigger = current_location() == location_level_3 &&
                       progress(location_level_3) == 0 &&
                       progress(location_level_1) != progress_demolished &&
