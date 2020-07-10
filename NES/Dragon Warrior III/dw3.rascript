@@ -717,7 +717,7 @@ story_achievement_world_location(bit3(0x60B6), 10, 0x4A, 0x90, "Land Bridge", "S
 // 14 - Silver Orb (Lv32)
 
 story_achievement(bit0(0x60CE), 10, location_shrine_of_necrogond, "The Hidden Valley", "Get the Silver Orb")
-story_achievement(bit6(0x60B9), 5, location_shrine_of_liamland, "The Legendary Pheonix", "Hatch the giant egg in Liamland")
+story_achievement(bit6(0x60B9), 5, location_shrine_of_liamland, "The Legendary Phoenix", "Hatch the giant egg in Liamland")
 
 // ===========================
 // 15 - Baramos (Lv35)
