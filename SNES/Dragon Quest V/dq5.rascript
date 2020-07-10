@@ -1933,7 +1933,7 @@ chest_small_medals = {
     3: bit3(0x2218), // chest, Mountain Pass (teen)
     4: bit1(0x2216), // chest, East Mountain Pass (teen)
     5: bit2(0x2215), // chest, East Mountain Pass (teen)
-    6: bit5(0x2214), // chest, East Mountain Pass (teen)
+    6: bit1(0x2214), // chest, East Mountain Pass (teen)
     7: bit4(0x2219), // chest, Cave of Trials (teen)
     8: bit0(0x2221), // chest, 8F Demon's Tower (teen)
     9: bit6(0x2219), // chest, River shrine (later)
@@ -1997,7 +1997,7 @@ function trigger_small_medals(small_medals)
 }
 
 achievement(
-    title = "Small Medal Collector", points = 25,
+    title = "Small Medal Collector", points = 25, id = 61421,
     description = "Collect 19 small medals from treasure chests",
     trigger = trigger_small_medals(chest_small_medals)
 )
