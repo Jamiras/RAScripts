@@ -3295,7 +3295,7 @@ locations = {
 
 // $102B5:80 - Past Mardra Castle - give LightAqua to man
 // $102B5:40 - Past Mardra Castle - cross the T
-// $102B5:02 - Past Margra Castle - talk to man in SW tower
+// $102B5:02 - Past Mardra Castle - talk to man in SW tower (get bolt staff)
 
 // $102B6:60 - Past Mardra Castle - get letter from Empress
 // $102B6:08 - Past Mardra Castle - talk to King's Father
@@ -5034,8 +5034,11 @@ story_achievement(location_mardra_castle_past, bit3(0x102FC), 5,
 )
 
 // IMG: staffmaker
-story_achievement(location_mardra_castle_past, bit2(0x102B5), 5,
-    "The Staffmaker's Assistant", "Obtain the Bolt Staff"
+achievement("The Staffmaker's Assistant", "Obtain the Bolt Staff from Mardra", 5,
+    trigger_in_game() && current_location() == location_mardra_castle_past && 
+    bit3(0x102FC) == 1 && // only after defeating Zeppel (prevents trigger when getting the LightAqua)
+    ((bit2(0x102B5) == 1 && prev(bit2(0x102B5)) == 0) || // complete the quest 
+     (bit3(0x101B2) == 1 && prev(bit3(0x101B2)) == 0))   // get bolt staff directly from chest (quest no longer available)
 )
 
 // ===== D1 Jami Lv26 (46:08) =======================================
