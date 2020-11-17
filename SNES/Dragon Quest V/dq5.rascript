@@ -426,6 +426,8 @@ achievement(
               (current_location() == location_mountain_pass_east && prev(bit7(0x2215)) == 0))
 )
 
+// Work your way to point U on this map: http://shrines.rpgclassics.com/snes/dq5/pathfromchizod.shtml
+// Then walk east or south into the blackness. The chest contains a Staff of Punishment
 story_achievement(location_mountain_pass_east, bit6(0x2216), 5, "Hidden Treasure - Mountain Pass", "Find the hidden treasure in Mountain Pass")
 
 achievement(
@@ -553,7 +555,8 @@ achievement(
     title = "King Metal Sword", points = 5,
     description = "Purchase the King Metal Sword", // 50000 casino coins
     trigger = trigger_in_game() && current_location() == location_oracleberry && 
-              byte(0x0F19) == 0x0C && // talking to prize vendor
+              byte(0x0F19) == 0x0C && // last spoke to the prize vendor
+              byte(0x00c1) < 0x0A &&  // near the prize vendor
               current_casino_coins() < prev(current_casino_coins()) && byte(0x0F22) == item_king_metal_sword
 )
 
