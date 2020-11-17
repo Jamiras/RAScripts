@@ -501,6 +501,15 @@ function achievement_enemy_killed(title, description, points, enemy_id) // only 
     )
 }
 
+// byte(0x6acb) seems to somehow be related to the window that's focused
+// 0x00 = blank window (or no window)
+// 0x01 = basic battle window (seems to be used for attacks)
+// 0x02 = basic battle window (seems to be used for spells and items)
+// 0x13 = battle target window or item select window
+// 0x14 = battle command window or party member target window
+// 0x18 = battle wizard/pilgrim spell selector or use/equip window
+function trigger_battle_playing_out() => (byte(0x6acb) > 0 && byte(0x6acb) < 3)
+
 function achievement_enemy_killed_group(title, description, points, enemy_id)
 {
     trigger = never(!is_in_combat())                 // force reset if player dies after killing babble
@@ -508,8 +517,10 @@ function achievement_enemy_killed_group(title, description, points, enemy_id)
         trigger = trigger && !enemy_alive(i)         // battle is over when no more enemies are left
 
     trigger_alt = (once(byte(0x0059) == enemy_id && // type of monster defeated
+                        trigger_battle_playing_out() &&
                         byte(0x0072) == 0x48)) ||   // "X is defeated!"
                   (once(byte(0x0059) == enemy_id && // type of monster defeated
+                        trigger_battle_playing_out() &&
                         byte(0x0072) == 0x5D))      // "You have defeated X" - poison needle message is slightly different
     
     achievement(id=50424,
