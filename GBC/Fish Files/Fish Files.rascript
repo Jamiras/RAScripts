@@ -832,7 +832,11 @@ dialog_achievement(scene_alt3_amplitheatre_depart, 0x0A75, 10, "A Great Performa
 
 dialog_achievement(scene_home_lake, 0x0747, 4, "A-Maze-ing", "Find your way through the sewer maze")
 
-// - Go with the fisherman and give him the [liquor].
+// - Go west to the fisherman 
+
+// ===== 09 - Fisherman =====
+
+// - Give the [liquor] to the fisherman.
 // - Take the [horn] that is in the boat.
 // - Go left and use the [point] on the barn door.
 // - Continue down, use the [multi-use] with the bull's padlock.
@@ -841,9 +845,10 @@ dialog_achievement(scene_home_lake, 0x0747, 4, "A-Maze-ing", "Find your way thro
 // - Use the [horn] on the bull.
 
 achievement(title = "Big Gray Door Opener", description = "Break into the barn", points = 5, 
-    trigger = current_scene() == scene_home_barn && is_dialog_visible() == 0 && prev(is_dialog_visible()) == 1 &&
-              (current_dialog_message() == 0x0854 || // horn last
-               current_dialog_message() == 0x07C8)   // bike last
+    trigger = current_scene() == scene_home_bull && is_dialog_visible() == 0 && prev(is_dialog_visible()) == 1 &&
+              (current_dialog_message() == 0x0854 || // bike/bull/horn or bull/bike/horn
+               current_dialog_message() == 0x07C8 || // bull/horn/bike or horn/bull/bike
+               current_dialog_message() == 0x07CB)   // bike/horn/bull or horn/bike/bull
 )
 
 // - Try to enter the spaceship - find out about the cameras.
