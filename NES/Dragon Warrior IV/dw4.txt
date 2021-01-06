@@ -853,13 +853,16 @@ story_achievement(bit7(0x627F), location_tempe, 0x02,  5, "The Offering", "Bring
 story_achievement(bit6(0x627B), location_frenor, 0x07,  5, "The Kidnapped Imposter", "Rescue the fake princess")
 story_achievement(bit1(0x6283), location_santeem, 0x09,  5, "Speak No Evil", "Restore the King's Voice")
 
-// can't use generic story_achievement_old here since the bit gets briefly toggled to 1 when completing chapter 1
+// can't use generic story_achievement here since the bit gets briefly toggled to 1 when completing chapter 1
+// note the use of once/never to capture the player being in Santeem - it used to just be player_location() == santeem,
+// but that breaks if the player leaves by using a Wing or casting Return as the location updates before the chapter ends
 achievement(
     title = "The Empty Castle",
     description = "Complete Chapter 2",
     points = 10,
     trigger = bit6(0x6282) == 1 && prev(bit6(0x6282)) != 1 && 
-              player_location() == location_santeem && player_map() == 0x0D && 
+              once(player_location() == location_santeem) && // player was in Santeem
+              never(player_map() == 0) &&                    // player did not enter overworld
               trigger_player_in_game() && current_chapter() == 1
 )
 
