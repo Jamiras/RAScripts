@@ -232,7 +232,8 @@ achievement(
     id = 56418, badge = "58403", published = "12/20/2017 4:44:24 AM", modified = "9/27/2019 3:13:01 PM",
     trigger = location1() == 5 && location2() == 167 && location3() == 157 && 
               byte(0x004BE0) == 1 &&  // fire extinguished
-              text_id() == 0x006d     // would you like to put out the fire?
+              //text_id() == 0x006d     // would you like to put out the fire?
+              byte(0x5998) == 0x006d  // should be word(0x5998) i.e. text_id()
 )
 
 achievement(
@@ -241,26 +242,23 @@ achievement(
     trigger = text_id() == 2427
 )
 
-// DEMOTE
-achievement(
-    title = "Shiena", description = "Find and enter the town of Shiena.", points = 1,
-    id = 56420, badge = "58884", published = "12/20/2017 4:44:39 AM", modified = "12/20/2017 5:07:58 AM",
-    trigger = location1() == 4 && location2() == 30 && location3() == 31
-)
+//achievement(
+//    title = "Shiena", description = "Find and enter the town of Shiena.", points = 1,
+//    id = 56420, badge = "58884", published = "12/20/2017 4:44:39 AM", modified = "12/20/2017 5:07:58 AM",
+//    trigger = location1() == 4 && location2() == 30 && location3() == 31
+//)
 
 // ================================================================
 // A1 - Jamiras Lv3 - Shiena
 // ----------------------------------------------------------------
 
-// POINTS -> 2
 // MISSABLE - sell the crown for 480g
 achievement(
-    title = "One Shrewd Businessman", description = "Get offered the maximum amount of money for your village's goods.", points = 1,
+    title = "One Shrewd Businessman [m]", description = "Get offered the maximum amount of money for your village's goods.", points = 2,
     id = 56421, badge = "58885", published = "12/20/2017 4:44:47 AM", modified = "12/20/2017 5:08:00 AM",
     trigger = location1() == 4 && location2() == 30 && location3() == 31 && byte(0x003D46) == 252
 )
 
-// MISSABLE?
 achievement(
     title = "Oh, The Places You'll Go", description = "Purchase a map of the world.", points = 1,
     id = 56422, badge = "58893", published = "12/20/2017 4:45:00 AM", modified = "12/20/2017 5:08:02 AM",
@@ -290,41 +288,36 @@ achievement(
 // A2 - Jamiras Lv5 - Lifecod
 // ----------------------------------------------------------------
 
-// POINTS -> 3
 achievement(
-    title = "Party Crasher", description = "Watch a mysterious voice harsh Lifecod's mellow.", points = 4,
+    title = "Party Crasher", description = "Watch a mysterious voice harsh Lifecod's mellow.", points = 3,
     id = 56426, badge = "58903", published = "12/20/2017 4:45:22 AM", modified = "12/20/2017 5:08:09 AM",
     trigger = text_id() == 2508
 )
 
-// DEMOTE
-achievement(
-    title = "Reidock", description = "Use your pass to enter the castle town of Reidock.", points = 4,
-    id = 56427, badge = "58904", published = "12/20/2017 4:45:27 AM", modified = "12/20/2017 5:08:10 AM",
-    trigger = text_id() == 4065
-)
+//achievement(
+//    title = "Reidock", description = "Use your pass to enter the castle town of Reidock.", points = 4,
+//    id = 56427, badge = "58904", published = "12/20/2017 4:45:27 AM", modified = "12/20/2017 5:08:10 AM",
+//    trigger = text_id() == 4065
+//)
 
 // ================================================================
 // A3 - Jamiras Lv8 - Reidock
 // ----------------------------------------------------------------
 
-// POINTS -> 5
 achievement(
-    title = "Picking up the Pieces", description = "Open the chest on the top floor of the Tower of Trials.", points = 4,
+    title = "Picking up the Pieces", description = "Open the chest on the top floor of the Tower of Trials.", points = 5,
     id = 56428, badge = "58905", published = "12/20/2017 4:45:33 AM", modified = "12/20/2017 10:17:06 PM",
     trigger = location1() == 29 && location2() == 16 && location3() == 17 && byte(0x010062) == 53
 )
 
-// POINTS -> 2
 achievement(
-    title = "And Then There Were Two", description = "Hassan has joined the group!", points = 4,
+    title = "And Then There Were Two", description = "Hassan has joined the group!", points = 2,
     id = 56429, badge = "58906", published = "12/20/2017 4:45:38 AM", modified = "12/20/2017 5:08:14 AM",
     trigger = text_id() == 4177
 )
 
-// POINTS -> 2
 achievement(
-    title = "Neigh!!", description = "Catch the wild horse.", points = 4,
+    title = "Neigh!!", description = "Catch the wild horse.", points = 2,
     id = 56430, badge = "58907", published = "12/20/2017 4:45:42 AM", modified = "12/20/2017 5:08:16 AM",
     trigger = text_id() == 2211
 )
@@ -339,19 +332,21 @@ achievement(
     trigger = text_id() == 1578
 )
 
-// DEMOTE
+//achievement(
+//    title = "San Marino", description = "Find and enter the port town of San Marino.", points = 4,
+//    id = 56432, badge = "58909", published = "12/20/2017 4:45:55 AM", modified = "12/20/2017 5:08:19 AM",
+//    trigger = location1() == 6 && location2() == 56 && location3() == 57
+//)
+
+// $3D8D:80 - Iron Claw, Barrel, Hidden Area, San Marino
 achievement(
-    title = "San Marino", description = "Find and enter the port town of San Marino.", points = 4,
-    id = 56432, badge = "58909", published = "12/20/2017 4:45:55 AM", modified = "12/20/2017 5:08:19 AM",
-    trigger = location1() == 6 && location2() == 56 && location3() == 57
+   title = "Hidden Treasure: San Marino", description = "Find the Iron Claw hidden in San Marino", points = 3,
+   id = 56432, // replaces "San Marino"
+   trigger = current_location() == 0x0012 && bit7(0x3D8D) == 1 && prev(bit7(0x3D8D)) == 0
 )
 
-// Hidden Treasure: San Marino (3)
-// $3D8D:80 - Iron Claw, Barrel, Hidden Area, San Marino
-
-// POINTS -> 5
 achievement(
-    title = "Congito Ergo Sum", description = "Bring the Dream-Seeing Drops to Grandmaz. Muriel has joined the group!", points = 4,
+    title = "Cogito Ergo Sum", description = "Bring the Dream-Seeing Drops to Grandmaz. Muriel has joined the group!", points = 5,
     id = 56433, badge = "58910", published = "12/20/2017 4:46:18 AM", modified = "12/20/2017 5:08:21 AM",
     trigger = text_id() == 1634
 )
@@ -370,17 +365,16 @@ achievement(
 )
 
 achievement(
-    title = "Going Incognito", description = "Purchase and equip the Royal Clothes.", points = 4,
+    title = "Going Incognito", description = "Purchase and equip the Royal Clothes.", points = 3,
     id = 56435, badge = "58913", published = "12/20/2017 4:46:30 AM", modified = "12/20/2017 4:09:20 PM",
     trigger = byte(0x00403A) >= 1 && byte(0x00403A) <= 5 && byte(0x004043) == 109
 )
 
-// DEMOTE
-achievement(
-    title = "Amoru", description = "Find and enter the waterfall town, Amoru.", points = 4,
-    id = 56436, badge = "58914", published = "12/20/2017 4:46:34 AM", modified = "12/24/2017 2:50:12 AM",
-    trigger = location1() == 90 && location2() == 91 && location3() == 92 && location7() == 192
-)
+//achievement(
+//    title = "Amoru", description = "Find and enter the waterfall town, Amoru.", points = 4,
+//    id = 56436, badge = "58914", published = "12/20/2017 4:46:34 AM", modified = "12/24/2017 2:50:12 AM",
+//    trigger = location1() == 90 && location2() == 91 && location3() == 92 && location7() == 192
+//)
 
 // ================================================================
 // B3 - Jamiras Lv11 - Amoru
@@ -392,9 +386,8 @@ achievement(
     trigger = text_id() == 1210
 )
 
-// POINTS 5 -> 3
 achievement(
-    title = "Still Not Dead", description = "Reunite Gina with Iria... again.", points = 5,
+    title = "Still Not Dead", description = "Reunite Gina with Iria... again.", points = 3,
     id = 56438, badge = "58916", published = "12/20/2017 4:46:46 AM", modified = "12/20/2017 5:08:29 AM",
     trigger = text_id() == 3666
 )
@@ -409,9 +402,8 @@ achievement(
     trigger = text_id() == 1528
 )
 
-// POINTS -> 3
 achievement(
-    title = "Bar-Boo-RA! Bar-Boo-RA!", description = "Meet the mysterious woman without a reflection.", points = 5,
+    title = "Bar-Boo-RA! Bar-Boo-RA!", description = "Meet the mysterious woman without a reflection.", points = 3,
     id = 56440, badge = "58918", published = "12/20/2017 4:46:59 AM", modified = "10/3/2019 4:22:01 PM",
     trigger = text_id() == 2294
 )
@@ -449,16 +441,14 @@ achievement(
 // D1 - Jamiras Lv17 - Reidock
 // ----------------------------------------------------------------
 
-// DEMOTE
-achievement(
-    title = "Gent", description = "Find and enter the holy village of Gent.", points = 5,
-    id = 56444, badge = "58922", published = "12/20/2017 4:47:21 AM", modified = "10/3/2019 4:22:01 PM",
-    trigger = location1() == 100 && location2() == 101 && location3() == 102
-)
+//achievement(
+//    title = "Gent", description = "Find and enter the holy village of Gent.", points = 5,
+//    id = 56444, badge = "58922", published = "12/20/2017 4:47:21 AM", modified = "10/3/2019 4:22:01 PM",
+//    trigger = location1() == 100 && location2() == 101 && location3() == 102
+//)
 
-// POINTS -> 3
 achievement(
-    title = "Divine Intervention", description = "Chamoro has joined the group!", points = 5,
+    title = "Divine Intervention", description = "Chamoro has joined the group!", points = 3,
     id = 56445, badge = "58923", published = "12/20/2017 4:47:24 AM", modified = "12/20/2017 5:08:40 AM",
     trigger = text_id() == 3800
 )
@@ -467,9 +457,8 @@ achievement(
 // D2 - Jamiras Lv20 - Gent
 // ----------------------------------------------------------------
 
-// POINTS -> 3
 achievement(
-    title = "Deja Vu", description = "Things are looking eerily similar...", points = 5,
+    title = "Deja Vu", description = "Things are looking eerily similar...", points = 3,
     id = 56446, badge = "58924", published = "12/20/2017 4:47:31 AM", modified = "1/18/2019 11:20:45 AM",
     trigger = location1() == 5 && location2() == 167 && location3() == 149 && location7() == 6 &&
               ((text_id_small() == 110) ||
@@ -492,49 +481,43 @@ achievement(
 // I've Got Spirit, Yes I Do! (3)
 // $3D3F:02 - Purchase the Spirit Armor, Lifecod
 
-// DEMOTE
-achievement(
-    title = "Dhama Shrine", description = "Find and enter dream version of the Shrine at Dhama.", points = 4,
-    id = 56448, badge = "58926", published = "12/20/2017 4:47:53 AM", modified = "12/20/2017 5:08:44 AM",
-    trigger = location1() == 21 && location2() == 22 && location3() == 23
-)
+//achievement(
+//    title = "Dhama Shrine", description = "Find and enter dream version of the Shrine at Dhama.", points = 4,
+//    id = 56448, badge = "58926", published = "12/20/2017 4:47:53 AM", modified = "12/20/2017 5:08:44 AM",
+//    trigger = location1() == 21 && location2() == 22 && location3() == 23
+//)
 
-// POINTS -> 2
 achievement(
-    title = "So Classy", description = "Change a character's class.", points = 4,
+    title = "So Classy", description = "Change a character's class.", points = 2,
     id = 56449, badge = "58927", published = "12/20/2017 4:47:57 AM", modified = "12/20/2017 5:08:46 AM",
     trigger = text_id() == 6416
 )
 
-// DEMOTE
-achievement(
-    title = "Monstoru", description = "Find and enter the town of Monstoru.", points = 4,
-    id = 56450, badge = "58928", published = "12/20/2017 4:47:59 AM", modified = "12/20/2017 5:08:47 AM",
-    trigger = location1() == 22 && location2() == 114 && location3() == 115
-)
+//achievement(
+//    title = "Monstoru", description = "Find and enter the town of Monstoru.", points = 4,
+//    id = 56450, badge = "58928", published = "12/20/2017 4:47:59 AM", modified = "12/20/2017 5:08:47 AM",
+//    trigger = location1() == 22 && location2() == 114 && location3() == 115
+//)
 
 // ================================================================
 // E1 - Jamiras Lv22 - Monstoru
 // ----------------------------------------------------------------
 
-// POINTS -> 5
 achievement(
-    title = "Purple People Eater", description = "Save Monstoru from a monstoru... er, monster.", points = 4,
+    title = "Purple People Eater", description = "Save Monstoru from a monstoru... er, monster.", points = 5,
     id = 56451, badge = "58929", published = "12/20/2017 4:48:03 AM", modified = "12/22/2017 6:51:28 PM",
     trigger = text_id() == 3894 && location1() == 22 && location2() == 114 && location3() == 115 && 
               location7() == 200
 )
 
-// DEMOTE
-achievement(
-    title = "Short Supply", description = "Obtain the Seed of Reasoning.", points = 4,
-    id = 56452, badge = "58930", published = "12/20/2017 4:48:06 AM", modified = "12/24/2017 10:06:16 PM",
-    trigger = location1() == 199 && location2() == 200 && location3() == 201 && bit1(0x003D36) == 1
-)
+//achievement(
+//    title = "Short Supply", description = "Obtain the Seed of Reasoning.", points = 4,
+//    id = 56452, badge = "58930", published = "12/20/2017 4:48:06 AM", modified = "12/24/2017 10:06:16 PM",
+//    trigger = location1() == 199 && location2() == 200 && location3() == 201 && bit1(0x003D36) == 1
+//)
 
-// MISSABLE
 achievement(
-    title = "Amos Formidable Ally", description = "Amos has joined the group!", points = 5,
+    title = "Amos Formidable Ally [m]", description = "Amos has joined the group!", points = 5,
     id = 56453, badge = "58931", published = "12/20/2017 4:48:09 AM", modified = "10/18/2019 8:03:01 PM",
     trigger = text_id() == 3929
 )
@@ -543,9 +526,8 @@ achievement(
 // E2 - Jamiras Lv23 - Arcbolt
 // ----------------------------------------------------------------
 
-// POINTS -> 5
 achievement(
-    title = "Brast Him Good", description = "Defeat Brast to earn the right to battle the tunnel monster.", points = 4,
+    title = "Brast Him Good", description = "Defeat Brast to earn the right to battle the tunnel monster.", points = 5,
     id = 56454, badge = "58932", published = "12/20/2017 4:48:12 AM", modified = "10/3/2019 4:22:01 PM",
     trigger = text_id() == 5441
 )
@@ -556,12 +538,11 @@ achievement(
     trigger = text_id() == 1421
 )
 
-// DEMOTE
-achievement(
-    title = "Calcado", description = "Find and enter the town of Calcado.", points = 4,
-    id = 56456, badge = "58935", published = "12/20/2017 4:48:20 AM", modified = "12/20/2017 5:08:56 AM",
-    trigger = location1() == 52 && location2() == 170 && location3() == 171
-)
+//achievement(
+//    title = "Calcado", description = "Find and enter the town of Calcado.", points = 4,
+//    id = 56456, badge = "58935", published = "12/20/2017 4:48:20 AM", modified = "12/20/2017 5:08:56 AM",
+//    trigger = location1() == 52 && location2() == 170 && location3() == 171
+//)
 
 // ================================================================
 // E3 - Jamiras Lv23 - Calcado
@@ -579,68 +560,60 @@ achievement(
     trigger = text_id() == 1343
 )
 
-// DEMOTE
-achievement(
-    title = "The Medal King's Castle", description = "Find and enter the Medal King's castle.", points = 4,
-    id = 56459, badge = "58965", published = "12/20/2017 4:48:42 AM", modified = "12/20/2017 5:09:00 AM",
-    trigger = location1() == 101 && location2() == 102 && location3() == 244
-)
+//achievement(
+//    title = "The Medal King's Castle", description = "Find and enter the Medal King's castle.", points = 4,
+//    id = 56459, badge = "58965", published = "12/20/2017 4:48:42 AM", modified = "12/20/2017 5:09:00 AM",
+//    trigger = location1() == 101 && location2() == 102 && location3() == 244
+//)
 
-// DEMOTE
-achievement(
-    title = "Holcotta", description = "Find and enter the village of Holcotta.", points = 4,
-    id = 56460, badge = "58942", published = "12/20/2017 4:48:45 AM", modified = "12/20/2017 5:09:01 AM",
-    trigger = location1() == 44 && location2() == 45 && location3() == 46
-)
+//achievement(
+//    title = "Holcotta", description = "Find and enter the village of Holcotta.", points = 4,
+//    id = 56460, badge = "58942", published = "12/20/2017 4:48:45 AM", modified = "12/20/2017 5:09:01 AM",
+//    trigger = location1() == 44 && location2() == 45 && location3() == 46
+//)
 
-// DEMOTE
-achievement(
-    title = "Holstock Castle", description = "Find and enter Holstock Castle.", points = 4,
-    id = 56461, badge = "58943", published = "12/20/2017 4:48:47 AM", modified = "12/20/2017 5:09:02 AM",
-    trigger = location1() == 133 && location2() == 41 && location3() == 42
-)
+//achievement(
+//    title = "Holstock Castle", description = "Find and enter Holstock Castle.", points = 4,
+//    id = 56461, badge = "58943", published = "12/20/2017 4:48:47 AM", modified = "12/20/2017 5:09:02 AM",
+//    trigger = location1() == 133 && location2() == 41 && location3() == 42
+//)
 
 // ================================================================
 // F1 - Jamiras Lv24 - Holcotta
 // ----------------------------------------------------------------
 
-// POINTS => 5
 achievement(
-    title = "I'm Glad it's Cold", description = "Watch the cowardly prince get baptized.", points = 4,
+    title = "I'm Glad It's Cold", description = "Watch the cowardly prince get baptized.", points = 5,
     id = 56462, badge = "58944", published = "12/20/2017 4:48:50 AM", modified = "10/6/2019 5:01:01 PM",
     trigger = text_id() == 1382
 )
 
-// POINTS => 2 (no effort after completing prince's trials, but not demoted to let them be worth a bit more)
 achievement(
-    title = "Oh, Oh, it's Magic", description = "Receive the Magic Key from King Holten.", points = 4,
+    title = "Oh, Oh, It's Magic", description = "Receive the Magic Key from King Holten.", points = 2,
     id = 56463, badge = "58945", published = "12/20/2017 4:48:52 AM", modified = "10/6/2019 5:01:01 PM",
     trigger = text_id() == 5183
 )
 
 // can get "Novice Collector" (20 medals) now
 
-// DEMOTE
-achievement(
-    title = "Clear Vale", description = "Find and enter the town of Clear Vale.", points = 4,
-    id = 56464, badge = "58946", published = "12/20/2017 4:48:54 AM", modified = "12/20/2017 5:09:07 AM",
-    trigger = location1() == 138 && location2() == 139 && location3() == 140 && location7() == 210
-)
+//achievement(
+//    title = "Clear Vale", description = "Find and enter the town of Clear Vale.", points = 4,
+//    id = 56464, badge = "58946", published = "12/20/2017 4:48:54 AM", modified = "12/20/2017 5:09:07 AM",
+//    trigger = location1() == 138 && location2() == 139 && location3() == 140 && location7() == 210
+//)
 
-// DEMOTE
-achievement(
-    title = "Real Clear Vale", description = "Find and enter the real town of Clear Vale.", points = 3,
-    id = 56465, badge = "58947", published = "12/20/2017 4:48:57 AM", modified = "12/20/2017 5:09:09 AM",
-    trigger = location1() == 150 && location2() == 151 && location3() == 152 && location7() == 213
-)
+//achievement(
+//    title = "Real Clear Vale", description = "Find and enter the real town of Clear Vale.", points = 3,
+//    id = 56465, badge = "58947", published = "12/20/2017 4:48:57 AM", modified = "12/20/2017 5:09:09 AM",
+//    trigger = location1() == 150 && location2() == 151 && location3() == 152 && location7() == 213
+//)
 
 // ================================================================
 // F2 - Jamiras Lv25 - Clear Vale
 // ----------------------------------------------------------------
 
-// POINTS => 5
 achievement(
-    title = "A Swinging Good Time", description = "Obtain the Fragment of Courage using the Golden Pickaxe.", points = 3,
+    title = "A Swinging Good Time", description = "Obtain the Fragment of Courage using the Golden Pickaxe.", points = 5,
     id = 56466, badge = "58948", published = "12/20/2017 4:48:59 AM", modified = "12/25/2017 1:05:32 AM",
     trigger = word(0x000000) != 0 &&
               ((location1() == 172 && location2() == 158 && location3() == 159 && location7() == 163 && 
@@ -648,9 +621,8 @@ achievement(
                (text_id() == 4894))
 )
 
-// POINTS => 2
 achievement(
-    title = "Nemo Would be Proud", description = "Receive the Flying Bed.", points = 4,
+    title = "Nemo Would Be Proud", description = "Receive the Flying Bed.", points = 2,
     id = 56467, badge = "58949", published = "12/20/2017 4:49:03 AM", modified = "12/20/2017 5:09:12 AM",
     trigger = text_id() == 233
 )
@@ -674,23 +646,21 @@ achievement(
     //  was   byte(0x003D4D) == 245
 )
 
-// DEMOTE
-achievement(
-    title = "Zaxon", description = "Find and enter the small farming village, Zaxon.", points = 4,
-    id = 56468, badge = "58950", published = "12/20/2017 4:49:11 AM", modified = "10/6/2019 5:01:01 PM",
-    trigger = location1() == 214 && location2() == 215 && location3() == 216 && location7() == 253
-)
+//achievement(
+//    title = "Zaxon", description = "Find and enter the small farming village, Zaxon.", points = 4,
+//    id = 56468, badge = "58950", published = "12/20/2017 4:49:11 AM", modified = "10/6/2019 5:01:01 PM",
+//    trigger = location1() == 214 && location2() == 215 && location3() == 216 && location7() == 253
+//)
 
 // ================================================================
 // G1 - Jamiras Lv26 - Dhama Shrine
 // ----------------------------------------------------------------
 
-// DEMOTE
-achievement(
-    title = "Foan", description = "Find and enter Foan Castle.", points = 4,
-    id = 56469, badge = "58951", published = "12/20/2017 4:49:14 AM", modified = "12/20/2017 5:09:15 AM",
-    trigger = location1() == 29 && location2() == 30 && location3() == 31 && location7() == 6
-)
+//achievement(
+//    title = "Foan", description = "Find and enter Foan Castle.", points = 4,
+//    id = 56469, badge = "58951", published = "12/20/2017 4:49:14 AM", modified = "12/20/2017 5:09:15 AM",
+//    trigger = location1() == 29 && location2() == 30 && location3() == 31 && location7() == 6
+//)
 
 // ================================================================
 // G2 - Jamiras Lv28 - Reidock
@@ -706,48 +676,42 @@ achievement(
 // G3 - Jamiras Lv28 - San Marino
 // ----------------------------------------------------------------
 
-// POINTS -> 3
 achievement(
-    title = "Break on Through", description = "Make use of the Watergate Key.", points = 4,
+    title = "Break on Through", description = "Make use of the Watergate Key.", points = 3,
     id = 56472, badge = "58954", published = "12/20/2017 4:49:22 AM", modified = "10/21/2019 8:56:01 PM",
     trigger = location1() == 0 && location2() == 1 && location3() == 2 && byte(0x003D3C) == 27
 )
 
-// DEMOTE
-achievement(
-    title = "Pescani", description = "Find and enter Pescani village.", points = 4,
-    id = 56473, badge = "58955", published = "12/20/2017 4:49:24 AM", modified = "10/12/2019 6:27:01 PM",
-    trigger = location1() == 124 && location2() == 125 && location3() == 126 && location7() == 130
-)
+//achievement(
+//    title = "Pescani", description = "Find and enter Pescani village.", points = 4,
+//    id = 56473, badge = "58955", published = "12/20/2017 4:49:24 AM", modified = "10/12/2019 6:27:01 PM",
+//    trigger = location1() == 124 && location2() == 125 && location3() == 126 && location7() == 130
+//)
 
 // ================================================================
 // H1 - Jamiras Lv28 - Pescani
 // ----------------------------------------------------------------
 
-// POINTS -> 2 (these all happen pretty close to each other)
 achievement(
-    title = "Something's Fishy", description = "Successfully trail Rob to uncover his secret.", points = 4,
+    title = "Something's Fishy", description = "Successfully trail Rob to uncover his secret.", points = 2,
     id = 56474, badge = "58958", published = "12/20/2017 4:49:28 AM", modified = "10/21/2019 8:56:01 PM",
     trigger = text_id() == 1261
 )
 
-// POINTS -> 3
 achievement(
-    title = "Time to Blow Bubbles", description = "Bring Denae safely home and obtain the Mermaid Harp.", points = 4,
+    title = "Time to Blow Bubbles", description = "Bring Denae safely home and obtain the Mermaid Harp.", points = 3,
     id = 56475, badge = "58959", published = "12/20/2017 4:49:31 AM", modified = "10/21/2019 8:56:01 PM",
     trigger = text_id() == 1680
 )
 
-// POINTS -> 2
 achievement(
-    title = "Guardian of the World", description = "Meet Rubiss, the woman behind the voice.", points = 3,
+    title = "Guardian of the World", description = "Meet Rubiss, the woman behind the voice.", points = 2,
     id = 56476, badge = "58960", published = "12/20/2017 4:49:34 AM", modified = "10/6/2019 5:01:01 PM",
     trigger = text_id() == 2413
 )
 
-// POINTS -> 2
 achievement(
-    title = "Identity Crisis", description = "Change a character's name.", points = 3,
+    title = "Identity Crisis", description = "Change a character's name.", points = 2,
     id = 56477, badge = "58961", published = "12/20/2017 4:49:36 AM", modified = "12/20/2017 5:09:29 AM",
     trigger = text_id() == 6519
 )
@@ -759,17 +723,17 @@ achievement(
               byte(0x010070) == 171
 )
 
-achievement(
-    title = "Slime Arena", description = "Find and enter the Slime Arena.", points = 3,
-    id = 56479, badge = "58963", published = "12/20/2017 4:49:52 AM", modified = "10/15/2019 7:12:01 PM",
-    trigger = location1() == 105 && location2() == 106 && location3() == 238 && location7() == 72
-)
+//achievement(
+//    title = "Slime Arena", description = "Find and enter the Slime Arena.", points = 3,
+//    id = 56479, badge = "58963", published = "12/20/2017 4:49:52 AM", modified = "10/15/2019 7:12:01 PM",
+//    trigger = location1() == 105 && location2() == 106 && location3() == 238 && location7() == 72
+//)
 
-achievement(
-    title = "Best Dresser Contest", description = "Find the Best Dresser Contest in the home of Calvin Jean-Porte.", points = 3,
-    id = 56480, badge = "58964", published = "12/20/2017 4:49:55 AM", modified = "10/21/2019 8:56:01 PM",
-    trigger = location1() == 106 && location2() == 230 && location3() == 231 && location7() == 6
-)
+//achievement(
+//    title = "Best Dresser Contest", description = "Find the Best Dresser Contest in the home of Calvin Jean-Porte.", points = 3,
+//    id = 56480, badge = "58964", published = "12/20/2017 4:49:55 AM", modified = "10/21/2019 8:56:01 PM",
+//    trigger = location1() == 106 && location2() == 230 && location3() == 231 && location7() == 6
+//)
 
 // ================================================================
 // H2 - Jamiras Lv30 - Dhama
@@ -783,28 +747,25 @@ achievement(
     trigger = text_id() == 1299
 )
 
-// DEMOTE
-achievement(
-    title = "Calberona", description = "Find and enter the Calberona, the city of magic.", points = 4,
-    id = 56482, badge = "58967", published = "12/20/2017 4:50:16 AM", modified = "10/21/2019 8:56:01 PM",
-    trigger = location1() == 36 && location2() == 37 && location3() == 38 && location7() == 165 && 
-              byte(0x00605A) == 0 && byte(0x00605F) == 162 && byte(0x006067) == 216
-)
+//achievement(
+//    title = "Calberona", description = "Find and enter the Calberona, the city of magic.", points = 4,
+//    id = 56482, badge = "58967", published = "12/20/2017 4:50:16 AM", modified = "10/21/2019 8:56:01 PM",
+//    trigger = location1() == 36 && location2() == 37 && location3() == 38 && location7() == 165 && 
+//              byte(0x00605A) == 0 && byte(0x00605F) == 162 && byte(0x006067) == 216
+//)
 
-// DEMOTE
-achievement(
-    title = "Mt. Snow", description = "Find and enter Mt. Snow.", points = 3,
-    id = 56483, badge = "58969", published = "12/20/2017 4:50:19 AM", modified = "12/20/2017 5:09:41 AM",
-    trigger = location1() == 194 && location2() == 195 && location3() == 196 && location7() == 239
-)
+//achievement(
+//    title = "Mt. Snow", description = "Find and enter Mt. Snow.", points = 3,
+//    id = 56483, badge = "58969", published = "12/20/2017 4:50:19 AM", modified = "12/20/2017 5:09:41 AM",
+//    trigger = location1() == 194 && location2() == 195 && location3() == 196 && location7() == 239
+//)
 
 // ================================================================
 // H3 - Jamiras Lv30 - Mt. Snow
 // ----------------------------------------------------------------
 
-// POINTS -> 2
 achievement(
-    title = "Cold as Ice", description = "Ignore Goran's warnings and watch Yurina lift the village's curse.", points = 3,
+    title = "Cold as Ice", description = "Ignore Goran's warnings and watch Yurina lift the village's curse.", points = 2,
     id = 56484, badge = "58968", published = "12/20/2017 4:50:24 AM", modified = "10/15/2019 7:12:01 PM",
     trigger = text_id() == 1922
 )
@@ -816,19 +777,17 @@ achievement(
     trigger = text_id() == 1328
 )
 
-// POINTS -> 2
 achievement(
-    title = "Legendary Sword of... Tetanus?", description = "Watch Terry deny the authenticity of the rusty sword.", points = 3,
+    title = "Legendary Sword of... Tetanus?", description = "Watch Terry deny the authenticity of the rusty sword.", points = 2,
     id = 56486, badge = "58972", published = "12/20/2017 4:50:30 AM", modified = "10/15/2019 7:12:01 PM",
     trigger = text_id() == 1332
 )
 
-// DEMOTE
-achievement(
-    title = "Longadeseo", description = "Show your pass to the guard to enter the ruffian town of Longadeseo.", points = 4,
-    id = 56487, badge = "58973", published = "12/20/2017 4:50:33 AM", modified = "12/20/2017 5:09:48 AM",
-    trigger = text_id() == 568
-)
+//achievement(
+//    title = "Longadeseo", description = "Show your pass to the guard to enter the ruffian town of Longadeseo.", points = 4,
+//    id = 56487, badge = "58973", published = "12/20/2017 4:50:33 AM", modified = "12/20/2017 5:09:48 AM",
+//    trigger = text_id() == 568
+//)
 
 // ================================================================
 // I1 - Jamiras Lv30 - Longadeseo
@@ -837,35 +796,37 @@ achievement(
 // Hidden Treasure: Longadeseo (3) - take outside stairs (SE) and walk through two walls
 // $3D95:08 - Wisdom Seed, Chest, Longadeseo
 // $3D95:04 - 2500g, Chest, Longadeseo
-
-// POINTS => 3
 achievement(
-    title = "Puff Puff!", description = "Even heroes have needs.", points = 4,
+   title = "Hidden Treasure: Longadeseo", description = "Collect the items from the two chests hidden in Longadeseo", points = 3,
+   id = 56487, // replaces "Longadeseo"
+   trigger = current_location() == 0x001C && bit3(0x3D95) == 1 && bit2(0x3D95) == 1 &&
+             (prev(bit3(0x3D95)) == 0 || prev(bit2(0x3D95)) == 0)
+)
+
+achievement(
+    title = "Puff Puff!", description = "Even heroes have needs.", points = 3,
     id = 56488, badge = "58974", published = "12/20/2017 4:50:41 AM", modified = "1/15/2018 9:07:00 PM",
     trigger = text_id() == 445 && location1() == 67 && location2() == 191 && location3() == 235
 )
 
-// POINTS => 3
 achievement(
     title = "Hawk's Test", description = "A priest, a showgirl and a bartender walk into a bar...", points = 4,
     id = 56489, badge = "58975", published = "12/20/2017 4:50:44 AM", modified = "12/22/2017 7:24:21 PM",
     trigger = text_id() == 513
 )
 
-// POINTS => 3
 achievement(
     title = "Don't Look Back in Anger", 
-    description = "Sally saw the good in your eyes and agreed to reforge the legendary blade.", points = 4,
+    description = "Sally saw the good in your eyes and agreed to reforge the legendary blade.", points = 3,
     id = 56490, badge = "58977", published = "12/20/2017 4:50:46 AM", modified = "12/20/2017 5:09:52 AM",
     trigger = text_id() == 540
 )
 
-// DEMOTE
-achievement(
-    title = "Gandino", description = "Find and enter the castle town of Gandino.", points = 4,
-    id = 56491, badge = "58980", published = "12/20/2017 4:50:48 AM", modified = "10/15/2019 7:12:01 PM",
-    trigger = location1() == 169 && location2() == 170 && location3() == 65 && location7() == 69
-)
+//achievement(
+//    title = "Gandino", description = "Find and enter the castle town of Gandino.", points = 4,
+//    id = 56491, badge = "58980", published = "12/20/2017 4:50:48 AM", modified = "10/15/2019 7:12:01 PM",
+//    trigger = location1() == 169 && location2() == 170 && location3() == 65 && location7() == 69
+//)
 
 // ================================================================
 // I2 - Jamiras Lv31 - Gandino
@@ -873,7 +834,7 @@ achievement(
 
 // POINTS -> 5
 achievement(
-    title = "Legendary Shield", description = "Obtain the Shield of Sufrida.", points = 10,
+    title = "Legendary Shield", description = "Obtain the Shield of Sufrida.", points = 5,
     id = 56492, badge = "58983", published = "12/20/2017 4:50:51 AM", modified = "10/6/2019 5:01:01 PM",
     trigger = location1() == 48 && location2() == 196 && location3() == 2 && location7() == 6 && 
               bit2(0x003D37) == 1
@@ -883,12 +844,11 @@ achievement(
 // I3 - Jamiras Lv31 - Dhama
 // ----------------------------------------------------------------
 
-// DEMOTE
-achievement(
-    title = "Wait, What?", description = "Hey, that's me. But I'm right here!", points = 4,
-    id = 56493, badge = "58986", published = "12/20/2017 4:50:53 AM", modified = "12/20/2017 5:09:57 AM",
-    trigger = text_id() == 1177
-)
+//achievement(
+//    title = "Wait, What?", description = "Hey, that's me. But I'm right here!", points = 4,
+//    id = 56493, badge = "58986", published = "12/20/2017 4:50:53 AM", modified = "12/20/2017 5:09:57 AM",
+//    trigger = text_id() == 1177
+//)
 
 achievement(
     title = "Save Yourself", description = "...with some good ol' fashioned mind melding.", points = 4,
@@ -896,9 +856,8 @@ achievement(
     trigger = text_id() == 2836
 )
 
-// POINTS -> 5
 achievement(
-    title = "Filling in the Gaps", description = "Regain all your memories and receive the Helm of Cevas.", points = 10,
+    title = "Filling in the Gaps", description = "Regain all your memories and receive the Helm of Cevas.", points = 5,
     id = 56495, badge = "58989", published = "12/20/2017 4:50:58 AM", modified = "10/21/2019 8:56:01 PM",
     trigger = text_id() == 4813
 )
@@ -917,10 +876,9 @@ achievement(
 
 // can get "Adept Collector" (60 medals) now
 
-// POINTS -> 5
 achievement(
     title = "Legendary Armor", 
-    description = "Obtain the Armor of Orgo after watching the king of Grace Castle doom his people.", points = 10,
+    description = "Obtain the Armor of Orgo after watching the king of Grace Castle doom his people.", points = 5,
     id = 56497, badge = "58991", published = "12/20/2017 4:51:03 AM", modified = "10/21/2019 8:56:01 PM",
     trigger = location1() == 160 && location2() == 159 && location3() == 157 && location7() == 6 && 
               bit0(0x003D37) == 1
@@ -931,22 +889,27 @@ achievement(
 // $3D9F:01 - Aeolus's Shield, Chest, Grace Castle (dream)
 // $3D9E:80 - Small Medal, Chest, Grace Castle (dream)
 
+achievement(
+   title = "Hidden Treasure: Grace Castle", description = "Collect the items from the three chests hidden in Grace Castle", points = 3,
+   id = 56493, // replaces "Wait, What?"
+   trigger = current_location() == 0x0029 && bit7(0x3D9E) == 1 && bit0(0x3D9F) == 1 && bit1(0x3D9F) == 1 &&
+             (prev(bit7(0x3D9E)) == 0 || prev(bit0(0x3D9F)) == 0 || prev(bit1(0x3D9F)) == 0)
+)
+
 // ================================================================
 // J2 - Jamiras Lv32 - Longadeseo
 // ----------------------------------------------------------------
 
 // downstairs NE house
-// POINTS -> 5
 achievement(
-    title = "Legendary Sword", description = "Obtain the Sword of Ramias.", points = 10,
+    title = "Legendary Sword", description = "Obtain the Sword of Ramias.", points = 5,
     id = 56498, badge = "58993", published = "12/20/2017 4:57:35 AM", modified = "9/30/2019 3:43:01 PM",
     trigger = text_id() == 564
 )
 
-// POINTS -> 3
 achievement(
     title = "Duran Duran", 
-    description = "Solve the shrine's puzzle, defeat Hell Cloud, and then enter Duran's castle.", points = 5,
+    description = "Solve the shrine's puzzle, defeat Hell Cloud, and then enter Duran's castle.", points = 3,
     id = 56499, badge = "58994", published = "12/20/2017 4:58:38 AM", modified = "10/21/2019 8:56:01 PM",
     trigger = location1() == 111 && location2() == 112 && location3() == 113 && location7() == 86
 )
@@ -969,21 +932,25 @@ achievement(
     trigger = text_id() == 5541
 )
 
-// DEMOTE
-achievement(
-    title = "Cloud Castle", description = "Find and enter Cloud Castle.", points = 4,
-    id = 56502, badge = "58997", published = "12/20/2017 4:59:41 AM", modified = "12/20/2017 5:10:11 AM",
-    trigger = location1() == 97 && location2() == 98 && location3() == 99 && location7() == 81
-)
+//achievement(
+//    title = "Cloud Castle", description = "Find and enter Cloud Castle.", points = 4,
+//    id = 56502, badge = "58997", published = "12/20/2017 4:59:41 AM", modified = "12/20/2017 5:10:11 AM",
+//    trigger = location1() == 97 && location2() == 98 && location3() == 99 && location7() == 81//
+//)
 
 // Hidden Treasure: Pegasus Tower (3) - (G): https://gamefaqs.gamespot.com/snes/588293-dragon-quest-vi-maboroshi-no-daichi/map/4491-pegasus-tower-map
 // $3DB0:08 - Small Medal, Chest, Pegasus Tower 2F
 // $3DB0:04 - Nut of Life, Chest, Pegasus Tower 2F
 // $3DB0:02 - Dragon Killer, Chest, Pegasus Tower 2F
-
-// POINTS -> 5
 achievement(
-    title = "We Have Liftoff!", description = "Obtain the Reigns of Pegasus.", points = 4,
+   title = "Hidden Treasure: Pegasus Tower", description = "Collect the items from the three chests hidden in Pegasus Tower", points = 3,
+   id = 56502, // replaces "Cloud Castle"
+   trigger = current_location() == 0x0075 && bit3(0x3DB0) == 1 && bit2(0x3DB0) == 1 && bit1(0x3DB0) == 1 &&
+             (prev(bit3(0x3DB0)) == 0 || prev(bit2(0x3DB0)) == 0 || prev(bit1(0x3DB0)) == 0)
+)
+
+achievement(
+    title = "We Have Liftoff!", description = "Obtain the Reigns of Pegasus.", points = 5,
     id = 56503, badge = "58998", published = "12/20/2017 4:59:45 AM", modified = "12/22/2017 7:22:02 PM",
     trigger = text_id() == 2341 && location1() == 204 && location2() == 46 && location3() == 47 && 
               location7() == 6
@@ -995,24 +962,21 @@ achievement(
 
 // can get "Expert Collector" (80 medals) now
 
-// DEMOTE
-achievement(
-    title = "Despair Town", 
-    description = "Energize the Reigns of Pegasus, travel to the dark world, and enter Despair Town.", points = 4,
-    id = 56504, badge = "58999", published = "12/20/2017 4:59:51 AM", modified = "12/20/2017 4:16:47 PM",
-    trigger = location1() == 80 && location2() == 81 && location3() == 82 && location7() == 249
-)
+//achievement(
+//    title = "Despair Town", 
+//    description = "Energize the Reigns of Pegasus, travel to the dark world, and enter Despair Town.", points = 4,
+//    id = 56504, badge = "58999", published = "12/20/2017 4:59:51 AM", modified = "12/20/2017 4:16:47 PM",
+//    trigger = location1() == 80 && location2() == 81 && location3() == 82 && location7() == 249
+//)
 
-// POINTS -> 3
 achievement(
-    title = "So Wrinkly", description = "Enter the cave in the hot springs.", points = 4,
+    title = "So Wrinkly", description = "Enter the cave in the hot springs.", points = 3,
     id = 56505, badge = "59000", published = "12/20/2017 4:59:56 AM", modified = "12/20/2017 5:10:16 AM",
     trigger = location1() == 15 && location2() == 253 && location3() == 254 && location7() == 249
 )
 
-// POINTS -> 5
 achievement(
-    title = "Despair to Hope", description = "Find and return Ende's tools.", points = 4,
+    title = "Despair to Hope", description = "Find and return Ende's tools.", points = 5,
     id = 56506, badge = "59001", published = "12/20/2017 5:00:00 AM", modified = "12/22/2017 7:19:56 PM",
     trigger = text_id() == 776 && location1() == 87 && location2() == 81 && location3() == 82 && 
               location7() == 249
@@ -1022,19 +986,17 @@ achievement(
 // K2 - Jamiras Lv37 - Despair Town
 // ----------------------------------------------------------------
 
-// DEMOTE
-achievement(
-    title = "Greed Town", description = "Find and enter Greed Town.", points = 4,
-    id = 56507, badge = "59002", published = "12/20/2017 5:00:08 AM", modified = "12/20/2017 4:16:07 PM",
-    trigger = location1() == 204 && location2() == 205 && location3() == 206 && location7() == 244
-)
+//achievement(
+//    title = "Greed Town", description = "Find and enter Greed Town.", points = 4,
+//    id = 56507, badge = "59002", published = "12/20/2017 5:00:08 AM", modified = "12/20/2017 4:16:07 PM",
+//    trigger = location1() == 204 && location2() == 205 && location3() == 206 && location7() == 244
+//)
 
-// POINTS -> 5
 // MISSABLE
 // when the townsfolk begin to fight over the sage's treasure, go down the left side so the man starts killing
 // everyone. after talking to the monsters at the bottom, fight and defeat the last one standing and time restarts
 achievement(
-    title = "Senseless Slaughter", description = "Enough! This isn't how it's supposed to be...", points = 10,
+    title = "Senseless Slaughter [m]", description = "Enough! This isn't how it's supposed to be...", points = 5,
     id = 56508, badge = "59003", published = "12/20/2017 5:00:21 AM", modified = "10/12/2019 6:27:01 PM",
     trigger = text_id() == 2076
 )
@@ -1043,9 +1005,8 @@ achievement(
 // K3 - Jamiras Lv37 - Well Bottom
 // ----------------------------------------------------------------
 
-// POINTS -> 5
 achievement(
-    title = "Prison Town", description = "Defeat the Sorrow Giant, receive the Prison Key, and enter Prison Town.", points = 10,
+    title = "Prison Town", description = "Defeat the Sorrow Giant, receive the Prison Key, and enter Prison Town.", points = 5,
     id = 56509, badge = "59004", published = "12/20/2017 5:00:24 AM", modified = "9/30/2019 3:43:01 PM",
     trigger = location1() == 90 && location2() == 91 && location3() == 92 && location7() == 254
 )
@@ -1060,10 +1021,9 @@ achievement(
 // L1 - Jamiras Lv39 - Well Bottom
 // ----------------------------------------------------------------
 
-// POINTS -> 5
 achievement(
     title = "Brotherly Love", 
-    description = "Defeat Zuikaku and Shoukaku, reunite the brothers, and collapse a mountain.", points = 10,
+    description = "Defeat Zuikaku and Shoukaku, reunite the brothers, and collapse a mountain.", points = 5,
     id = 56511, badge = "59006", published = "12/20/2017 5:00:30 AM", modified = "10/12/2019 6:27:01 PM",
     trigger = text_id() == 2197 && location1() == 114 && location2() == 7 && location3() == 16 && 
               location7() == 147
@@ -1100,15 +1060,15 @@ achievement(
               location7() == 65
 )
 
-// POINTS -> 5
+// Sit through the ending and credits
 achievement(
-    title = "Spoiler Alert", description = "Never find out what hatched.", points = 10,
+    title = "Spoiler Alert", description = "Never find out what hatched.", points = 5,
     id = 56513, badge = "59008", published = "12/20/2017 5:00:36 AM", modified = "10/9/2019 5:43:02 PM",
     trigger = text_id() == 6925 && word(0x000000) == 47689
 )
 
 achievement(
-    title = "Good Ol' Terry", description = "Pay attention to Terry during the credits to find something important.", points = 10,
+    title = "Good Ol' Terry", description = "Pay attention to Terry during the credits to find something important.", points = 5,
     id = 56514, badge = "59009", published = "12/20/2017 5:00:39 AM", modified = "9/27/2019 3:13:01 PM",
     trigger = location1() == 233 && location2() == 234 && location3() == 235 && location7() == 72 && 
               bit5(0x003D37) == 1
@@ -1116,7 +1076,7 @@ achievement(
 
 achievement(
     title = "It Keeps Going, and Going, and Going...", 
-    description = "Raise each class to a minimum of 5 stars to access the bonus dungeon.", points = 25,
+    description = "Raise each class to a minimum of 5 stars to access the bonus dungeon.", points = 10,
     id = 56515, badge = "59010", published = "12/20/2017 5:00:42 AM", modified = "10/9/2019 5:43:02 PM",
     trigger = text_id() == 4880
 )
@@ -1125,8 +1085,12 @@ achievement(
 // M1 - Jamiras Lv48 - Calcado
 // ----------------------------------------------------------------
 
-// Hidden Treasure: Calcado
 // $3D94:80 - Orichalcum Fang, ground, Calcado
+achievement(
+   title = "Hidden Treasure: Calcado", description = "Find the Orichalcum Fang hidden in Calcado", points = 3,
+   id = 56504, // replaces "Despair Town"
+   trigger = current_location() == 0x001B && bit7(0x3D94) == 1 && prev(bit7(0x3D94)) == 0
+)
 
 // can get "Master Collector" (100 medals) now
 
@@ -1146,7 +1110,7 @@ achievement(
 
 achievement(
     title = "The Boss of Bosses", 
-    description = "Defeat Dark Dream in 20 or less turns to watch him slap around Deathtamoor.", points = 25,
+    description = "Defeat Dark Dream in 20 or less turns to watch him slap around Deathtamoor.", points = 50,
     id = 56516, badge = "59011", published = "12/20/2017 5:00:46 AM", modified = "10/12/2019 6:27:01 PM",
     trigger = text_id() == 1502 && location1() == 68 && location2() == 234 && location3() == 93 && 
               location7() == 221
@@ -1157,6 +1121,15 @@ achievement(
     description = "Recruit and level a slime and use it to defeat Champ in the Slime Arena.", points = 25,
     id = 56517, badge = "59012", published = "12/20/2017 5:00:50 AM", modified = "10/9/2019 5:43:02 PM",
     trigger = text_id() == 1798
+)
+
+achievement(
+    title = "The Most Stylish of the Stylish",
+    description = "Win the Rank 8 Style competition", points = 25,
+    id = 56507, // replaces "Greed Town"
+    trigger = current_location() == 0x0062 && 
+              byte(0x3d29) == 8 && // completed rank 8
+              text_id() == 6699
 )
 
 // -----------------------------------------------
@@ -1181,18 +1154,19 @@ achievement(
 
 // POINTS -> 10
 achievement(
-    title = "Expert Collector", description = "Give the Medal King 80 Small Medals.", points = 25,
+    title = "Expert Collector", description = "Give the Medal King 80 Small Medals.", points = 10,
     id = 56385, badge = "57559", published = "12/19/2017 1:39:37 AM", modified = "12/20/2017 3:33:27 PM",
     trigger = small_medals_turned_in() >= 80 && small_medals_turned_in() <= 105 && in_game() && word(0x000000) != 16704
 )
 
 // POINTS -> 25
 achievement(
-    title = "Master Collector", description = "Give the Medal King 100 Small Medals.", points = 50,
+    title = "Master Collector", description = "Give the Medal King 100 Small Medals.", points = 25,
     id = 56386, badge = "57560", published = "12/19/2017 1:39:41 AM", modified = "10/9/2019 5:43:02 PM",
     trigger = small_medals_turned_in() >= 100 && small_medals_turned_in() <= 109 && in_game()
 )
 
+// ----------------------------------------------------------------------------
 
 // $3D03:01 - Capture Falshion, field [temporary]
 
