@@ -395,6 +395,9 @@ story_achievement(location_waterfall_cave_entrance, bit1(0x223C), 3, "The Second
 
 story_achievement(location_oracleberry, bit5(0x21B6), 2, "You Are Here", "Purchase the Wayfarer's Map")
 
+// === 08b - Pre-wedding ===============
+
+// when prompted to pick a wife, talk to Ludman
 dialog_achievement(location_salabona, 0x37A873, 0x0AE299, 2,  "I'm Flattered, But...", "Declare your love for another") // [missable]
 story_achievement(location_salabona, bit4(0x21AC), 5, "'Til Death Do Us Part", "Get married")
 
