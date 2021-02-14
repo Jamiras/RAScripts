@@ -504,7 +504,7 @@ rich_presence_display("{0} is {1}",
 
 // - Dante automatically takes the fish tank [bowl].
 
-achievement(title = "Adventure Game Basics", description = "Examine everything in Dante's room before picking anything up", points = 2, 
+achievement(title = "Adventure Game Basics", description = "Examine five hotspots in Dante's room", points = 2, 
     trigger = current_scene() == scene_univ_dantes_room && 
               once(current_dialog_message() == 0x000A) &&  // ink
               once(current_dialog_message() == 0x000B) &&  // sheet
