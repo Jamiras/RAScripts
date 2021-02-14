@@ -61,14 +61,18 @@ rich_presence_display("Level {0}-{1} {2}{3}",
 
 function required_pipes_remaining() => byte(0x0447)
 
-function trigger_in_game() => current_screen() >= screen_main_board && current_screen() <= screen_bonus && current_screen() != screen_logo
+function trigger_in_game() => current_screen() >= screen_main_board && current_screen() <= screen_bonus && 
+                              current_screen() != screen_logo
 function trigger_flooz_stopped() => byte(0x00FA) == 0 // flooz has stopped flowing
 function trigger_start_level() => !trigger_is_demo() && once(byte(0x00B6) == 0) // flooz has not started to flow
 function trigger_during_level() => trigger_start_level() && never(trigger_flooz_stopped())
 function trigger_level_complete() => byte(0x00E2) > 8 // 9 = game over, 12 = push button
 function trigger_level_won() => trigger_flooz_stopped() && prev(byte(0x00FA)) == 255 && required_pipes_remaining() == 0
 function trigger_full_flow() => byte(0x00EA) == 255
-function trigger_during_bonus_level() => trigger_is_bonus_level() && never(byte(0x00F9) == 255)
+
+function trigger_during_bonus_level() => trigger_is_bonus_level() && 
+                                         never(byte(0x00F9) == 255) &&
+                                         never(current_screen() == screen_level_select) // LucasArts title card uses $C9 as a timer
 
 // ==== Progress (250pts) (18x) ====
 // Game A        200pts
