@@ -1,10 +1,23 @@
 // King's Quest I
 // #ID=14398
+//
+// These hashes appear to be a non-cracked version, labeled "King Quest (1983)(Sierra)(Disk 1 of 3)[nib]"
 // MD5: ebb389599debac2b554c431bfb0f919c (side A)
 // MD5: 6a2bd8ce8b19436d2ce455b751aadb31 (side B)
 // MD5: 1895ddb08c2068a66f9df3765a29f5bf (side C)
-// MD5: 92088fe43463ece00e33e0cc150c4a0e (save disk)
-
+//
+// These hashes are for the blade cracked version:
+// MD5: 34f8869a6f033195023d3b60ce814ecd (side A)
+// MD5: c7d0d8e28da4c4ee93ef059230260c62 (side B)
+// MD5: c5c91d02d70478080f376e280592db9d (side C)
+//
+// These hashes are for the 4am cracked version:
+// MD5: 5ce474d9ee686f66ffff6e6f26a90418 (side A)
+// MD5: 0abf79679eb7d33ccae220ab9229cb27 (side B)
+// MD5: f4c6c8c11e3fab4fc22e44be3c535f67 (side C)
+//
+// The blade and 4am cracked versions share the data in the lower addresses (score, location), but have alternate
+// addresses for the important stuff (event flags, inventory), so are currently not compatible.
 
 // ========================================================
 
