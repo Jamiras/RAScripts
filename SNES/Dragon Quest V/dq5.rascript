@@ -347,7 +347,7 @@ story_achievement(location_ice_mansion, bit4(0x2213), 5, "The Sound of Birds", "
 
 // === 03 - Reinhart ==================
 
-story_achievement(location_thieves_cave, bit4(0x219C), 6, "The Missing Prince", "Rescue Prince Henry")
+story_achievement(location_thieves_cave, bit4(0x219C), 5, "The Missing Prince", "Rescue Prince Henry")
 
 // === 04 - Slavery ===================
 
@@ -370,7 +370,7 @@ achievement(
 
 // === 06 - Return to Alcapa ==========
 
-story_achievement(location_reinhart, bit4(0x21AA), 3, "Key to the Kingdom", "Obtain the Reinhart's Key")
+story_achievement(location_reinhart, bit4(0x21AA), 4, "Key to the Kingdom", "Obtain the Reinhart's Key")
 story_achievement(location_reinhart, bit4(0x21BC), 5, "A Tale of Two Empresses", "Defeat the impostor Empress")
 
 // === 07 - Kabochi ===================
