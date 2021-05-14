@@ -458,7 +458,7 @@ dungeons = {
     dungeon_kanalet_castle: "Kanalet Castle",
     dungeon_color_dungeon: "Color Dungeon",
     10: "a Cave",
-    14: "a House",
+    //14: "a House",
     16: "a House",
     17: "a Cave",
     18: "a House",

@@ -7,6 +7,7 @@ function is_in_menu() => bit1(0x00000C) == 1
 function is_in_level() => !is_in_menu() && is_actor_alive(0)
 function current_level() => byte(0x000068) + 1
 function max_level() => byte(0x000069) + 1
+function current_lives() => byte(0x00007C)
 function is_level_complete() => byte(0x000518) == 0xFF
 
 function complete_level_trigger(level) => is_in_level() && is_level_complete() && current_level() == level
@@ -64,10 +65,17 @@ achievement(
     trigger = is_in_level() && current_level() < max_level()
 )
 
+function points_1() => low4(0x0000B9)
+function points_10() => low4(0x0000B8)
+function points_100() => low4(0x0000B7)
+function points_1k() => low4(0x0000B6)
 function points_10k() => low4(0x0000B5)
 function points_100k() => low4(0x0000B4)
 function points_1m() => low4(0x0000B3)
 function points_10m() => low4(0x0000B2)
+function points() => points_1() + points_10() * 10 + points_100() * 100 +
+                     points_1k() * 1000 + points_10k() * 10000 + points_100k() * 100000 +
+                     points_1m() * 1000000 + points_10m() * 10000000
 
 achievement(
     title = "20000 Points",
@@ -190,3 +198,62 @@ achievement_avoid_enemies_challenge   (56, 10)                // TY9X
 achievement_avoid_enemies_challenge   (57, 10)                // P2RX
 achievement_avoid_enemies_challenge   (58, 10)                // PTFX
 achievement_avoid_enemies_challenge   (60, 10)                // YTKX
+
+leaderboard("High Score", "Most points at game over or victory",
+    start  = byte(0x01FB) == 0x4a,   // game start sequence
+    cancel = byte(0x01FB) == 0xB8,   // reset sequence
+    submit = byte(0x01FB) != 0x96 && // in stage
+             byte(0x01FB) != 0x69 && // paused
+             byte(0x01FB) != 0xC1 && // death
+             byte(0x01FB) != 0xC0 && // stage complete
+             byte(0x01FB) != 0xEE && // transition to "that's all folks"
+             byte(0x01FB) != 0xF9 && // transition to "that's all folks"
+             byte(0x01FB) != 0xFE && // transition to "that's all folks"
+             byte(0x01FB) != 0x55 && // continue
+             byte(0x01FB) != 0x58 && // continue
+             byte(0x01FB) != 0x5B && // transition to stage
+             byte(0x01FB) != 0xB8 && // reset sequence
+             byte(0x01FB) != 0xDF && // the end
+             byte(0x01FB) != 0x4A,   // game start sequence
+    value  = points()
+)
+
+leaderboard("High Score - One Life", "Most points in a single life",
+    start  = byte(0x01FB) == 0x4a,   // game start sequence
+    cancel = byte(0x01FB) == 0xB8,   // reset sequence
+    submit = current_lives() < prev(current_lives()),
+    value  = points()
+)
+
+leaderboard("High Score - Looper", "High score after looping. Submits on game over",
+    start  = byte(0x01FB) == 0xE7,   // end transition
+    cancel = byte(0x01FB) == 0xB8,   // reset sequence
+    submit = byte(0x01FB) == 0x2F,   // game over
+    value  = points()
+)
+
+PauseLookup = {
+    0x69: "▌▌ ",
+}
+
+SecretStages = {
+    61: "S3",
+    62: "S2",
+    63: "S4",
+    64: "S1"
+}
+
+rich_presence_conditional_display(byte(0x0034) == 5, "Ending")
+rich_presence_conditional_display(byte(0x0034) == 2 || byte(0x0034) == 3 || byte(0x0062) == 1, "Titles")
+
+rich_presence_conditional_display(current_level() > 60 && current_level() <= 64, "{0}Stage {1}, {2} lives",
+    rich_presence_lookup("Pause", byte(0x0001FB), PauseLookup, ""),
+    rich_presence_lookup("SecretStages", current_level(), SecretStages),
+    rich_presence_value("Lives", current_lives())
+)
+
+rich_presence_display("{0}Stage {1}, {2} lives",
+    rich_presence_lookup("Pause", byte(0x0001FB), PauseLookup, ""),
+    rich_presence_value("Stage", current_level()),
+    rich_presence_value("Lives", current_lives())
+)

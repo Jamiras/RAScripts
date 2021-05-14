@@ -157,7 +157,7 @@ locations = {
     0x012344: "Naga Wasteland",
     0x051541: "Ladies Desert",
     0x00184B: "Oasis Town", // Town Gates
-    0x041863: "Oasis Town", // Town Center
+    //0x041863: "Oasis Town", // Town Center
     0x051F69: "Oasis Town", // Warp Squid Hut
     0x051F40: "Oasis Town", // Item Shop
     0x041863: "Oasis Town", // Sky's Hatchery
