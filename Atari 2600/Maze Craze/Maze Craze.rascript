@@ -38,25 +38,28 @@
 // auto-peek: the hidden part of the map appears briefly every five seconds
 // player-peek: the hidden part of the map appears briefly when the player pushes their button - six second cooldown
 
-function game_mode(speed, mode, visibility) => byte(0x3D) == (speed - 1) * 64 + (mode - 1) * 4 + (visibility - 1)
-function player_active() => bit6(0x3C) == 0
-function maze_complete() => byte(0x6C) == 0xFF
-function timer() => byte(0x61)
+function game_state() => high4(0x3C)
+state_normal = 0
+state_playerkilled = 2
+state_gameover = 4
+state_complete = 6 // exit map or both players dead - transitions to state_gameover
 
-leaderboard(
-    title = "In Game Timer",
-    description = "For timed achievements",
-    start = once(always_true()), // must be false at least one frame to start/restart
-    submit = always_false(),
-    cancel = always_false(),
-    value = measured(repeated(99999, timer() != prev(timer()))) && // count frames
-            unless(maze_complete()) &&                             // until maze completes
-            never(!player_active())                                // reset between mazes
+function game_mode(speed, mode, visibility) => byte(0x3D) == (speed - 1) * 64 + (mode - 1) * 4 + (visibility - 1)
+function player_active() => byte(0x6D) == 0
+function player_holding_start() => bit0(0x3c) == 1
+function maze_being_generated() => byte(0x6D) != 0
+function maze_complete() => game_state() == state_complete && player_active() && !player_holding_start()
+function timer() => byte(0x61) // not really, but does decrement every frame, so we can use it that way
+
+rich_presence_display("Maze {0}-{1}-{2}",
+    rich_presence_value("Value", bit6(0x3D) + bit7(0x3D) * 2 + 1),
+    rich_presence_value("Value", bit2(0x3D) + bit3(0x3D) * 2 + bit4(0x3D) * 4 + bit5(0x3D) * 8 + 1),
+    rich_presence_value("Value", bit0(0x3D) + bit1(0x3D) * 2 + 1)    
 )
 
-function untimed_maze(title, speed, mode, visibility, points, annotation)
+function untimed_maze(id, title, speed, mode, visibility, points, annotation)
 {
-    achievement(title = title, points = points, 
+    achievement(title = title, points = points, id = id,
                 description = "Complete a " + speed + "-" + mode + "-" + visibility + 
                               " maze (" + annotation + ")",
                 trigger = game_mode(speed, mode, visibility) &&
@@ -64,9 +67,9 @@ function untimed_maze(title, speed, mode, visibility, points, annotation)
     )
 }
 
-function untimed_maze2(title, speed, mode, visibility, speed2, mode2, visibility2, points, annotation)
+function untimed_maze2(id, title, speed, mode, visibility, speed2, mode2, visibility2, points, annotation)
 {
-    achievement(title = title, points = points, 
+    achievement(title = title, points = points, id = id,
                 description = "Complete a " + speed + "-" + mode + "-" + visibility + 
                               " or " + speed2 + "-" + mode2 + "-" + visibility2 +
                               " maze (" + annotation + ")",
@@ -75,28 +78,45 @@ function untimed_maze2(title, speed, mode, visibility, speed2, mode2, visibility
     )
 }
 
-
-function timed_maze(title, speed, mode, visibility, time, points, annotation)
+function timed_maze(id, title, speed, mode, visibility, time, points, annotation)
 {
-    achievement(title = title, points = points, 
-                description = "Complete a " + speed + "-" + mode + "-" + visibility + 
-                              " maze in under " + time + " seconds (" + annotation + ")",
+    maze_name = speed + "-" + mode + "-" + visibility
+
+    achievement(title = title, points = points, id = id,
+                description = "Complete a " + maze_name + " maze in under " + time + " seconds (" + annotation + ")",
                 trigger = game_mode(speed, mode, visibility) &&
                           maze_complete() &&
                           unless(repeated(time * 60, timer() != prev(timer()))) &&
-                          (always_false() || never(!player_active()))
+                          (always_false() || never(maze_being_generated()))
+    )
+    
+    leaderboard(
+        title = maze_name,
+        description = "Complete a " + maze_name + " maze as fast as possible",
+        start = game_mode(speed, mode, visibility) && maze_being_generated(),
+        submit = maze_complete(),
+        cancel = !game_mode(speed, mode, visibility), // changed maze
+        value = measured(repeated(99999, player_active() && timer() != prev(timer()))) && // count frames (~27 minutes maximum)
+                never(maze_being_generated())
     )
 }
 
-// Complete a 1-1-4 maze in under 40 seconds (auto-peek, no robbers)       - Brownout Race (5)
+// timed maze requirements were determined by playing each maze at least 20 times. throwing out the highest and lowest
+// scores, averaging the remaining scores, subtracting 20% from that, and then rounding up to the nearest second.
+// this gives a reasonable target given the randomness of the mazes, and still provides a challenge for most layouts.
+// times were calculated using the default (A) difficulty setting. difficulty B makes the player move slightly faster,
+// but for most mazes (especially the fast mazes), the additional speed is as much a detriment as a benefit as it makes
+// it harder to turn at intersections.
+
+// Complete a 1-1-4 maze in under 21 seconds (auto-peek, no robbers)       - Brownout Race (5)
 // Complete a 1-6-4 maze in under 40 seconds (player-peek, no robbers)     - Blackout Race (5)
 // Complete a 1-7-4 maze in under one minute (no-peek, no robbers, scouts) - Doppler Race (5)
 // Complete a 1-16-4 maze in under two minutes (no-peek, no robbers)       - Blind Race (5)
 
-timed_maze("Brownout Race", 1,  1, 4,  40, 5, "auto-peek, no robbers")
-timed_maze("Blackout Race", 1,  6, 4,  40, 5, "player-peek, no robbers")
-timed_maze("Doppler Race",  1,  7, 4,  60, 5, "no-peek, no robbers, scouts")
-timed_maze("Blind Race",    1, 16, 4, 120, 5, "no-peek, no robbers")
+timed_maze(154600, "Brownout Race", 1,  1, 4, 21, 3, "auto-peek, no robbers")
+timed_maze(154606, "Blackout Race", 1,  6, 4, 22, 4, "player-peek, no robbers")
+timed_maze(154607, "Doppler Race",  1,  7, 4, 40, 5, "scouts, no robbers")
+timed_maze(154610, "Blind Race",    1, 16, 4, 50, 5, "no-peek, no robbers")
 
 // Complete a 1-2-4 maze (player-peek, two robbers)                        - Two Robbers in a Blackout (5)
 // Complete a 1-9-4 maze (no-peek, two robbers)                            - Two Robbers, No Peeking (10)
@@ -104,29 +124,28 @@ timed_maze("Blind Race",    1, 16, 4, 120, 5, "no-peek, no robbers")
 // Complete a 1-5-4 maze (no-peek, three robbers)                          - Three Robbers, No Peeking (10)
 // Complete a 1-6-1 maze (full visibility, five robbers)                   - Five Robbers (10)
 
-untimed_maze("Two Robbers in a Blackout",   1, 2, 4,  5, "player-peek, two robbers")
-untimed_maze("Two Robbers, No Peeking",     1, 9, 4, 10, "no-peek, two robbers")
-untimed_maze("Three Robbers in a Blackout", 1, 3, 4,  5, "player-peek, three robbers")
-untimed_maze("Three Robbers, No Peeking",   1, 5, 4, 10, "no-peek, three robbers")
-untimed_maze("Five Robbers",                1, 6, 1, 10, "full visibility, five robbers")
+untimed_maze(154601, "Two Robbers in a Blackout",   1, 2, 4,  5, "player-peek, two robbers")
+untimed_maze(154608, "Two Robbers, No Peeking",     1, 9, 4, 10, "no-peek, two robbers")
+untimed_maze(154602, "Three Robbers in a Blackout", 1, 3, 4, 10, "player-peek, three robbers")
+untimed_maze(154605, "Five Robbers",                1, 6, 1,  4, "full visibility, five robbers")
 
 // Complete a 1-4-1 maze in under one minute (full visibility, capture)    - Capture (5)
 // Complete a 1-4-4 maze in under two minutes (auto-peek, capture)         - Brownout Capture (5)
-// Complete a 1-14-4 maze in under two minutes (player-peek, capture)      - Blackout Capture (5)
+// Complete a 1-14-4 maze in under two minutes (player-peek, capture)      - Blackout Capture (5), third robber is not visible when not peeking
 
-timed_maze("Capture",          1,  4, 1,  60, 5, "full visibility, capture")
-timed_maze("Brownout Capture", 1,  4, 4, 120, 5, "auto-peek, capture")
-timed_maze("Blackout Capture", 1, 14, 4, 120, 5, "player-peek, capture")
+timed_maze(154603, "Capture",          1,  4, 1, 18, 2, "full visibility, capture")
+timed_maze(154604, "Brownout Capture", 1,  4, 4, 32, 4, "auto-peek, capture")
+timed_maze(154609, "Blackout Capture", 1, 14, 4, 40, 5, "player-peek, capture")
 
 // Complete a 2-1-4 maze in under 30 seconds (auto-peek, no robbers)       - Fast Brownout Race (5)
 // Complete a 2-6-4 maze in under 30 seconds (player-peek, no robbers)     - Fast Blackout Race (5)
 // Complete a 2-7-4 maze in under 50 seconds (no-peek, no robbers, scouts) - Fast Doppler Race (5)
 // Complete a 2-16-4 maze in under 90 seconds (no-peek, no robbers)        - Fast Blind Race (5)
 
-timed_maze("Fast Brownout Race", 2,  1, 4,  30, 5, "auto-peek, no robbers")
-timed_maze("Fast Blackout Race", 2,  6, 4,  30, 5, "player-peek, no robbers")
-timed_maze("Fast Doppler Race",  2,  7, 4,  50, 5, "no-peek, no robbers, scouts")
-timed_maze("Fast Blind Race",    2, 16, 4,  90, 5, "no-peek, no robbers")
+timed_maze(154611, "Fast Brownout Race", 2,  1, 4,  18, 4, "auto-peek, no robbers")
+timed_maze(154618, "Fast Blackout Race", 2,  6, 4,  16, 4, "player-peek, no robbers")
+timed_maze(154619, "Fast Doppler Race",  2,  7, 4,  27, 3, "no-peek, no robbers, scouts")
+timed_maze(154622, "Fast Blind Race",    2, 16, 4,  23, 5, "no-peek, no robbers")        
 
 // Complete a 2-2-1 or 2-9-1 maze (full visibility, two robbers)           - Two Fast Robbers (5)
 // Complete a 2-2-4 maze (player-peek, two robbers)                        - Two Fast Robbers in a Blackout (10)
@@ -136,18 +155,17 @@ timed_maze("Fast Blind Race",    2, 16, 4,  90, 5, "no-peek, no robbers")
 // Complete a 2-5-4 maze (no-peek, three robbers)                          - Three Fast Robbers, No Peeking (25)
 // Complete a 2-6-1 maze (full visibility, five robbers)                   - Five Fast Robbers (10)
 
-untimed_maze2("Two Fast Robbers",                2, 2, 1, 2, 9, 1,  5, "full visibility, two robbers")
-untimed_maze("Two Fast Robbers in a Blackout",   2, 2, 4,          10, "player-peek, two robbers")
-untimed_maze("Two Fast Robbers, No Peeking",     2, 9, 4,          10, "no-peek, two robbers")
-untimed_maze2("Three Fast Robbers",              2, 3, 1, 2, 5, 1,  5, "full visibility, three robbers")
-untimed_maze("Three Fast Robbers in a Blackout", 2, 3, 4,           5, "player-peek, three robbers")
-untimed_maze("Three Fast Robbers, No Peeking",   2, 5, 4,          25, "no-peek, three robbers")
-untimed_maze("Five Fast Robbers",                2, 6, 1,          10, "full visibility, five robbers")
+untimed_maze2(154612, "Two Fast Robbers",              2, 2, 1, 2, 9, 1,  2, "full visibility, two robbers")
+untimed_maze(154613, "Two Fast Robbers in a Blackout", 2, 2, 4,           5, "player-peek, two robbers")
+untimed_maze(154620, "Two Fast Robbers, No Peeking",   2, 9, 4,          10, "no-peek, two robbers")
+untimed_maze(154614, "Three Fast Robbers",             2, 3, 1,           3, "full visibility, three robbers")
+//untimed_maze("Three Fast Robbers in a Blackout",     2, 3, 4,           5, "player-peek, three robbers")   // too hard; third not visible
+untimed_maze(154617, "Five Fast Robbers",              2, 6, 1,           5, "full visibility, five robbers")
 
 // Complete a 2-4-1 maze in under 45 seconds (full visibility, capture)    - Fast Capture (7)
 // Complete a 2-4-4 maze in under 90 seconds (auto-peek, capture)          - Fast Brownout Capture (10)
 // Complete a 2-14-4 maze in under 90 seconds (player-peek, capture)       - Fast Blackout Capture (10)
 
-timed_maze("Fast Capture",          1,  4, 1,  45,  5, "full visibility, capture")
-timed_maze("Fast Brownout Capture", 1,  4, 4,  90, 10, "auto-peek, capture")
-timed_maze("Fast Blackout Capture", 1, 14, 4,  90, 10, "player-peek, capture")
+timed_maze(154615, "Fast Capture",          2,  4, 1,  13,  2, "full visibility, capture") // GOOD
+timed_maze(154616, "Fast Brownout Capture", 2,  4, 4,  25,  5, "auto-peek, capture")       // GOOD
+timed_maze(154621, "Fast Blackout Capture", 2, 14, 4,  22,  5, "player-peek, capture")     // GOOD
