@@ -45,7 +45,7 @@ state_gameover = 4
 state_complete = 6 // exit map or both players dead - transitions to state_gameover
 
 function game_mode(speed, mode, visibility) => byte(0x3D) == (speed - 1) * 64 + (mode - 1) * 4 + (visibility - 1)
-function player_active() => byte(0x6D) == 0
+function player_active() => byte(0x6D) == 0 && bit6(0x6A) == 0
 function player_holding_start() => bit0(0x3c) == 1
 function maze_being_generated() => byte(0x6D) != 0
 function maze_complete() => game_state() == state_complete && player_active() && !player_holding_start()
@@ -96,7 +96,7 @@ function timed_maze(id, title, speed, mode, visibility, time, points, annotation
         start = game_mode(speed, mode, visibility) && maze_being_generated(),
         submit = maze_complete(),
         cancel = !game_mode(speed, mode, visibility), // changed maze
-        value = measured(repeated(99999, player_active() && timer() != prev(timer()))) && // count frames (~27 minutes maximum)
+        value = measured(repeated(99999, timer() != prev(timer()))) && // count frames (~27 minutes maximum)
                 never(maze_being_generated())
     )
 }
