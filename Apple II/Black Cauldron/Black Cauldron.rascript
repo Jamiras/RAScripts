@@ -1,11 +1,20 @@
 // Black Cauldron
 // #ID=14478
 
+// ======================================================================================
+// 4am crack (ver 1.0H)
+
 // MD5: 8899ad83dbda2e772393f98abefdc058 - Disk 1 Front [4am and san inc] dsk
 //      6af43b5d837688b373529947d3fb04fc - Disk 1 Back  [4am and san inc] dsk
 //      9214fdb0b3a53c5f4160ac681a2002bd - Disk 2 Front [4am and san inc] dsk
 //      a7cea209c45dacf4474753a701b4229d - Disk 2 Back  [4am and san inc] dsk
 //      3493f40aec829f98e4cf6ff739ff0f81 - Disk 3 Front [4am and san inc] dsk
+
+// ======================================================================================
+// The TOSEC nib files work for disks 1 and 2, but there isn't currently a
+// TOSEC nib file for disk 3. The TOSEC dsk file for disk 3 is not recognized
+// by the nib version of the game, and the two TOSEC disk 1s dsks won't load
+// past the crack group intros, so none of the TOSEC disks are currently linked.
 
 // MD5: 9bdd29ba1a2ea0dc693ab7b570bc6470 - Disk 1 Front [TOSEC] nib
 //      3ed1e187e5337153e216a39f52843674 - Disk 1 Back  [TOSEC] nib
@@ -19,15 +28,30 @@
 //      3e510a3d9f081b86fea270fc280f4635 - Disk 2 Back  [TOSEC] dsk
 //      3f4cff2de283f486c4c1caf637403dff - Disk 3 Front [TOSEC] dsk
 
-// MD5: dbcc564fdd15795c4b994af26a01a09e - Disk 1 Front [?] set made with these
-//      66f82e26d9417757ece6253dc140967c - Disk 1 Back
-//      89d90b22588fc4217348e334c60c6900 - Disk 2 Front
-//      02de27187fd6446daae8303066611f13 - Disk 2 Back
-//      0d0ef0cace8ccde940c06781efe2fd78 - Disk 3 Front
-//      ff48d45f7a1e7eea927d35137b5491d3 - Save Disk
+// ======================================================================================
+// The set was made with these files from the BLACKCAULDRONFIXED_.ZIP at
+// https://www.apple.asimov.net/images/games/rpg/black_cauldron/ 
+// They are from 2001 and predate the TOSEC/4am files. (ver 1.0H)
 
-// https://apple2online.com/index.php?p=1_34_Games-A-B ??
+// MD5: dbcc564fdd15795c4b994af26a01a09e - Disk 1 Front [?] nib
+//      66f82e26d9417757ece6253dc140967c - Disk 1 Back  [?] nib
+//      89d90b22588fc4217348e334c60c6900 - Disk 2 Front [?] nib
+//      02de27187fd6446daae8303066611f13 - Disk 2 Back  [?] nib
+//      0d0ef0cace8ccde940c06781efe2fd78 - Disk 3 Front [?] nib
+//      ff48d45f7a1e7eea927d35137b5491d3 - Save Disk    [?] nib
 
+// ======================================================================================
+// These files are from apple2online.com (ver 1.0H). They seem to work, but I haven't 
+// done a full playthrough using them, so they aren't currently linked.
+
+// MD5: 829dd00b075e70c34d55aa07368f08f3 - Disk 1 Front [?] nib
+//      e5d1731af96119aa80c7e3bbbd934a06 - Disk 1 Back  [?] nib
+//      b055763267dbad4a855c7f91cd4e4579 - Disk 2 Front [?] nib
+//      f3ce78f454a20eabed13dd9f3550ed76 - Disk 2 Back  [?] nib
+//      3261ccf5fb2d352af5b9c5164d6e5a0d - Disk 3 Front [?] nib
+//      3f18aea443e4be9627ed38595453340d - Disk 3 Front [?] nib
+
+// ======================================================================================
 // https://archive.org/stream/the_black_cauldron_-_instructions/the_black_cauldron_-_instructions_djvu.txt
 // ESC = Pause
 // 1 = Toggle Sound
