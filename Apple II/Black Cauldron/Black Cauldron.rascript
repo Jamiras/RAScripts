@@ -49,7 +49,7 @@
 //      b055763267dbad4a855c7f91cd4e4579 - Disk 2 Front [?] nib
 //      f3ce78f454a20eabed13dd9f3550ed76 - Disk 2 Back  [?] nib
 //      3261ccf5fb2d352af5b9c5164d6e5a0d - Disk 3 Front [?] nib
-//      3f18aea443e4be9627ed38595453340d - Disk 3 Front [?] nib
+//      3f18aea443e4be9627ed38595453340d - Disk 3 Back  [?] nib
 
 // ======================================================================================
 // https://archive.org/stream/the_black_cauldron_-_instructions/the_black_cauldron_-_instructions_djvu.txt
