@@ -415,7 +415,7 @@ function pinkeye_achievement(track, points)
     condition = word(0x0B15EC) != 0 && byte(0xB15EF) == 0x41
     if (track == track_farm)
         condition = condition && (current_race() == race_thanksgiving || 
-                                  current_race() == race_cow_days && dword(0x0B2A34) == 0) // prevent trigger if CPU picks up item
+                                  (current_race() == race_cow_days && dword(0x0B2A34) == 0)) // prevent trigger if CPU picks up item
 
     achievement(
         title = "Pinkeye - " + track_names[track], points = points,
@@ -668,12 +668,12 @@ achievement(
     title = "No Kitty! This is My Pot-Pie", points = 5,
     description = "Collect a pot pie in the Memorial Day championship race while having a kitty in your inventory",
     trigger = trigger_in_race(race_memorial_day) && trigger_start_race() &&
-             (byte(0x0B271B) == weapon_kitty && collect_pot_pie(0) ||
-              byte(0x0B2723) == weapon_kitty && collect_pot_pie(0) ||
-              byte(0x0B272B) == weapon_kitty && collect_pot_pie(0) ||
-              byte(0x0B271B) == weapon_kitty && collect_pot_pie(1) ||
-              byte(0x0B2723) == weapon_kitty && collect_pot_pie(1) ||
-              byte(0x0B272B) == weapon_kitty && collect_pot_pie(1))
+             ((byte(0x0B271B) == weapon_kitty && collect_pot_pie(0)) ||
+              (byte(0x0B2723) == weapon_kitty && collect_pot_pie(0)) ||
+              (byte(0x0B272B) == weapon_kitty && collect_pot_pie(0)) ||
+              (byte(0x0B271B) == weapon_kitty && collect_pot_pie(1)) ||
+              (byte(0x0B2723) == weapon_kitty && collect_pot_pie(1)) ||
+              (byte(0x0B272B) == weapon_kitty && collect_pot_pie(1)))
 )
 
 // Couldn't figure out how to not trigger when the player is flipped over by driving up a wall

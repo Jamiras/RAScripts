@@ -162,8 +162,8 @@ achievement("Hit the Road, Jack", "Eliminate an opponent", 4,
 achievement("Hey Hey-ay, Goodbye", "Eliminate an opponent with 0 points", 10,
     trigger = current_round() == 2 && // NOTE: current_screen() is screen_character_select (12) only for the exact frame of elimination
               is_single_player() &&
-              ((current_face(2) == face_none && prev(current_face(2)) != face_none) && is_current_score_equal(2, 0) ||
-               (current_face(3) == face_none && prev(current_face(3)) != face_none) && is_current_score_equal(3, 0))
+              ((current_face(2) == face_none && prev(current_face(2)) != face_none && is_current_score_equal(2, 0)) ||
+               (current_face(3) == face_none && prev(current_face(3)) != face_none && is_current_score_equal(3, 0)))
 )
 
 function trigger_win_game() => current_screen() == screen_titles && 
@@ -181,9 +181,9 @@ achievement("Fifteen Minutes of Fame", "Win the game", 5,
 achievement("Snack Break", "Win a game without participating in the lightning round", 10,
     trigger_win_game() && once(current_round() == 2) && 
     (always_true() || // put pause into alt group, which will be paused at trigger, so other alt must be true
-        never(low4(0x0095) != 0) &&                 // never press A, B, Select, or Start
-        unless(current_round() != 3) &&             // in lightning round
-        unless(current_screen() != screen_question) // when choices are visible
+        (never(low4(0x0095) != 0) &&                  // never press A, B, Select, or Start
+         unless(current_round() != 3) &&              // in lightning round
+         unless(current_screen() != screen_question)) // when choices are visible
     )
 )
 
