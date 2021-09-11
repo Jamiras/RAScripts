@@ -100,7 +100,7 @@ achievement("Arcade Master", "Complete all four mazes on skill 3 or higher", poi
     trigger = complete_loop() && current_difficulty() >= 3
 )
 
-achievement("Arcade Master 2", "Complete all four mazes in the second loop on skill 3 or higher", points=10,
+achievement("Arcade Master 2", "Complete all four mazes in the second loop on skill 3 or higher", points=25,
     trigger = complete_loop() && current_difficulty() >= 3 && current_loop() == 2
 )
 
