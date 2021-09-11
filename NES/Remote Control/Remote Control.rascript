@@ -181,9 +181,9 @@ achievement("Fifteen Minutes of Fame", "Win the game", 5,
 achievement("Snack Break", "Win a game without participating in the lightning round", 10,
     trigger_win_game() && once(current_round() == 2) && 
     (always_true() || // put pause into alt group, which will be paused at trigger, so other alt must be true
-        (never(low4(0x0095) != 0) &&                  // never press A, B, Select, or Start
+        (never(bit0(0x0095) != 0) &&                  // never press A
          unless(current_round() != 3) &&              // in lightning round
-         unless(current_screen() != screen_question)) // when choices are visible
+         unless(current_screen() != screen_question)) // when choices are selectable
     )
 )
 
