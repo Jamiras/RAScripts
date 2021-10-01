@@ -365,7 +365,13 @@ function flag_achievement(points, title, description, scene, flag_address)
 flag_achievement(2, "Show Some Respect", "Properly greet King Edward", scene_castle_throne_room, 0x6EBB)
 
 // MAX
-flag_achievement(5, "Cook, Little Pot, Cook", "Help the woodcutter and his wife", scene_inside_woodcutters_house, 0x6EE2)
+// give bowl and fill bowl can be done in either order. giving first is more points, but both let you get the fiddle.
+achievement("Cook, Little Pot, Cook", "Help the woodcutter and his wife", 5,
+    trigger = current_scene() == scene_inside_woodcutters_house &&
+              byte(0x6E62) == 1 && // fill bowl
+              byte(0x6E4E) == 0 && // give bowl
+              (prev(byte(0x6E62)) == 0 || prev(byte(0x6E4E)) != 0)
+)
 
 // MIN
 achievement("Sneaky Little Mouse", "Use a protective spell to get the cheese", 5,
