@@ -71,6 +71,8 @@
 // Ctrl+D -> debug mode, TP <enter> [sceneid] <enter>
 function is_debug_mode() => byte(0x8985) == 1
 
+function is_restoring_game() => byte(0x895F) == 1
+
 function current_score() => byte(0xFC07)
 
 function current_scene() => byte(0xFFE5)
@@ -398,6 +400,7 @@ achievement("The Full Story", "Complete the game with a perfect score", 25,
 
 achievement("Skipped a Few Chapters", "Complete the game with less than 195 points", 25, id=84702,
     trigger = current_score() < 195 &&
+              !is_restoring_game() &&
             // -- jump in cauldron --
             ((trigger_scene(scene_castle_crypt_cauldron) &&
               word(0x8072) == 0x1EDB &&                    // text pointer - immediately following "We hope you'll try again and again."
