@@ -454,7 +454,14 @@ function story_achievement(bit, points, location, title, description)
 function item_achievement(item_id, points, location_trigger, title, description)
 {
     trigger = always_false()
-    for addr in range(0x077C, 0x079B)
+
+    // US ROM has inventory from 0x77C-0x79B (8 bytes per character)
+    // JP ROM has inventory from 0x76C-0x78B (8 bytes per character)
+    // as such, the middle 16 bytes are shared, but we have to include the outer 16 bytes on each end to
+    // support both. 0x76C-0x77B are name bytes in the US ROM (US names use 8 bytes each, JP only 4 bytes each),
+    // so they won't be changing from 0xFF to the item and are safe to use. 0x78C-0x79B are learned spells,
+    // so they won't be changing when acquiring the items either.
+    for addr in range(0x076C, 0x079B)
         trigger = trigger || (byte(addr) == item_id && prev(byte(addr)) == 0xFF)
 
     achievement(
