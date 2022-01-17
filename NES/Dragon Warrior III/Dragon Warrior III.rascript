@@ -528,7 +528,10 @@ function achievement_enemy_killed_group(title, description, points, enemy_id)
                         byte(0x0072) == 0x48)) ||   // "X is defeated!"
                   (once(byte(0x0059) == enemy_id && // type of monster defeated
                         trigger_battle_playing_out() &&
-                        byte(0x0072) == 0x5D))      // "You have defeated X" - poison needle message is slightly different
+                        byte(0x0072) == 0x5D)) ||   // "You have defeated X" - poison needle message is slightly different
+                  (once(byte(0x0059) == enemy_id && // type of monster defeated
+                        byte(0x0081) > 1 &&         // at least one line of text on screen
+                        byte(0x0073) == 0xC3))      // "Xを たおした!"
     
     achievement(id=50424,
         title = title,
