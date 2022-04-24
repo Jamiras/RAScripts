@@ -476,7 +476,7 @@ story_achievement(location_zenithia_castle, bit1(0x21AD), 5, "The Sunken City", 
 
 // === 13 - Faerie Palace =======
 
-story_achievement(location_santa_rosa, bit1(0x21AF), 5, "Sleight of Hand", "Trick a boy out of his teasure")
+story_achievement(location_santa_rosa, bit1(0x21AF), 5, "Sleight of Hand", "Trick a boy out of his treasure")
 
 story_achievement(location_salabona_tower, bit3(0x21C0), 5, "Rude Awakening", "Defeat Buorn") // Joy Cookies?
 
