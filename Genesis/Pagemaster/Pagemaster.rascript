@@ -73,6 +73,28 @@ world_horror = 6
 world_fantasy = 8
 
 level_data = {
+    // ===== Maps ====    
+    level_horror_map:
+    {
+        "name": "the Horror Book",
+        "subname": "",
+        "world": world_horror,
+        "europe_id": 0xD7F0,
+    },
+    level_adventure_map:
+    {
+        "name": "the Adventure Book",
+        "subname": "",
+        "world": world_adventure,
+        "europe_id": 0x9C36,
+    },
+    level_fantasy_map:
+    {
+        "name": "the Fantasy Book",
+        "subname": "",
+        "world": world_fantasy, 
+        "europe_id": 0xD5AE,
+    },
     // ===== Horror =====
     level_torture_chamber:                  // leftmost [HAS LIBRARY CARD]
     {
@@ -80,6 +102,7 @@ level_data = {
         "subname": "Horror 1",
         "world": world_horror, 
         "subworld": 0,
+        "europe_id": 0x56EA,
     },
     level_thats_the_spirit:                 // first branch upper
     {
@@ -87,6 +110,7 @@ level_data = {
         "subname": "Horror 2A",
         "world": world_horror, 
         "subworld": 3,
+        "europe_id": 0xBF80,
     },
     level_thats_the_spirit_portal:
     {
@@ -94,6 +118,7 @@ level_data = {
         "subname": "Horror 2A",
         "world": world_horror, 
         "subworld": 14,
+        "europe_id": 0xE5E6,
     },
     level_driving_you_batty:                // first branch, upper 2
     {
@@ -101,19 +126,22 @@ level_data = {
         "subname": "Horror 3A",
         "world": world_horror, 
         "subworld": 4,
+        "europe_id": 0xA1FC,
     },
     level_a_fistful_of_horrors:             // left side inner
     {
         "name": "A Fistful of Horrors",
         "subname": "Horror X",
-        "world": world_horror, 
+        "world": world_horror,
         "subworld": 2,
+        "europe_id": 0xAFBA,
     },
     level_a_fistful_of_horrors_portal:
     {
         "name": "A Fistful of Horrors",
         "subname": "Horror X",
-        "world": world_horror, 
+        "world": world_horror,
+        "europe_id": 0xE2A6,
         "subworld": 14,
     },
     level_ghost_of_a_chance:                // first branch, lower 1 [HAS LIBRARY CARD]
@@ -122,6 +150,7 @@ level_data = {
         "subname": "Horror 2B",
         "world": world_horror, 
         "subworld": 1,
+        "europe_id": 0x4B20,
     },
     level_looking_grave:                    // first branch, lower 2
     {
@@ -129,6 +158,7 @@ level_data = {
         "subname": "Horror 3B",
         "world": world_horror, 
         "subworld": 13,
+        "europe_id": 0xD62A,
     },
     level_looking_grave_portal:             // above coins at start of level
     {
@@ -136,6 +166,7 @@ level_data = {
         "subname": "Horror 3B",
         "world": world_horror,
         "subworld": 14,
+        "europe_id": 0xE654,
     },
     level_haunted_house:                    // left of bridge [HAS LIBRARY CARD]
     {
@@ -143,13 +174,15 @@ level_data = {
         "subname": "Horror 4",
         "world": world_horror, 
         "subworld": 5,
+        "europe_id": 0x8A00,
     },
-    level_haunted_house_portal:
+    level_haunted_house_portal:            // after checkpoint, all the way left, then down a bit. jump at the edge of cliff
     {
         "name": "The Haunted House",
         "subname": "Horror 4",
         "world": world_horror, 
         "subworld": 14,
+        "europe_id": 0xF774,
     },
     level_library_phantom:                  // right of bridge
     {
@@ -157,6 +190,7 @@ level_data = {
         "subname": "Horror 5",
         "world": world_horror, 
         "subworld": 6,
+        "europe_id": 0xD68C,
     },
     level_expectre_the_worst:               // second branch, upper
     {
@@ -164,6 +198,7 @@ level_data = {
         "subname": "Horror 6A",
         "world": world_horror, 
         "subworld": 12,
+        "europe_id": 0x6AD6,
     },
     level_terror_in_the_tower:              // second branch, lower 1
     {
@@ -171,12 +206,14 @@ level_data = {
         "subname": "Horror 6B",
         "world": world_horror, 
         "subworld": 7,
+        "europe_id": 0x93E2,
     },
-    level_terror_in_the_tower_portal:
+    level_terror_in_the_tower_portal:      // below the staircase of books at the start of the level
     {
         "name": "Terror in the Tower",
         "subname": "Horror 6B",
         "world": world_horror, 
+        "europe_id": 0xDC44,
         "subworld": 14,
     },
     level_living_read:                      // second branch, lower 2
@@ -184,6 +221,7 @@ level_data = {
         "name": "The Living Read",
         "subname": "Horror 7",
         "world": world_horror, 
+        "europe_id": 0xE82A,
         "subworld": 8,
     },
     level_spook_too_soon:                   // right side inner
@@ -192,6 +230,7 @@ level_data = {
         "subname": "Horror 8",
         "world": world_horror, 
         "subworld": 9,
+        "europe_id": 0x102A,
     },
     level_dread_and_gutters:                // right side upper right
     {
@@ -199,13 +238,15 @@ level_data = {
         "subname": "Horror 9A",
         "world": world_horror, 
         "subworld": 11,
+        "europe_id": 0xA298,
     },
-    level_dread_and_gutters_portal:                // right side upper right
+    level_dread_and_gutters_portal:         // in small room just above exit
     {
         "name": "Dread and Gutters",
         "subname": "Horror 9A",
         "world": world_horror, 
         "subworld": 14,
+        "europe_id": 0x223E,
     },
     level_horror_exit:                      // right side right middle
     {
@@ -213,6 +254,7 @@ level_data = {
         "subname": "Horror 9B",
         "world": world_horror, 
         "subworld": 10,
+        "europe_id": 0x800A,
     },
     // ===== Adventure =====
     level_marine_malarrey:                  // first
@@ -221,13 +263,15 @@ level_data = {
         "subname": "Adventure 1",
         "world": world_adventure, 
         "subworld": 0,
+        "europe_id": 0x1926,
     },
-    level_marine_malarrey_portal:           // above stack of coins around second mast
+    level_marine_malarrey_portal:           // above stack of coins around third mast
     {
         "name": "Marine Malarrey",
         "subname": "Adventure 1",
         "world": world_adventure, 
         "subworld": 14,
+        "europe_id": 0xC20C,
     },
     level_all_aboard_for_fun:               // second
     {
@@ -235,13 +279,15 @@ level_data = {
         "subname": "Adventure 2",
         "world": world_adventure, 
         "subworld": 1,
+        "europe_id": 0x32F4,
     },
-    level_all_aboard_for_fun_portal:
+    level_all_aboard_for_fun_portal:        // climb up the left site and jump after the horizontal rope
     {
         "name": "All Aboard for Fun",
         "subname": "Adventure 2",
         "world": world_adventure, 
         "subworld": 14,
+        "europe_id": 0xCA82,
     },
     level_out_of_maritime:                  // third
     {
@@ -249,6 +295,7 @@ level_data = {
         "subname": "Adventure 3",
         "world": world_adventure, 
         "subworld": 2,
+        "europe_id": 0x4036,
     },
     level_irate_pirates:                    // first branch, right [HAS LIBRARY CARD]
     {
@@ -256,6 +303,7 @@ level_data = {
         "subname": "Adventure 4A",
         "world": world_adventure, 
         "subworld": 3,
+        "europe_id": 0x03CE,
     },
     level_desert_island_risks:              // first branch, down 1
     {
@@ -263,6 +311,7 @@ level_data = {
         "subname": "Adventure 4B",
         "world": world_adventure, 
         "subworld": 4,
+        "europe_id": 0xC182,
     },
     level_stormy_sea:                       // first branch, down 2
     {
@@ -270,6 +319,7 @@ level_data = {
         "subname": "Adventure 5",
         "world": world_adventure, 
         "subworld": 5,
+        "europe_id": 0xA4C8,
     },
     level_good_ship_donkey:                 // first branch, down 3
     {
@@ -277,13 +327,15 @@ level_data = {
         "subname": "Adventure 6",
         "world": world_adventure, 
         "subworld": 6,
+        "europe_id": 0x503A,
     },
-    level_good_ship_donkey_portal:
+    level_good_ship_donkey_portal:         // run right past the first rope and drop at the second
     {
         "name": "Good Ship Donkey",
         "subname": "Adventure 6",
         "world": world_adventure, 
         "subworld": 14,
+        "europe_id": 0x6C44,
     },
     level_naughtycal_fun:                   // second branch, up
     {
@@ -291,6 +343,7 @@ level_data = {
         "subname": "Adventure 7A",
         "world": world_adventure, 
         "subworld": 10,
+        "europe_id": 0x9CA8,
     },
     level_high_seas_hijinx:                 // second branch, right
     {
@@ -298,13 +351,15 @@ level_data = {
         "subname": "Adventure 7B",
         "world": world_adventure, 
         "subworld": 7,
+        "europe_id": 0x2636,
     },
-    level_high_seas_hijinx_portal:
+    level_high_seas_hijinx_portal:         // jump against left wall after sliding down pole
     {
         "name": "High Seas Hijinx",
         "subname": "Adventure 7B",
         "world": world_adventure, 
         "subworld": 14,
+        "europe_id": 0x7042,
     },
     level_pirate_ship:                      // right side, upper [HAS LIBRARY CARD]
     {
@@ -312,13 +367,15 @@ level_data = {
         "subname": "Adventure 8",
         "world": world_adventure, 
         "subworld": 8,
+        "europe_id": 0x10B6,
     },
-    level_pirate_ship_portal:
+    level_pirate_ship_portal:              // top left, jump up from horizontal rope
     {
         "name": "Pirate Ship",
         "subname": "Adventure 8",
         "world": world_adventure, 
         "subworld": 14,
+        "europe_id": 0x728C,
     },
     level_jewel_be_lucky:                   // right side, upperleft
     {
@@ -326,6 +383,7 @@ level_data = {
         "subname": "Adventure 9",
         "world": world_adventure, 
         "subworld": 9,
+        "europe_id": 0x5EE4,
     },
     // ===== Fantasy =====
     level_golden_brick_road:                // first
@@ -334,13 +392,15 @@ level_data = {
         "subname": "Fantasy 1",
         "world": world_fantasy, 
         "subworld": 0,
+        "europe_id": 0x7366,
     },
-    level_golden_brick_road_portal:
+    level_golden_brick_road_portal:        // near the top of the level just past humpty dumpty
     {
         "name": "Golden Brick Road",
         "subname": "Fantasy 1",
         "world": world_fantasy, 
         "subworld": 14,
+        "europe_id": 0x5C82,
     },
     level_pools_of_goo:                     // second [HAS LIBRARY CARD]
     {
@@ -348,13 +408,15 @@ level_data = {
         "subname": "Fantasy 2",
         "world": world_fantasy, 
         "subworld": 1,
+        "europe_id": 0x0B14,
     },
-    level_pools_of_goo_portal:
+    level_pools_of_goo_portal:              // climb up and left once you reach the exit
     {
         "name": "Pools of Goo",
         "subname": "Fantasy 2",
         "world": world_fantasy, 
         "subworld": 14,
+        "europe_id": 0xC880,
     },
     level_beanstalk:                        // third
     {
@@ -362,6 +424,7 @@ level_data = {
         "subname": "Fantasy 3",
         "world": world_fantasy, 
         "subworld": 2,
+        "europe_id": 0x3370,
     },
     level_dragons_spleen:                   // fourth [HAS LIBRARY CARD]
     {
@@ -369,6 +432,7 @@ level_data = {
         "subname": "Fantasy 4",
         "world": world_fantasy, 
         "subworld": 3,
+        "europe_id": 0x26E4,
     },
     level_belly_of_laughs:                  // fifth
     {
@@ -376,6 +440,7 @@ level_data = {
         "subname": "Fantasy 5",
         "world": world_fantasy, 
         "subworld": 4,
+        "europe_id": 0x2EFA,
     },
     level_leaf_it_out:                      // first branch, right
     {
@@ -383,13 +448,15 @@ level_data = {
         "subname": "Fantasy 6B",
         "world": world_fantasy, 
         "subworld": 5,
+        "europe_id": 0x40E2,
     },
-    level_leaf_it_out_portal:
+    level_leaf_it_out_portal:               // jump up the right side of the level
     {
         "name": "Leaf It Out",
         "subname": "Fantasy 6B",
         "world": world_fantasy, 
         "subworld": 14,
+        "europe_id": 0x5676,
     },
     level_gut_to_escape:                    // first branch, down [HAS LIBRARY CARD]
     {
@@ -397,6 +464,7 @@ level_data = {
         "subname": "Fantasy 6A",
         "world": world_fantasy, 
         "subworld": 7,
+        "europe_id": 0x4632,
     },
     level_just_in_slime:                    // right side, lower left
     {
@@ -404,13 +472,15 @@ level_data = {
         "subname": "Fantasy 7",
         "world": world_fantasy, 
         "subworld": 6,
+        "europe_id": 0x3918,
     },
-    level_just_in_slime_portal:
+    level_just_in_slime_portal:            // fall off first elevator, jump at egg arrow
     {
         "name": "Just in Slime",
         "subname": "Fantasy 7",
         "world": world_fantasy, 
         "subworld": 6,
+        "europe_id": 0xCF90,
     },
     level_boweled_over:                     // left side, lower right
     {
@@ -418,6 +488,7 @@ level_data = {
         "subname": "Fantasy 8",
         "world": world_fantasy, 
         "subworld": 9,
+        "europe_id": 0x3F72,
     },
     level_dragons_stomach:                  // second branch, up
     {
@@ -425,13 +496,15 @@ level_data = {
         "subname": "Fantasy 9A",
         "world": world_fantasy, 
         "subworld": 8,
+        "europe_id": 0x1DD6,
     },
-    level_dragons_stomach_portal:
+    level_dragons_stomach_portal:           // use bubbles to get to upper platforms, then drop off the leftmost one
     {
         "name": "Dragon's Stomach",
         "subname": "Fantasy 9A",
         "world": world_fantasy, 
         "subworld": 8,
+        "europe_id": 0x8AAE,
     },
     level_stalking_around:                  // second branch, left 1
     {
@@ -439,6 +512,7 @@ level_data = {
         "subname": "Fantasy 9B",
         "world": world_fantasy, 
         "subworld": 10,
+        "europe_id": 0x4E28,
     },
     level_dragons_intestine:                // second branch, left 2
     {
@@ -446,13 +520,15 @@ level_data = {
         "subname": "Fantasy 10",
         "world": world_fantasy, 
         "subworld": 12,
+        "europe_id": 0x4F0C,
     },
-    level_dragons_intestine_portal:
+    level_dragons_intestine_portal:         // drop at first elevator
     {
         "name": "Dragon's Intestine",
         "subname": "Fantasy 10",
         "world": world_fantasy, 
         "subworld": 12,
+        "europe_id": 0x91FE,
     },
     level_end_of_the_road:                  // second branch, left 3
     {
@@ -460,45 +536,17 @@ level_data = {
         "subname": "Fantasy 11",
         "world": world_fantasy, 
         "subworld": 11,
+        "europe_id": 0x81FE,
     },
-    level_end_of_the_road_portal:
+    level_end_of_the_road_portal:           // on ledge above big bad wolf
     {
         "name": "End of the Road",
         "subname": "Fantasy 11",
         "world": world_fantasy, 
         "subworld": 11,
+        "europe_id": 0x8E42,
     },
-    // ===== Maps ====    
-    level_horror_map:
-    {
-        "name": "the Horror Book",
-        "subname": "",
-        "world": world_horror, 
-    },
-    level_adventure_map:
-    {
-        "name": "the Adventure Book",
-        "subname": "",
-        "world": world_adventure,
-    },
-    level_fantasy_map:
-    {
-        "name": "the Fantasy Book",
-        "subname": "",
-        "world": world_fantasy, 
-    }
 }
-
-has_library_card = [
-    level_torture_chamber,   // horror, leftmost
-    level_ghost_of_a_chance, // horror, first branch, lower 1
-    level_haunted_house,     // horror, left of bridge
-    level_irate_pirates,     // adventure, first branch, right
-    level_jewel_be_lucky,    // adventure, right side, upper
-    level_pools_of_goo,      // fantasy, second
-    level_dragons_spleen,    // fantasy, fourth
-    level_gut_to_escape,     // fantasy, first branch, down
-]
 
 levels = {}
 
@@ -508,6 +556,9 @@ for id in level_data
         levels[id] = level_data[id]["name"]
     else
         levels[id] = format("{0} ({1})", level_data[id]["name"], level_data[id]["subname"])
+        
+    if (level_data[id]["europe_id"] != 0)
+        levels[level_data[id]["europe_id"]] = levels[id]
 }
 
 worlds = {
@@ -562,6 +613,7 @@ function current_subworld() => byte(0xF528)
 //             u1        That's the Spirit  $FB74=01D9 $FB7A=3F00 $FB82=1 $FB88=FFFF     03
 //             u2        Driving You Batty  $FB8A=0179 $FB90=5E9A $FB98=1 $FB9E=FFFF     04
 //                       Horror House       $FBA0=0379 $FBA6=4534 $FBAE=1                05
+function subworld_has_checkpoint(subworld) => word(0xFB40 + subworld * 0x16) != 0
 function subworld_complete(subworld) => word(0xFB46 + subworld * 0x16) == 0xFFFF
 function subworld_bonus_found(subworld) => word(0xFB44 + subworld * 0x16) != 0
 function subworld_library_card_found(subworld) => word(0xFB42 + subworld * 0x16) != 0
@@ -571,9 +623,12 @@ state_level_complete = 5
 state_dying = 7
 state_paused = 11
 
+function in_level(level) {
+    return current_world() == level_data[level]["world"] && 
+           current_subworld() == level_data[level]["subworld"]
+}
+
 function in_a_level() => current_screen() != screen_map
-function in_level(level) => current_level() == level && without_cheating()
-function without_dying() => once(!in_a_level()) && never(current_lives() < prev(current_lives()))
 function have_shoes() => byte(0xF532) != 0
 function have_sticky_hands() => byte(0xF534) != 0
 function have_weapon() => byte(0xF536) != 0
@@ -581,19 +636,35 @@ function has_item() => (have_shoes() || have_sticky_hands() || have_weapon())
 function without_items() => never(has_item())
 function player_x() => word(0xEFFE)
 
-function level_complete(level) => in_level(level) && game_state() == state_level_complete
-function level_complete_challenge(level) => in_level(level) && trigger_when(game_state() == state_level_complete)
+function level_complete(level) => in_level(level) && without_cheating() && game_state() == state_level_complete
+function level_complete_challenge(level) => in_level(level) && without_cheating() &&
+                                            trigger_when(game_state() == state_level_complete)
 
 function no_items_challenge(level, name, points)
 {
     achievement(name, 
         "Complete '" + level_data[level]["name"] + "' without items (at start or picked up) or dying", 
         points,
-        trigger = level_complete_challenge(level) && 
-                  without_dying() && 
+        trigger = level_complete_challenge(level) &&
+                  in_a_level() &&
+                  once(!in_a_level() && !subworld_has_checkpoint(level_data[level]["subworld"])) && 
+                  never(current_lives() < prev(current_lives())) &&
                   without_items()
     )    
 }
+
+function keys_collected(target) => tally(target, 
+                    current_keys() != prev(current_keys()),
+                    high4(0xFAFA) == prev(high4(0xFAFA)) &&    // no carry, increment of 2 or more
+                      low4(0xFAFA) - prev(low4(0xFAFA)) >= 2,
+                    high4(0xFAFA) == prev(high4(0xFAFA)) &&    // no carry, increment of 3 or more
+                      low4(0xFAFA) - prev(low4(0xFAFA)) >= 3,
+                    high4(0xFAFA) == prev(high4(0xFAFA)) &&    // no carry, increment of 4 or more
+                      low4(0xFAFA) - prev(low4(0xFAFA)) >= 4,
+                    current_keys() - prev(current_keys()) >= 8, // carry, increment of 2 or more
+                    current_keys() - prev(current_keys()) >= 9, // carry, increment of 3 or more
+                    current_keys() - prev(current_keys()) >= 10 // carry, increment of 4 or more
+                  )
 
 function loot_challenge(level, target, name, points)
 {
@@ -609,20 +680,11 @@ function loot_challenge(level, target, name, points)
         format("Collect {0} {1} in '{2}'", target, loot[level_data[level]["world"]], level_data[level]["name"]),
         points,
         trigger = in_level(level) &&
+                  without_cheating() &&
                   never(game_state() == state_dying) &&        // prevent counting the reset to 0 keys when dying 
                   never(!in_a_level()) &&                      // demo protection
-                  trigger_when(tally(target, 
-                    current_keys() != prev(current_keys()),
-                    high4(0xFAFA) == prev(high4(0xFAFA)) &&    // no carry, increment of 2 or more
-                      low4(0xFAFA) - prev(low4(0xFAFA)) >= 2,
-                    high4(0xFAFA) == prev(high4(0xFAFA)) &&    // no carry, increment of 3 or more
-                      low4(0xFAFA) - prev(low4(0xFAFA)) >= 3,
-                    high4(0xFAFA) == prev(high4(0xFAFA)) &&    // no carry, increment of 4 or more
-                      low4(0xFAFA) - prev(low4(0xFAFA)) >= 4,
-                    current_keys() - prev(current_keys()) >= 8, // carry, increment of 2 or more
-                    current_keys() - prev(current_keys()) >= 9, // carry, increment of 3 or more
-                    current_keys() - prev(current_keys()) >= 10 // carry, increment of 4 or more
-                  ))
+                  (trigger_when(keys_collected(target)) ||
+                   measured(keys_collected(target), when = in_level(level)))
     )
 }
 
@@ -639,14 +701,15 @@ function complete_level(level, name, points)
 
 // "Torture Chamber" [first level]
 no_items_challenge(level_torture_chamber, "Pure Torture", 5)
-loot_challenge(level_torture_chamber, 70, "Torturous Keys", 5)
+loot_challenge(level_torture_chamber, 70, "Torturous Keys", 5) // there' 
 // has library card - jump up shaft just after the test tube shelf
 // has bonus level - use sticky hands along ceiling above exit book
 
 // "That's the Spirit" [upper 1]
-// has portal - in "hidden" room in middle of map
+// has portal - in "hidden" room in middle of map (just above exit)
 
 // "Driving You Batty" [upper 2]
+// for access to "A Firstful of Horrors" use Fantasy to reach the upper exit
 achievement("Flight of Fantasy", 
     "Complete 'Driving You Batty' without being dropped by Fantasy after leaving the first room", 5,
     level_complete_challenge(level_driving_you_batty) &&
@@ -706,7 +769,7 @@ complete_level(level_spook_too_soon, "Hyde and Seek", 5)
 loot_challenge(level_out_of_maritime, 90, "Ninety Pieces o' Eight", 5)
 
 // "Irate Pirates" [right from third level]
-// has library card - https://youtu.be/erypdO3gT_8?t=1025
+// has library card - catch a ride from fantasy at the far right of the level and go all the way left
 
 // "Castaway" [down from third level]
 complete_level(level_desert_island_risks, "Castaway", 5)
@@ -780,6 +843,8 @@ achievement("Bibliophile", "Complete the game with at least 8 library cards", 25
     // this seems to a stack variable pointing into whatever script is executing during a
     // cutscene. it increments for each line in the scrolling message, and goes to 0xA496
     // just after "YOU HAVE COMPLETED THE PAGEMASTER" reaches the middle of the screen.
+    // NOTE: This goes to 0xA496 just after "YOU HAVE COLLECTED" appears on the screen in
+    //       the (E) ROM. 0xA4EA would be more similar to the (U) ROM.
     word(0xFFF0) == 0xA496 
 )
 
@@ -788,6 +853,7 @@ function library_card_achievement(points, level)
     achievement("Library Card - " + level_data[level]["name"], 
         "Find the library card in '" + level_data[level]["name"] + "'", points,
         in_level(level) &&
+        without_cheating() && 
         current_world_library_cards() > prev(current_world_library_cards())
     )    
 }
@@ -835,8 +901,9 @@ achievement("Bonus Collector", "Collect at least 20 keys/coins/eggs in a bonus l
 function find_portal_book(world) => current_world() == world &&
                                     without_cheating() &&
                                     in_a_level() &&
-                                    byte(0xE085) == 4
-    
+                                    !attract_mode() && // demo protection
+                                    byte(0xE085) == 4 // animation for entering a portal book
+
 achievement("Horror Appendix", "Find and enter a portal book in the Horror world", 5,
     find_portal_book(world_horror)
 )
@@ -850,30 +917,34 @@ achievement("Fantasy Appendix", "Find and enter a portal book in the Fantasy wor
 )
 
 achievement("Extra Reserved", "Have more than 9 extra lives", 5,
-    in_a_level() && current_lives() > 9 && prev(current_lives()) <= 9 && current_lives() < 20
+    in_a_level() && without_cheating() && current_lives() > 9 && prev(current_lives()) <= 9 && current_lives() < 20
 )
 
 function start_world(world) => current_world() == world && !subworld_complete(0)
 function without_continuing() => never(word(0xFAF6) == 0xFFFF) // out of lives
 
-achievement("Horror Page-Turner", "Complete the Horror world without continuing", 5,
-    once(start_world(world_horror)) &&
-    without_continuing() &&
-    level_complete(level_horror_exit)
-)
+// CONTINUE resets the entire book, so it has no effect whatsoever in Horror.
 
-achievement("Adventure Page-Turner", "Complete the Adventure world without continuing", 10,
-    once(start_world(world_adventure)) &&
-    without_continuing() &&
-    level_complete(level_jewel_be_lucky)
-)
+//achievement("Horror Page-Turner", "Complete the Horror world without continuing", 5,
+//    once(start_world(world_horror)) &&
+//    without_continuing() &&
+//    level_complete(level_horror_exit)
+//)
 
-achievement("Fantasy Page-Turner", "Complete the Fantasy world without continuing", 10,
-    once(start_world(world_fantasy)) &&
-    without_continuing() &&
-    level_complete(level_end_of_the_road)
-)
+// ICON NEEDED
+//achievement("Adventure Page-Turner", "Complete the Adventure world without continuing", 10,
+//    once(start_world(world_adventure)) &&
+//    without_continuing() &&
+//    level_complete(level_jewel_be_lucky)
+//)
 
+//achievement("Fantasy Page-Turner", "Complete the Fantasy world without continuing", 10,
+//    once(start_world(world_fantasy)) &&
+//    without_continuing() &&
+//    level_complete(level_end_of_the_road)
+//)
+
+// ICON NEEDED
 achievement("Cover to Cover", "Complete all three worlds without continuing", 25,
     once(start_world(world_horror)) &&
     without_continuing() &&
