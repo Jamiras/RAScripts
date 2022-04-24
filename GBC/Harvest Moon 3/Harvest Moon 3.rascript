@@ -3,6 +3,76 @@
 //
 // MD5: 0ff9df46aca45161d1dfa7eee8509c1f (U)
 
+// $C0A9: 8-bit Global Game State
+//        
+//        02 - Main Farm
+//        04 - In Stables
+//        05 - Area North of Farm
+//        07 - Grassland
+//        0b - PC House
+//        0c - Map
+//        0d - Village
+//        0e - Cliff / Mountains
+//        10 - Forest
+//        12 - Shipping Bin
+//        30 - Game Submenu (When Active)
+//        32 - New Game
+//        36 - Title Screen / Cutscene
+//        37 - Main Menu + SubMenus (After Title Screen)
+//        38 - Demo / Tutorial Video
+function game_state() => byte(0x00C0A9)
+state_main_farm = 0x02
+state_in_stables = 0x04
+state_in_house = 0x0B
+state_cutscene = 0x36
+
+// $C0AB: 8-bit Rooms
+//        
+//        [Stables]
+//        00-01 - Sheep
+//        02-03 - Chicken
+//        04-05 - Cow
+//        06-07 - Horse
+//        
+//        [Cutscene]
+//        03 - Elder's House
+function current_room() => byte(0x00C0AB)
+room_sheep1 = 0
+room_sheep2 = 1
+room_chicken1 = 2
+room_chicken2 = 3
+room_cow1 = 4
+room_cow2 = 5
+room_horse1 = 6
+room_horse2 = 7
+function is_in_sheep_room() => (current_room() == room_sheep1 || current_room() == room_sheep2)
+function is_in_chicken_room() => (current_room() == room_chicken1 || current_room() == room_chicken2)
+function is_in_cow_room() => (current_room() == room_cow1 || current_room() == room_cow2)
+function is_in_horse_room() => (current_room() == room_horse1 || current_room() == room_horse2)
+
+// $C700: 8-bit Local State
+//        
+//        [Title Screen / Main Menu]
+//        00 - During Transition
+//        01 - Default
+//        
+//        [New Game]
+//        02 - Loading in from Title Screen
+//        01 - Boy/Girl
+//        02 - Enter Name
+//        03 - Outfit Color
+//        04 - Birthday
+//        05 - Blood Type
+//        06 - Pet
+//        07 - Pet Name
+//        08 - Spouse Name
+//        09 - Final Confirmation
+//        
+//        [Play]
+//        01 - Cutscene / Credits Playing
+function local_state() => byte(0x00C700)
+function in_cutscene() => game_state() == state_cutscene && local_state() == 1
+
 // $C512: planted seeds in horse pasture?
 // $D406: big gold
 // $D43E: bits 0 1 2 are all rugs  bit4-yarn maker
@@ -91,7 +161,8 @@ function hammer_level() => byte(0x00D562)
 // $DB8B: pink maomao
 // $DB8C: King of Lake
 
-function trigger_in_game() => word(0x00D000) != 0 && current_hour() > 5 && current_day_of_week() < 8
+function trigger_in_game() => word(0x00D000) != 0 && // 0 on title screen
+                              current_hour() > 5 && current_day_of_week() < 8
 
 achievement(
     title = "Summer!", description = "A new season arrives.", points = 5,
@@ -165,7 +236,7 @@ achievement(
 )
 
 achievement(
-    title = "Backyard Sauna", description = "Dig the Hot Spring.", points = 5,
+    title = "Backyard Sauna", description = "Dig the Hot Spring.", points = 10,
     id = 17420, badge = "16867", published = "11/18/2014 8:15:36 PM", modified = "11/18/2014 8:15:39 PM",
     trigger = byte(0x00DA54) == 3 && byte(0x00DA55) == 3 && byte(0x00DA56) == 3 && byte(0x00DA57) == 3 && 
               byte(0x00DA58) == 3 && byte(0x00DA59) == 3 && byte(0x00DA5A) == 3 && byte(0x00DA5B) == 3 && 
@@ -192,18 +263,45 @@ achievement(
                (byte(0x00D6D3) == 1))
 )
 
+// Ticket 29851: Triggers as soon as you start the game as the girl. Probably because she starts the game 
+//               with a full grown cow.
+//               MD5: 0ff9df46aca45161d1dfa7eee8509c1f
+//               Emulator: RetroArch (Gamebatte)
+function is_cow_in_stable(index) => byte(0xD6D6 + index * 5)
+function have_no_cows() => sum_of(range(0,7), i => is_cow_in_stable(i)) == 0
+function cow_sprite(index) => byte(0xD6D7 + index * 5)
+cow_sprite_adult = 0
+cow_sprite_older_calf = 1
+cow_sprite_newborn_calf = 2
+cow_sprite_pregnat = 3
+function cow_status(index) => byte(0xD6DA + index * 5)
+cow_status_unfed = 0x00
+cow_status_birth_tomorrow = 0x1D
+cow_status_older_tomorrow = 0x0C
+cow_status_adult_tomorrow = 0x14
+function cow_becomes_adult(index) => is_cow_in_stable(index) != 0 &&
+                                     once(cow_sprite(index) == cow_sprite_older_calf) &&
+                                     once(prev(cow_status(index)) == cow_status_adult_tomorrow &&
+                                     cow_status(index) == cow_status_unfed &&
+                                     cow_sprite(index) == cow_sprite_adult)
 achievement(
     title = "COW!", description = "Raise a Calf into an Adult Cow.", points = 5,
-    id = 17464, badge = "16927", published = "11/20/2014 2:20:17 AM", modified = "11/20/2014 2:20:21 AM",
-    trigger = trigger_in_game() && bit7(0xD6D6) == 1 && // have cow
-                                   byte(0xD6D7) == 0    // adult
+    id = 17464, badge = "16927", published = "11/20/2014 2:20:17 AM", modified = "11/22/2020 12:36:38 AM",
+    trigger = game_state() == state_in_stables && is_in_cow_room() && 
+              never(have_no_cows()) &&
+              any_of(range(0,7), i => cow_becomes_adult(i))
 )
 
+// Ticket 29850: Triggered as soon as I started the game as the girl. 
+//               MD5: 0ff9df46aca45161d1dfa7eee8509c1f
+//               Emulator: RetroArch (Gamebatte)
 achievement(
     title = "Kickstart My Funds", description = "Find the Secret Savings on Spring - Day 1.", points = 5,
-    id = 17460, badge = "16916", published = "11/19/2014 11:54:28 PM", modified = "11/19/2014 11:54:30 PM",
-    trigger = current_season() == 0 && current_day() == 0 && current_day_of_week() == 0 && byte(0x00D406) == 7 && 
-              byte(0x00D405) == 208 && current_hour() > 5
+    id = 17460, badge = "16916", published = "11/19/2014 11:54:28 PM", modified = "11/21/2020 10:05:59 AM",
+    trigger = game_state() == state_in_house &&
+              current_season() == 0 && current_day() == 0 && current_day_of_week() == 0 && 
+              bit7(0x00D445) > prev(bit7(0x00D445)) && // open pete's stash
+              byte(0x00D406) > prev(byte(0x00D406))    // upper byte of 16-bit gold value
 )
 
 // Ticket 13183: Triggered among others at the same time while opening the menu.
@@ -223,13 +321,13 @@ achievement(
 // Ticket 2992: triggered when I woke up the first saturday spring 6 after passing midnight
 // Ticket 854: Activate when I enter in the Cow's Barn for first time
 achievement(
-    title = "Massive Storage", description = "Buy the [Shelves].", points = 5,
+    title = "Massive Storage", description = "Buy the [Kitchen Cabinet].", points = 5,
     id = 17452, badge = "16895", published = "11/18/2014 10:22:30 PM", modified = "11/18/2014 10:22:36 PM",
     trigger = bit4(0x00D43F) == 1 && trigger_in_game() && current_season() < 4 && current_day() < 30
 )
 
 achievement( // F4
-    title = "Spruce Up The Place", description = "Buy the [Vase].", points = 5,
+    title = "Spruce Up the Place", description = "Buy the [Vase].", points = 5,
     id = 17453, badge = "16894", published = "11/18/2014 10:22:32 PM", modified = "11/20/2014 6:24:55 AM",
     trigger = bit3(0x00D43F) == 1 && trigger_in_game() && current_season() < 4 && current_day() < 30
 )
@@ -292,14 +390,14 @@ achievement(
 )
 
 achievement(
-    title = "Prize Chicken", description = "Store_Ship a [Golden Egg].", points = 5,
+    title = "Prize Chicken", description = "Collect and store a [Golden Egg].", points = 5,
     id = 17466, badge = "16929", published = "11/20/2014 2:45:25 AM", modified = "11/20/2014 6:26:08 AM",
     trigger = current_season() < 4 && current_day() < 30 && byte(0x00D43F) != 255 && byte(0x00D8F7) > 0 && 
               byte(0x00D8F7) < 16 && current_hour() > 5 && byte(0x00D470) == 0 && current_day_of_week() < 8
 )
 
 achievement(
-    title = "Prize Sheep", description = "Store_Ship a [Large Wool].", points = 5,
+    title = "Prize Sheep", description = "Collect and store a [Large Wool].", points = 5,
     id = 17467, badge = "16930", published = "11/20/2014 2:53:30 AM", modified = "11/20/2014 6:11:24 AM",
     trigger = current_season() < 4 && current_day() < 30 && byte(0x00D43F) != 255 && byte(0x00D8FA) > 0 && 
               byte(0x00D8FA) < 16 && current_hour() > 5 && current_day_of_week() < 8
@@ -313,7 +411,7 @@ achievement(
 )
 
 achievement(
-    title = "Weave It", description = "Buy the [Yard Maker].", points = 5,
+    title = "Weave It", description = "Buy the [Yarn Maker].", points = 5,
     id = 17469, badge = "16938", published = "11/20/2014 3:35:27 AM", modified = "11/20/2014 6:27:58 AM",
     trigger = current_season() < 4 && current_day() < 30 && byte(0x00D43F) != 255 && bit4(0x00D43E) == 1 && 
               current_hour() > 5 && byte(0x00D470) == 0
@@ -372,17 +470,28 @@ achievement(
 )
 
 achievement(
-    title = "Power Berries", description = "Fill the Secret Garden.", points = 20,
+    title = "Power Berries", description = "Fill the Secret Garden.", points = 25,
     id = 17418, badge = "16866", published = "11/18/2014 7:28:21 PM", modified = "11/20/2014 4:09:53 AM",
     trigger = trigger_in_game() && byte(0x00D4A4) == 6 && // power berries from farming
               byte(0x00D4A5) == 4                         // other power berries
 )
 
+// Ticket 17845: Triggered after loading my game in the farm field(the place where you plant plants). 
+//               it was the first time i loaded a game.
+//               MD5: 0ff9df46aca45161d1dfa7eee8509c1f
+//               Emulator: RAVBA
+// Ticket 36722: Playing as the Boy, married to the Girl on Fall 10 of the first year, and the achievement 
+//               didn't trigger.  I didn't notice until after I'd already saved, now it's Fall 21 and it 
+//               still hasn't triggered.
+//               MD5: Unknown
+//               Emulator: RetroArch (Game Boy Advance (VBA-M))
+// Ticket 36780: Boy marries Girl.  Does not trigger.
+//               MD5: 0ff9df46aca45161d1dfa7eee8509c1f
+//               Emulator: RetroArch (mGBA)
 achievement(
     title = "Holy Matrimony", description = "Get Married.", points = 25,
-    id = 17473, badge = "16957", published = "11/20/2014 4:08:19 AM", modified = "11/20/2014 4:08:22 AM",
-    trigger = trigger_in_game() && 
-              dword(0xdb94) != 0 // wedding date (year, season, day)
+    id = 17473, badge = "16957", published = "11/20/2014 4:08:19 AM", modified = "11/21/2020 7:29:56 PM",
+    trigger = in_cutscene() && current_room() == room_chicken2 && byte(0x00C0AC) == 6
 )
 
 achievement(
@@ -482,7 +591,7 @@ achievement(
 )
 
 achievement(
-    title = "River Legend", description = "Catch at least one of every species of fish.", points = 10,
+    title = "River Legend", description = "Catch at least one of every species of fish.", points = 25,
     id = 17428, badge = "16873", published = "11/18/2014 9:12:05 PM", modified = "11/20/2014 6:01:26 AM",
     trigger = byte(0x00DB7D) > 0 && byte(0x00DB7E) > 0 && byte(0x00DB7F) > 0 && byte(0x00DB80) > 0 && byte(0x00DB81) > 0 && 
               byte(0x00DB82) > 0 && byte(0x00DB83) > 0 && byte(0x00DB84) > 0 && byte(0x00DB85) > 0 && byte(0x00DB86) > 0 && 
