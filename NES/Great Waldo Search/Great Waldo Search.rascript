@@ -95,7 +95,7 @@ achievement(title = "Treasure Hunter", points = 2,
 
 function trigger_found_item(index) => bit7(0x0607 + index * 8) == 1
 achievement(title = "Gotta Find Them All", points = 3,
-            description = "Find five clocks and and five point markers in a level",
+            description = "Find five clocks and five point markers in a level",
             trigger = trigger_begin_level() && never(current_screen() == screen_lvl_victory) && 
                       trigger_found_item(3) && trigger_found_item(4) && trigger_found_item(5) &&
                       trigger_found_item(6) && trigger_found_item(7) &&
