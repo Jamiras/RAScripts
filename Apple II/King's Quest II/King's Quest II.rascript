@@ -1,5 +1,15 @@
 // King's Quest II: Romancing the Throne
 // #ID=17138
+
+// apple2online
+// MD5: 51fecf807b7369288714fa67492d0209 (side 1A) (AGI 1.10) [ver 1.0H]
+// MD5: 654f982ff24269dedf646052ec469f94 (side 1B)
+// MD5: 74571c7ecfa0f2f6686a8ff70029b595 (side 2A)
+// MD5: 46ca9ce71dd984496684fc671fb18af1 (side 2B)
+// MD5: 9998017630a30d635dff03bbd5515925 (side 3A)
+
+// old apple2online
+// http://web.archive.org/web/20210415015626/https://apple2online.com/?page_id=1953
 // MD5: d8549ae7a488ab18289a02c13461d24b (side 1A) [Blade crack] (AGI 1.10) [ver 1.0H]
 // MD5: 239f0238141ba3ecb100d015d543ac1f (side 1B)
 // MD5: e077d01f89c5d87fdf1f85890f579ed4 (side 2A)
