@@ -637,7 +637,8 @@ enemy_mildrath5 = 0xEB // ????              I haven't ever actually seen this fo
 achievement(
     title = "A Family Matter", points = 10,
     description = "Defeat Mildrath using only members of your family",
-    trigger = trigger_in_game() && trigger_in_battle() && trigger_battle_over() && current_location() == location_evil_mountain_2 &&
+    trigger = trigger_in_game() && trigger_in_battle() && trigger_when(trigger_battle_over()) && 
+              current_location() == location_evil_mountain_2 &&
               enemy_type(0) >= enemy_mildrath2 && enemy_type(0) <= enemy_mildrath5 && 
               once(!trigger_in_battle()) &&          // before battle
               unless(dword(0x07C0) == 0x000080E7) && // attempt to prevent resetting 'before battle' flag between forms
@@ -649,7 +650,8 @@ achievement(
 achievement(
     title = "Heroic Trainer", points = 25,
     description = "Defeat Mildrath using only recruited monsters",
-    trigger = trigger_in_game() && trigger_in_battle() && trigger_battle_over() && current_location() == location_evil_mountain_2 &&
+    trigger = trigger_in_game() && trigger_in_battle() && trigger_when(trigger_battle_over()) && 
+              current_location() == location_evil_mountain_2 &&
               enemy_type(0) >= enemy_mildrath2 && enemy_type(0) <= enemy_mildrath5 && 
               once(!trigger_in_battle()) &&          // before battle
               unless(dword(0x07C0) == 0x000080E7) && // attempt to prevent resetting 'before battle' flag between forms
@@ -668,7 +670,9 @@ battle_achievement(location_bonus_dungeon, enemy_esturk, 25, "Until Next Time", 
 achievement(
     title = "Underworld Challenge", points = 25, 
     description = "Defeat Esturk in 25 turns or less (no cheating)", 
-    trigger = trigger_win_battle(location_bonus_dungeon, enemy_esturk) && byte(0x101A) <= 24 && trigger_not_cheating()
+    trigger = trigger_in_game() && trigger_in_battle() && trigger_when(trigger_battle_over()) && 
+              enemy_type(0) == enemy_esturk && current_location() == location_bonus_dungeon &&
+              byte(0x101A) <= 24 && trigger_not_cheating()
 )    
 
 // === Other =============
@@ -1864,16 +1868,8 @@ function monster_capture(sprite) => byte(0x296A + sprite) // 1 = first, 3 = seco
 function trigger_recruit_unique(count)
 {
     return trigger_in_game() && byte(0x182F) != 0x55 && // everything = 0x55 on initial load
-           (bit0(0x29EC) + bit0(0x29ED) + bit0(0x29EE) + bit0(0x29EF) +
-            bit0(0x29F0) + bit0(0x29F1) + bit0(0x29F2) + bit0(0x29F3) +
-            bit0(0x29F4) + bit0(0x29F5) + bit0(0x29F6) + bit0(0x29F7) +
-            bit0(0x29F8) + bit0(0x29F9) + bit0(0x29FA) + bit0(0x29FB) +
-            bit0(0x29FC) + bit0(0x29FD) + bit0(0x29FE) + bit0(0x29FF) +
-            bit0(0x2A00) + bit0(0x2A01) + bit0(0x2A02) + bit0(0x2A03) +
-            bit0(0x2A04) + bit0(0x2A05) + bit0(0x2A06) + bit0(0x2A07) +
-            bit0(0x2A08) + bit0(0x2A09) + bit0(0x2A0A) + bit0(0x2A0B) +
-            bit0(0x2A0C) + bit0(0x2A0D) + bit0(0x2A0E) + bit0(0x2A0F) +
-            bit0(0x2A10) + bit0(0x2A11) + bit0(0x2A12) + bit0(0x2A13)) >= count
+           measured(sum_of(range(0x29EC, 0x2A13), a => bit0(a)) >= count)
+           && sum_of(range(0x29EC, 0x2A13), a => prev(bit0(a))) < count
 }
 
 achievement(
@@ -1926,7 +1922,9 @@ achievement(
 achievement(
     title = "There and Back Again", points = 2,
     description = "Unlock all 17 return locations",
-    trigger = trigger_in_game() && word(0x2030) == 0xFFFF && byte(0x2032) == 1
+    trigger = trigger_in_game() && 
+        measured(bitcount(0x2030) + bitcount(0x2031) + bit0(0x2032) == 17) &&
+        (prev(word(0x2030)) != 0xFFFF || prev(bit0(0x2032)) != 1)
 )
 
 // === Small Medals ===================
@@ -1989,17 +1987,9 @@ other_small_medals = {
 
 function trigger_small_medals(small_medals)
 {
-    trigger = trigger_in_game()
-    trigger_or = (byte(1) == prev(byte(1)))
-    
-    for index in small_medals
-    {
-        bit = small_medals[index]
-        trigger = trigger && bit == 1
-        trigger_or = trigger_or || prev(bit) == 0
-    }
-    
-    return trigger && trigger_or
+    return trigger_in_game() && 
+           measured(sum_of(small_medals, i => small_medals[i]) == length(small_medals)) &&
+           any_of(small_medals, i => prev(small_medals[i]) == 0)
 }
 
 achievement(
