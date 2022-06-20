@@ -104,7 +104,7 @@ state_titles = 0x09
 state_marriage = 0x0A
 state_demo = 0x0D
 
-// $D406: big gold
+// $D406: big gold [total max money = 99000 (pocket) + 990000 (shares) = 10890000]
 function current_money() => tbyte(0xD405) + byte(0xD49F) * 10000
 
 function gender() => byte(0xD408)
@@ -447,19 +447,25 @@ achievement(
 achievement(
     title = "Full Barn", description = "Have a full barn of 8 cattle", points = 10,
     id = 17465, badge = "16928", published = "11/20/2014 2:20:19 AM", modified = "11/20/2014 2:20:23 AM",
-    trigger = trigger_bitflag(bit7(0xD6F9)) // 8th cow alive flag: is_cow_in_stable(7) & 0x80
+    trigger = trigger_in_game() &&
+              all_of(range(0,7), i => bit7(0xD6D6 + i * 5) == 1) &&    // all sheep alive
+              any_of(range(0,7), i => prev(bit7(0xD6D6 + i * 5)) == 0) // at leave one previously not alive
 )
 
 achievement(
     title = "Racing Arsenal", description = "Have a full stable of 8 horses", points = 10,
     id = 17471, badge = "16949", published = "11/20/2014 4:03:06 AM", modified = "11/20/2014 4:03:10 AM",
-    trigger = trigger_bitflag(bit7(0xD721)) // 8th horse alive flag
+    trigger = trigger_in_game() &&
+              all_of(range(0,7), i => bit7(0xD6FE + i * 5) == 1) &&    // all chickens alive
+              any_of(range(0,7), i => prev(bit7(0xD6FE + i * 5)) == 0) // at leave one previously not alive
 )
 
 achievement(
     title = "Flock Family", description = "Have a full barn of 8 sheep", points = 10,
     id = 17472, badge = "16956", published = "11/20/2014 4:03:08 AM", modified = "11/20/2014 4:03:12 AM",
-    trigger = trigger_bitflag(bit7(0xD6A9)) // 8th sheep alive flag
+    trigger = trigger_in_game() &&
+              all_of(range(0,7), i => bit7(0xD686 + i * 5) == 1) &&    // all sheep alive
+              any_of(range(0,7), i => prev(bit7(0xD686 + i * 5)) == 0) // at leave one previously not alive
 )
 
 achievement(
@@ -946,8 +952,6 @@ rich_presence_display("{0}, {1}G | {2} of {3}, Year {4}",
 // Good Ending Requirements (https://www.speedrun.com/hm3gbc/guide/gki1o)
 // * 3 of each animal, at least 300 items shipped, married, farmer reputation of at least 50.
 //   have to do farmer union jobs to raise reputation
-
-// [have more then 3 of each animal + ship 300 crops by end of year 2]
 
 // 30 Spring [Save ZB]
 // * Gastolen - buy the butter churn
