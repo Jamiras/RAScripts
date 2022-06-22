@@ -2,9 +2,16 @@
 // #ID=14398
 //
 // These hashes appear to be a non-cracked version, labeled "King Quest (1983)(Sierra)(Disk 1 of 3)[nib]"
+// The set was developed using these hashes
 // MD5: ebb389599debac2b554c431bfb0f919c (side A)
 // MD5: 6a2bd8ce8b19436d2ce455b751aadb31 (side B)
 // MD5: 1895ddb08c2068a66f9df3765a29f5bf (side C)
+//
+// These hashes are for the Apple II GS version on apple2online
+// They match the blade cracked version for sides B and C
+// MD5: 13a81608986755022e048338450afb1a (side A)
+// MD5: c7d0d8e28da4c4ee93ef059230260c62 (side B)
+// MD5: c5c91d02d70478080f376e280592db9d (side C)
 //
 // These hashes are for the blade cracked version:
 // MD5: 34f8869a6f033195023d3b60ce814ecd (side A)
@@ -18,6 +25,16 @@
 //
 // The blade and 4am cracked versions share the data in the lower addresses (score, location), but have alternate
 // addresses for the important stuff (event flags, inventory), so are currently not compatible.
+// BOW TO KING: 4am, GS, blade: $6E88 and $6ECD. original $6E76 and $6EBB
+// it appears that there are extra 0s in the region between $6E00 and $6E20. I believe th
+// as such, we could detect the 0x15D at $6E16
+function is_original() => word(0x6F42) == 0x0098
+function is_cracked() => word(0x6F54) == 0x0098
+
+// $003C seems to be a pointer to the transplanteddata ($06D64 in original, $6D76 in the cracked versions)
+// but it occasionally changes to 0x9800 during scene transitions
+function make_pointer(address) => word(0x003C) + (address - 0x6D64)
+function pointed_at_byte(address) => byte(make_pointer(address))
 
 // ========================================================
 
@@ -354,8 +371,9 @@ function load_game() => byte(0x00EC) == 3
 function flag_achievement(points, title, description, scene, flag_address)
 {
     achievement(title, description, points,
-        trigger = current_scene() == scene && byte(flag_address) == 1 && prev(byte(flag_address)) == 0
-    )
+        trigger = current_scene() == scene &&
+                  pointed_at_byte(flag_address) == 1 && prev(pointed_at_byte(flag_address)) == 0
+    ) 
 }
 
 //flag_achievement(2, "Don't Cut Yourself", "Acquire the dagger", scene_dagger_rock, 0x6E7A)
@@ -368,18 +386,19 @@ flag_achievement(2, "Show Some Respect", "Properly greet King Edward", scene_cas
 // give bowl and fill bowl can be done in either order. giving first is more points, but both let you get the fiddle.
 achievement("Cook, Little Pot, Cook", "Help the woodcutter and his wife", 5,
     trigger = current_scene() == scene_inside_woodcutters_house &&
-              byte(0x6E62) == 1 && // fill bowl
-              byte(0x6E4E) == 0 && // give bowl
-              (prev(byte(0x6E62)) == 0 || prev(byte(0x6E4E)) != 0)
+              pointed_at_byte(0x6E62) == 1 && // fill bowl
+              pointed_at_byte(0x6E4E) == 0 && // give bowl
+              (prev(pointed_at_byte(0x6E62)) == 0 || prev(pointed_at_byte(0x6E4E)) != 0)
 )
 
 // MIN
 achievement("Sneaky Little Mouse", "Use a protective spell to get the cheese", 5,
     trigger = current_scene() == scene_witchs_house &&              // trigger on leaving house
-              byte(0x6E57) == 1 && once(byte(0x6E57) == 0) &&       // cheese collected
-              once(byte(0x6ECB) == 1) &&                            // protective spell message
               never(current_scene() != scene_witchs_house &&        // reset if not at or in the witch's house
-                    current_scene() != scene_inside_witchs_house)
+                    current_scene() != scene_inside_witchs_house) &&
+              pointed_at_byte(0x6E57) == 1 &&                       // cheese collected
+              once(pointed_at_byte(0x6E57) == 0) &&                 // cheese wasn't previously collected
+              once(pointed_at_byte(0x6ECB) == 1)                    // protective spell message when approaching house
 )
 
 // MAX / TYRANT
@@ -402,27 +421,26 @@ flag_achievement(5, "Dragonslayer", "Kill the dragon", scene_dragon_cave_east, 0
 
 // MAX / TYRANT
 achievement("Out of My Way", "Knock the troll off his bridge", 10,
-    trigger = byte(0x6E80) == 1 && prev(byte(0x6E80)) == 0 &&
-              byte(0x6E81) == 1 && // goat was led
-              (current_scene() == scene_troll_bridge_south ||
+    trigger = (current_scene() == scene_troll_bridge_south ||
                current_scene() == scene_troll_bridge_east ||
-               current_scene() == scene_troll_bridge_north)
+               current_scene() == scene_troll_bridge_north) &&
+               pointed_at_byte(0x6E80) == 1 && prev(pointed_at_byte(0x6E80)) == 0 &&
+               pointed_at_byte(0x6E81) == 1 // goat was led  
 )
 
 // MIN
 achievement("Paid the Toll", "Bribe the troll", 5,
-    trigger = byte(0x6E80) == 1 && prev(byte(0x6E80)) == 0 &&
-              byte(0x6E81) == 0 && // goat was not led
-              (current_scene() == scene_troll_bridge_south ||
+    trigger = (current_scene() == scene_troll_bridge_south ||
                current_scene() == scene_troll_bridge_east ||
-               current_scene() == scene_troll_bridge_north)
+               current_scene() == scene_troll_bridge_north) &&
+               pointed_at_byte(0x6E80) == 1 && prev(pointed_at_byte(0x6E80)) == 0 &&
+               pointed_at_byte(0x6E81) == 0 // goat was not led          
 )
 
 // MAX
 flag_achievement(10, "The Hint Line is Only 95 Cents per Minute", "Figure out the gnome's true name", scene_gnome, 0x6EA8)
 
 // MAX
-function climbing_beanstalk() => byte(0x6E71) == 1
 // the beans can be planted in any of the following: 
 // * 38 - "the bed of wildflowers"
 // * 35 - the room where the dwarf attacks with the mesa in the distance
@@ -430,37 +448,43 @@ function climbing_beanstalk() => byte(0x6E71) == 1
 // *  6 - the room with the rotten stump and log
 // * 22 - the room with the cave and condor.
 // by limiting the start room to < 49, we allow all of the main map
+// 0x6E71 + 0x12 = 0x6E83 (unknown), -0x12 = 0x6E5F (gold walnut in inventory)
+// 0x6E6B + 0x12 = 0x6E7D (unknown), -0x12 = 0x6E6E (unknown)
 achievement("Expert Free Climbing", "Climb the beanstalk without falling or reloading", 10,
-    trigger = once(current_scene() < 49) &&                                   // the beans can be planted in several locations
+    trigger = once(current_scene() < 49) &&                 // the beans can be planted in several locations
               once(current_scene() == scene_beanstalk1) &&
               once(current_scene() == scene_beanstalk2) &&
-              current_scene() == scene_beanstalk3 && !climbing_beanstalk() && // dismount at top
+              current_scene() == scene_beanstalk3 &&
               never(load_game()) && 
-              never(byte(0x6E6b) == 2)                                        // falling
+              prev(pointed_at_byte(0x6E71)) != 1 &&         // dismount at top (1=climbing beanstalk)
+                                                            // use prev because falling change happens one frame later
+              never(byte(0x010F) == 0x0D)                   // falling
 )
 
 // MAX
 achievement("Let Sleeping Giants Lie", "Acquire the treasure chest without killing the giant", 10,
-    trigger = current_scene() == scene_clouds_north && byte(0x6EC0) == 1 && // giant sleeping
-              byte(0x6EBF) == 1 && prev(byte(0x6EBF)) == 0                  // get chest
+    trigger = current_scene() == scene_clouds_north && 
+              pointed_at_byte(0x6EC0) == 1 &&                                     // giant sleeping
+              pointed_at_byte(0x6EBF) == 1 && prev(pointed_at_byte(0x6EBF)) == 0  // get chest
 )
 
 // MIN / TYRANT
 flag_achievement( 5, "Goliath Has Fallen", "Kill the giant", scene_clouds_north, 0x6EBE)
 
-function trigger_complete_game() => current_scene() == scene_castle_throne_room && byte(0x6EBC) == 1 && byte(0x6E26) == 2
-
+function trigger_complete_game() => current_scene() == scene_castle_throne_room && 
+                                         pointed_at_byte(0x6EBC) == 1 && pointed_at_byte(0x6E26) == 2
 // MAX / MIN
-achievement("It's Good to Be the King", "Complete the quest", 10, trigger_complete_game())
+achievement("It's Good to Be the King", "Complete the quest", 10, 
+            trigger_complete_game())
 
 // MAX
 achievement("Restocked the Treasury", "Complete the quest with all of the optional treasures", 10,
-    trigger = trigger_complete_game() && 
-              byte(0x6E3F) == 1 && // magic ring
-              byte(0x6E4D) == 1 && // sceptre
-              byte(0x6E51) == 1 && // pouch of diamonds
-              byte(0x6E56) == 1 && // gold egg
-              byte(0x6E5F) == 1    // gold walnut
+    trigger = trigger_complete_game() &&
+              pointed_at_byte(0x6E3F) == 1 && // magic ring
+              pointed_at_byte(0x6E4D) == 1 && // sceptre
+              pointed_at_byte(0x6E51) == 1 && // pouch of diamonds
+              pointed_at_byte(0x6E56) == 1 && // gold egg
+              pointed_at_byte(0x6E5F) == 1    // gold walnut
 )
 
 // MAX
@@ -475,16 +499,20 @@ achievement("The Minimal Quest", "Complete the quest with less than 70 points", 
 
 // TYRANT
 achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the same playthrough", 25,
-    trigger = byte(0x6EB2) == 1 && // dragon
-              byte(0x6E37) == 1 && // witch
-              byte(0x6E80) == 1 && byte(0x6E81) == 1 && // troll
-              byte(0x6EBE) == 1 && // giant
-              ((prev(byte(0x6EB2)) == 0 && current_scene() == scene_dragon_cave_east) ||
-               (prev(byte(0x6E37)) == 0 && current_scene() == scene_inside_witchs_house) ||
-               (prev(byte(0x6EBE)) == 0 && current_scene() == scene_clouds_north) ||
-               (prev(byte(0x6E80)) == 0 && current_scene() == scene_troll_bridge_south) ||
-               (prev(byte(0x6E80)) == 0 && current_scene() == scene_troll_bridge_east) ||
-               (prev(byte(0x6E80)) == 0 && current_scene() == scene_troll_bridge_north))
+    trigger = pointed_at_byte(0x6EB2) == 1 && // dragon
+              pointed_at_byte(0x6E37) == 1 && // witch
+              pointed_at_byte(0x6E80) == 1 && byte(0x6E81) == 1 && // troll
+              pointed_at_byte(0x6EBE) == 1 && // giant
+              ((prev(pointed_at_byte(0x6EB2)) == 0 && current_scene() == scene_dragon_cave_east) ||
+               (prev(pointed_at_byte(0x6E37)) == 0 && current_scene() == scene_inside_witchs_house) ||
+               (prev(pointed_at_byte(0x6EBE)) == 0 && current_scene() == scene_clouds_north) ||
+               (prev(pointed_at_byte(0x6E80)) == 0 && 
+                (current_scene() == scene_troll_bridge_south ||
+                 current_scene() == scene_troll_bridge_east ||
+                 current_scene() == scene_troll_bridge_north
+                )
+               )
+              )
 )
 
 // ========================================================
@@ -525,7 +553,7 @@ achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the 
 //   LOOK IN STUMP [1>62], GET POUCH [3>65], OPEN POUCH [3>68]
 // Go north to goat pen
 //   OPEN GATE, go in, CLOSE GATE, SHOW CARROT [5>73], OPEN GATE
-// Go south, west, then south twice more to the bridge
+// Go south twice, west, then south to the bridge
 //   Goat will take care of troll [4>77]
 // Go west
 //   TALK TO GNOME
@@ -568,6 +596,7 @@ achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the 
 //   OPEN DOOR [1>155]
 // Walk to throne room
 //   BOW TO KING [3>158]
+//   Walk to throne
 
 // ========================================================
 // Minimum points walkthrough (~43 minutes)
@@ -583,7 +612,7 @@ achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the 
 //   JUMP to grab the bird [3>9]
 // Go west
 //   GET MUSHROOM [1>10]
-// Go east, fall in the hole. Go south, then west.
+// Go east, fall in the hole. Go south, then west. [SAVE O]
 //   GIVE CHEESE [2>12]
 //   OPEN DOOR
 // Go left, then south
@@ -592,7 +621,7 @@ achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the 
 //   EAT MUSHROOM [2>22]
 // Exit through hole [1>23], go north twice, then east
 //   Stand behind rock, PUSH ROCK [2>25], GET DAGGER [5>30]
-// Go west twice, then north to the well
+// Go west twice, then north to the well [SAVE P]
 //   Make sure the bucket is up and CUT ROPE [2>32] (get bucket)
 //   LOWER ROPE, CLIMB ROPE [1>33]
 //   When you reach the bottom, SWIM [2>35] and DIVE [2>37]
@@ -607,7 +636,7 @@ achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the 
 //   GET PEBBLES [1>44]
 // Walk south, then west
 //   GET WALNUT [3>47], OPEN WALNUT [3>50]
-// Walk east three times to the troll bridge
+// Walk east three times to the troll bridge [SAVE Q]
 //   GIVE WALNUT to troll [-6>44]
 // Walk north
 //   TALK TO GNOME
@@ -617,16 +646,16 @@ achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the 
 //   UNLOCK DOOR [2>49], OPEN DOOR
 // Climb the staircase, at the top go south
 //   GET SLING [2>51]
-// Go north, then west
+// Go north, then west [SAVE R]
 //   USE SLING [2>53]
 //   GET CHEST [8>61]
 // Go east twice, through the cave and down the stairs
 // Go south twice and east once to return to the castle
 //   OPEN DOOR [1>62]
-// Walk to throne room
-//   BOW TO KING [3>65] - this is the one you were supposed to do at the start of the game
-//   BOW TO KING [3>68] - this is the one for finishing the quest
+// Walk to throne room [SAVE S]
+//   BOW TO KING [3>65]
 //   Note: DROP BUCKET (and water)[-4], DROP KEY[-3], DROP CLOVER[-2], DROP SLING[-2] >> 57!
+//   Walk to throne
 
 // ========================================================
 // Ruthless Tyrant points walkthrough (~30 minutes)
@@ -637,7 +666,7 @@ achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the 
 //   GET CARROT [2>9]
 // Walk east four more times
 //   OPEN GATE, go in, CLOSE GATE, SHOW CARROT [5>14], OPEN GATE
-// Walk north two screens, then west two screens, and approach bridge
+// Walk north two screens, then west two screens [SAVE T], and approach bridge
 //   Goat will take care of troll [4>18]
 // Go north
 //   TALK GNOME
@@ -646,20 +675,22 @@ achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the 
 // Go south, west, north, west
 //   GET PEBBLES [1>22]
 // Go east, south, then east four screens to the witch's hut
-//   PUSH WITCH INTO OVEN [7>29]
-//     When you enter the house, run for the bedroom. If the witch doesn't announce her return, leave and try again.
-//   OPEN CUPBOARD [2>31], GET CHEESE [2>33]
+//   EAT HOUSE [2>24] 
+//     If you get a rhyme about a mouse, leave and come back and try again. if it's yummy, go inside
+// Head towards the bedroom
+//   If you don't get a message about the witch returning, leave and try again. When you do finally 
+//   see the message, wait in the room until she's near the oven [SAVE U], then approach her to push her in [7>31].
 // Leave house, walk south twice to the well.
-//   Make sure the bucket is up and CUT ROPE [2>35] (get bucket)
+//   Make sure the bucket is up and CUT ROPE [2>33] (get bucket)
 //   LOWER ROPE, CLIMB ROPE
-//   When you reach the bottom [1>36], SWIM [2>38] and DIVE [2>40]
-// Swim left [1>41]
-//   THROW DAGGER [-2>39]
+//   When you reach the bottom [1>34], SWIM [2>36] and DIVE [2>38]
+// Swim left [1>39] [SAVE V]
+//   THROW DAGGER [-2>37]
 // Go right, then up
-//   CLIMB ROPE [-1>38]
+//   CLIMB ROPE [-1>36]
 // Go east twice (re-enter if the wolf is present), then north
-//   UNLOCK DOOR [2>40]
+//   UNLOCK DOOR [2>38]
 // Climb the staircase, at the top go south
-//   GET SLING [2>42]
-// Go north, then west
-//   USE SLINGSHOT [2>44]
+//   GET SLING [2>40]
+// Go north, then west [SAVE W]
+//   USE SLINGSHOT [2>42]
