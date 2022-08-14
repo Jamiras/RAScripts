@@ -33,7 +33,13 @@ function location3() => byte(0x00605D)
 // $006065: Location 7/x
 function location7() => byte(0x006065)
 
-function in_game() => word(0x000000) != 0x5555
+// when the game is first loaded, or when the console is reset, the memory is "wiped" by initializing everything
+// to sequential values, starting with 0x40, 0x41, 0x42, 0x43, 0x44... This takes several frames, so it's entirely
+// possible for some memory values to change while others are still correct. A good example of this is
+// https://retroachievements.org/ticketmanager.php?i=48673. The "word(0x000000) != 0x4140" ensures we've managed
+// to get past fully initializing the memory and can start processing the other logic.
+function in_game() => word(0x000000) != 0x4140
+                      
 
 locations = {
     0x0092: "Title",
@@ -359,7 +365,7 @@ achievement(
 achievement(
     title = "It's Not a Problem If You Win", description = "Acquire over 10,000 casino coins.", points = 4,
     id = 56434, badge = "58911", published = "12/20/2017 4:46:24 AM", modified = "12/20/2017 9:51:13 PM",
-    trigger = in_game() && word(0x000000) != 16704 && word(0x000000) != 47272 &&
+    trigger = in_game() && word(0x000000) != 47272 &&
               ((casino_tokens() >= 10000) ||
                (byte(0x003EA9) >= 1))
 )
@@ -1086,10 +1092,11 @@ achievement(
 // ----------------------------------------------------------------
 
 // $3D94:80 - Orichalcum Fang, ground, Calcado
+// in the little notch in the grass three spaces left and three north of the well
 achievement(
    title = "Hidden Treasure: Calcado", description = "Find the Orichalcum Fang hidden in Calcado", points = 3,
    id = 56504, // replaces "Despair Town"
-   trigger = current_location() == 0x001B && bit7(0x3D94) == 1 && prev(bit7(0x3D94)) == 0
+   trigger = in_game() && current_location() == 0x001B && bit7(0x3D94) == 1 && prev(bit7(0x3D94)) == 0
 )
 
 // can get "Master Collector" (100 medals) now
@@ -1137,26 +1144,26 @@ achievement(
 achievement(
     title = "Novice Collector", description = "Give the Medal King 20 Small Medals.", points = 5,
     id = 56382, badge = "57556", published = "12/19/2017 1:39:25 AM", modified = "10/12/2019 6:27:01 PM",
-    trigger = small_medals_turned_in() >= 20 && small_medals_turned_in() <= 105 && in_game() && word(0x000000) != 16704
+    trigger = small_medals_turned_in() >= 20 && small_medals_turned_in() <= 105 && in_game()
 )
 
 achievement(
     title = "Apprentice Collector", description = "Give the Medal King 40 Small Medals.", points = 10,
     id = 56383, badge = "57557", published = "12/19/2017 1:39:30 AM", modified = "12/20/2017 3:33:34 PM",
-    trigger = small_medals_turned_in() >= 40 && small_medals_turned_in() <= 105 && in_game() && word(0x000000) != 16704
+    trigger = small_medals_turned_in() >= 40 && small_medals_turned_in() <= 105 && in_game()
 )
 
 achievement(
     title = "Adept Collector", description = "Give the Medal King 60 Small Medals.", points = 10,
     id = 56384, badge = "57558", published = "12/19/2017 1:39:33 AM", modified = "10/21/2019 8:56:01 PM",
-    trigger = small_medals_turned_in() >= 60 && small_medals_turned_in() <= 105 && in_game() && word(0x000000) != 16704
+    trigger = small_medals_turned_in() >= 60 && small_medals_turned_in() <= 105 && in_game()
 )
 
 // POINTS -> 10
 achievement(
     title = "Expert Collector", description = "Give the Medal King 80 Small Medals.", points = 10,
     id = 56385, badge = "57559", published = "12/19/2017 1:39:37 AM", modified = "12/20/2017 3:33:27 PM",
-    trigger = small_medals_turned_in() >= 80 && small_medals_turned_in() <= 105 && in_game() && word(0x000000) != 16704
+    trigger = small_medals_turned_in() >= 80 && small_medals_turned_in() <= 105 && in_game()
 )
 
 // POINTS -> 25
