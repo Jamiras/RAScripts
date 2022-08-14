@@ -517,6 +517,7 @@ story_achievement(location_zenithia_castle, bit4(0x21B5), 4, "The Master Reveale
 
 story_achievement(location_great_temple, bit3(0x223D), 3, "Power Armor", "Acquire the Zenithian Armor")
 
+// attempt to use the Staff of Stoross on the statue of your wife
 achievement(
     title = "A Stronger Curse", points = 2,
     description = "Attempt to free your wife as you were freed",
@@ -1923,7 +1924,8 @@ achievement(
     title = "There and Back Again", points = 2,
     description = "Unlock all 17 return locations",
     trigger = trigger_in_game() && 
-        measured(bitcount(0x2030) + bitcount(0x2031) + bit0(0x2032) == 17) &&
+        measured(bitcount(0x2030) + bitcount(0x2031) + bit0(0x2032) == 17,
+                 when = bit1(0x21BD) == 1) && // only tally after the players learns Return
         (prev(word(0x2030)) != 0xFFFF || prev(bit0(0x2032)) != 1)
 )
 
