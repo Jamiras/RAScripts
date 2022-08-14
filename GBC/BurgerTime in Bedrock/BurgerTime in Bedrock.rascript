@@ -249,7 +249,7 @@ achievement("Thwack!", "Knock out at least two enemies with a single swing of th
               tally(2, enemies_stunned)
 )
 
-function is_falling(index) => byte(0xc563 + index * 15) == 3
+function is_falling(index) => byte(0xc563 + index * 15) // == 3 when falling
 ingredient_falling_sum = 0
 for i in range(0,18)
     ingredient_falling_sum = ingredient_falling_sum + is_falling(i)
