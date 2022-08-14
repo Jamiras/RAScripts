@@ -232,6 +232,7 @@ scene_inside_tavern = 40
 scene_inside_bears_house = 41
 scene_upstairs_bears_house = 42
 scene_spell_book = 43
+scene_spell_book_typing = 143
 scene_intro_title = 45
 scene_intro_manannan = 46
 scene_intro_credits = 47
@@ -330,6 +331,7 @@ scenes = {
     scene_inside_bears_house: "exploring Llewdor",
     scene_upstairs_bears_house: "exploring Llewdor",
     scene_spell_book: "casting spells",
+    scene_spell_book_typing: "casting spells",
     scene_island_beach1: "exploring a deserted island",
     scene_island_beach2: "exploring a deserted island",
     scene_island_path1: "exploring a deserted island",
@@ -421,6 +423,22 @@ function flag_achievement(title, description, points, scene, flag)
 {
     achievement(title, description, points,
         trigger = in_game() && current_scene() == scene && trigger_flag(flag)
+    )
+}
+
+function spell_achievement(title, description, points, scene, flag)
+{
+    achievement(title, description, points,
+        trigger = // the 4am crack messes with this value when scenes are being loaded
+                  // from disk. it will briefly change to 0, which is used by in_game()
+                  // to prevent false triggers when resetting the game. since the spell
+                  // bits change when the game is transitioning from the book back to the
+                  // laboratory, it's entirely possible for the value to be 0 during the
+                  // frame in which we detect the bit changing (see tickets 50046 and 50166)
+                  // to work around that, look for the current value or previous value
+                  // (not prior) being 3 (disk 2A), which is the disk for the lab/spellbook.
+                  (byte(0xB7EB) == 3 || prev(byte(0xB7EB)) == 3) &&
+                  current_scene() == scene && bit_changed(flag)
     )
 }
 
@@ -590,52 +608,52 @@ achievement("Stony Gaze", "Defeat Medusa", 5,
 
 // MAX
 // chicken feather, dog fur, snakeskin, powdered fish bone (@), thimble of dew
-flag_achievement("It's No Babel Fish", "Complete the Understanding the Language of Creatures spell", 5,
+spell_achievement("It's No Babel Fish", "Complete the Understanding the Language of Creatures spell", 5,
     scene_spell_book, bit0(0xFEF2)
 )
 
 // MIN/MAX
 // eagle feather/fly wings, pinch of saffron, rose petal essence
-flag_achievement("Look Ma, No Hands", "Complete the Flight spell", 5,
+spell_achievement("Look Ma, No Hands", "Complete the Flight spell", 5,
     scene_spell_book, bit7(0xFEF3)
 )
 
 // MAX
 // spoonful of salt ($), mistletoe, amber stone
-flag_achievement("Hither and Yon", "Complete the Teleportation at Random spell", 5,
+spell_achievement("Hither and Yon", "Complete the Teleportation at Random spell", 5,
     scene_spell_book, bit6(0xFEF3)
 )
 
 // MAX
 // acorns, nightshade juice (@), empty pouch ($)
-flag_achievement("Pleasant Dreams", "Complete the Sleeping Powder spell", 5,
+spell_achievement("Pleasant Dreams", "Complete the Sleeping Powder spell", 5,
     scene_spell_book, bit5(0xFEF3)
 )
 
 // MIN/MAX
 // mandrake root powder (@), cat hair, fish oil ($)
-flag_achievement("Kitty Cookie", "Complete the Transforming Another spell", 5,
+spell_achievement("Kitty Cookie", "Complete the Transforming Another spell", 5,
     scene_spell_book, bit4(0xFEF3)
 )
 
 // MIN/MAX
 // ocean water (cup), mud (spoon), toadstool powder (@), empty jar
-flag_achievement("Lightning in a Bottle", "Complete the Brewing a Storm spell", 5,
+spell_achievement("Lightning in a Bottle", "Complete the Brewing a Storm spell", 5,
     scene_spell_book, bit3(0xFEF3)
 )
 
 // MIN/MAX
 // lard ($), cactus, toad spittle (@)
-flag_achievement("Now You See Me, Now You Don't", "Complete the Becoming Invisible spell", 5,
+spell_achievement("Now You See Me, Now You Don't", "Complete the Becoming Invisible spell", 5,
     scene_spell_book, bit2(0xFEF3)
 )
 
 // MIN
 // can only be done with the Flight spell - all others require ingredients from below
 achievement("House of Magic", "Complete a spell before going down the mountain", 5,
-    trigger = in_game() &&
+    trigger = (byte(0xB7EB) == 3 || prev(byte(0xB7EB)) == 3) && // see note in spell_achievement()
               current_scene() == scene_spell_book && 
-              trigger_flag(bit7(0xFEF3)) && // complete Flight spell
+              bit_changed(bit7(0xFEF3)) &&  // complete Flight spell
               bit2(0xFEE7) == 0             // no spaces revealed on magic map
 )
 
