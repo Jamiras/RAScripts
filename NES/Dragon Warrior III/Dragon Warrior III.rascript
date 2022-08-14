@@ -822,13 +822,17 @@ function attacker_spell(index) => byte(0x0558 + index)
 
 function multi_class_test(index, class, spell, action)
 {
-    return (attacker_index() == index && character_class(index) == class && attacker_action(index) == action && attacker_spell(index) == spell)
+    return (attacker_index() == index && character_class(index) == class && 
+            attacker_action(index) == action && attacker_spell(index) == spell)
 }
 
 function multi_class_achievement(title, description, points, class, spell, action)
 {
+    // the check on 6ACB is designed to ensure the achievement doesn't trigger before or after
+    // battle. when entering battle, it's 1. when ending battle it's 2. it's 3 when blank between
+    // attacks, which is when the active player is updated and the achievement triggers.
     achievement(title = title, description = description, points = points,
-                trigger = in_battle() && 
+                trigger = in_battle() &&
                           (multi_class_test(0, class, spell, action) || 
                            multi_class_test(1, class, spell, action) || 
                            multi_class_test(2, class, spell, action) || 
