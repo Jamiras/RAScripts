@@ -452,6 +452,10 @@ function flag_achievement(title, description, points, scene, flag_address)
 
 function scene_loading() => byte(0xFC0E) == 1
 
+// only set when pressing 5, typing 'RESTORE GAME' does not set.
+// $0036=0x64C4 might be a better alternative, but it also gets set for saving and inventory screen
+function restoring_game() => byte(0x815A) == 1
+
 function trigger_complete_game() => current_scene() == scene_outro_outside_castle && 
                                     prior(current_scene()) == scene_monastery_interior && // after wedding (no solo HOME)
                                     unless(scene_loading()) &&
@@ -484,7 +488,7 @@ flag_achievement("A Door Within a Door", "Open the first door", 10, scene_door, 
 
 // EITHER - dwarf
 achievement("I Wasn't Done With That", "Retrieve a stolen treasure from the dwarf", 5,
-    trigger = current_scene() == scene_treehouse_3 && !is_debug_mode() &&
+    trigger = current_scene() == scene_treehouse_3 && !is_debug_mode() && !restoring_game() &&
               ((byte(0xFC4D) == 0 && prev(byte(0xFC4D)) == 1) || // necklace
                (byte(0xFC4E) == 0 && prev(byte(0xFC4E)) == 1) || // earrings
                (byte(0xFC4F) == 0 && prev(byte(0xFC4F)) == 1) || // tiara
@@ -629,7 +633,7 @@ achievement("The Minimal Quest", "Get married and complete the quest with less t
 //   if you encounter the dwarf, leave and return
 //   GET POT [2>21]
 //   OPEN CHEST
-//   GET EARRINGS [7>28]
+//   GET EARRINGS [7>28] (SAVE B)
 //   GET NECKLACE (or whatever was stolen) [7>35]
 //   ((I Wasn't Done With That))
 // go west, climb the ladder and exit, then go north and east
