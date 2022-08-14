@@ -1,6 +1,7 @@
 // Dragon Warrior IV
 //  #ID = 4612
 //  md5: d8a1d610c93b96ad98e55e09dfcc7533
+//  md5: 192f2997b7f5123ebc81b7b8c469c1ea (JP)
 
 // http://www.woodus.com/den/games/dw4nes/maps.php?tp=maps_dungeon
 // http://www.woodus.com/den/games/dw4nes/walkthru2/walkthru4.php
@@ -816,7 +817,7 @@ function story_achievement_old(bit, map, points, title, description) {
             title = title,
             description = description,
             points = points,
-            trigger = bit == 1 && prev(bit) != 1 && player_map() == map && trigger_player_in_game()
+            trigger = bit == 1 && prev(bit) != 1 && player_map() == map
         )
     }
 }
@@ -829,6 +830,29 @@ function story_achievement(bit, location, map, points, title, description) {
         trigger = player_location() == location && player_map() == map && 
                   trigger_player_in_game() &&
                   bit == 1 && prev(bit) != 1 
+    )
+}
+
+function story_achievement_jp(location, map, points, bit_us, bit_jp, title, description) {
+    achievement(
+        title = title,
+        description = description,
+        points = points,
+        trigger = player_location() == location && player_map() == map && 
+                  trigger_player_in_game() &&
+                  ((bit_us == 1 && prev(bit_us) != 1) ||
+                   (bit_jp == 1 && prev(bit_jp) != 1))
+    )
+}
+
+function collection_achievement(title, description, points, location, bits)
+{
+    count = length(bits)
+    achievement(title, description, points,
+        trigger = player_location() == location &&
+                  trigger_player_in_game() &&
+                  ((sum_of(bits, b => b[0]) == count && sum_of(bits, b => prev(b[0])) < count) ||
+                   (sum_of(bits, b => b[1]) == count && sum_of(bits, b => prev(b[1])) < count))
     )
 }
 
@@ -876,8 +900,10 @@ achievement(
     title = "It's a Trap",
     description = "Collect the Iron Safe and leave",
     points = 5,
-    trigger = once(bit5(0x6269) == 0) && bit5(0x6269) == 1 && trigger_player_in_game() && 
-              player_map_x() == 12 && player_map_y() == 20 && never(player_location() != 0x1471)
+    trigger = trigger_player_in_game() && 
+              player_map_x() == 12 && player_map_y() == 20 && never(player_location() != 0x1471) &&
+              ((once(bit5(0x6269) == 0) && bit5(0x6269) == 1) || // US
+               (once(bit4(0x626D) == 0) && bit4(0x626D) == 1))   // JP
 )
 
 story_achievement(bit4(0x6286), location_bonmalmo, 0x0C,  5, "The Architect", "Repair the bridge to Endor")
@@ -914,7 +940,10 @@ story_achievement(bit0(0x6294), location_keeleon, 0x09,  5, "Rematch", "Defeat K
 story_achievement(bit7(0x6295), location_santeem, 0x09,  5, "You've Changed", "Defeat the evolved Balzack")
 story_achievement(bit3(0x6295), location_stancia, 0x09,  5, "Not So Funny", "Get the Zenithian Helm")
 story_achievement(bit1(0x6260), location_gardenbur, 0x0C,  5, "Proof of Innocence", "Get the Zenithian Shield")
-story_achievement(bit3(0x6263), location_shrine_of_breaking_waves, 0x12,  5, "Underwater Oasis", "Get the Zenithian Armor")
+story_achievement_jp(location_shrine_of_breaking_waves, 0x12,  5, 
+                 bit3(0x6263), // US 
+                 bit2(0x626), // JP                 
+                 "Underwater Oasis", "Get the Zenithian Armor")
 story_achievement(bit0(0x6295), location_dire_palace, 0x09,  5, "A Monstrous Announcement", "Attend the conference at the Dire Palace")
 
 // two entrances to Riverton at 0xCD91 and 0xCF91, just check for X=0x91
@@ -927,7 +956,10 @@ achievement(
               bit1(0x628E) == 1 && prev(bit1(0x628E)) != 1 
 )
 
-story_achievement(bit4(0x626C), location_world_tree, 0x23,  5, "The Highest Branches", "Get the Zenithian Sword")
+story_achievement_jp(location_world_tree, 0x23,  5,
+                     bit4(0x626C), // US
+                     bit0(0x6262), // JP
+                     "The Highest Branches", "Get the Zenithian Sword")
 
 // Zenethia doesn't actually modify the world x/y
 achievement(
@@ -1050,7 +1082,7 @@ achievement(
               (byte(0x62AF) > 0 || word(0x62AD) >= 10000)
 )
 
-story_achievement_old(bit5(0x6291), 0x1D,  5, "Tunnel Rat", "Be the 5000th person to use the new tunnel")
+story_achievement_old(bit5(0x6291), 0x1D,  5, "Tunnel Rat", "Be the 1000th person to use the new tunnel")
 
 // Stay at Izmit inn after killing Esturk
 // - Matches portions of > Necrosaro: `Those humans! I Will let them suffer for this! I promise!'
@@ -1059,15 +1091,35 @@ achievement(
     description = "Find out what happened to Rosa",
     points = 5,
     trigger = player_map() == 1 && player_location() == 0x169A &&
-              byte(0x06EC) == 0x32 && // N
-              byte(0x06ED) == 0x0F && // e
-              byte(0x06EE) == 0x0D && // c ...
-              byte(0x06F4) == 0x19 && // o
-              byte(0x06F5) == 0x71 && // :
-              byte(0x072F) == 0x2D && // I
-              byte(0x0730) == 0x00 && //  
-              byte(0x0731) == 0x1A && // p
-              byte(0x0732) == 0x1C    // r
+              ((
+                //byte(0x06EC) == 0x32 && // N  (US)
+                //byte(0x06ED) == 0x0F && // e
+                //byte(0x06EE) == 0x0D && // c
+                //byte(0x06EF) == 0x1C && // r
+                //byte(0x06F4) == 0x19 && // o
+                //byte(0x06F5) == 0x71 && // :
+                //byte(0x072F) == 0x2D && // I
+                //byte(0x0730) == 0x00 && //  
+                //byte(0x0731) == 0x1A && // p
+                //byte(0x0732) == 0x1C    // r
+                dword(0x06EC) == 0x1C0D0F32 &&
+                word(0x06F4) == 0x7119 &&
+                dword(0x072F) == 0x1C1A002D
+               ) || (
+                //byte(0x06C0) == 0x4D && // de (JP)
+                //byte(0x06C1) == 0x4A && // su
+                //byte(0x06C2) == 0x55 && // pi
+                //byte(0x06C3) == 0x48 && // sa
+                //byte(0x06C4) == 0x60 && // :
+                //byte(0x06C5) == 0x6F && // yu
+                //byte(0x071A) == 0x25 && // hi
+                //byte(0x071B) == 0x1E && // to
+                //byte(0x071C) == 0x32 && // ri
+                //byte(0x071D) == 0x23    // no
+                dword(0x06C0) == 0x48554A4D &&
+                word(0x06C4) == 0x6F60 &&
+                dword(0x071A) == 0x23321E25
+              ))
 )
 
 // Monbaraba at night, upstairs eatery, solo male character
@@ -1075,12 +1127,26 @@ achievement(
     title = "Private Dance",
     description = "Try Pufpuf",
     points = 5,
-    trigger = player_map() == 3 && byte(0x06C9) == 0x34 && // P
-                                   byte(0x06CA) == 0x1F && // u
-                                   byte(0x06CB) == 0x10 && // f
-                                   byte(0x06CC) == 0x1A && // p
-                                   byte(0x06CD) == 0x1F && // u
-                                   byte(0x06CE) == 0x10    // f
+    trigger = player_map() == 3 && 
+              ((//byte(0x06C9) == 0x34 && // P  (US)
+                //byte(0x06CA) == 0x1F && // u
+                //byte(0x06CB) == 0x10 && // f
+                //byte(0x06CC) == 0x1A && // p
+                //byte(0x06CD) == 0x1F && // u
+                //byte(0x06CE) == 0x10    // f
+                dword(0x06C9) == 0x1A101F34 &&
+                word(0x06CD) == 0x101F
+               ) ||
+               (//byte(0x071A) == 0x24 && // pa (JP)
+                //byte(0x071B) == 0x26 && // fu    
+                //byte(0x071C) == 0x24 && // pa
+                //byte(0x071D) == 0x26 && // fu
+                //byte(0x071E) == 0x23 && // no
+                //byte(0x071F) == 0x00)   // 
+                dword(0x071A) == 0x26242624 &&
+                word(0x071E) == 0x0023
+               )
+              )
 )
 
 achievement(
@@ -1108,14 +1174,13 @@ achievement(
                (monster_status(1) == 0x81 && monster_letter_group(1) == 0x24)) // killed second metal king
 )
 
-achievement(
-    title = "Hidden Treasure - Great Lighthouse", 
-    description = "Find all three hidden treasures in the Great Lighthouse",
-    points = 5,
-    trigger = bit3(0x626E) == 1 && bit4(0x626E) == 1 && bit3(0x626D) == 1 &&
-              player_location() == 0x83C7 && 
-              (prev(bit3(0x626E)) != 1 || prev(bit4(0x626E)) != 1 || prev(bit3(0x626D)) != 1)
-)
+collection_achievement("Hidden Treasure - Great Lighthouse",
+    "Find all three hidden treasures in the Great Lighthouse", 5, 0x83C7,
+    [//  US            JP
+        [bit3(0x626E), bit0(0x6264)], // Luck Seed - 1F
+        [bit4(0x626E), bit7(0x6265)], // 400g - 1F
+        [bit3(0x626D), bit7(0x6264)]  // Golden Barette - 5F
+    ])
 
 story_achievement(bit5(0x625F), location_endor, 0x03,  5, "Hidden Treasure - Endor", "Find the hidden treasure in Endor")
 story_achievement(bit2(0x6260), location_gardenbur, 0x0C,  5, "Hidden Treasure - Gardenbur", "Find the hidden treasure in Gardenbur")
@@ -1234,8 +1299,8 @@ chapters = {
 function is_chapter_five() => bit2(0x615A)
 function hero_gender() => bit0(0x615C)
 
-rich_presence_conditional_display(dword(0x0042) == 0, "Titles")
-rich_presence_conditional_display(!trigger_player_in_game(), "Titles")
+rich_presence_conditional_display(dword(0x0042) == 0, "Titlescreen")
+rich_presence_conditional_display(!trigger_player_in_game(), "Titlescreen")
 
 rich_presence_conditional_display(current_chapter() == 4 && byte(0x6292) == 0, "A level {0} hero is exploring {1}",
     rich_presence_value("Level", character_level(character_hero)),
