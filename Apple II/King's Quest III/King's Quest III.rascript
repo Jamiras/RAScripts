@@ -236,6 +236,7 @@ scene_spell_book_typing = 143
 scene_intro_title = 45
 scene_intro_manannan = 46
 scene_intro_credits = 47
+scene_island_beach1_boat = 48
 scene_island_beach1 = 148
 scene_island_beach2 = 49
 scene_island_path1 = 50
@@ -333,6 +334,7 @@ scenes = {
     scene_spell_book: "casting spells",
     scene_spell_book_typing: "casting spells",
     scene_island_beach1: "exploring a deserted island",
+    scene_island_beach1_boat: "exploring a deserted island",
     scene_island_beach2: "exploring a deserted island",
     scene_island_path1: "exploring a deserted island",
     scene_island_path2: "exploring a deserted island",
@@ -394,10 +396,11 @@ function in_intro() => current_scene() >= scene_intro_title && current_scene() <
 // type RATS ASS to enter debug mode
 // type FAST TALK to enter debug mode
 function is_debug_mode() => always_false() // TBD
-function in_game() => current_scene() != scene_none &&
-                      byte(0xB7EB) != 0 && // zero when resetting
-                      // byte(0xB7EA) != 0x0F && // 0x0F when loading - also 0x0F after saving (need better solution)
-                      !is_debug_mode()
+function in_game_general() => current_scene() != scene_none &&
+                              // byte(0xB7EA) != 0x0F && // 0x0F when loading - also 0x0F after saving (need better solution)
+                              !is_debug_mode()
+function in_game() => in_game_general() &&
+                      byte(0xB7EB) != 0 // zero when resetting, and during screen transitions
 
 function timer_seconds() => byte(0xFF73)
 function timer_minutes() => byte(0xFF74)
@@ -574,10 +577,27 @@ achievement("Oh, The Places You'll Go", "Find the map", 5,
 
 // MAX
 achievement("Cartographer", "Fully fill in the map for Llewdor", 5,
-    trigger = in_game() &&
-              bit1(0xFEE6) == 1 && bit0(0xFEE6) == 1 &&
-              byte(0xFEE7) == 0xFF && byte(0xFEE8) == 0xFF &&
-              bit7(0xFEE9) == 1 && bit6(0xFEE9) == 1 &&
+    trigger = in_game_general() &&
+              bit1(0xFEE6) == 1 && // room 11
+              bit0(0xFEE6) == 1 && // room 12
+              bit7(0xFEE7) == 1 && // room 13
+              bit6(0xFEE7) == 1 && // room 14
+              bit5(0xFEE7) == 1 && // room 15
+              bit4(0xFEE7) == 1 && // room 16
+              bit3(0xFEE7) == 1 && // room 17
+              bit2(0xFEE7) == 1 && // room 18
+              bit1(0xFEE7) == 1 && // room 19
+              bit0(0xFEE7) == 1 && // room 20
+              bit7(0xFEE8) == 1 && // room 21
+              bit6(0xFEE8) == 1 && // room 22
+              bit5(0xFEE8) == 1 && // room 23
+              bit4(0xFEE8) == 1 && // room 24
+              bit3(0xFEE8) == 1 && // room 25
+              bit2(0xFEE8) == 1 && // room 26
+              bit1(0xFEE8) == 1 && // room 27
+              bit0(0xFEE8) == 1 && // room 28
+              bit7(0xFEE9) == 1 && // room 29
+              bit6(0xFEE9) == 1 && // room 30
               (prev(bit1(0xFEE6)) != 1 || prev(bit0(0xFEE6)) != 1 ||
                prev(byte(0xFEE7)) != 0xFF || prev(byte(0xFEE8)) != 0xFF ||
                prev(bit7(0xFEE9)) != 1 || prev(bit6(0xFEE9)) != 1)             
@@ -685,8 +705,9 @@ achievement("This Isn't What I Paid For", "Board the Boat", 5,
 // MIN/MAX
 achievement("Overboard", "Escape from the pirates", 10,
     trigger = !is_debug_mode() &&
-              prior(current_scene()) == scene_ocean_infinite &&
-              (bit_changed(bit1(0xFEE6)))   // enter room 148
+              bit_changed(bit1(0xFEE6)) &&   // enter room 48 or 148
+              (prior(current_scene()) == scene_ocean_infinite ||
+               prior(current_scene()) == scene_ship_lower_deck)
 )
 
 // MAX
