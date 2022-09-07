@@ -463,7 +463,10 @@ function trigger_complete_game() => current_scene() == scene_outro_outside_castl
 
 // MAX
 achievement("Undelivered", "Give the Goodies back to Little Red Riding Hood", 5,
-    trigger = trigger_flag(0xFC36) && (current_scene() == scene_little_red_riding_hood || current_scene() == scene_nw_lake)
+    trigger = trigger_flag(0xFC36) && 
+              (current_scene() == scene_little_red_riding_hood || 
+               current_scene() == scene_nw_lake ||
+               current_scene() == scene_field_1)
 )
 
 // MAX
