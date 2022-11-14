@@ -4,20 +4,26 @@
 // $002A: Input
 function input() => bit6(0x00002A)
 
+function stage_state() => byte(0x0031)
+function at_titles() => stage_state() == 0x1a
+
+function at_titles_before_prologue() => byte(0x0036) == 1
+
 // $003D: Score: 000,0X0
-function score_10s() => byte(0x00003D)
-
 // $003E: Score: 000,X00
-function score_100s() => byte(0x00003E)
-
 // $003F: Score: 00X,000
-function score_1000s() => byte(0x00003F)
-
 // $0040: Score: 0X0,000
-function score_10000s() => byte(0x000040)
-
 // $0041: Score: X00,000
+function score_10s() => byte(0x00003D)
+function score_100s() => byte(0x00003E)
+function score_1000s() => byte(0x00003F)
+function score_10000s() => byte(0x000040)
 function score_100000s() => byte(0x000041)
+function score() => score_100000s() * 100000 +
+                    score_10000s() * 10000 +
+                    score_1000s() * 1000 +
+                    score_100s() * 100 +
+                    score_10s() * 10
 
 // $0047: Stage/Area
 function stage_area() => byte(0x000047)
@@ -36,10 +42,8 @@ function autofire() => bit2(0x00004C)
 // $004D: Fire powerup timer?
 function fire_powerup_timer() => byte(0x00004D)
 
-// $004E: 02 = new game?
-//        01 = continue
-//        00 = level select
-function new_game() => byte(0x00004E)
+// $004E: continues_remaining
+function remaining_continues() => byte(0x00004E)
 
 // $004F: Speed?
 function speed() => bit7(0x00004F)
@@ -54,18 +58,24 @@ function power_bomb_powerup_timer() => byte(0x000052)
 function current_health() => low4(0x000053)
 
 // $0054: 00 = Gold, 01 = Blue
-function gold_01_blue() => byte(0x000054)
-function gold_dragon() => byte(0x000054) == 0
-function blue_dragon() => byte(0x000054) == 1
+function dragon() => byte(0x000054)
+function gold_dragon() => dragon() == 0
+function blue_dragon() => dragon() == 1
+dragons = {
+    0: "Gold",
+    1: "Blue"
+}
 
 // $0055: Area name?
 function area_name() => byte(0x000055)
 
 // $0059: Demo. 00 = Playing
-function demo_00_playing() => byte(0x000059)
+function not_in_demo() => byte(0x000059) == 0
 
 // $0102: Lives cheat??
 function lives_cheat() => byte(0x000102)
+
+function level_select_active() => byte(0x0034E) == 1
 
 // $03A0: Music
 function music() => byte(0x0003A0)
@@ -76,8 +86,36 @@ function pause() => byte(0x0003FF)
 // $0480: Maiden Portraits?
 function maiden_portraits() => byte(0x000480)
 
-function without_cheating() => lives_cheat() == 0 && new_game() != 0
-function in_game() => demo_00_playing() == 0 && without_cheating() && stage_area() != 14
+function without_cheating() => disable_when(level_select_active() || lives_remaining() == 0x20, 
+                                            until = at_titles() && remaining_continues() == 0)
+
+function in_game() => not_in_demo() && without_cheating() && stage_area() != 14
+
+areas = {
+    0: "Area 1 - The Paleozoic Area",
+    1: "Area 2 - Volcano",
+    2: "Area 3 - Jungle",
+    3: "Area 4 - Grave Yard",
+    4: "Area 5 - Cave Road",
+    5: "Area 6 - Glacier Land",
+    6: "Area 7 - Deep Sea",
+    7: "Area 8 - Dark Quarters",
+    8: "Area 9 - Dark Castle",
+    9: "Area 9 - Dark Castle",
+    10: "Area 9 - Dark Castle",
+    11: "Area 9 - Dark Castle",
+    12: "Area 9 - Dark Castle",
+    13: "Area 9 - Dark Castle",
+    14: "Prologue"
+}
+
+rich_presence_conditional_display(at_titles(), "Titles")
+rich_presence_conditional_display(!not_in_demo(), "Demo")
+rich_presence_display("{0} points | {1} dragon in {2}",
+    rich_presence_value("Score", score()),
+    rich_presence_lookup("Dragon", dragon(), dragons),
+    rich_presence_lookup("Area", area_name(), areas)
+)
 
 function complete_stage(stage) => in_game() &&
                                   stage_area() == stage && 
@@ -454,10 +492,10 @@ achievement(
 
 achievement(
     title = "Pacifist Wyvern", points = 50,
-    description = "In Blue Dragon Mode, clear the game with under 100,000 points. (Must select New Game)",
+    description = "In Blue Dragon Mode, clear the game under 100,000 points without continuing",
     id = 44924, badge = "45666", published = "2/9/2017 3:23:40 AM", modified = "5/15/2022 8:45:43 PM",
     trigger = in_game() && trigger_when(stage_area() == 12) && trigger_when(dragon_state() == 184) && 
-              new_game() == 2 && blue_dragon() && score_100000s() == 0 && score_10000s() > 0
+              remaining_continues() == 2 && blue_dragon() && score_100000s() == 0 && score_10000s() > 0
 )
 
 achievement(
@@ -576,20 +614,20 @@ achievement(
 
 leaderboard(
     id = 1951, title = "Blue Dragon High Score",
-    description = "High Score in Blue Dragon Mode.",
-    start  = maiden_portraits() == 189 && blue_dragon() && new_game() == 2,
+    description = "High Score at end of game in Blue Dragon Mode",
+    start  = maiden_portraits() == 189 && blue_dragon() && remaining_continues() == 2 && lives_remaining() == 2,
     cancel = stage_area() == 14,
     submit = stage_area() == 12 && dragon_state() == 184,
-    value = score_100000s() * 100000 + score_10000s() * 10000 + score_1000s() * 1000 + score_100s() * 100 + score_10s() * 10,
+    value = score(),
     format = "SCORE"
 )
 
 leaderboard(
     id = 1950, title = "Gold Dragon High Score",
-    description = "High Score in Gold Dragon Mode.",
-    start  = maiden_portraits() == 189 && gold_dragon() && new_game() == 2,
+    description = "High Score at end of game in Gold Dragon Mode",
+    start  = maiden_portraits() == 189 && gold_dragon() && remaining_continues() == 2 && lives_remaining() == 2,
     cancel = stage_area() == 14,
     submit = stage_area() == 12 && dragon_state() == 184,
-    value = score_100000s() * 100000 + score_10000s() * 10000 + score_1000s() * 1000 + score_100s() * 100 + score_10s() * 10,
+    value = score(),
     format = "SCORE"
 )
