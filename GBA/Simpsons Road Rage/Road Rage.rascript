@@ -173,7 +173,7 @@ function in_mode(mode) => in_game() && current_mode() == mode
 
 function fare_complete() => byte(0x3905) == 1 && prev(byte(0x3905)) == 0
 function complete_fares(count) => repeated(count, fare_complete()) && never(current_screen() != screen_driving)  
-function completed_fares() => measured(fare_complete()) && never(current_screen() != screen_driving)
+function completed_fares() => measured(repeated(0, fare_complete())) && never(current_screen() != screen_driving)
 
 rich_presence_conditional_display(in_mode(mode_road_rage), 
     "{0} is driving{1} {2} | Current trip: {3} passengers, ${4} | Total: ${5}",
