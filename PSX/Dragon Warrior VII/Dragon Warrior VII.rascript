@@ -5363,7 +5363,7 @@ achievement(
     trigger = trigger_zoologist(298) && bit6(0x100D2) == 1 && prev(bit6(0x100D2)) == 0
 )
 
-function monster_kills(monster_id) => (monster_data(monster_id) - 1) / 4
+function monster_kills(monster_id) => monster_data(monster_id) / 4
 
 have_a_heart = [
     monster_andreal,
@@ -5495,7 +5495,7 @@ function monster_achievement(title, description, points, monster)
     // cannot use trigger_in_battle() because the kill count is updated in the same frame as the player leaves combat
     achievement(title, description, points,
         trigger = trigger_in_game() &&
-                  monster_kills(monster) > 0 &&
+                  bit0(0x11386 + monster * 2) == 1 && // monster seen
                   monster_kills(monster) > prev(monster_kills(monster))
     )
 }
