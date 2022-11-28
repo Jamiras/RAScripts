@@ -117,10 +117,10 @@ function time_trial_leaderboard(id, name, course_id)
         start = word(0x000124) == course_id && byte(0x000147) == 0xFE && byte(0x00014E) == 0x10,
         cancel = byte(0x000036) == 0x02 || word(0x000E32) == 0xFFFF || word(0x000124) != 7 || word(0x000120) != 0xFFFF,
         submit = byte(0x000144) == 2,
-        value = measured(bcd(byte(0x000F4E)) * 6000 + bcd(byte(0x000F4C)) * 100 + bcd(byte(0x000F4B)),
-                         when = byte(0x000144) == 2) ||
-                measured(bcd(byte(0x000104)) * 6000 + bcd(byte(0x000102)) * 100 + bcd(byte(0x000101)),
-                         when = byte(0x000144) != 2)
+        value = max_of(measured(bcd(byte(0x000F4E)) * 6000 + bcd(byte(0x000F4C)) * 100 + bcd(byte(0x000F4B)),
+                         when = byte(0x000144) == 2),
+                       measured(bcd(byte(0x000104)) * 6000 + bcd(byte(0x000102)) * 100 + bcd(byte(0x000101)),
+                         when = byte(0x000144) != 2))
     )
 }
 
