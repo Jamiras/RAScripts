@@ -713,7 +713,7 @@ achievement("Dinner is Canceled", "Rescue the frogs", 5,
 // * Press the play button (triangle)
 
 achievement("A Game of Phones", "Get Ray to abandon his post", 5,
-    trigger = trigger_in_game() &&
+    trigger = in_game() &&
               current_screen() == screen_plumbers_union_closeups &&
               byte(0x55bae) == 1 && // play recorded message
               byte(0x55f76) == 0 && prev(byte(0x55f76)) == 1
