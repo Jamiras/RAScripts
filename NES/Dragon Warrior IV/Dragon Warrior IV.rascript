@@ -78,6 +78,7 @@ location_konenber = 0x88A9
 location_loch_tower = 0x1688
 location_mintos = 0xA8B5
 location_necrosaros_mountain = 0x1923
+location_necrosaros_mountain2 = 0x1924
 location_necrosaros_palace = 0x1F23
 location_santeem = 0x4927
 location_secret_playground = 0x1AA2
@@ -96,6 +97,7 @@ locations = {
     location_izmit: "Izmit",
     location_loch_tower: "the Loch Tower",
     location_necrosaros_mountain: "Necrosaro's Mountain",
+    location_necrosaros_mountain2: "Necrosaro's Mountain",
     location_secret_playground: "the Secret Playground",
     location_shrine_of_the_horn: "the Shrine of the Horn",
     0x1B8D: "the Cave to Izmit", // North entrance
@@ -833,6 +835,18 @@ function story_achievement(bit, location, map, points, title, description) {
     )
 }
 
+function story_achievement2(bit, location, location2, map, points, title, description) {
+    achievement(
+        title = title,
+        description = description,
+        points = points,
+        trigger = player_map() == map && 
+                  trigger_player_in_game() &&
+                  bit == 1 && prev(bit) != 1 &&
+                  (player_location() == location || player_location() == location2)
+    )
+}
+
 function story_achievement_jp(location, map, points, bit_us, bit_jp, title, description) {
     achievement(
         title = title,
@@ -979,7 +993,8 @@ achievement(
               player_map() >=9 && player_map() <= 15 // SW=9 NW=9 NE=15 SE=12
 )
 
-story_achievement(bit5(0x62A1), location_necrosaros_mountain, 0x1E, 25, "Is This The End?", "Defeat Necrosaro")
+story_achievement2(bit5(0x62A1), location_necrosaros_mountain, location_necrosaros_mountain2,
+                   0x1E, 25, "Is This The End?", "Defeat Necrosaro")
 
 // =================================================
 // ------ Challenge Achievements x2 (90 points) ------
