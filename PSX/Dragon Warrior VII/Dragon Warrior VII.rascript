@@ -3277,11 +3277,7 @@ locations = {
 
 // $102AE:0C - Estard Castle - King Burns asks you to find Keifer
 
-// $102B2:20 - Past Mardra Castle - gain entrance [multiuse]
-// $102B2:10 - Past Mardra Castle - Zeppel refuses to stop
-// $102B2:08 - Past Great Fane - watch counterspell fail
-// $102B2:04 - Past Mardra Castle - get kicked out
-// $102B2:02 - Past Mardra Castle - get letter from Empress [multiuse]
+// $102B2:XX - Past Mardra Castle quest progress
 
 // $102B3:04 - Past Mardra Castle - get kicked out
 // $102B3:02 - Past Mardra Castle - guard enters floating tower
@@ -5034,7 +5030,8 @@ story_achievement(location_mardra_castle_past, bit3(0x102FC), 5,
 )
 
 // IMG: staffmaker
-achievement("The Staffmaker's Assistant", "Obtain the Bolt Staff from Mardra", 5,
+// $102B2 must be $2E or $2F to get the staff from the assistant. once it advances to $30, the achievement is missable
+achievement("The Staffmaker's Assistant [m]", "Obtain the Bolt Staff from Mardra", 5,
     trigger_in_game() && current_location() == location_mardra_castle_past && 
     bit3(0x102FC) == 1 && // only after defeating Zeppel (prevents trigger when getting the LightAqua)
     ((bit2(0x102B5) == 1 && prev(bit2(0x102B5)) == 0) || // complete the quest 
