@@ -414,7 +414,9 @@ function enemy_alive(slot) => bit7(0x0531 + slot * 2) == 1
 function world_x() => byte(0x0100)
 function world_y() => byte(0x0101)
 
-function is_in_game() => byte(0x0102) == 0 && byte(0x6000) == 0 && character_level(0) > 0
+function is_in_game() => byte(0x0102) == 0 && // first character sprite (-1 before game starts)
+                         //byte(0x6000) == 0 && // ?
+                         character_level(0) > 0 // character level - remains in memory after soft reset
 
 function character_level(index) => byte(0x0700 + index)
 function character_class(index) => byte(0x0718 + index)
