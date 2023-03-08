@@ -560,7 +560,7 @@ achievement(
     description = "Purchase the King Metal Sword", // 50000 casino coins
     trigger = trigger_in_game() && current_location() == location_oracleberry && 
               byte(0x0F19) == 0x0C && // last spoke to the prize vendor
-              byte(0x00c1) < 0x0A &&  // near the prize vendor
+              byte(0x00c1) < 0x10 &&  // near the prize vendor
               current_casino_coins() < prev(current_casino_coins()) && byte(0x0F22) == item_king_metal_sword
 )
 
@@ -1864,13 +1864,13 @@ story_achievement(location_any, bit7(0x21B1), 2, "Monster Tamer", "Recruit your 
 
 // sprite_slime (0x82) => $29EC
 // sprite_nereus (0xA9) => $2A13
-function monster_capture(sprite) => byte(0x296A + sprite) // 1 = first, 3 = second, 7 = third
+function monster_capture(sprite) => byte(0x296A + sprite) // 1 = first, 3 = second, 7 = third, upper4 = number released
 
 function trigger_recruit_unique(count)
 {
-    return trigger_in_game() && byte(0x182F) != 0x55 && // everything = 0x55 on initial load
-           measured(sum_of(range(0x29EC, 0x2A13), a => bit0(a)) >= count)
-           && sum_of(range(0x29EC, 0x2A13), a => prev(bit0(a))) < count
+    return byte(0x182F) != 0x55 && // everything = 0x55 on initial load
+           measured(sum_of(range(0x29EC, 0x2A13), a => byte(a) / byte(a)) >= count, when=trigger_in_game())
+           && sum_of(range(0x29EC, 0x2A13), a => prev(byte(a)) / prev(byte(a))) < count
 }
 
 achievement(
@@ -1923,9 +1923,8 @@ achievement(
 achievement(
     title = "There and Back Again", points = 2,
     description = "Unlock all 17 return locations",
-    trigger = trigger_in_game() && 
-        measured(bitcount(0x2030) + bitcount(0x2031) + bit0(0x2032) == 17,
-                 when = bit1(0x21BD) == 1) && // only tally after the players learns Return
+    trigger = measured(bitcount(0x2030) + bitcount(0x2031) + bit0(0x2032) == 17,
+                       when = trigger_in_game() && bit1(0x21BD) == 1) && // only tally after the players learns Return
         (prev(word(0x2030)) != 0xFFFF || prev(bit0(0x2032)) != 1)
 )
 
@@ -1989,8 +1988,7 @@ other_small_medals = {
 
 function trigger_small_medals(small_medals)
 {
-    return trigger_in_game() && 
-           measured(sum_of(small_medals, i => small_medals[i]) == length(small_medals)) &&
+    return measured(sum_of(small_medals, i => small_medals[i]) == length(small_medals), when=trigger_in_game()) &&
            any_of(small_medals, i => prev(small_medals[i]) == 0)
 }
 
