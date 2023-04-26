@@ -41,7 +41,8 @@ function room_sprite(index) => byte(0x73C + index)
 function trigger_collect_item(sprite_index, sprite_id) {
     return prev(room_sprite(sprite_index)) == sprite_id && // desired item was present
            room_sprite(sprite_index) == 0 &&               // desired item no longer present
-           unless(byte(0x0738) == 0x57)                    // ignore reset on death
+           unless(byte(0x0738) == 0x57) &&                 // ignore reset on death
+           unless(byte(0x078b) != 0x00)                    // prevent trigger when using red potion
 }
 
 function sprite1_achievement(room, sprite, title, points, description) {
@@ -117,23 +118,23 @@ function trigger_cheat() => current_lives() > 24
 
 sprite3_achievement(0x11, 0xD0, "These Boots are Made for Jumping", 3, "Collect the magic boots")
 sprite3_achievement(0x0F, 0xD1, "Key I", 3, "Collect the key from the main castle")
-sprite1_achievement(0x77, 0xD4, "Key II", 3, "Collect the key from the Caves of the Doomed Souls")
-sprite1_achievement(0xC7, 0xD2, "Key III", 3, "Collect the key from the Blood Gardens")
-sprite3_achievement(0xE2, 0xD3, "Key IV", 3, "Collect the key from the Stonehedge Garden")
-sprite2_achievement(0x20, 0xDE, "Blue Potion I", 4, "Collect the blue potion in the castle tower")
-sprite1_achievement(0x80, 0xE1, "Blue Potion II", 3, "Collect the blue potion from the Caves of the Doomed Souls")
-sprite1_achievement(0xCB, 0xE5, "Purple Potion I", 3, "Collect the purple potion from the Blood Gardens")
-sprite1_achievement(0x8F, 0xE0, "Purple Potion II", 3, "Collect the purple potion from the Caves of the Doomed Souls")
-sprite2_achievement(0x16, 0xDD, "Green Potion I", 4, "Collect the green potion from the main castle")
-sprite1_achievement(0xAE, 0xE7, "Green Potion II", 3, "Collect the green potion from the Gardens of Pain") 
-sprite3_achievement(0x43, 0xE2, "Yellow Potion I", 4, "Collect the yellow potion from the Slaughter Yards")
-sprite1_achievement(0xDB, 0xE6, "Yellow Potion II", 4, "Collect the yellow potion from the Stonehedge Garden")
+sprite1_achievement(0x77, 0xD4, "Key II", 4, "Collect the key from the Caves of the Doomed Souls")
+sprite1_achievement(0xC7, 0xD2, "Key III", 5, "Collect the key from the Blood Gardens")
+sprite3_achievement(0xE2, 0xD3, "Key IV", 5, "Collect the key from the Stonehedge Garden")
+sprite2_achievement(0x20, 0xDE, "Blue Potion I", 5, "Collect the blue potion in the castle tower")
+sprite1_achievement(0x80, 0xE1, "Blue Potion II", 5, "Collect the blue potion from the Caves of the Doomed Souls")
+sprite1_achievement(0xCB, 0xE5, "Purple Potion I", 5, "Collect the purple potion from the Blood Gardens")
+sprite1_achievement(0x8F, 0xE0, "Purple Potion II", 5, "Collect the purple potion from the Caves of the Doomed Souls")
+sprite2_achievement(0x16, 0xDD, "Green Potion I", 5, "Collect the green potion from the main castle")
+sprite1_achievement(0xAE, 0xE7, "Green Potion II", 5, "Collect the green potion from the Gardens of Pain") 
+sprite3_achievement(0x43, 0xE2, "Yellow Potion I", 5, "Collect the yellow potion from the Slaughter Yards")
+sprite1_achievement(0xDB, 0xE6, "Yellow Potion II", 5, "Collect the yellow potion from the Stonehedge Garden")
 sprite1_achievement(0xEC, 0xE8, "Yellow Potion III", 5, "Collect the second yellow potion from the Stonehedge Garden")
 
-sprite1_achievement(0x60, 0xDF, "Hidden Room I", 6, "Collect the blue potion in the pit between the castle and the caves")
-sprite1_achievement(0x5E, 0xCB, "Hidden Room II", 6, "Collect the wizard's hat in the pit between the castle and the caves")
-sprite2_achievement(0xE3, 0xE3, "Hidden Room III", 6, "Collect the blue potion from below the Caves of the Doomed Souls")
-sprite3_achievement(0xE8, 0xE4, "Hidden Room IV", 6, "Collect the yellow potion from the Caves of the Doomed Souls")
+sprite1_achievement(0x60, 0xDF, "Hidden Room I", 5, "Collect the blue potion in the pit between the castle and the caves")
+sprite1_achievement(0x5E, 0xCB, "Hidden Room II", 5, "Collect the wizard's hat in the pit between the castle and the caves")
+sprite2_achievement(0xE3, 0xE3, "Hidden Room III", 5, "Collect the blue potion from below the Caves of the Doomed Souls")
+sprite3_achievement(0xE8, 0xE4, "Hidden Room IV", 10, "Collect the yellow potion from the Caves of the Doomed Souls")
 sprite12_achievement(0xA3, 0xDB, 0xDC, "Hidden Room V", 10, "Collect the yellow and blue potions from below the main castle")
 sprite23_achievement(0xFB, 0xE9, 0xEA, "Hidden Room VI", 10, "Collect the yellow and purple potions from the Tower of Ultimate Terror")
 
@@ -147,7 +148,7 @@ sprite3_achievement(0xF7, 0xDA, "Staff VI", 10, "Collect the staff piece from th
 achievement(
     title = "Hat Diver", 
     description = "Collect the wizard's hat after jumping out of the Tower of Tears", 
-    points = 5, 
+    points = 10, 
     trigger = current_lives() > prev(current_lives()) && 
               (current_room() == 0x3E || current_room() == 0x3F || current_room() == 0x36)
 )
@@ -155,21 +156,21 @@ achievement(
 achievement(
     title = "Pocketful of Hats",
     description = "Have at least 10 lives in reserve (no cheating)",
-    points = 10,
+    points = 25,
     trigger = trigger_from_start() && current_lives() >= 10 && never(trigger_cheat())
 )
 
 achievement(
     title = "Rescued",
     description = "Save the Princess",
-    points = 20,
+    points = 25,
     trigger = current_room() == 0xFE && current_staff_pieces() == 0x3F
 )
 
 achievement(
     title = "No Continues",
     description = "Complete the game without using a continue (no cheating)",
-    points = 20,
+    points = 25,
     trigger = trigger_complete_game() && trigger_from_start() &&
               never(current_continues() < prev(current_continues())) &&
               never(trigger_cheat())
@@ -178,7 +179,7 @@ achievement(
 achievement(
     title = "The Immortal",
     description = "Complete the game without dying",
-    points = 40,
+    points = 50,
     trigger = trigger_complete_game() && trigger_from_start() &&
               never(current_lives() < prev(current_lives()))
 )
@@ -186,7 +187,7 @@ achievement(
 achievement(
     title = "Completionist I",
     description = "Finish the game with at least 70% completion rate",
-    points = 8,
+    points = 10,
     trigger = trigger_complete_game() && trigger_completion_rate_at_least(70)
 )
 
@@ -200,14 +201,14 @@ achievement(
 achievement(
     title = "Completionist III",
     description = "Finish the game with at least 90% completion rate",
-    points = 15,
+    points = 25,
     trigger = trigger_complete_game() && trigger_completion_rate_at_least(90)
 )
 
 achievement(
     title = "Perfectionist",
     description = "Finish the game with 100% completion rate",
-    points = 20,
+    points = 50,
     trigger = trigger_complete_game() && trigger_completion_rate_at_least(100)
 )
 
@@ -377,14 +378,14 @@ achievement(
 achievement(
     title = "Minimalist",
     description = "Finish the game with less than 40% completion rate",
-    points = 30,
+    points = 50,
     trigger = trigger_complete_game() && trigger_completion_rate_less_than(40)
 )
 
 achievement(
     title = "Castle Explorer",
     description = "Visit all 48 rooms in the castle",
-    points = 15,
+    points = 10,
     trigger = trigger_reset_between_games() &&
               once(current_room() == 0x00) &&
               once(current_room() == 0x01) &&
@@ -440,7 +441,7 @@ achievement(
 achievement(
     title = "Cave Explorer",
     description = "Visit all 82 rooms in the Caves of Doomed Souls",
-    points = 20,
+    points = 10,
     trigger = trigger_reset_between_games() &&
               once(current_room() == 0x61) &&
               once(current_room() == 0x62) &&
@@ -530,7 +531,7 @@ achievement(
 achievement(
     title = "Garden Explorer",
     description = "Visit all 41 rooms in the Gardens of Pain and the Blood Gardens",
-    points = 15,
+    points = 10,
     trigger = trigger_reset_between_games() &&
               once(current_room() == 0xA4) &&
               once(current_room() == 0xA5) &&
@@ -645,7 +646,7 @@ staff_pieces_lookup = {
     0x3F: "the complete",
 }
 
-rich_presence_display("Exploring Kastlerock with {0} staff and {1} lives",
+rich_presence_display("Exploring Kâstleröck with {0} staff and {1} lives",
     rich_presence_lookup("StaffPieces", current_staff_pieces(), staff_pieces_lookup),
     rich_presence_value("Lives", current_lives())
 )   
