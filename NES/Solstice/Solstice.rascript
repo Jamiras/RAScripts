@@ -38,11 +38,14 @@ function current_continues() => byte(0x079F)
 function current_staff_pieces() => byte(0x795)
 
 function room_sprite(index) => byte(0x73C + index)
+function trigger_collect_item_safely() {
+    return unless(byte(0x0738) == 0x57) &&                 // ignore reset on death
+           unless(byte(0x078b) != 0x00)                    // prevent trigger when using red potion
+}
 function trigger_collect_item(sprite_index, sprite_id) {
     return prev(room_sprite(sprite_index)) == sprite_id && // desired item was present
            room_sprite(sprite_index) == 0 &&               // desired item no longer present
-           unless(byte(0x0738) == 0x57) &&                 // ignore reset on death
-           unless(byte(0x078b) != 0x00)                    // prevent trigger when using red potion
+           trigger_collect_item_safely()
 }
 
 function sprite1_achievement(room, sprite, title, points, description) {
@@ -78,7 +81,8 @@ function sprite12_achievement(room, sprite1, sprite2, title, points, description
         description = description,
         points = points,
         trigger = current_room() == room && room_sprite(1) == 0 && room_sprite(2) == 0 &&
-                  (prev(room_sprite(1)) == sprite1 || prev(room_sprite(2)) == sprite2)
+                  (prev(room_sprite(1)) == sprite1 || prev(room_sprite(2)) == sprite2) &&
+                  trigger_collect_item_safely()
     )
 }
 
@@ -88,7 +92,8 @@ function sprite23_achievement(room, sprite2, sprite3, title, points, description
         description = description,
         points = points,
         trigger = current_room() == room && room_sprite(2) == 0 && room_sprite(3) == 0 &&
-                  (prev(room_sprite(2)) == sprite2 || prev(room_sprite(3)) == sprite3)
+                  (prev(room_sprite(2)) == sprite2 || prev(room_sprite(3)) == sprite3) &&
+                  trigger_collect_item_safely()
     )
 }
 
@@ -149,7 +154,8 @@ achievement(
     title = "Hat Diver", 
     description = "Collect the wizard's hat after jumping out of the Tower of Tears", 
     points = 10, 
-    trigger = current_lives() > prev(current_lives()) && 
+    trigger = current_lives() > prev(current_lives()) &&
+              current_lives() != 0xFF && // ticket 58918
               (current_room() == 0x3E || current_room() == 0x3F || current_room() == 0x36)
 )
 
@@ -274,7 +280,8 @@ achievement(
 // > Castle Explorer (15)
 // [freeze time (yellow potion)]
 // > Staff IV (10)
-// N N N [D rightmost spike is fake] [1UP C0]
+// N N N [D rightmost spike is fake] [1UP]
+// [land under hat and move it next to the pillars to reach the potions]
 // > Hidden Room V (10)
 // U W W W N 
 // === Slaughter Yards === [181 rooms, 70.50%]
