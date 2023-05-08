@@ -115,7 +115,8 @@ function trigger_completion_rate_less_than(percent) => byte(0x037B) != 2 && byte
 
 // on pause menu [S=start]: BSS BBS SBB SSS BSB BBS SSB SBS SBS SBB SBS > gives 90 lives and fills potions
 // there are only 14 1UPs to collect, so the player should never have more than 18 lives, but we'll give 
-// them up to 24 before we assume they're cheating
+// them up to 24 before we assume they're cheating. lives are 0xFF at game over, and don't reset to a valid
+// value until after we capture the "trigger_from_start()" hit.
 function trigger_cheat() => current_lives() > 24
 
 // 0356-0358: rooms visited (in menu)
@@ -163,7 +164,8 @@ achievement(
     title = "Pocketful of Hats",
     description = "Have at least 10 lives in reserve (no cheating)",
     points = 25,
-    trigger = trigger_from_start() && current_lives() >= 10 && never(trigger_cheat())
+    trigger = trigger_from_start() && current_lives() >= 10 && current_lives() != 0xFF  &&
+              never(trigger_cheat() && current_lives() != 0xFF)
 )
 
 achievement(
@@ -179,7 +181,7 @@ achievement(
     points = 25,
     trigger = trigger_complete_game() && trigger_from_start() &&
               never(current_continues() < prev(current_continues())) &&
-              never(trigger_cheat())
+              never(trigger_cheat() && current_lives() != 0xFF)
 )
 
 achievement(
@@ -187,7 +189,8 @@ achievement(
     description = "Complete the game without dying",
     points = 50,
     trigger = trigger_complete_game() && trigger_from_start() &&
-              never(current_lives() < prev(current_lives()))
+              never(current_lives() < prev(current_lives()) &&
+                    prev(current_lives()) != 0xFF) // prevent reset after restart from game over                   
 )
 
 achievement(
