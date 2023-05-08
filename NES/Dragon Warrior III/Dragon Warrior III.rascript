@@ -545,7 +545,7 @@ function achievement_enemy_killed_group(title, description, points, enemy_id)
 
 function achievement_all_chests(title, description, points, chests)
 {
-    trigger = is_in_game()
+    bits = 0
     trigger_or = always_false()
     
     for pair in chests
@@ -553,12 +553,12 @@ function achievement_all_chests(title, description, points, chests)
         location = pair[0]
         bit = pair[1]
         
-        trigger = trigger && bit == 1
+        bits = bits + bit
         trigger_or = trigger_or || (current_location() == location && prev(bit) == 0)
     }
     
     achievement(title = title, description = description, points = points, 
-               trigger = trigger && trigger_or)
+               trigger = is_in_game() && measured(bits == length(chests)) && trigger_or)
 }
 
 // ===========================
