@@ -1275,10 +1275,18 @@ function total_playtime_mm() => high4(0x099f2d) + bit0(0x099f2e) * 16 + bit1(0x0
 function trigger_in_game() => dword(0x099f2c) != 0 && // whole timer is non-zero (at least one frame into game)
                               byte(0x16f564) != 0     // prevents false triggers while loading
 
-function trigger_location(isle, subregion) => trigger_in_game() && 
-                                              current_island() == isle &&
-                                             __ornext(current_location() == subregion || 
-                                              current_location() == 0) // sublocation not loaded when using quick save
+function trigger_location(isle, subregion) => 
+    trigger_in_game() && 
+    current_island() == isle &&
+    __ornext(current_location() == subregion || 
+             current_location() == 0) // sublocation not loaded when using quick save
+
+function trigger_location2(isle, subregion, subregion2) =>
+    trigger_in_game() && 
+    current_island() == isle &&
+    __ornext(current_location() == subregion || 
+             current_location() == subregion2 || 
+             current_location() == 0) // sublocation not loaded when using quick save
 
 function monsters_scouted() => dword(0x09a054)
 function trainers_battled() => dword(0x09a05c)
@@ -1700,7 +1708,11 @@ achievement("No Normal Monster", "Complete the shrine on Palaish Isle", 5,
 // * Go through and place the tablet on the left pillar.
 
 achievement("Daylight Delivery", "Place the sun tablet", 5,
-    trigger = trigger_location(island_celeste_isle, location_celeste_isle_shrine_roof) &&
+    trigger = trigger_location2(island_celeste_isle, 
+                                location_celeste_isle_shrine_roof,
+                                // ticket 63027: talking to the mirror changes the
+                                // location from 0C to 0E
+                                location_celeste_isle_small_island) &&
               bit2(0x8d512) == 1 && prev(bit2(0x8d512)) == 0
 )
 
@@ -1745,7 +1757,11 @@ achievement("Daylight Delivery", "Place the sun tablet", 5,
 // * Place the Lunar Tablet in the right pedestal.
 
 achievement("Moonlight Messenger", "Place the lunar tablet", 5,
-    trigger = trigger_location(island_celeste_isle , location_celeste_isle_shrine_roof) &&
+    trigger = trigger_location2(island_celeste_isle, 
+                                location_celeste_isle_shrine_roof,
+                                // ticket 63027: talking to the mirror changes the
+                                // location from 0C to 0E
+                                location_celeste_isle_small_island) &&
               bit3(0x8d512) == 1 && prev(bit3(0x8d512)) == 0
 )
 
