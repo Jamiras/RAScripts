@@ -2,6 +2,7 @@
 // #ID = 3206
 // MD5: c8fd6fb87f202db2b3dbbccfe1fdaa24 (J)
 // MD5: 78357f96b8c13089732b4306ff5eafe3 (T+Eng1.01_RPGe) [https://www.romhacking.net/translations/387/]
+// MD5: b0bd18aa716a450b098fb98240f87d16 (T+Eng1.02_mteam) [https://www.romhacking.net/translations/6650/]
 
 character_hikaru = 1
 character_umi = 2
