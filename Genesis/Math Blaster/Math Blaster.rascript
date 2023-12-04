@@ -134,12 +134,13 @@ function next_sound_effect() => byte(0x0eae) // not all sounds go through this
 // 04: shoot laser
 // 07: bird/star whistles when stunned
 // 08: thruster
-// 09: trash zapped (final stage)
+// 09: stop thrusting (final stage)
 // 0a: laser
 // 0c: new numbers
 // 0d: enemy ship approaching
 // 0e: ship's gun
 // 0f: enemy ship's gun
+// 11: correct spaceship hole
 // 1a: hit ground
 // 2c: splash
 // 2d: shoot creature
@@ -147,6 +148,7 @@ function next_sound_effect() => byte(0x0eae) // not all sounds go through this
 // 30: take damage/destroy asteroid
 // 31: destroy enemy ship/destroy correct trash/blaster
 // 32: ow!
+// 43: incorrect spaceship hole
 // 4e: destroy incorrect trash
 
 function stage() => byte(0x0cfc)
@@ -365,7 +367,7 @@ achievement("The Right Stuff",
     trigger = game() == game_math_blaster && default_settings() &&
               game_progress() == 0x2e &&
               once(screen() == screen_cave_runner_post_cutscene) &&
-              never(last_sound_effect() == 0x4e)
+              never(next_sound_effect() == 0x43)
 )
 
 // Complete Math Blaster without shooting any trash or aliens (5)
