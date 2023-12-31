@@ -865,8 +865,12 @@ function collection_achievement(title, description, points, location, bits)
     achievement(title, description, points,
         trigger = player_location() == location &&
                   trigger_player_in_game() &&
-                  ((sum_of(bits, b => b[0]) == count && sum_of(bits, b => prev(b[0])) < count) ||
-                   (sum_of(bits, b => b[1]) == count && sum_of(bits, b => prev(b[1])) < count))
+                  // TODO: add measured - but restrict to US vs. JP. Because the bits overlap, it's
+                  // possible that the measured will report the wrong value with the restriction,
+                  // but the location restriction prevents it from mis-triggering because the overlapping
+                  // bits are for different locations.
+                  ((sum_of(bits, b => b[0]) == count) && sum_of(bits, b => prev(b[0])) < count ||
+                   (sum_of(bits, b => b[1]) == count) && sum_of(bits, b => prev(b[1])) < count)
     )
 }
 
@@ -956,7 +960,7 @@ story_achievement(bit3(0x6295), location_stancia, 0x09,  5, "Not So Funny", "Get
 story_achievement(bit1(0x6260), location_gardenbur, 0x0C,  5, "Proof of Innocence", "Get the Zenithian Shield")
 story_achievement_jp(location_shrine_of_breaking_waves, 0x12,  5, 
                  bit3(0x6263), // US 
-                 bit2(0x626), // JP                 
+                 bit2(0x6267), // JP                 
                  "Underwater Oasis", "Get the Zenithian Armor")
 story_achievement(bit0(0x6295), location_dire_palace, 0x09,  5, "A Monstrous Announcement", "Attend the conference at the Dire Palace")
 
@@ -1003,11 +1007,11 @@ story_achievement2(bit5(0x62A1), location_necrosaros_mountain, location_necrosar
 // 40 - We Don't Need Another Hero: Defeat Necrosaro without the hero in the party
 // 50 - Just the Two of Us: Defeat Necrosaro with a party of two
 
-function trigger_defeat_necrosaro() => once(monster_group_type(0) == 255) && // battle start
-                                       once(monster_group_type(0) == 174) && // necrosaro
-                                       never(monster_group_type(0) == 0) &&  // not in battle
-                                       trigger_battle_over() &&              // leave battle
-                                       monster_status(0) == 0x81             // defeated
+function trigger_defeat_necrosaro() => once(monster_group_type(0) == 255) &&   // battle start
+                                       once(monster_group_type(0) == 174) &&   // necrosaro
+                                       never(monster_group_type(0) == 0) &&    // not in battle
+                                       trigger_when(trigger_battle_over()) &&  // leave battle
+                                       trigger_when(monster_status(0) == 0x81) // defeated
 
 // Alena-46, Ragnar-43, Cristo-44, Nara-41 [Normal] - make sure Ragnar has the Sage's Stone
 // To force healing, switch to Defensive
@@ -1200,7 +1204,6 @@ collection_achievement("Hidden Treasure - Great Lighthouse",
 story_achievement(bit5(0x625F), location_endor, 0x03,  5, "Hidden Treasure - Endor", "Find the hidden treasure in Endor")
 story_achievement(bit2(0x6260), location_gardenbur, 0x0C,  5, "Hidden Treasure - Gardenbur", "Find the hidden treasure in Gardenbur")
 story_achievement(bit5(0x6270), location_shrine_of_the_horn, 0x0C,  5, "Hidden Treasure - Shrine of the Horn", "Find the hidden treasure in the Shrine of the Horn")
-story_achievement(bit3(0x626F), location_necrosaros_palace, 0x31,  5, "Hidden Treasure - Necrosaro's Palace", "Find the hidden treasure in Necrosaro's Palace")
 
 // two entrances to Necrosaro's Palace are 0x1C23 and 0x1F23, just check for X=0x23
 achievement(
@@ -1209,7 +1212,7 @@ achievement(
     points = 5,
     trigger = player_world_x() == 0x23 && player_map() == 0x31 && 
               trigger_player_in_game() &&
-              bit1(0x628E) == 1 && prev(bit1(0x628E)) != 1 
+              bit3(0x626F) == 1 && prev(bit3(0x626F)) != 1 
 )
 
 achievement(
@@ -1219,27 +1222,48 @@ achievement(
     trigger = byte(0x627A) == 0x57 && player_location() == location_world_tree
 )
 
+small_medals = [
+    bit5(0x625E), // Dire Palace B1
+    bit3(0x6260), // Branca Castle 1F
+    bit2(0x6262), // Esturk's Palace 1F
+    bit1(0x6262), // Esturk's Palace 1F
+    bit5(0x6263), // Shrine of Breaking Waves B1
+    bit4(0x6263), // Shrine of Breaking Waves B2
+    bit2(0x6264), // Cave southeast of Gardenbur B1
+    bit0(0x6266), // Cascade Cave B2
+    bit2(0x6267), // Cave to the Dark World B1
+    bit5(0x626B), // Royal Crypt B3 
+    bit1(0x626B), // Zenithian Tower 4F
+    bit2(0x626F), // Necrosaro's Castle 1F
+    bit4(0x6270), // Shrine of the Colossus 1F
+    bit6(0x6272), // Ground, Aktemto Mine B4
+    bit5(0x6272), // Ground, Riverton
+    bit4(0x6272), // Well, Mintos
+    bit7(0x6273), // Seaside Village
+    bit6(0x6273), // Shrine east of Mintos
+    bit5(0x6273), // Den of Gigademon
+    bit2(0x6273), // Dresser, Zenithian Castle
+    bit5(0x6274), // Pot, Dire Palace B1
+    bit4(0x6274), // Dresser, King's Room, Endor Castle 3F
+    bit3(0x6274), // Vase, Kitchen, Gardenbur
+    bit1(0x6274), // Dresser, Stancia Castle 1F
+    bit0(0x6274), // Vase, Stancia 2F
+    bit5(0x6275), // Pot, Haville B1
+    bit4(0x6275), // Pot. Haville B1
+    bit5(0x6276), // Dresser, Gottside B1
+    bit4(0x6276), // Dresser, Boat, Konenber
+    bit3(0x6276), // Dresser, Second Boat, Konenber
+    bit2(0x6276), // Pot, Island Shack
+    bit1(0x6276), // Pot, Edgar'sLab, Cave West of Kievs
+]
+
 achievement(
     title = "Small Medal Collector",
     description = "Find all 32 small medals",
     points = 50,
-    trigger = bit5(0x625E) == 1 && bit3(0x6260) == 1 && bit2(0x6262) == 1 && bit1(0x6262) == 1 &&
-              bit5(0x6263) == 1 && bit4(0x6263) == 1 && bit2(0x6264) == 1 && bit0(0x6266) == 1 &&
-              bit2(0x6267) == 1 && bit5(0x626B) == 1 && bit1(0x626B) == 1 && bit2(0x626F) == 1 &&
-              bit4(0x6270) == 1 && bit6(0x6272) == 1 && bit5(0x6272) == 1 && bit4(0x6272) == 1 &&
-              bit7(0x6273) == 1 && bit6(0x6273) == 1 && bit5(0x6273) == 1 && bit2(0x6273) == 1 &&
-              bit5(0x6274) == 1 && bit4(0x6274) == 1 && bit3(0x6274) == 1 && bit1(0x6274) == 1 &&
-              bit0(0x6274) == 1 && bit5(0x6275) == 1 && bit4(0x6275) == 1 && bit5(0x6276) == 1 &&
-              bit4(0x6276) == 1 && bit3(0x6276) == 1 && bit2(0x6276) == 1 && bit1(0x6276) == 1 &&
-              player_location() != 0 && (
-              prev(bit5(0x625E)) != 1 || prev(bit3(0x6260)) != 1 || prev(bit2(0x6262)) != 1 || prev(bit1(0x6262)) != 1 ||
-              prev(bit5(0x6263)) != 1 || prev(bit4(0x6263)) != 1 || prev(bit2(0x6264)) != 1 || prev(bit0(0x6266)) != 1 ||
-              prev(bit2(0x6267)) != 1 || prev(bit5(0x626B)) != 1 || prev(bit1(0x626B)) != 1 || prev(bit2(0x626F)) != 1 ||
-              prev(bit4(0x6270)) != 1 || prev(bit6(0x6272)) != 1 || prev(bit5(0x6272)) != 1 || prev(bit4(0x6272)) != 1 ||
-              prev(bit7(0x6273)) != 1 || prev(bit6(0x6273)) != 1 || prev(bit5(0x6273)) != 1 || prev(bit2(0x6273)) != 1 ||
-              prev(bit5(0x6274)) != 1 || prev(bit4(0x6274)) != 1 || prev(bit3(0x6274)) != 1 || prev(bit1(0x6274)) != 1 ||
-              prev(bit0(0x6274)) != 1 || prev(bit5(0x6275)) != 1 || prev(bit4(0x6275)) != 1 || prev(bit5(0x6276)) != 1 ||
-              prev(bit4(0x6276)) != 1 || prev(bit3(0x6276)) != 1 || prev(bit2(0x6276)) != 1 || prev(bit1(0x6276)) != 1)
+    trigger = measured(sum_of(small_medals, a => a) == length(small_medals), 
+                       when = player_location() != 0) &&
+              any_of(small_medals, a => prev(a) != 1)
 )
 
 // ===========================
