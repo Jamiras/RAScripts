@@ -219,7 +219,7 @@ function default_settings() => !practice_mode() && initial_lives() == 3
 // * Satellite = 100pts + recharge shield power
 
 // Complete Trash Zapper (5)
-achievement("Trash Zapped", "Complete the Trash Zapper game", 2,
+achievement("Trash Zapped", "Complete the Trash Zapper game", 2, type="progression",
     trigger = prior(game()) == game_trash_zapper && default_settings() &&
               screen() == screen_trash_zapper_post_cutscene
 )
@@ -287,7 +287,7 @@ achievement("Rock Zapper",
 
 // Complete Cave Runner (5)
 // game() changes to 0 a few frames before screen changes to post_cutscene
-achievement("Up, Up, and Away", "Complete the Cave Runner game", 2,
+achievement("Up, Up, and Away", "Complete the Cave Runner game", 2, type="progression",
     trigger = prior(game()) == game_cave_runner && default_settings() &&
               screen() == screen_cave_runner_post_cutscene
 )
@@ -319,7 +319,10 @@ achievement("Cautious Ascent", "Complete the Cave Runner game without losing ene
 )
 
 // Collect at least five gems (5)
-function collect_gem() => points_awarded() && next_sound_effect() == 3
+function collect_gem() => points_awarded() && (
+                            next_sound_effect() == 3 ||
+                            last_sound_effect() == 3
+                          )
 achievement("Souvenirs", "Collect five gems in the Cave Runner game", 2,
     trigger = never(game() != game_cave_runner) && default_settings() &&
               measured(repeated(5, collect_gem()))
@@ -351,7 +354,7 @@ achievement("Pest Control", "Kill ten creatures in the Cave Runner game", 2,
 // game() changes to 0 a few frames before screen changes to post_cutscene
 function complete_math_blaster() => prior(game()) == game_math_blaster &&
                                     screen() == screen_math_blaster_post_cutscene 
-achievement("Reunited", "Rescue Spot and complete the game", 5,
+achievement("Reunited", "Rescue Spot and complete the game", 5, type="win_condition",
     trigger = complete_math_blaster() && default_settings()
 )
 
@@ -371,8 +374,10 @@ achievement("The Right Stuff",
 )
 
 // Complete Math Blaster without shooting any trash or aliens (5)
-function shoot_trash_creature() => points_awarded() && // last_points_awarded() == 100 &&
-                                   next_sound_effect() == 0x2d
+function shoot_trash_creature() => points_awarded() && (
+                                     next_sound_effect() == 0x2d ||
+                                     last_sound_effect() == 0x2d
+                                   )                                   
 function shoot_trash() => points_awarded_small() && last_points_awarded() == 10
 achievement("My Gun Was Jammed", 
             "Complete the Trash Alien game without destroying any trash or creatures", 5,
