@@ -640,6 +640,8 @@ achievement("Happy Endings", "Earn a gift from Patti", 10,
               (current_screen() == screen_ending_celebrate)
 )
 
+function item_location(index) => byte(0xc209 + 4 * index)
+function item_found(index) => byte(0xc205 + index)
 // "Power Briefs!" is in the upper left dresser in Doug's room
 item_quail_underwear = 1
 // "Super Vest!" is in the lower left dresser in Doug's room
@@ -663,9 +665,14 @@ item_quail_fruit = 9
 
 achievement("Quail Stuff", "Collect three pieces of quail equipment in one game", 10,
     trigger = trigger_in_game() &&
-              byte(0xc205) != 0 && byte(0xc209) == 0 && // first item
-              byte(0xc206) != 0 && byte(0xc20d) == 0 && // second item
-              byte(0xc207) != 0 && byte(0xc211) == 0    // third item
+              item_found(0) != 0 && item_location(0) == 0 && // first item
+              item_found(1) != 0 && item_location(1) == 0 && // second item
+              item_found(2) != 0 && item_location(2) == 0 && // third item
+              (
+                  prev(item_location(0)) != 0 || // first item
+                  prev(item_location(1)) != 0 || // second item
+                  prev(item_location(2)) != 0    // third item
+              )
 )
 
 function quailman_health() => byte(0xc16b)
