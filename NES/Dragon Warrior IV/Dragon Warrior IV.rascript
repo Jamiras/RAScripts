@@ -277,9 +277,9 @@ debug_bit(bit0(0x6260), "6260-0000 0001")
 // 0x6267: 1000 0000 - Metal Babble Sword, Cascade Cave B4
 // 0x6267: 0100 0000 - Sanglass of Regression, Cascade Cave B1
 // 0x6267: 0010 0000 - 1040G, Cascade Cave B3
-// 0x6267: 0001 0000 - Mask of Corruption, Cascade Cave B3
-// 0x6267: 0000 1000 - Dress of Radiance, Cave to the Dark World B1
-// 0x6267: 0000 0100 - Small Medal, Cave to the Dark World B1
+// 0x6267: 0001 0000 - Mask of Corruption, Cascade Cave B3          | JP - Small Medal, Breaking Waves B1
+// 0x6267: 0000 1000 - Dress of Radiance, Cave to the Dark World B1 | JP - Small Medal, Breaking Waves B2
+// 0x6267: 0000 0100 - Small Medal, Cave to the Dark World B1       | JP - Zenithian Armor, Breaking Waves
 // 0x6267: 0000 0010 - Demon Armor, Cave to the Dark World B1
 // 0x6267: 0000 0001 - Lifeforce Nuts, Cave to the Dark World B3
 
@@ -810,6 +810,8 @@ function current_chapter() => byte(0x615A)
 // c0 = starts to get light. c4 = starts to get lighter. c8 = lighter. (cb=>00, light)
 function time_of_day() => byte(0x62ED)
 
+function is_jp() => byte(0x6BDA) == 0x10
+
 // =============================================
 // ------ Story Achievements x28 (200 points) ------
 
@@ -869,8 +871,8 @@ function collection_achievement(title, description, points, location, bits)
                   // possible that the measured will report the wrong value with the restriction,
                   // but the location restriction prevents it from mis-triggering because the overlapping
                   // bits are for different locations.
-                  ((sum_of(bits, b => b[0]) == count) && sum_of(bits, b => prev(b[0])) < count ||
-                   (sum_of(bits, b => b[1]) == count) && sum_of(bits, b => prev(b[1])) < count)
+                  ((sum_of(bits, b => b[0]) == count) && sum_of(bits, b => prev(b[0])) == count - 1 ||
+                   (sum_of(bits, b => b[1]) == count) && sum_of(bits, b => prev(b[1])) == count - 1)
     )
 }
 
@@ -1223,47 +1225,54 @@ achievement(
 )
 
 small_medals = [
-    bit5(0x625E), // Dire Palace B1
-    bit3(0x6260), // Branca Castle 1F
-    bit2(0x6262), // Esturk's Palace 1F
-    bit1(0x6262), // Esturk's Palace 1F
-    bit5(0x6263), // Shrine of Breaking Waves B1
-    bit4(0x6263), // Shrine of Breaking Waves B2
-    bit2(0x6264), // Cave southeast of Gardenbur B1
-    bit0(0x6266), // Cascade Cave B2
-    bit2(0x6267), // Cave to the Dark World B1
-    bit5(0x626B), // Royal Crypt B3 
-    bit1(0x626B), // Zenithian Tower 4F
-    bit2(0x626F), // Necrosaro's Castle 1F
-    bit4(0x6270), // Shrine of the Colossus 1F
-    bit6(0x6272), // Ground, Aktemto Mine B4
-    bit5(0x6272), // Ground, Riverton
-    bit4(0x6272), // Well, Mintos
-    bit7(0x6273), // Seaside Village
-    bit6(0x6273), // Shrine east of Mintos
-    bit5(0x6273), // Den of Gigademon
-    bit2(0x6273), // Dresser, Zenithian Castle
-    bit5(0x6274), // Pot, Dire Palace B1
-    bit4(0x6274), // Dresser, King's Room, Endor Castle 3F
-    bit3(0x6274), // Vase, Kitchen, Gardenbur
-    bit1(0x6274), // Dresser, Stancia Castle 1F
-    bit0(0x6274), // Vase, Stancia 2F
-    bit5(0x6275), // Pot, Haville B1
-    bit4(0x6275), // Pot. Haville B1
-    bit5(0x6276), // Dresser, Gottside B1
-    bit4(0x6276), // Dresser, Boat, Konenber
-    bit3(0x6276), // Dresser, Second Boat, Konenber
-    bit2(0x6276), // Pot, Island Shack
-    bit1(0x6276), // Pot, Edgar'sLab, Cave West of Kievs
+//   US            JP
+    [bit5(0x625E), bit5(0x625E)], // Dire Palace B1
+    [bit3(0x6260), bit3(0x6260)], // Branca Castle 1F
+    [bit2(0x6262), bit1(0x6266)], // Esturk's Palace 1F
+    [bit1(0x6262), bit0(0x6266)], // Esturk's Palace 1F
+    [bit5(0x6263), bit4(0x6267)], // Shrine of Breaking Waves B1
+    [bit4(0x6263), bit3(0x6267)], // Shrine of Breaking Waves B2
+    [bit2(0x6264), bit1(0x6268)], // Cave southeast of Gardenbur B1
+    [bit0(0x6266), bit7(0x626B)], // Cascade Cave B2
+    [bit2(0x6267), bit1(0x626B)], // Cave to the Dark World B1
+    [bit5(0x626B), bit1(0x626D)], // Royal Crypt B3 
+    [bit1(0x626B), bit5(0x6262)], // Zenithian Tower 4F
+    [bit2(0x626F), bit2(0x626F)], // Necrosaro's Castle 1F
+    [bit4(0x6270), bit4(0x6270)], // Shrine of the Colossus 1F
+    [bit6(0x6272), bit6(0x6272)], // Ground, Aktemto Mine B4
+    [bit5(0x6272), bit5(0x6272)], // Ground, Riverton
+    [bit4(0x6272), bit4(0x6272)], // Well, Mintos
+    [bit7(0x6273), bit7(0x6273)], // Seaside Village
+    [bit6(0x6273), bit6(0x6273)], // Shrine east of Mintos
+    [bit5(0x6273), bit5(0x6273)], // Den of Gigademon
+    [bit2(0x6273), bit2(0x6273)], // Dresser, Zenithian Castle
+    [bit5(0x6274), bit5(0x6274)], // Pot, Dire Palace B1
+    [bit4(0x6274), bit4(0x6274)], // Dresser, King's Room, Endor Castle 3F
+    [bit3(0x6274), bit3(0x6274)], // Vase, Kitchen, Gardenbur
+    [bit1(0x6274), bit1(0x6274)], // Dresser, Stancia Castle 1F
+    [bit0(0x6274), bit0(0x6274)], // Vase, Stancia 2F
+    [bit5(0x6275), bit5(0x6275)], // Pot, Haville B1
+    [bit4(0x6275), bit4(0x6275)], // Pot. Haville B1
+    [bit5(0x6276), bit5(0x6276)], // Dresser, Gottside B1
+    [bit4(0x6276), bit4(0x6276)], // Dresser, Boat, Konenber (JP unverified)
+    [bit3(0x6276), bit3(0x6276)], // Dresser, Second Boat, Konenber (JP unverified)
+    [bit2(0x6276), bit2(0x6276)], // Pot, Island Shack
+    [bit1(0x6276), bit1(0x6276)], // Pot, Edgar'sLab, Cave West of Kievs
 ]
 
 achievement(
     title = "Small Medal Collector",
     description = "Find all 32 small medals",
     points = 50,
-    trigger = measured(sum_of(small_medals, a => a) == length(small_medals), 
-                       when = player_location() != 0) &&
-              any_of(small_medals, a => prev(a) != 1)
+    type="missable",
+    trigger = (unless(is_jp()) &&
+               measured(sum_of(small_medals, a => a[0]) == length(small_medals), 
+                        when = player_location() != 0) && 
+               sum_of(small_medals, a => prev(a[0])) == length(small_medals) - 1) ||
+              (unless(!is_jp()) &&
+               measured(sum_of(small_medals, a => a[1]) == length(small_medals), 
+                        when = player_location() != 0) &&
+               sum_of(small_medals, a => prev(a[1])) == length(small_medals) - 1)
 )
 
 // ===========================
