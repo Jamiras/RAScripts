@@ -294,10 +294,10 @@ achievement(title = "The One Armed, One Legged Man", points = 5,
             description = "Get a warrant with only two pieces of information",
             trigger = never(warrant_for() == prev(warrant_for())) && // ignore unless warrant is changing
                       warrant_for() != 255 && current_mode() == mode_searching &&
-                      tally(3, once(warrant_sex() == sex_none) ||
-                               once(warrant_hobby() == hobby_none) ||
-                               once(warrant_hair() == hair_none) ||
-                               once(warrant_feature() == feature_none) ||
+                      tally(3, once(warrant_sex() == sex_none),
+                               once(warrant_hobby() == hobby_none),
+                               once(warrant_hair() == hair_none),
+                               once(warrant_feature() == feature_none),
                                once(warrant_vehicle() == vehicle_none))
 )
 
