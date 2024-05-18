@@ -54,7 +54,9 @@ mode_tower_cutscene = 0x4A
 mode_status = 0x54
 mode_battle_records = 0x56
 
-function in_game() => current_chapter() != 0 && current_mode() != mode_loading_game
+function in_game() => current_chapter() != 0 && 
+                      current_chapter() != 0x55 && // prevent trigger on hard reset (bizhawk+rasnes9x)
+                      current_mode() != mode_loading_game
 
 function trigger_overworld() => current_mode() == mode_overworld
 function trigger_platforming() => current_mode() == mode_platforming 
