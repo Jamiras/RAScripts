@@ -810,7 +810,7 @@ function current_chapter() => byte(0x615A)
 // c0 = starts to get light. c4 = starts to get lighter. c8 = lighter. (cb=>00, light)
 function time_of_day() => byte(0x62ED)
 
-function is_jp() => byte(0x6BDA) == 0x10
+function is_jp() => byte(0x058F) == 0x00 // 0x10=US
 
 // =============================================
 // ------ Story Achievements x28 (200 points) ------
