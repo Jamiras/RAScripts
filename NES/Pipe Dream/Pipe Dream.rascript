@@ -7,7 +7,9 @@
 
 // to enable cheating, hold Start, press A, B, B, A, release Start and press Start again. 
 // Now you can press B to pause the Flooz and Select to allow it to flow again.
-function is_cheating() => byte(0x06B9) == 0xFF
+// NOTE: Having the cheat enabled also has a secondary effect not documented in the GameFAQs page:
+//       If you fail a level while the cheat is enabled, you advance to the next stage without losing a life.
+function is_cheating() => byte(0x06B9) != 0 // 0=cheat not enabled, 1=cheat enabled, 0xFF=flooz stopped
 function trigger_no_cheating() => never(is_cheating())
 
 function current_level() => byte(0x0444)
@@ -49,6 +51,12 @@ rich_presence_conditional_display(trigger_is_demo(), "Level {0}-{1} Demo",
 rich_presence_conditional_display(byte(0x002B) == 7, "Selecting a level")
 rich_presence_conditional_display(trigger_is_bonus_level(), "Level {0}-Bonus {1}{2}",
     rich_presence_value("Level", current_level() - 1),
+    rich_presence_lookup("Mode", current_mode(), modes),
+    rich_presence_lookup("Players", current_players(), players)
+)
+rich_presence_conditional_display(is_cheating(), "Level {0}-{1} {2}{3}.",
+    rich_presence_value("Level", current_level()),
+    rich_presence_value("Sublevel", current_sublevel()),
     rich_presence_lookup("Mode", current_mode(), modes),
     rich_presence_lookup("Players", current_players(), players)
 )
