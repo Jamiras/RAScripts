@@ -1,6 +1,18 @@
 // King's Quest III: To Heir is Human
 // #ID=17931
 
+// woz-a-day - 2.0A 3/13/88
+// * Disk1 Front: 007c38d9195c68203e017c004298a7e2
+// * Disk1 Back : 17cc68fd948ae386a252fe3f508ea848
+// * Disk2 Front: 698039cd1a7926f6e806dd03b8192c5d
+// * Disk2 Back : f0293e5bc8d30dfa34f5ad857afbeb28
+// * Disk3 Front: e3d0682cde08222e5e4c4b58bb6d4528
+// * Disk3 Back : 8680c098461eddf2d035f1cc9cda978e
+// * Disk4 Front: 6f4365ed05c7f39381b0fbc624e57e4a
+// * Disk4 Back : 5c0baf421d5df433c247d10f0f2c95c8
+// * Disk5 Front: 657acdea6b385143eb1591934ac5ff33
+// * Disc5 Back : 8779df142b46cae6837a6536a109c444
+
 // apple2online [nib] - 2.0A 3/13/88
 // * Disk1 Front: 672bc970b2fb7ce5196aaea5f352db0a
 // * Disk1 Back : 5f7173c2f1b83c1d3f1689d2e6828527
@@ -774,7 +786,7 @@ leaderboard("Fastest Completion", "Complete the game as fast as possible",
    format = "MILLISECS"
 )
 
-// MAX ==========================================
+// MAX == (about 2h30) ==========================================
 // * Wait for Manannan to issue task. If it's feed chickens, restart (press 9).
 //   - If it's clean office, go north, CLEAN OFFICE, and return south
 //     <#:  Following Orders  :#>
@@ -806,6 +818,7 @@ leaderboard("Fastest Completion", "Complete the game as fast as possible",
 // * Walk west, then up
 //   > GET FLY* [1>24]
 // * Walk down twice, and north. Leave and return until the cat is there.
+//   - Use 3 to repeat the last command
 //   > GET CAT (repeat until caught), GET CAT HAIR [1>25]
 // * Walk south twice
 //   > OPEN GATE, GET CHICKEN, GET FEATHER [1>26], OPEN GATE
@@ -1056,7 +1069,7 @@ leaderboard("Fastest Completion", "Complete the game as fast as possible",
 //   > STIR STORM BREW WITH FINGER
 //   > BREW OF STORMS, CHURN IT UP. [7>203]
 //     <#:  Three Heads Are Not Better Than One  :#>
-//   > UNTIE ROSELLA [3>206]
+//   > UNTIE GIRL [3>206]
 // * Walk east twice, down the stairs, and west to the old well. Walk north twice to reach the castle.
 //   Then the game will take over for the ending [4>210]
 //     <#:  A Family Reunited  :#>

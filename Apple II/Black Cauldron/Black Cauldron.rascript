@@ -2,6 +2,15 @@
 // #ID=14478
 
 // ======================================================================================
+// woz-a-day
+
+// MD5: 20521505afaa87bb93533172f0ab5467 - Disk 1 Front [woz-a-day] woz
+// MD5: 7ee36f4258c655325bef305300bd6f6e - Disk 1 Back  [woz-a-day] woz
+// MD5: db2d941216029330a9fe89a65dfdd459 - Disk 2 Front [woz-a-day] woz
+// MD5: a3fad474e60da976c32c29bf7db7d7f7 - Disk 2 Back  [woz-a-day] woz
+// MD5: 147464e241a0b6065c49e1880f0f6e0a - Disk 3       [woz-a-day] woz
+
+// ======================================================================================
 // 4am crack (ver 1.0H)
 
 // MD5: 8899ad83dbda2e772393f98abefdc058 - Disk 1 Front [4am and san inc] dsk
@@ -534,11 +543,19 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 195 poin
 //   (6) GET DAGGER from tree
 // Walk north, then west
 //   shuffle through the rock maze to the black tree [5>34]
+//   - Go right between the lowermost gray and blue rocks, then work your way up and left to the upper left side
+//     of the screen, then go right behind the upper blue rocks and up the rocks in the back middle of the screen.
+//   - https://gamerwalkthroughs.com/wp-content/uploads/2017/06/The-Black-Cauldron-Walkthrough-Rock-Maze-480x264.jpg
+// Walk up to the left side of the branch/tree.
 //   (4) USE ROPE
-//   (6) CLIMB ROPE [5>39]
-// Climb to the top of the cliff [6>45], then go north [5>50?]. {B}
+//   (6) CLIMB ROPE [5>39] (use diagonal button - ;)
+// Climb to the top of the cliff [6>45], then go north.
+// Continue north through the winding bridge [5>50]. Go west.
+//   if the cart's not there, leave and return {B}
 //   (6) HIDE IN THE CART [18>68]*
-// Inside the castle, walk north into the wine cellar
+// Inside the castle:
+//   (6) EXIT THE CART
+// Walk north into the wine cellar
 //   Stand between the back casks on the right and you'll fall into the dungeons [6>74]
 //   Princess Eilonwy will talk to you [10>84]
 // Go south, west twice, and north
@@ -558,7 +575,7 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 195 poin
 // Walk south, west, up the stairs, then east. Go south twice.
 //   (4) USE SWORD on drawbridge chains
 // Leave the castle [13>124]
-// Descend back down the mountain, go east, south twice, and east twice.
+// Descend back down the mountain, go east, south twice, and east twice (east of the brambles, south of the bridge).
 //   if gurgi doesn't appear, go east - he's sometimes there. come back here afterwards.
 //   (4) GIVE APPLE [10>134]
 // Go south, cross the lower side of the screen and stand near the edge of the waterfall {D}
@@ -566,17 +583,22 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 195 poin
 // Enter the cave, walk around until you fall in the hole [13>147]*
 //   (6) TALK TO KING
 //   (4) GIVE HARP [10>157]*
+// The king will give you flying dust.
 //   (4) USE FLYING DUST
+// Leave through the hole
 //   (4) USE MAGIC WORD
 // Go west three times
-//   (4) USE FLYING DUST [15>172]
+//   (4) USE FLYING DUST
+// Cross the water to the sandy beach on the left [15>172]
+// Wait for the flying dust to wear off
 //   (6) OPEN DOOR
 // Go inside
 //   (6) OPEN CHEST {E}
-//   (6) TALK TO WITCHES
-//       if you attempt to (4) USE SWORD before talking to them, a cauldron will fly at you. You can (4) USE SWORD to destroy it
+//   (6) TALK TO WITCHES (may need to approach them)
+//       if you attempt to (4) USE SWORD before talking to them, a cauldron will fly at you. You can 
+//       (4) USE SWORD to destroy it
 //   (4) GIVE SWORD TO WITCHES [18>190]*
-// Approach the cauldron {F}
+// You'll automatically go outside. Approach the cauldron {F}
 //   (6) TAKE CAULDRON - a Gwythaint will steal it.
 // Make your way back to the castle and go inside (using the dust to cross the swamp)
 // Inside the castle, go north and take the secret path between the casks to fall to the crypts
@@ -584,7 +606,9 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 195 poin
 //   SAVE {G}
 // Walk east
 //   When the Horned King approaches, (4) USE MIRROR [25>215]*
+// The castle will collapse and you'll be washed down the stream
 // Wait until the witches offer you the magic sword [15>230]
+// You'll automatically pick it up and walk off into the sunset.
 
 //   LOAD
 // Walk west, climb the ladder, and walk north

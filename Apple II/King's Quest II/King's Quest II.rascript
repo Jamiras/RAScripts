@@ -1,6 +1,13 @@
 // King's Quest II: Romancing the Throne
 // #ID=17138
 
+// woz-a-day
+// MD5: 0717faca504daa539e6b2771e256d3ed (side 1A) (AGI 1.10) [ver 1.0H]
+// MD5: 56443afd0f1fd3bef2d7b1765d4c3b01 (side 1B)
+// MD5: 313fb09806ab5696be6ebfa710688d6b (side 2A)
+// MD5: 8e7ae73692d8fed3260f1b609d941049 (side 2B)
+// MD5: 30c74c11694ae9797931bcc3e54aa310 (side 3A)
+
 // apple2online
 // MD5: 51fecf807b7369288714fa67492d0209 (side 1A) (AGI 1.10) [ver 1.0H]
 // MD5: 654f982ff24269dedf646052ec469f94 (side 1B)
@@ -617,8 +624,7 @@ achievement("The Minimal Quest", "Get married and complete the quest with less t
 // go east
 //   GET STAKE [2>12]
 // go south
-//   bonus: LOOK SIGN for short descriptions of SQ1 and KQ3
-//   nothing indicating there's a sign anywhere - ignore
+//   bonus: LOOK TREE to see a sign, then LOOK SIGN for a short description of another Sierra game
 // go south, then (swim) east
 //   LOOK IN LOG
 //   GET NECKLACE [7>19]
@@ -682,6 +688,7 @@ achievement("The Minimal Quest", "Get married and complete the quest with less t
 //   OPEN DOOR (SAVE G)
 //   GIVE BIRD TO WOMAN [6>91] (get lamp)
 //   ((Basic Bartering))
+// walk outside
 //   RUB LAMP [2>93]
 //   wait for the genie to disappear
 //   RUB LAMP [2>95] (get sword)
@@ -728,7 +735,7 @@ achievement("The Minimal Quest", "Get married and complete the quest with less t
 //   GET KEY [2>142]
 //   GET CUSHION
 //   GET KEY [5>147]
-// go east, up the stairs, west, north, and up the stairs again
+// go east, up the stairs, west, north (through the curtains), and up another set of stairs
 //   UNLOCK CHEST [1>148]
 //   OPEN CHEST
 //   GET TIARA [7>155]
@@ -746,7 +753,7 @@ achievement("The Minimal Quest", "Get married and complete the quest with less t
 //   ((Galloping Guppy))
 // go east
 //   GET AMULET [3>173]
-//   can say HOME now to return back to Daventry without your bridge
+//   can say HOME now to return back to Daventry without your bride
 // go south
 //   OPEN DOOR
 // climb (SAVE M)

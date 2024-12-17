@@ -1,6 +1,11 @@
 // King's Quest I
 // #ID=14398
 //
+// These hashes are for the woz-a-day version
+// MD5: 38027dd56819f2a03c5945179866332a (side A)
+// MD5: ad6f0b49d6777a4baa9fa645be8f8c72 (side B)
+// MD5: 3df2f894d07e22b18631053d7dd3d00a (side C)
+//
 // These hashes appear to be a non-cracked version, labeled "King Quest (1983)(Sierra)(Disk 1 of 3)[nib]"
 // The set was developed using these hashes
 // MD5: ebb389599debac2b554c431bfb0f919c (side A)
@@ -553,7 +558,7 @@ achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the 
 //   LOOK IN STUMP [1>62], GET POUCH [3>65], OPEN POUCH [3>68]
 // Go north to goat pen
 //   OPEN GATE, go in, CLOSE GATE, SHOW CARROT [5>73], OPEN GATE
-// Go south twice, west, then south to the bridge
+// Go south, west, then south twice to the bridge
 //   Goat will take care of troll [4>77]
 // Go west
 //   TALK TO GNOME
@@ -572,12 +577,12 @@ achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the 
 //   Make sure the bucket is up and CUT ROPE [2>107] (get bucket)
 //   LOWER ROPE, CLIMB ROPE [1>108]
 //   When you reach the bottom, SWIM [2>110] and DIVE [2>112]
-// Swim left [1>113]
+// Swim left [1>113]. Walk left in front of the pillar so you're just out of the dragon's range.
 //   THROW WATER [5>118]
 //   GET MIRROR [8>126]
 // Go east, automatically refill bucket [2>128]
 // Go west three times to exit the cave
-//   If the bird is not present, leave an come back
+//   If the bird is not present, leave north and come back
 //   Wait for the bird to fly overhead, then JUMP [3>131]
 // Go west
 //   GET MUSHROOM [1>132]
@@ -587,7 +592,7 @@ achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the 
 // Go left.
 //   PLAY FIDDLE [3>137]
 // Go south.
-//   GET SCEPTRE [6>143]
+//   GET SCEPTRE [6>143] (have to wait until king leaves)
 //   GET SHIELD [8>151]
 // Go left
 //   EAT MUSHROOM [2>153]
