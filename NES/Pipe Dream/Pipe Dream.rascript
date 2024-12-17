@@ -87,11 +87,12 @@ function trigger_during_bonus_level() => trigger_is_bonus_level() &&
 // Game B  1-10   20pts
 // Game B 11-16   30pts
 
-function achievement_game_a(level, points) {
+function achievement_game_a(level, points, type="progression") {
     achievement(
         title = "A-" + level + " Plumber",
         description = "Complete all four rounds of level " + level + " in mode A",
         points = points,
+        type = type,
         trigger = once(current_sublevel() == 1) &&
                   current_sublevel() == 4 &&
                   current_level() == level &&
@@ -116,7 +117,7 @@ achievement_game_a(12, 10)
 achievement_game_a(13, 10)
 achievement_game_a(14, 10)
 achievement_game_a(15, 25)
-achievement_game_a(16, 25)
+achievement_game_a(16, 25, type="win_condition")
 
 achievement(
     title = "Apprentice Plumber",
@@ -362,7 +363,8 @@ leaderboard(
     title = "C-16 Plumber",
     description = "Highest score on Level 16 (Mode C)",
     start = byte(0x00B6) == 0 && current_level() == 16 && current_mode() == mode_c && !is_cheating(),
-    submit = trigger_level_complete() && current_screen() == screen_main_board,
+    submit = (trigger_level_complete() || bit7(0x0490) == 1) && 
+             (current_screen() == screen_main_board || current_screen() == screen_paused),
     cancel = is_cheating(),
     value = (byte(0x0490) * 65536) + (byte(0x048E) * 256) + byte(0x048C)
 )
