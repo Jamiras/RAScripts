@@ -279,7 +279,7 @@ achievement("Get a Plunger", "Push a brush or sponge into the drain", 5,
 
 // brush presence tracked on actor linked list!
 achievement("Better Call a Plumber",
-            "Push three brushes and/or sponges into the drain in a single level", 10,
+            "Push three brushes and/or sponges into the drain in a single level without dying", 10,
     trigger = trigger_in_game() && 
               repeated(3, kill_brush())
 )
