@@ -482,15 +482,6 @@ function achievement_world_location(title, description, points, x, y)
         trigger = world_x() == x && world_y() == y && is_on_world_map() && character_level(0) > 0)
 }
 
-function story_achievement_world_location(bit, points, x, y, title, description)
-{
-    achievement(
-        title = title,
-        description = description,
-        points = points,
-        trigger = is_in_game() && world_x() == x && world_y() == y && is_on_world_map() && bit == 1 && prev(bit) != 1)
-}
-
 function story_achievement_dark_world_location(bit, points, x, y, title, description)
 {
     achievement(
@@ -734,7 +725,12 @@ item_leaf_of_the_world_tree = 0x69
 item_achievement(item_leaf_of_the_world_tree, 5, world_x() == 0x7B && world_y() == 0x4C && is_on_world_map(), 
                  "Lost in the Forest", "Get a Leaf from the World Tree")
 
-story_achievement_world_location(bit3(0x60B6), 10, 0x4A, 0x90, "Land Bridge", "Set off a volcano")
+achievement("Land Bridge", "Set off a volcano", 10, type="progression",
+    trigger = is_in_game() && 
+              // Ticket 74570: if player holds Up while the volcano is erupting, they can leave the target
+              // space before the bit changes.
+              world_x() == 0x4A && (world_y() == 0x90 || world_y() == 0x8f) && 
+              is_on_world_map() && bit3(0x60B6) == 1 && prev(bit3(0x60B6)) != 1)
 
 // ===========================
 // 14 - Silver Orb (Lv32)
