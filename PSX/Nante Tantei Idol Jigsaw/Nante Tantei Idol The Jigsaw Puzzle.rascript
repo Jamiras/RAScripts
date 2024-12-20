@@ -1,6 +1,13 @@
 // Nante Tantei Idol: The Jigsaw Puzzle
 // #ID = 9241
 
+// $06144d: 00 - in puzzle
+//          02 - selecting puzzle
+//          04 - clear
+//          05 - give up
+function game_state() => byte(0x06144d)
+function puzzle_complete() => byte(0x06144d) == 4
+
 // $0614A1: 01 = Had computer place pieces
 function computer_placed_pieces() => byte(0x0614A1) == 1
 
@@ -13,16 +20,22 @@ function selected_puzzle() => byte(0x0614E0)
 //          03 - Save/Load
 //          04 - Options
 function mode() => byte(0x06150C)
+modes = {
+    0: "Endless",
+    1: "Time Attack",
+    2: "Viewing Collection",
+    3: "Loading",
+    4: "Changing Options",
+}
 
-// $06CEB8: This value is only c1 when you complete the puzzles.
-function puzzle_complete() => byte(0x06CEB8) == 0x1c
+function solving_puzzle() => byte(0x61548) == 1
 
-// $1FC108: This value tell us how many piece the puzzle is
+// $1FC124: This value tell us how many piece the puzzle is
 //          16 (4x4)
 //          36 (6x6)
 //          64 (8x8)
 //          100 (10x10)
-function puzzle_size() => byte(0x1FC108)
+function puzzle_size() => byte(0x1FC124)
 
 size_4x4 = 16
 size_6x6 = 36
@@ -35,6 +48,22 @@ sizes = {
     size_8x8: "8x8",
     size_10x10: "10x10",
 }
+
+rich_presence_conditional_display(solving_puzzle() && puzzle_size() != 0 && selected_puzzle() < 50, "Solving [{0} - {1}] Anime No.{2}",
+    rich_presence_lookup("Mode", mode(), modes),
+    rich_presence_lookup("Size", puzzle_size(), sizes),
+    rich_presence_value("Number", selected_puzzle() + 1)
+)
+
+rich_presence_conditional_display(solving_puzzle() && puzzle_size() != 0, "Solving [{0} - {1}] Idol No.{2}",
+    rich_presence_lookup("Mode", mode(), modes),
+    rich_presence_lookup("Size", puzzle_size(), sizes),
+    rich_presence_value("Number", selected_puzzle() - 49)
+)
+
+rich_presence_conditional_display(game_state() == 2, "Selecting puzzle")
+
+rich_presence_display("Titles")
 
 achievement(
     title = "[Time Attack] Anime No.01-05 Clear", points = 5, type="progression",
