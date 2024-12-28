@@ -47,6 +47,7 @@ function complete_stage(stage) =>
     
 function deathless() => never(remaining_lives() < prev(remaining_lives()))
 function without_continuing() => never(game_over())
+function without_resetting() => never(byte(0x003a) == 0)
 
 function complete_stage_range(first_stage, last_stage) =>
     once(current_stage() < first_stage) &&   // title screen or level before the first level
@@ -61,7 +62,7 @@ function complete_stage_range_deathless(first_stage, last_stage) =>
     
 function complete_stage_range_without_continuing(first_stage, last_stage) =>
     complete_stage_range(first_stage, last_stage) &&
-    without_continuing()
+    without_continuing() && without_resetting()
 
 // -- [TimeForest] --
 // Stage 1 - 372025
@@ -435,7 +436,7 @@ achievement("No Trouble with the Double Bubble",
 // * Go back around and leave.
 
 // Stage 44 - 275095
-// * Step onto the grass and quickly run around the top of the level.
+// * Quickly run through the grass and around the top of the level.
 // * Walk onto the next field of grass so you're between the stone and the pillar.
 // * Drop a large bubble and step to the right side of the stone and push it left into the lava.
 // * Use magic to push it across the lava, then push it down to the space.
