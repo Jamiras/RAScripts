@@ -39,14 +39,17 @@
 // player-peek: the hidden part of the map appears briefly when the player pushes their button - six second cooldown
 
 function game_state() => high4(0x3C)
-state_normal = 0
-state_playerkilled = 2
-state_gameover = 4
-state_complete = 6 // exit map or both players dead - transitions to state_gameover
+state_normal = 0       // atually bit5=0 (maze not shown) and bit6=0 (players can move)
+state_playerkilled = 2 // atually bit5=1 (maze shown) and bit6=0 (players can move)
+state_gameover = 4     // atually bit5=0 (maze not shown) and bit6=1 (players cannot move)
+state_complete = 6     // exit map or both players dead - transitions to state_gameover
+                       // atually bit5=1 (maze shown) and bit6=1 (players cannot move)
 
 function game_mode(speed, mode, visibility) => byte(0x3D) == (speed - 1) * 64 + (mode - 1) * 4 + (visibility - 1)
 function player_active() => bit4(0x6A) == 1 && bit6(0x6A) == 0
+function players_can_move() => bit6(0x3C) == 0
 function player_holding_start() => bit0(0x3C) == 1
+function maze_start() => players_can_move() && !player_holding_start() && byte(0x6c) == 0
 function maze_being_generated() => bit4(0x6A) == 0
 function maze_complete() => game_state() == state_complete && player_active() && !player_holding_start()
 function timer() => byte(0x61) // not really, but does decrement every frame, so we can use it that way
@@ -59,7 +62,7 @@ rich_presence_display("Maze {0}-{1}-{2}",
 
 function untimed_maze(id, title, speed, mode, visibility, points, annotation)
 {
-    achievement(title = title, points = points, id = id,
+    achievement(title = title, points = points, id = id, type = "progression",
                 description = "Complete a " + speed + "-" + mode + "-" + visibility + 
                               " maze (" + annotation + ")",
                 trigger = game_mode(speed, mode, visibility) &&
@@ -69,7 +72,7 @@ function untimed_maze(id, title, speed, mode, visibility, points, annotation)
 
 function untimed_maze2(id, title, speed, mode, visibility, speed2, mode2, visibility2, points, annotation)
 {
-    achievement(title = title, points = points, id = id,
+    achievement(title = title, points = points, id = id, type = "progression",
                 description = "Complete a " + speed + "-" + mode + "-" + visibility + 
                               " or " + speed2 + "-" + mode2 + "-" + visibility2 +
                               " maze (" + annotation + ")",
@@ -82,7 +85,7 @@ function timed_maze(id, title, speed, mode, visibility, time, points, annotation
 {
     maze_name = speed + "-" + mode + "-" + visibility
 
-    achievement(title = title, points = points, id = id,
+    achievement(title = title, points = points, id = id, type = "progression",
                 description = "Complete a " + maze_name + " maze in under " + time + " seconds (" + annotation + ")",
                 trigger = game_mode(speed, mode, visibility) &&
                           maze_complete() &&
@@ -93,11 +96,12 @@ function timed_maze(id, title, speed, mode, visibility, time, points, annotation
     leaderboard(
         title = maze_name,
         description = "Complete a " + maze_name + " maze as fast as possible",
-        start = game_mode(speed, mode, visibility) && maze_being_generated(),
+        start = game_mode(speed, mode, visibility) && maze_start(),
         submit = maze_complete(),
-        cancel = !game_mode(speed, mode, visibility), // changed maze
+        cancel = !game_mode(speed, mode, visibility) || // changed maze
+                 player_holding_start(),
         value = measured(repeated(99999, timer() != prev(timer()))) && // count frames (~27 minutes maximum)
-                never(maze_being_generated()),
+                never(player_holding_start()),
         format = "FRAMES",
         lower_is_better = true
     )
