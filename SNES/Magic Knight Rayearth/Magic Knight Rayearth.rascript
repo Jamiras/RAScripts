@@ -550,7 +550,7 @@ function eterna_achievement(title, description, points, map)
 }
 
 // [Lv12] #A3#
-eterna_achievement("We Were Always Friends", "Complete Hikari's path in the Spring of Eterna", 5, map_spring_of_eterna_hikaru)
+eterna_achievement("We Were Always Friends", "Complete Hikaru's path in the Spring of Eterna", 5, map_spring_of_eterna_hikaru)
 
 // [Lv12]
 eterna_achievement("For Raising Me", "Complete Umi's path in the Spring of Eterna", 5, map_spring_of_eterna_umi)
