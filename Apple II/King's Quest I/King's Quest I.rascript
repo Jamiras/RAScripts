@@ -506,7 +506,7 @@ achievement("The Minimal Quest", "Complete the quest with less than 70 points", 
 achievement("Ruthless Tyrant", "Kill the dragon, witch, giant, and troll in the same playthrough", 25,
     trigger = pointed_at_byte(0x6EB2) == 1 && // dragon
               pointed_at_byte(0x6E37) == 1 && // witch
-              pointed_at_byte(0x6E80) == 1 && byte(0x6E81) == 1 && // troll
+              pointed_at_byte(0x6E80) == 1 && pointed_at_byte(0x6E81) == 1 && // troll
               pointed_at_byte(0x6EBE) == 1 && // giant
               ((prev(pointed_at_byte(0x6EB2)) == 0 && current_scene() == scene_dragon_cave_east) ||
                (prev(pointed_at_byte(0x6E37)) == 0 && current_scene() == scene_inside_witchs_house) ||
