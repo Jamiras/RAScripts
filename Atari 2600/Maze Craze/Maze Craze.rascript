@@ -49,10 +49,22 @@ function game_mode(speed, mode, visibility) => byte(0x3D) == (speed - 1) * 64 + 
 function player_active() => bit4(0x6A) == 1 && bit6(0x6A) == 0
 function players_can_move() => bit6(0x3C) == 0
 function player_holding_start() => bit0(0x3C) == 1
-function maze_start() => players_can_move() && !player_holding_start() && byte(0x6c) == 0
 function maze_being_generated() => bit4(0x6A) == 0
 function maze_complete() => game_state() == state_complete && player_active() && !player_holding_start()
 function timer() => byte(0x61) // not really, but does decrement every frame, so we can use it that way
+
+// if the player holds the joystick button, the player_active() bit doesn't switch on, so we have to
+// do some gnarly stuff to determine when to start the timer. While the maze is being generated, bytes
+// 6C and 6D are used for stuff. They get zeroed out in the frame the player is supposed to become active
+// even if they're holding the button down. However, they also sometimes switch to 1 while the player is
+// moving around, so we watch for both players going from a non-zero value to a zero value in the same
+// frame to determine when the player really becomes active. If the second is active (unlikely), there's
+// a very small, but non-zero, chance of both values changing from non-zero to zero in the same frame.
+// in that case, the pauselock timers will be reset, giving the player more time to complete the challenge
+// it won't affect the leaderboard timer though, as that remains active until the player completes the maze
+// or leaves it.
+function maze_start() => players_can_move() && !player_holding_start() && byte(0x6c) == 0
+function trigger_maze_start() => maze_start() && prev(byte(0x6c)) != 0 && byte(0x6d) == 0 && prev(byte(0x6d)) != 0
 
 rich_presence_display("Maze {0}-{1}-{2}",
     rich_presence_value("Value", bit6(0x3D) + bit7(0x3D) * 2 + 1),
@@ -90,7 +102,7 @@ function timed_maze(id, title, speed, mode, visibility, time, points, annotation
                 trigger = game_mode(speed, mode, visibility) &&
                           maze_complete() &&
                           unless(repeated(time * 60, timer() != prev(timer()))) &&
-                          (always_false() || never(maze_being_generated()))
+                          (always_false() || never(trigger_maze_start()))
     )
     
     leaderboard(
