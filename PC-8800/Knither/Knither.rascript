@@ -170,10 +170,10 @@ world_achievement("World 3", "Collect the three [P]s in world 2 and advance to w
 world_achievement("World 4", "Collect the three [P]s in world 3 and advance to world 4", 10, 3)
 world_achievement("World 5", "Collect the three [P]s in world 4 and advance to world 5", 10, 4)
 
-
 achievement("World 6", "Collect the three [P]s in world 5 and advance to world 6", 10, type="progression",
-    trigger = current_stage() == 0x33 && 
-              prev(current_stage()) == 0x2a
+    trigger = current_stage() == 0x33 &&       // world 6 stage
+              prev(current_stage()) >= 0x29 && // world 5 overworld
+              prev(current_stage()) <= 0x32
 )
 
 achievement("The Moon Gate", "Defeat the dark storm and save the world", 25, type="win_condition",
