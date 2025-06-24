@@ -12,6 +12,14 @@
 
 // http://www.colecovisionzone.com/photos/game/manual/pepper%20ii%20manual.pdf
 
+// per https://tvtropes.org/pmwiki/pmwiki.php/Main/UnInstallment
+// - The 1982 arcade game Pepper II was so named because video games were a new fad at the 
+//   time and it was possible to have a game not in your area. Exidy, the makers of Pepper II,
+//   banked on the concept that if a "sequel" was made to the original (but non-existent)
+//   Pepper, then prospective audiences might figure that was a series that proved itself
+//   with a first installment that was successful enough to warrant a sequel, and/or think
+//   it to be even better than the original and thus want to play.
+
 // * complete all four mazes
 // * complete all four mazes again
 // * complete all four mazes a third time

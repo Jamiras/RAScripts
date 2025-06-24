@@ -10,15 +10,26 @@
 
 // A+B+SELECT+START=return to title
 
-// complete all 60 puzzles in free play to earn an original illustration
-// continue without increasing the time and clear again for another
+// === MENU ===
+// * はじめから - From the beginning
+//   - カフェ ミュウミュウ - Story Mode
+//     - プロローグを見る。 - Watch the prologue
+//     - プロローグを見ない。 - Don't watch the prologue
+//   - たいいくかん - Multiplayer
+//   - きょうしつ - Free play
+//   - あそびかた - Instructions
+// * つづきから - Continue from
+// * おまけ - Extras
+//   - びじゅつしつ - Art Room
+//   - おれがくしつ - Sound
+//   - うらない - Fortune Telling
 
-// You start with picture 6, 10, 19, 29, 37, 47, 55, 57, 58, 59, 61 unlocked (11/70)
+// You start with pictures 6, 10, 19, 29, 37, 47, 55, 57, 58, 59, 61 unlocked (11/70)
 // To unlock additional pictures, play through Free Play mode.
 // - Three require completing Free Play mode without ever asking for additional time
 // Each picture appearing in story mode can be unlocked by stopping the scrolling with the
 //   desired picture entirely visible. You'll see "omedetou" (congratulations) if done correctly.
-//   "tsuiya" (finally) appears if you miss, or already have the picture unlocked.
+//   "kuria" (clear) appears if you miss, or already have the picture unlocked.
 // As several story mode nodes have three pictures, and there are multiple branches through story mode,
 //   you'll need to do story mode a minimum of six times to unlock all of the pictures. You only have to
 //   do Free Play mode once, as long as you never ask for more time.
@@ -26,6 +37,8 @@
 //   like rearrange your placed tiles or obscure the screen. Cats are randomly awarded for playing pieces
 //   in the correct spots.
 // Clear story mode to unlock fortune telling.
+// For your convienence, I've created a mosaic of all the unlockable pictures that you can use as a checklist:
+// - https://github.com/Jamiras/RAScripts/blob/master/GBA/Hamepane%20-%20Tokyo%20Mew%20Mew/Art%20Room.png
 
 function elapsed_frames() => dword(0x1908)
 function clear_percent() => byte(0x33A2)
@@ -58,7 +71,7 @@ function menu_selection() => byte(0x5424)
 menu_selection_instructions = 0x03
 
 
-// start with picture 6, 10, 19, 29, 37, 47, 55, 57, 58, 59, 61 unlocked (11/70)
+// start with pictures 6, 10, 19, 29, 37, 47, 55, 57, 58, 59, 61 unlocked (11/70)
 
 unlocks = {
     01: bit0(0x48000), // Story 10a - red
@@ -164,7 +177,7 @@ story_puzzles = {
 // Mode isn't cleared when returning the the title screen, but this bit gets set.
 // It's not set until the first time the user reaches the title screen, so there's
 // another check later against another address that's not set until entering story mode
-rich_presence_conditional_display(byte(0x5509) == 1, "{0} | {1}/70 pictures",
+rich_presence_conditional_display(byte(0x5509) == 1 && mode() != mode_freeplay, "{0} | {1}/70 pictures",
     rich_presence_lookup("TitlePage", title_page(), title_pages, fallback="Titles"),
     rich_presence_value("Unlocks", num_unlocked_pictures())
 )
@@ -172,13 +185,16 @@ rich_presence_conditional_display(byte(0x5509) == 1, "{0} | {1}/70 pictures",
 rich_presence_conditional_display(menu_selection() == menu_selection_instructions, "Learning how to play")
 
 // free play check gets priority over non-story title check
-rich_presence_conditional_display(mode() == mode_freeplay && is_cutscene(), "Free Play between puzzles | {0} completed",
-    rich_presence_value("Count", free_play_puzzle_count())   
+rich_presence_conditional_display(mode() == mode_freeplay && is_cutscene(), 
+    "Free Play between puzzles | {0} completed | {1}/70 pictures",
+    rich_presence_value("Count", free_play_puzzle_count()),
+    rich_presence_value("Unlocks", num_unlocked_pictures())
 )
 
-rich_presence_conditional_display(mode() == mode_freeplay, "Free Play puzzle {0} | {1}%",
+rich_presence_conditional_display(mode() == mode_freeplay, "Free Play puzzle {0} | {1}% | {2}/70 pictures",
     rich_presence_value("Index", free_play_puzzle_index()),
-    rich_presence_value("Progress", clear_percent())
+    rich_presence_value("Progress", clear_percent()),
+    rich_presence_value("Unlocks", num_unlocked_pictures())
 )
 
 // non-story title check
@@ -209,39 +225,25 @@ rich_presence_display("Unknown")
 
 // ============================================
 
-// === MENU ===
-// * はじめから - From the beginning
-//   - カフェ ミュウミュウ - Story Mode
-//     - プロローグを見る。 - Watch the prologue
-//     - プロローグを見ない。 - Don't watch the prologue
-//   - たいいくかん - Multiplayer
-//   - きょうしつ - Free play
-//   - あそびかた - Instructions
-// * つづきから - Continue from
-// * おまけ - Extras
-//   - びじゅつしつ - Art Room
-//   - おれがくしつ - Tutorials
-//   - うらない - Fortune Telling
-
 // Characters: Ichigo (Strawberry), Minto (Mint), Retasu (Lettuce), Bu-Ling (Pudding), Zakuro (Pomegranate)
 
 // Story Mode (6 playthroughs to unlock everything):
 // 1 (pink=2) > 2a (21) > 3a (maid=15) 
 //            > 4 (blue=16) > 5 (12) > 6a (48) > 7a (double=44)
-//            > 8 (purple vest=51) > 9 (14) > 10a (blue=53) > 11a (pink=9)
+//            > 8 (purple background with vest=51) > 9 (14) > 10a (blue=53) > 11a (pink=9)
 //            > 12 (13 + purple=49)
-// 1 (blue=54) > 2a > 3a (face=20)
-//             > 4 (green maid=24) > 5 > 6a > 7a (somber left=40)
-//             > 8 (purple maid=41) > 9 > 10a (red=1) > 11a (blue=52)
+// 1 (blue=54) > 2b (31) > 3b (maid=23) [B-B-B route required to access event 13]
+//             > 4 (green maid=24) > 5 > 6b (38) > 7b (maid=32)
+//             > 8 (purple maid=41) > 9 > 10b (blue=18) > 11b (yellow=35)
 //             > 12 (group=63) > 13 (65 + orange=56)
+// 1 > 2a > 3a (face=20)
+//        > 4 (red=50) > 5 > 6a > 7a (somber left=40)
+//        > 8 (yellow maid=33) > 9 > 10a (red=1) > 11a (blue=52)
+//        > 12 (pink=3) > 13 (green=60)
 // 1 > 2a > 3a (posing=17)
-//        > 4 (red=50) > 5 > 6a > 7a (wistful right=42)
-//        > 8 (yellow maid=33) > 9 > 10a > 11a (both=62)
-//        > 12 (pink=3) > 13 (blue=64)
-// 1 > 2b (31) > 3b (maid=23)
-//             > 4 > 5 > 6b (38) > 7b (maid=32)
-//             > 8 > 9 > 10b (blue=18) > 11b (yellow=35)
-//             > 12 > 13 (green=60)
+//        > 4 > 5 > 6a > 7a (wistful right=42)
+//        > 8 > 9 > 10a > 11a (both=62)
+//        > 12 > 13 (blue=64)
 // 1 > 2b > 3b (vest=30)
 //        > 4 > 5 > 6b > 7b (vest=36)
 //        > 8 > 9 > 10b (green=26) > 11b (purple=43) > 12 > 13
@@ -340,7 +342,6 @@ rich_presence_display("Unknown")
 //    - Restart at chapter 1
 //    - Return to title screen
 
-// TODO: 65
 achievement("Story Mode", "Complete Story Mode", 10, type="win_condition",
     trigger = mode() == mode_story && screen() == screen_end_credits
 )
@@ -385,12 +386,12 @@ function free_play_achievement(title, description, points, last_puzzle)
     )    
 }
 
-free_play_achievement("Free Play I", "Complete Free Play puzzles 1-10", 5, 10)    // 22
-free_play_achievement("Free Play II", "Complete Free Play puzzles 11-20", 5, 20)  // 39
-free_play_achievement("Free Play III", "Complete Free Play puzzles 21-30", 10, 30)// 27
+free_play_achievement("Free Play I", "Complete Free Play puzzles 1-10", 2, 10)    // 22
+free_play_achievement("Free Play II", "Complete Free Play puzzles 11-20", 3, 20)  // 39
+free_play_achievement("Free Play III", "Complete Free Play puzzles 21-30", 5, 30) // 27
 free_play_achievement("Free Play IV", "Complete Free Play puzzles 31-40", 10, 40) // 05
 free_play_achievement("Free Play V", "Complete Free Play puzzles 41-50", 10, 50)  // 08
-free_play_achievement("Free Play VI", "Complete Free Play puzzles 51-60", 25, 60) // 66
+free_play_achievement("Free Play VI", "Complete Free Play puzzles 51-60", 10, 60) // 66
 
 function unlocks_achievement(title, description, points, unlocks)
 {
@@ -401,7 +402,7 @@ function unlocks_achievement(title, description, points, unlocks)
     )
 }
 
-unlocks_achievement("Art I", "Unlock 30 pictures in the art room", 10, 30)     // 63
+unlocks_achievement("Art I", "Unlock 30 pictures in the art room", 5, 30)     // 63
 unlocks_achievement("Art II", "Unlock 40 pictures in the art room", 10, 40)    // 10
 unlocks_achievement("Art III", "Unlock 50 pictures in the art room", 10, 50)   // 42
 unlocks_achievement("Art IV", "Unlock 60 pictures in the art room", 10, 60)    // 56
