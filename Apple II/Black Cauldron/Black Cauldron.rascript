@@ -294,16 +294,18 @@ function selected_item() => byte(0xFC12)
 
 function trigger_scene(scene) => current_scene() == scene && unless(once(is_debug_mode()))
 
-function flag_achievement(points, title, description, scene, flag_address)
+function flag_achievement(points, title, description, scene, flag_address, type="")
 {
-    achievement(title, description, points,
+    achievement(title, description, points, type=type,
         trigger = trigger_scene(scene) &&
+                  !is_restoring_game() &&
                   byte(flag_address) == 1 && prev(byte(flag_address)) == 0
     )
 }
 
 // ALL
-flag_achievement(5, "The Vision", "Discover Hen Wen's magic power", scene_inside_dallbens_house, 0xFC6D)
+flag_achievement(5, "The Vision", "Discover Hen Wen's magic power", 
+                 scene_inside_dallbens_house, 0xFC6D, type="progression")
 
 // MAX
 achievement("Safe House", "Leave Hen Wen in the protection of the fairies", 10,
@@ -327,7 +329,7 @@ achievement("Through the Front Door", "Smuggle yourself into the castle", 5,
 )    
 
 // ALL
-achievement("Damsel in Distress", "Rescue Princess Eilonwy", 10,
+achievement("Damsel in Distress", "Rescue Princess Eilonwy", 10, type="progression",
     trigger = trigger_scene(scene_castle_crypt_tomb) &&
               byte(0xFCA6) == 1 &&                             // bauble finds the tunnel
               byte(0xE189) >= 0x37 && byte(0xE189) <= 0x3B &&  // eilonwy X location
@@ -376,21 +378,22 @@ flag_achievement(5, "Like a Frog", "Get across the Marsh of Morva without using 
 flag_achievement(10, "A Fair Trade", "Convince the witches to let you have the cauldron", scene_inside_witches_hut, 0xFC8C)
 
 // MIN
-achievement("A Noble Sacrifice", "Sacrifice yourself (in the castle)", 10,
+achievement("A Noble Sacrifice", "Sacrifice yourself (in the castle)", 10, type="win_condition",
     trigger = trigger_scene(scene_castle_crypt_cauldron) &&
               byte(0xFC36) == 0 && // not befriended Gurgi
               byte(0xFCA1) == 1 && prev(byte(0xFCA1)) == 0
 )
 
 // MAX (ALT)
-achievement("A Debt Repaid", "Save Gurgi after he sacrifices himself", 25,
+achievement("A Debt Repaid", "Save Gurgi after he sacrifices himself", 25, type="win_condition",
     trigger = trigger_scene(scene_river_west) &&
               byte(0xFC37) == 1 && // Gurgi sacrificed himself
               byte(0xFC20) == 3 && byte(0xFC22) == 4
 )
 
 // MAX
-flag_achievement(25, "Watch Your Step", "Trick the Horned King into sacrificing himself", scene_castle_crypt_cauldron, 0xFC2D)
+flag_achievement(25, "Watch Your Step", "Trick the Horned King into sacrificing himself",
+                 scene_castle_crypt_cauldron, 0xFC2D, type="win_condition")
 
 // MAX
 achievement("The Full Story", "Complete the game with a perfect score", 25,
