@@ -34,65 +34,56 @@ mode_guild_quest = 4
 mode_arena = 5
 mode_ending = 6 // JP only
 
-function current_screen() => byte(0x1581c)
-screen_bios = 0x000f
-screen_sega = 0x0010
-screen_battle_vs = 0x01a3 // also several other 0x01XX values while stage is loading
-screen_titles = 0x01a8
-screen_battle_results = 0x01be
-screen_battle_post_results = 0x01c9
-screen_vis_list = 0x0356
-screen_title = 0x08f2 // also map
-screen_character_select = 0x0bcd
-screen_map = 0x0bcd
-screen_town = 0x0ef6
-screen_bar = 0x11e7
-screen_guild = 0x138b // also gym
-screen_shop = 0x152f // all three shops, fortune teller, and town hall
-screen_character_select = 0x16a8 // also password screen and enter initials screen
-screen_battle_organa = 0x1800 // 185d/1869
-screen_battle_logan = 0x19f3
-screen_battle_fucida = 0x1c6d
-screen_battle_sara = 0x1dea
-screen_battle_magnus = 0x1fe3
-screen_battle_barko = 0x2263
-screen_battle_daktar = 0x243f
-screen_battle_algos = 0x25a8
-screen_battle_talon = 0x2720
-screen_battle_psybart = 0x28e4
-screen_battle_jado = 0x2acf
-screen_battle_venum = 0x2cff // 2c5e
-screen_guild_quest_wizards_staff = 0x2fe0
-screen_guild_quest = 0x2fe9
-screen_credits = 0x31b4
-screen_intro_main = 0x3465
-screen_intro_organa = 0x3596
-screen_ending_organa = 0x366e
-screen_intro_logan = 0x36f0
-screen_ending_logan = 0x37c4
-screen_intro_fuchida = 0x38ac
-screen_ending_fuchida = 0x3967
-screen_intro_sara = 0x3a5e
-screen_ending_sara = 0x3b78
-screen_intro_magnus = 0x3c55
-screen_ending_magnus = 0x3cb7
-screen_intro_barko = 0x3d6a
-screen_ending_barko = 0x3e17
-screen_intro_daktar = 0x3e6f
-screen_ending_daktar = 0x3ec1
-screen_intro_algos = 0x3f62
-screen_ending_algos = 0x405a
-screen_intro_talon = 0x4109
-screen_ending_talon = 0x416c
-screen_intro_psybart = 0x41b5
-screen_ending_psybart = 0x421e
+function current_screen() => byte(word(0x166e0) + 0x1008e)
+screen_bios = 0
+screen_title = 3
+screen_map = 4
+screen_town = 5
+screen_guild = 7 // also gym
+screen_shop = 8 // all three shops, fortune teller, and town hall
+screen_cheat_password = 9
+screen_character_select = 9
+screen_battle_organa = 0x0a
+screen_battle_logan = 0x0b
+screen_battle_fucida = 0x0c
+screen_battle_sara = 0x0d
+screen_battle_magnus = 0x0e
+screen_battle_barko = 0x0f
+screen_battle_daktar = 0x10
+screen_battle_algos = 0x11
+screen_battle_talon = 0x12
+screen_battle_psybart = 0x13
+screen_battle_jado = 0x14
+screen_battle_venum = 0x15
+screen_guild_quest = 0x17
+screen_credits = 0x18
+screen_intro_main = 0x19
+screen_intro_organa = 0x1a
+screen_ending_organa = 0x1b
+screen_intro_logan = 0x1c
+screen_ending_logan = 0x1d
+screen_intro_fuchida = 0x1e
+screen_ending_fuchida = 0x1f
+screen_intro_sara = 0x20
+screen_ending_sara = 0x21
+screen_intro_magnus = 0x22
+screen_ending_magnus = 0x23
+screen_intro_barko = 0x24
+screen_ending_barko = 0x25
+screen_intro_daktar = 0x26
+screen_ending_daktar = 0x27
+screen_intro_algos = 0x28
+screen_ending_algos = 0x29
+screen_intro_talon = 0x2a
+screen_ending_talon = 0x2b
+screen_intro_psybart = 0x2c
+screen_ending_psybart = 0x2d
 
 // because the low byte of current_screen() has some variance, only check the high byte for logic.
 // there's one conflict - barko and daktar's endings - but we can also enforce selected character for those.
-function current_screen_high() => byte(0x1581d)
-function current_screen_is(screen) => current_screen_high() == screen / 256
-function current_screen_range(screen_low, screen_high) => current_screen_high() >= screen_low / 256 &&
-                                                          current_screen_high() <= screen_high / 256
+function current_screen_is(screen) => current_screen() == screen
+function current_screen_range(screen_low, screen_high) => current_screen() >= screen_low &&
+                                                          current_screen() <= screen_high
 
 function in_quest_battle() => current_screen_range(screen_battle_organa, screen_battle_venum)
 function in_quest_town() => current_screen_range(screen_town, screen_shop)
@@ -161,6 +152,7 @@ cheats = {
 }
 
 function quest_started() => character_level() < 500
+function venum_beaten() => bit3(0x18f6b) == 1
 
 function current_difficulty() => byte(0x18e01)
 difficulty_easy = 0
@@ -212,6 +204,15 @@ rich_presence_conditional_display(current_mode() == mode_guild_quest,
     rich_presence_value("Gold", character_gold())
 )
 
+rich_presence_conditional_display(current_screen() >= screen_credits && venum_beaten() &&
+                                  current_screen() != screen_intro_main, 
+    "{0} victorious | Quest mode ({1}) | Lv.{2} | {3} gold",
+    rich_presence_lookup("Character", character_quest(), characters, fallback=character_fallback),
+    rich_presence_lookup("Difficulty", current_difficulty(), difficulties),
+    rich_presence_value("Level", character_level()),
+    rich_presence_value("Gold", character_gold())
+)
+
 // other quest states - battle results/map/etc
 rich_presence_conditional_display(current_mode() == mode_quest, 
     "{0} | Quest mode ({1}{2}) | Lv.{3} | {4} gold",
@@ -248,14 +249,6 @@ rich_presence_conditional_display(current_mode() == mode_tournament_2P, "{0} vs 
 
 rich_presence_conditional_display(current_mode() == mode_arena, "Arena of Death")
 
-rich_presence_conditional_display(current_screen_is(screen_credits) && character_level() < 100, 
-    "{0} victorious | Quest mode ({1}) | Lv.{2} | {3} gold",
-    rich_presence_lookup("Character", character_quest(), characters, fallback=character_fallback),
-    rich_presence_lookup("Difficulty", current_difficulty(), difficulties),
-    rich_presence_value("Level", character_level()),
-    rich_presence_value("Gold", character_gold())
-)
-
 rich_presence_conditional_display(current_mode() == mode_ending, 
     "{0} victorious | Quest mode ({1}) | Lv.{2} | {3} gold",
     rich_presence_lookup("Character", character_quest(), characters, fallback=character_fallback),
@@ -277,17 +270,18 @@ rich_presence_display("Titles")
 
 function current_health_p1() => word(0x180a0)
 function current_health_p2() => word(0x18230)
-function venum_beaten() => bit3(0x18f6b) == 1
 
 // read the book (5)
 function book_read() => byte(0x18f42) == 1
-achievement("The Power of Words", "Dispel the magic protecting Venum's castle", 5, type="progression",
-    trigger = in_quest() && !cheating() &&
+achievement("The Power of Words", "Dispel the magic protecting Venum's castle", 5, 
+    id=527605, badge="598390", type="progression",
+    trigger = current_screen_is(screen_town) && !cheating() &&
               book_read() && !prev(book_read())
 )
 
-achievement("Experience the Death", "Defeat Jado in quest mode", 5, type="progression",
-    trigger = in_quest() && !cheating() &&
+achievement("Experience the Death", "Defeat Jado in quest mode", 5, 
+    id=527606, badge="598391", type="progression",
+    trigger = current_screen_is(screen_battle_jado) && !cheating() &&
               bit2(0x18f6b) == 1 &&
               prev(bit2(0x18f6b)) == 0
 )
@@ -299,8 +293,8 @@ function character_ending_achievement(title, description, character, screen, id=
         trigger = in_quest() && !cheating() &&
                   venum_beaten() &&
                   character_quest() == character &&
-                  prev(current_screen_high()) == screen / 256 &&
-                  current_screen_high() != screen / 256
+                  prev(current_screen()) == screen &&
+                  current_screen() != screen
     )    
 }
 
@@ -338,27 +332,30 @@ character_ending_achievement("Don't Be Fooled",
                              "Complete quest mode as Barko", character_barko, screen_ending_barko,
                              id=527612, badge="598397")
 
-// Sara's projectile: Down, Forward, B
+// Daktar's projectile: Down, Forward, B
 character_ending_achievement("There Once Was an Old Witch", 
                              "Complete quest mode as Daktar", character_daktar, screen_ending_daktar,
                              id=527613, badge="598398")
 
-// Algos's project: Down, Down+Forward, Forward, B
+// Algos's projectile: Down, Down+Forward, Forward, B
 character_ending_achievement("The Missing Ring", 
                              "Complete quest mode as Algos", character_algos, screen_ending_algos,
                              id=527614, badge="598399")
 
+// Talon's projectile: Down, Down+Back, Back, B
 character_ending_achievement("That's My Egg!",
                              "Complete quest mode as Talon", character_talon, screen_ending_talon, 
                              id=527615, badge="598400")
 
+// No projectile, but Back, Forward, C does a lot of damage
 character_ending_achievement("Isn't There Anyone Stronger?",
                              "Complete quest mode as Psybart", character_psybart, screen_ending_psybart,
                              id=527616, badge="598401")
                              
 // beat story mode on normal (10)
 achievement("Revenged", "Defeat Venum in quest mode on normal or difficult", 10,
-    trigger = in_quest() && !cheating() &&
+    id=527617, badge="598402",
+    trigger = current_screen_is(screen_battle_venum) && !cheating() &&
               venum_beaten() &&
               !prev(venum_beaten()) &&
               current_difficulty() >= difficulty_normal &&
@@ -367,7 +364,8 @@ achievement("Revenged", "Defeat Venum in quest mode on normal or difficult", 10,
 
 // beat story mode on hard (25)
 achievement("Revenged with Vengeance", "Defeat Venum in quest mode on difficult", 25,
-    trigger = in_quest() && !cheating() &&
+    id=527618, badge="598403",
+    trigger = current_screen_is(screen_battle_venum) && !cheating() &&
               venum_beaten() &&
               !prev(venum_beaten()) &&
               current_difficulty() >= difficulty_difficult &&
@@ -377,7 +375,8 @@ achievement("Revenged with Vengeance", "Defeat Venum in quest mode on difficult"
 // finish the quest in under 100 days (10)
 function days_consumed() => word(0x18f44)
 achievement("Rapid Revenge", "Defeat Venum in quest mode in less than 100 days", 10,
-    trigger = in_quest() && !cheating() &&
+    id=527619, badge="598404",
+    trigger = current_screen_is(screen_battle_venum) && !cheating() &&
               venum_beaten() &&
               !prev(venum_beaten()) &&
               days_consumed() < 100
@@ -385,13 +384,17 @@ achievement("Rapid Revenge", "Defeat Venum in quest mode in less than 100 days",
 
 function tracked_kills() => bitcount(0x18f6a) + bit0(0x18f6b) + bit1(0x18f6b)
 achievement("Making the Rounds", "Defeat all ten non-boss opponents in a single quest", 5,
+    id=527620, badge="598405",
     trigger = !cheating() &&
               measured(tracked_kills() == 10,
-                       when=in_quest() && quest_started() && current_screen_high() > screen_sega / 256) &&
+                       when=in_quest() &&
+                            current_screen() >= screen_map && 
+                            current_screen() != screen_character_select) &&
               prev(tracked_kills()) == 9
 )
-
+    
 achievement("Flawless Fighting", "Defeat an opponent without taking any damage", 5,
+    id=527621, badge="598406",
     trigger = in_quest_battle() && !cheating() &&
               current_health_p2() == 0 &&
               prev(current_health_p2()) > 0 &&
