@@ -8,7 +8,7 @@
 //   - Note. This will delete any save data on the Sega CD, so you might want to copy them to the catridge RAM first.
 
 // password menu: at title screen press A+Z+Y (X+Y+R1)
-// * ARC = unknown
+// * ARC = allow arcade difficulty
 // * ASP = aspect ratio test screen
 // * AZY = play Black Ball Assault 2
 // * BHA = Black Hole Assault cheat codes
