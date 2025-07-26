@@ -4047,11 +4047,11 @@ classes = {
 
 // after combat, bit7 of class becomes 1
 // females have bit0 set
-for class in range(0, 108, step=2)
+for class_ in range(0, 108, step=2)
 {
-    classes[class + 0x80] = classes[class]
-    classes[class + 1] = classes[class]
-    classes[class + 0x81] = classes[class]
+    classes[class_ + 0x80] = classes[class_]
+    classes[class_ + 1] = classes[class_]
+    classes[class_ + 0x81] = classes[class_]
 }
 
 classes[class_fishers_son + 1] = "Fisher's daughter"
@@ -4113,7 +4113,7 @@ battles_for_mastery = {
     class_rainhawk: 250,
     class_evilmech: 310,
 }
-function char_class_battles(char_id, class) => word(char_data_pointer(char_id) + 0x8A + class)
+function char_class_battles(char_id, class_) => word(char_data_pointer(char_id) + 0x8A + class_)
 
 
 // char data [hero=$10C38 char2=$10D58 maribel=$10E78 gabo=$10F98 aira=$110B8 melvin=$111D8]
@@ -5574,22 +5574,22 @@ achievement("All-Rounder", "Win all three World Ranking Federation competitions 
 
 // ============================================
 
-function trigger_class_mastery(class)
+function trigger_class_mastery(class_)
 {
     alt_clause = always_false()
     
     for character in range(0, 5)
     {
-        alt_clause = alt_clause || (char_class_battles(character, class) == battles_for_mastery[class] &&
-                                    prev(char_class_battles(character, class)) < battles_for_mastery[class])
+        alt_clause = alt_clause || (char_class_battles(character, class_) == battles_for_mastery[class_] &&
+                                    prev(char_class_battles(character, class_)) < battles_for_mastery[class_])
     }
     
     return alt_clause    
 }
 
-function class_mastery_achievement(title, description, points, class)
+function class_mastery_achievement(title, description, points, class_)
 {
-    achievement(title, description, points, trigger_in_battle() && trigger_class_mastery(class))
+    achievement(title, description, points, trigger_in_battle() && trigger_class_mastery(class_))
 }
 
 class_mastery_achievement("Avenger", "Master the Dragoon class", 5, class_dragoon)     // IMG: man_barbarian - GOOD
