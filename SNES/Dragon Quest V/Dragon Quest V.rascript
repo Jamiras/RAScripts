@@ -380,8 +380,11 @@ story_achievement(location_western_cave, bit7(0x21B2), 4, "Beware of Kitty", "St
 achievement(
     title = "I Don't Want Your Help", points = 10, // The Untrusting
     description = "Reunite with your kitty before recruiting any monsters",
-    trigger = trigger_in_game() && current_location() == location_western_cave && 
-              bit6(0x21B2) == 1 && prev(bit6(0x21B2)) == 0 && bit7(0x21B1) == 0
+    trigger = trigger_in_game() && 
+              trigger_when(current_location() == location_western_cave) && 
+              bit6(0x21B1) == 1 && // have wagon and spoke to monster gramps
+              trigger_when(bit6(0x21B2) == 1) && prev(bit6(0x21B2)) == 0 && // kitty joins the party
+              bit7(0x21B1) == 0 // recruit a monster
 )
 
 story_achievement(location_ruraphin, bit1(0x21BE), 3, "I'm Outta Here!", "Demonstrate your skill with the Return spell")
