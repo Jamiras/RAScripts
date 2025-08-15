@@ -198,22 +198,8 @@ weapon_phillip = 14
 function is_unlocked(unlockable)
 {
     addr = 0x088750 + unlockable / 16
-    bit = unlockable % 16
-    if (bit == 0)
-        return bit0(addr)
-    if (bit == 1)
-        return bit1(addr)
-    if (bit == 2)
-        return bit2(addr)
-    if (bit == 3)
-        return bit3(addr)
-    if (bit == 4)
-        return bit4(addr)
-    if (bit == 5)
-        return bit5(addr)
-    if (bit == 6)
-        return bit6(addr)
-    return bit7(addr)
+    b = unlockable % 16
+    return bit(b, addr)
 }
 
 unlockable_cheat_sheet = 0x01
@@ -271,113 +257,122 @@ function trigger_win_race(race, end_trigger) => trigger_start_race() && is_winne
 // Races (117pts)
 
 achievement(
-    title = "Rally Days 1", points = 3,
+    title = "Rally Days 1", points = 3, type="progression",
     description = "Win the Rally Days championship race",
     trigger = trigger_win_race(race_rally_days_1, byte(0x087270) == 1)
 )
 
 achievement(
-    title = "Rally Days 2", points = 4,
+    title = "Rally Days 2", points = 5, type="progression",
     description = "Win the Rally Days 2 championship race",
     trigger = trigger_win_race(race_rally_days_2, byte(0x087230) == 1)
 )
 
-// Bebe, Big Gay Al, Cartman, Chef, Damien, Grandpa, Jesus, Jimbo, Kenny, Kyle, Marvin, Mephesto, Mr. Garrison, 
-// Mr. Mackey, Pip, Satan, Shelly, Stan, Tweek, Visitor, Wendy
-function racer_health(index) => dword(0x0B7D70 + index * 44)
-// Ike, Death, Terrance and Phillip
-function racer_health2(index) => dword(0x0B7D50 + index * 44)
-// Barbrady, Cartman Cop, Ned
-function racer_health3(index) => dword(0x0B7D68 + index * 44)
+class PlayerData
+{
+    base = 0
+
+    // Spring Cleaning
+    // Memorial Day
+    function checkpoints() => dword(this.base + 0x04)
+
+    // Valentine's Day
+    function valentines_delivered() => byte(this.base + 0x04)
+
+    // Read-a-book Day (chickens)
+    // Easter (eggs)
+    // Pink Lemonade (lemonade)
+    // Halloween (candy)
+    // Thanksgiving (turkey)
+    function items_delivered() => dword(this.base + 0x04)
+
+    // Cow Days
+    function health() => float(this.base + 0x10)
+
+    // New Year's Eve
+    function seconds_remaining() => float(this.base + 0x10)
+
+    // Spring Cleaning
+    function laps_completed() => dword(this.base + 0x14)
+}
+
+function player(index) => PlayerData(tbyte(0x88be4) + 0x1098 + index * 0x2C)
+player1 = player(0)
+
 achievement(
-    title = "Cow Days", points = 5,
+    title = "Cow Days", points = 5, type="progression",
     description = "Win the Cow Days championship race",
     trigger = trigger_start_race() && is_winner() && trigger_in_race(race_cow_days) &&
               never(current_tokens() < prev(current_tokens())) &&
-              ((once(racer_health(0) == 0x42F00000) && racer_health(0) == 0) ||
-               (once(racer_health2(0) == 0x42F00000) && racer_health2(0) == 0) ||
-               (once(racer_health3(0) == 0x42F00000) && racer_health3(0) == 0))
+              once(player1.health() == 120.0) && player1.health() == 0.0
 )
 
-// Big Gay Al, Cartman, Chef, Damien, Grandpa, Jesus, Jimbo, Kyle, Marvin, Mephesto, Mr. Garrison, Mr. Mackey, Pip, 
-// Satan, Shelly, Stan, Tweek, Visitor, Wendy
-function cupid_targets() => byte(0x0B6A4C) // bits 1-5 indicate which opponents have been hit
-// Barbrady, Bebe, Cartman Cop, Kenny, Ned
-function cupid_targets2() => byte(0x0B6A44) // bits 1-5 indicate which opponents have been hit
-// Death, Ike, Terrance and Phillip
-function cupid_targets3() => byte(0x0B6A2C) // bits 1-5 indicate which opponents have been hit
 achievement(
-    title = "Valentine's Day", points = 5,
+    title = "Valentine's Day", points = 5, type="progression",
     description = "Win the Valentine's Day championship race",
     trigger = trigger_start_race() && is_winner() && trigger_in_race(race_valentines_day) && 
-              (cupid_targets() == 0x3E || cupid_targets2() == 0x3E || cupid_targets3() == 0x3E)
+              player1.valentines_delivered() == 0x3E
 )
 
 achievement(
-    title = "Spring Cleaning", points = 5,
+    title = "Spring Cleaning", points = 5, type="progression",
     description = "Win the Spring Cleaning championship race",
     trigger = trigger_win_race(race_spring_cleaning, byte(0x0872C0) == 1)
 )
 
 achievement(
-    title = "Read-a-Book Day", points = 5,
+    title = "Read-a-Book Day", points = 5, type="progression",
     description = "Win the Read-a-Book Day championship race",
     trigger = trigger_win_race(race_read_a_book_day, byte(0x0872A0) == 1)
 )
 
-// $0B7B8C = eggs
 achievement(
-    title = "Easter", points = 5,
+    title = "Easter", points = 5, type="progression",
     description = "Win the Easter championship race",
     trigger = trigger_win_race(race_easter, byte(0x0872B0) == 1)
 )
 
 achievement(
-    title = "Pink Lemonade", points = 5,
+    title = "Pink Lemonade", points = 5, type="progression",
     description = "Win the Pink Lemonade championship race",
     trigger = trigger_win_race(race_pink_lemonade, byte(0x0872D4) == 1)
 )
 
 achievement(
-    title = "Memorial Day", points = 10,
+    title = "Memorial Day", points = 10, type="progression",
     description = "Win the Memorial Day championship race",
     trigger = trigger_win_race(race_memorial_day, byte(0x087240) == 1)
 )
 
 achievement(
-    title = "Independance Day", points = 10,
+    title = "Independance Day", points = 10, type="progression",
     description = "Win the 4th of July championship race",
     trigger = trigger_win_race(race_fourth_of_july, byte(0x087270) == 1)
 )
 
 achievement(
     title = "Halloween", points = 10,
-    description = "Win the Halloween championship race",
+    description = "Win the Halloween championship race", type="progression",
     trigger = trigger_win_race(race_halloween, byte(0x087260) == 1)
 )
 
 achievement(
-    title = "Thanksgiving", points = 10,
+    title = "Thanksgiving", points = 10, type="progression",
     description = "Win the Thanksgiving championship race",
     trigger = trigger_win_race(race_thanksgiving, byte(0x0872F0) == 1)
 )
 
 achievement(
-    title = "Christmas", points = 10,
+    title = "Christmas", points = 10, type="progression",
     description = "Win the Christmas championship race",
     trigger = trigger_win_race(race_christmas, byte(0x087230) == 1)
 )
 
 achievement(
-    title = "New Year's Eve", points = 25,
+    title = "New Year's Eve", points = 25, type="win_condition",
     description = "Win the New Year's Eve championship race",
     trigger = trigger_win_race(race_new_years_eve, never(current_tokens() < prev(current_tokens())) &&
-                               ((once(word(0x0B7D72) == 0x42F0) && dword(0x0B7D70) == 0) || // Death, Ike
-                                (once(word(0x0B7D92) == 0x42F0) && dword(0x0B7D90) == 0) || // Bebe, Big Gay Al, Cartman, Chef, Damien, Grandpa,
-                                                                                            // Jesus, Jimbo, Kenny, Kyle, Marvin, Mephesto, 
-                                                                                            // Mr. Garrison, Mr. Mackey, Pip, Satan, Shelly, 
-                                                                                            // Terrance and Phillip, Tweek, Visitor, Wendy 
-                                (once(word(0x0B7D8A) == 0x42F0) && dword(0x0B7D88) == 0)))   // Barbrady, Cartman Cop, Ned
+                               once(player1.seconds_remaining() == 120) && player1.seconds_remaining() == 0)
 )
 
 // ----------------------------------------------------------------------------
@@ -462,7 +457,9 @@ achievement(
 function trigger_unlock_immediate(unlockable, race) => is_unlocked(unlockable) == 1 && once(is_unlocked(unlockable) == 0) && 
                                                        never(current_race() != race)                                             
 function trigger_unlock(unlockable, race) => trigger_unlock_immediate(unlockable, race) &&
-                                             word(0x0F1334) == 0x0140 && word(0x0F1336) != 0x0078 && prev(word(0x0F1336)) == 0x0078
+                                             word(0x0F1334) == 0x0140 && 
+                                             word(0x0F1336) != 0x0078 && 
+                                             prev(word(0x0F1336)) == 0x0078
 
 achievement(
     title = "Unlockables Checklist", points = 5,
@@ -609,40 +606,24 @@ achievement(
 achievement(
     title = "Drugs Are Bad, Mmmkay?", points = 5,
     description = "Win the Rally Days 2 championship race without picking up any items",
-    trigger = trigger_win_race(race_rally_days_2, byte(0x087230) == 1) &&
+    trigger = trigger_win_race(race_rally_days_2, trigger_when(byte(0x087230) == 1)) &&
+              trigger_when(is_winner()) &&
               never(byte(0x0B46EB) != 0xFF)
 )
 
 // couldn't find "ahead by %", so just make sure all opponents are at 80% or higher
-// $0B7D70 = player health (40000000 = cured, 42BEFFFE/FF=79/80% boundary)
-// $0B7D9C = opponent 1
-// $0B7DC8 = opponent 2
-// $0B7DF4 = opponent 3
-// $0B7E20 = opponent 4
-// $0B7E4C = opponent 5
-health_80_percent = 0x42BEFFFE
+health_80_percent = 95.5 // technically 79.58%, but that appears to be where the game drops from 80% to 79%.
 achievement(
     title = "I'm Super! Thanks for Asking", points = 5,
     description = "Win the Cow Days championship race at least 80% ahead of everyone else",
-    trigger = trigger_win_race(race_cow_days, is_winner()) &&
-              ((once(racer_health(0) == 0x42F00000) && racer_health(0) == 0 &&
-               racer_health(1) > health_80_percent &&
-               racer_health(2) > health_80_percent &&
-               racer_health(3) > health_80_percent &&
-               racer_health(4) > health_80_percent &&
-               racer_health(5) > health_80_percent) ||
-              (once(racer_health2(0) == 0x42F00000) && racer_health2(0) == 0 &&
-               racer_health2(1) > health_80_percent &&
-               racer_health2(2) > health_80_percent &&
-               racer_health2(3) > health_80_percent &&
-               racer_health2(4) > health_80_percent &&
-               racer_health2(5) > health_80_percent) ||
-              (once(racer_health3(0) == 0x42F00000) && racer_health3(0) == 0 &&
-               racer_health3(1) > health_80_percent &&
-               racer_health3(2) > health_80_percent &&
-               racer_health3(3) > health_80_percent &&
-               racer_health3(4) > health_80_percent &&
-               racer_health3(5) > health_80_percent))
+    trigger = trigger_win_race(race_cow_days, trigger_when(is_winner())) &&
+              once(player1.health() == 120.0) && 
+              trigger_when(player1.health() == 0.0) &&
+              player(1).health() > health_80_percent &&
+              player(2).health() > health_80_percent &&
+              player(3).health() > health_80_percent &&
+              player(4).health() > health_80_percent &&
+              player(5).health() > health_80_percent
 )
 
 achievement(
@@ -650,9 +631,8 @@ achievement(
     description = "Hit all five opponents in the Valentine's Day championship race without losing the bow and arrow",
     trigger = trigger_in_race(race_valentines_day) &&
               never(dword(0x0B145F) == 0) &&   // $0B145C is 0x800B6C98 when holding the bow
-              ((once(cupid_targets() == 0) && cupid_targets() == 0x3E) ||    
-               (once(cupid_targets2() == 0) && cupid_targets2() == 0x3E) ||    
-               (once(cupid_targets3() == 0) && cupid_targets3() == 0x3E))    
+              once(player1.valentines_delivered() == 0) && 
+              trigger_when(player1.valentines_delivered() == 0x3E)
 )
 
 // $0B22AC/$0B22B0/$0B22B4 = non-zero when holding underpants, 0 when not
@@ -663,7 +643,7 @@ achievement(
               dword(0x0B22AC) != 0 && dword(0x0B22B0) != 0 && dword(0x0B22B4) != 0
 )
 
-function collect_pot_pie(index) => dword(0x0B7AEC + index * 8) > prev(dword(0xB7AF0 + index * 8))
+function collect_pot_pie(index) => trigger_when(dword(0x0B7AEC + index * 8) > prev(dword(0xB7AEC + index * 8)))
 achievement(
     title = "No Kitty! This is My Pot-Pie", points = 5,
     description = "Collect a pot pie in the Memorial Day championship race while having a kitty in your inventory",
@@ -689,12 +669,9 @@ achievement(
 
 achievement(
     title = "Hello There, Children", points = 10,
-    description = "Deliver at least 15 candies during the Halloween championsip race",
-    trigger = trigger_in_race(race_halloween) &&
-              ((byte(0x0B8B44) >= 15 && byte(0x0B8B45) == 0) || // Cartman, Chef, Death, Ike, Kenny, Kyle, Stan, Terrance and Phillip
-               (byte(0x0B8B5C) >= 15 && byte(0x0B8B5D) == 0) || // Barbrady, Cartman Cop, Ned
-               (byte(0x0B8B64) >= 15 && byte(0x0B8B65) == 0) )  // Bebe, Big Gay Al, Damien, Grandpa, Jesus, Jimbo, Marvin, Mephesto, 
-                                                                // Mr. Garrison, Mr. Mackey, Pip, Satan, Shelly, Tweek, Visitor, Wendy
+    description = "Deliver at least 15 candies during the Halloween championship race",
+    trigger = trigger_in_race(race_halloween) && trigger_start_race() &&
+              player1.items_delivered() >= 15
 )
 
 achievement(
