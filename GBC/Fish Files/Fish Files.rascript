@@ -12,166 +12,182 @@
 // C5A6=D2EF
 // C5BE=inventory offset...? 
 
-function current_scene() => byte(0xC535)
-scene_univ_dantes_room = 0 // room 3
-scene_univ_hall_3F_E = 1 // WC and 5 doors
-scene_univ_hall_3F_W = 2 // 3 and 4 doors
-scene_univ_hall_2F_E = 3
-scene_univ_hall_1F_W = 4 // outside book room
-scene_univ_hall_1F_ent = 5 // entrance hall
-scene_univ_hall_1F_E = 6 // outside chemistry room
-scene_univ_chem_lab = 7
-scene_univ_gym = 8
-scene_univ_kitchen = 9 
-scene_univ_bathroom = 10 // WC
-scene_univ_fritzs_room = 11 // room 4
-scene_univ_korsellos_room = 12 // room 5
-scene_univ_book_room = 13
-scene_univ_outside = 14
-scene_univ_fountain = 15
-scene_city_pole = 16 // where the man is stuck
-scene_city_outside_fish_store = 17
-scene_city_outside_police_station = 18
-scene_city_outside_beppos = 19
-scene_city_inside_fish_store = 20
-scene_city_inside_police_station = 21
-scene_city_inside_beppos = 22
-scene_city_outside_trailer = 24
-scene_city_inside_trailer = 25
-scene_univ_marys_room = 26
-scene_city_sewer = 27
-scene_univ_girls_room2 = 28
-scene_univ_hall_2F_W = 29
-scene_city_outside_beppos_night = 30
-scene_city_outside_military_base_night = 31
-scene_city_outside_xavoc_night = 32
-scene_city_inside_xavoc_2 = 33
-scene_city_inside_xavoc_mary = 34
-scene_city_inside_xavoc = 36
-scene_city_outside_fish_store_night = 37
-scene_univ_statue_night = 38
-scene_city_military_laboratory = 40
-scene_city_inside_military_base = 41
-scene_city_outside_trailer_night = 42
-scene_univ_fraus_room = 43
-scene_univ_principals_office = 44
-scene_univ_hall_2F_E_no_frau = 45
-scene_alt1_major_gaids_office = 47
-scene_alt1_hall_3F_W = 48
-scene_alt1_hall_3F_E = 49
-scene_alt3_colloseum_W_champion = 50
-scene_alt1_kitchen = 51
-scene_alt1_green_flag = 52
-scene_alt1_blue_flag = 53
-scene_alt1_red_flag = 54
-scene_alt1_fountain = 55
-scene_alt1_beppos_office = 56
-scene_alt1_hall_1F_W = 57
-scene_alt1_dantes_room = 58
-scene_alt1_behind_kitchen = 59
-scene_alt1_warehouse = 60
-scene_alt1_shooting_range = 61
-scene_alt1_hall_1F_ent = 62
-scene_alt3_bathroom = 64
-scene_alt3_puses_room = 65
-scene_alt3_dantes_room = 66
-scene_alt3_hall_3F_W = 67
-scene_alt3_hall_3F_E = 68
-scene_alt3_girls_room_W = 69
-scene_alt3_girls_room_before = 70
-scene_alt3_girls_room = 71
-scene_alt3_hall_2F_W = 72
-scene_alt3_basement = 73
-scene_alt3_hall_1F_ent = 74
-scene_alt3_hall_1F_W = 75
-scene_alt3_hall_1F_E = 77
-scene_alt3_outside = 78
-scene_alt3_outside_pottery = 79
-scene_alt3_fountain = 80
-scene_alt3_amplitheatre_W = 81
-scene_alt3_amplitheatre_E = 82
-scene_alt3_outside_beppos = 83
-scene_alt3_inside_beppos = 84
-scene_alt3_colloseum_E = 85
-scene_alt3_colloseum_W = 86
-scene_alt3_storage_room = 87
-scene_alt3_storage_room_basement = 88
-scene_alt3_storage_room_cleaned = 89
-scene_alt2_dantes_room = 90
-scene_alt2_hall_3F_W = 91
-scene_alt2_hall_3F_E = 92
-scene_alt2_fabropolus_room = 93
-scene_alt2_hall_1F_W = 94
-scene_alt2_trailer = 95
-scene_alt2_hall_1F_ent = 96
-scene_alt2_outside = 97
-scene_alt2_gym = 98
-scene_alt2_office = 99
-scene_alt2_fountain = 100
-scene_alt2_flowershop_outside = 101
-scene_alt2_flowershop = 102
-scene_alt2_alley = 103
-scene_alt2_abandoned_factory_E = 104
-scene_alt2_abandoned_factory_W = 105
-scene_alt2_beppos_outside = 106
-scene_alt2_beppos = 107
-scene_home_beppos = 110
-scene_home_outside_beppos = 111
-scene_home_outside_fish_store = 112
-scene_home_fountain = 113
-scene_home_hall_1F_ent = 114
-scene_home_hall_1F_E = 115
-scene_home_chem_lab = 116
-scene_home_kitchen = 117
-scene_home_hall_1F_W = 118
-scene_home_hall_2F_E = 119
-scene_home_hall_3F_W = 120
-scene_home_hall_3F_E = 121
-scene_home_pole = 122
-scene_home_principals_office = 123
-scene_home_gym = 124
-scene_home_sewer1 = 125
-scene_home_sewer2 = 126
-scene_home_sewer3 = 127
-scene_home_sewer4 = 128
-scene_home_sewer5 = 129
-scene_home_sewer6 = 130
-scene_home_sewer7 = 131
-scene_home_lake = 132
-scene_home_fisherman = 133
-scene_home_barn = 134
-scene_home_bull = 135
-scene_home_outside_xavoc = 136
-scene_home_xavoc_W = 137
-scene_home_xavoc_E = 138
-scene_home_outside_trailer = 139
-scene_home_inside_trailer = 140
-scene_home_barn_open = 141
-scene_home_bull_gone = 142
-scene_home_inside_barn = 143
-scene_ship_entrance = 144
-scene_ship_cockpit = 145
-scene_ship_room1 = 146
-scene_ship_guard = 147
-scene_ship_prison = 148
-scene_ship_ventilation_controls = 149
-scene_home_lake_projector = 150
-scene_home_barn_celebration = 151
-scene_home_lake_frauzilla = 152
-scene_home_bathroom = 153
-scene_alt3_girls_room2 = 156
-scene_alt3_outside_mummy = 159
-scene_alt3_amplitheatre_depart = 161
-scene_home_inside_trailer_later = 162
-scene_7th_sense_W = 173
-scene_7th_sense_E = 174
-scene_credits1 = 175
-scene_credits2 = 176
-scene_credits3 = 177
-scene_credits4 = 178
-scene_credits5 = 179
-scene_credits6 = 180
-scene_credits7 = 186
+function current_scene() => byte(0xC530)
+scene_univ_dantes_room = 15 // room 3
+scene_univ_hall_3F_E = 16 // WC and 5 doors
+scene_univ_hall_3F_W = 17 // 3 and 4 doors
+scene_univ_hall_2F_E = 18
+scene_univ_hall_1F_W = 19 // outside book room
+scene_univ_hall_1F_ent = 20 // entrance hall
+scene_univ_hall_1F_E = 21 // outside chemistry room
+scene_univ_chem_lab = 22
+scene_univ_gym = 23
+scene_univ_kitchen = 24
+scene_univ_bathroom = 25 // WC
+scene_univ_fritzs_room = 26 // room 4
+scene_univ_korsellos_room = 27 // room 5
+scene_univ_book_room = 28
+scene_univ_outside = 29
+scene_univ_fountain = 30
+scene_city_pole = 31 // where the man is stuck
+scene_city_outside_fish_store = 32
+scene_city_outside_police_station = 33
+scene_city_outside_beppos = 34
+scene_city_inside_fish_store = 35
+scene_city_inside_police_station = 36
+scene_city_inside_beppos = 37
+scene_city_outside_trailer = 39
+scene_city_inside_trailer = 40
+scene_univ_marys_room = 41
+scene_city_sewer = 42
+scene_univ_girls_room2 = 43
+scene_univ_hall_2F_W = 44
+scene_city_outside_beppos_night = 45
+scene_city_outside_military_base_night = 46
+scene_city_outside_xavoc_night = 47
+scene_city_inside_xavoc_2 = 48
+scene_city_inside_xavoc_mary = 49
+scene_city_inside_xavoc = 51
+scene_city_outside_fish_store_night = 52
+scene_univ_statue_night = 53
+scene_city_military_laboratory = 55
+scene_city_inside_military_base = 56
+scene_city_outside_trailer_night = 57
+scene_univ_fraus_room = 58
+scene_univ_principals_office = 59
+scene_univ_hall_2F_E_no_frau = 60
+scene_alt1_major_gaids_office = 62
+scene_alt1_hall_3F_W = 63
+scene_alt1_hall_3F_E = 64
+scene_alt3_colloseum_W_champion = 65
+scene_alt1_kitchen = 66
+scene_alt1_green_flag = 67
+scene_alt1_blue_flag = 68
+scene_alt1_red_flag = 69
+scene_alt1_fountain = 70
+scene_alt1_beppos_office = 71
+scene_alt1_hall_1F_W = 72
+scene_alt1_dantes_room = 73
+scene_alt1_behind_kitchen = 74
+scene_alt1_warehouse = 75
+scene_alt1_shooting_range = 76
+scene_alt1_hall_1F_ent = 77
+scene_alt3_bathroom = 79
+scene_alt3_puses_room = 80
+scene_alt3_dantes_room = 81
+scene_alt3_hall_3F_W = 82
+scene_alt3_hall_3F_E = 83
+scene_alt3_girls_room_W = 84
+scene_alt3_girls_room_before = 85
+scene_alt3_girls_room = 86
+scene_alt3_hall_2F_W = 87
+scene_alt3_basement = 88
+scene_alt3_hall_1F_ent = 89
+scene_alt3_hall_1F_W = 90
+scene_alt3_hall_1F_E = 92
+scene_alt3_outside = 93
+scene_alt3_outside_pottery = 94
+scene_alt3_fountain = 95
+scene_alt3_amplitheatre_W = 96
+scene_alt3_amplitheatre_E = 97
+scene_alt3_outside_beppos = 98
+scene_alt3_inside_beppos = 99
+scene_alt3_colloseum_E = 100
+scene_alt3_colloseum_W = 101
+scene_alt3_storage_room = 102
+scene_alt3_storage_room_basement = 103
+scene_alt3_storage_room_cleaned = 104
+scene_alt2_dantes_room = 105
+scene_alt2_hall_3F_W = 106
+scene_alt2_hall_3F_E = 107
+scene_alt2_fabropolus_room = 108
+scene_alt2_hall_1F_W = 109
+scene_alt2_trailer = 110
+scene_alt2_hall_1F_ent = 111
+scene_alt2_outside = 112
+scene_alt2_gym = 113
+scene_alt2_office = 114
+scene_alt2_fountain = 115
+scene_alt2_flowershop_outside = 116
+scene_alt2_flowershop = 117
+scene_alt2_alley = 118
+scene_alt2_abandoned_factory_E = 119
+scene_alt2_abandoned_factory_W = 120
+scene_alt2_beppos_outside = 121
+scene_alt2_beppos = 122
+scene_alt2_beppos2 = 123
+scene_alt2_princials_office = 124
+scene_home_beppos = 125
+scene_home_outside_beppos = 126
+scene_home_outside_fish_store = 127
+scene_home_fountain = 128
+scene_home_hall_1F_ent = 129
+scene_home_hall_1F_E = 130
+scene_home_chem_lab = 131
+scene_home_kitchen = 132
+scene_home_hall_1F_W = 133
+scene_home_hall_2F_E = 134
+scene_home_hall_3F_W = 135
+scene_home_hall_3F_E = 136
+scene_home_pole = 137
+scene_home_principals_office = 138
+scene_home_gym = 139
+scene_home_sewer1 = 140
+scene_home_sewer2 = 141
+scene_home_sewer3 = 142
+scene_home_sewer4 = 143
+scene_home_sewer5 = 144
+scene_home_sewer6 = 145
+scene_home_sewer7 = 146
+scene_home_lake = 147
+scene_home_fisherman = 148
+scene_home_barn = 149
+scene_home_bull = 150
+scene_home_outside_xavoc = 151
+scene_home_xavoc_W = 152
+scene_home_xavoc_E = 153
+scene_home_outside_trailer = 154
+scene_home_inside_trailer = 155
+scene_home_barn_open = 156
+scene_home_bull_gone = 157
+scene_home_inside_barn = 158
+scene_ship_entrance = 159
+scene_ship_cockpit = 160
+scene_ship_room1 = 161
+scene_ship_guard = 162
+scene_ship_prison = 163
+scene_ship_ventilation_controls = 164
+scene_home_lake_projector = 165
+scene_home_barn_celebration = 166
+scene_home_lake_frauzilla = 167
+scene_home_bathroom = 168
+scene_univ_korsellos_poster = 170
+scene_alt3_girls_room2 = 171
+scene_alt3_colloseum_E2 = 173
+scene_alt3_outside_mummy = 174
+scene_alt3_amplitheatre_depart = 176
+scene_home_inside_trailer_later = 177
+scene_intro_1 = 178
+scene_intro_2 = 179
+scene_intro_3 = 180
+scene_intro_4 = 181
+scene_intro_5 = 182
+scene_ending_1 = 183
+scene_ending_2 = 184
+scene_ending_3 = 185
+scene_ending_4 = 186
+scene_ending_5 = 187
+scene_7th_sense_W = 188
+scene_7th_sense_E = 189
+scene_credits1 = 190
+scene_credits2 = 191
+scene_credits3 = 192
+scene_credits4 = 193
+scene_credits5 = 194
+scene_credits6 = 195
+scene_resume_new = 199
+scene_language_select = 200
+scene_credits7 = 201
 
 // set when an item is picked up, and when one is selected in the inventory
 function current_item() => word(0xC545)
@@ -313,9 +329,9 @@ item_point = 0x3DDC
 function current_dialog_message() => word(0xCB02)
 function is_dialog_visible() => byte(0xC5C0)
 
-function dialog_achievement(scene, message, points, title, description)
+function dialog_achievement(scene, message, points, title, description, type="")
 {
-    achievement(title = title, description = description, points = points, 
+    achievement(title = title, description = description, points = points, type=type,
         trigger = current_scene() == scene && current_dialog_message() == message && 
                   is_dialog_visible() == 0 && prev(is_dialog_visible()) == 1
     )
@@ -392,6 +408,7 @@ scenes = {
     scene_alt1_warehouse: "in the storeroom",
     scene_alt1_shooting_range: "at the shooting range",
     scene_alt1_hall_1F_ent: "in the university hallway",
+    scene_univ_korsellos_poster: "in Fabropolus's room",
     scene_alt3_bathroom: "in the bathroom",
     scene_alt3_puses_room: "in Puse's room",
     scene_alt3_dantes_room: "in Dante's room",
@@ -435,6 +452,8 @@ scenes = {
     scene_alt2_abandoned_factory_W: "in the abandoned factory",
     scene_alt2_beppos_outside: "outside Beppo's",
     scene_alt2_beppos: "inside Beppo's",
+    scene_alt2_beppos2: "inside Beppo's",
+    scene_alt2_princials_office: "in the principal's office",
     scene_home_beppos: "inside Beppo's",
     scene_home_outside_beppos: "outside Beppo's",
     scene_home_outside_fish_store: "outside the fish store",
@@ -448,7 +467,7 @@ scenes = {
     scene_home_hall_3F_W: "in the university hallway",
     scene_home_hall_3F_E: "in the university hallway",
     scene_home_pole: "on the street",
-    scene_home_principals_office: "in the prinpical's office",
+    scene_home_principals_office: "in the principal's office",
     scene_home_gym: "in the gymnasium",
     scene_home_sewer1: "in the sewer",
     scene_home_sewer2: "in the sewer",
@@ -480,6 +499,7 @@ scenes = {
     scene_home_lake_frauzilla: "at the lake",
     scene_home_bathroom: "in the bathroom",
     scene_alt3_girls_room2: "in the girls' room",
+    scene_alt3_colloseum_E2: "in the coliseum",
     scene_alt3_outside_mummy: "outside the university",
     scene_alt3_amplitheatre_depart: "at the amphitheater",
     scene_home_inside_trailer_later: "in the trailer",
@@ -490,6 +510,11 @@ scenes = {
     scene_credits5: "exploring the credits",
     scene_credits6: "exploring the credits",
     scene_credits7: "exploring the credits",
+    scene_ending_1: "at the lake",
+    scene_ending_2: "at the lake",
+    scene_ending_3: "at the lake",
+    scene_ending_4: "at the lake",
+    scene_ending_5: "at the lake",
     scene_7th_sense_W: "in the development studio",
     scene_7th_sense_E: "in the development studio"
 }
@@ -506,11 +531,13 @@ rich_presence_display("{0} is {1}",
 
 achievement(title = "Adventure Game Basics", description = "Examine five hotspots in Dante's room", points = 2, 
     trigger = current_scene() == scene_univ_dantes_room && 
-              once(current_dialog_message() == 0x000A) &&  // ink
-              once(current_dialog_message() == 0x000B) &&  // sheet
-              once(current_dialog_message() == 0x000C) &&  // dresser
-              once(current_dialog_message() == 0x000D) &&  // window
-              once(current_dialog_message() == 0x000E) &&  // door
+              measured(tally(5, 
+                  once(current_dialog_message() == 0x000A),  // ink
+                  once(current_dialog_message() == 0x000B),  // sheet
+                  once(current_dialog_message() == 0x000C),  // dresser
+                  once(current_dialog_message() == 0x000D),  // window
+                  once(current_dialog_message() == 0x000E)     // door
+              )) &&
               is_dialog_visible() == 0 && prev(is_dialog_visible()) == 1
 )
 
@@ -520,7 +547,7 @@ achievement(title = "Adventure Game Basics", description = "Examine five hotspot
 // - Take a can of [sauerkraut].
 // - Use the [ink] with the mug.
 
-dialog_achievement(scene_univ_fritzs_room, 0x0027, 4, "Look What You've Done", "Ruin Fritz's mug")
+dialog_achievement(scene_univ_fritzs_room, 0x0027, 4, "Look What You've Done", "Ruin Fritz's mug", type="progression")
 
 // - Take the [mug].
 // - Go to the bathroom (WC). Examine the mirror.
@@ -543,7 +570,7 @@ dialog_achievement(scene_univ_bathroom, 0x0245, 3, "Smashing Good Looks", "Break
 
 // - Give Cleo's bowl [Bottle] to Beppo. Receive [multi-use].
 
-dialog_achievement(scene_city_inside_beppos, 0x0395, 5, "The Ultimate Tool", "Get the Multi-use")
+dialog_achievement(scene_city_inside_beppos, 0x0395, 5, "The Ultimate Tool", "Get the Multi-use", type="progression")
 
 // - Take the [adhesive].
 // - Go to the police station, to the right of the fish market.
@@ -571,7 +598,8 @@ dialog_achievement(scene_city_sewer, 0x02C5, 3, "The Truth is Down There", "Get 
 // - Talk to the child at the police station for a Bonkemon fight.
 // - To win, use the third attack (Drool Blast). Receive [Mousemon]
 
-dialog_achievement(scene_city_outside_police_station, 0x0255, 5, "Gotta Slobber 'em All", "Win at Bonkemon")
+dialog_achievement(scene_city_outside_police_station, 0x0255, 5,
+     "Gotta Slobber 'em All", "Win at Bonkemon", type="progression")
 
 // - Give Beppo the [Mousemon].
 // - Near the fountain there is a brick. Behind, a [lighter].
@@ -592,7 +620,7 @@ dialog_achievement(scene_univ_chem_lab, 0x02E8, 10, "Breaking Not-So-Bad", "Make
 // - Beat the [mush] with the [multi-use]. You get the [cream].
 // - Give the [cream] to the chef.
 
-dialog_achievement(scene_univ_kitchen, 0x00C3, 5, "Sous-chef", "Complete the Chef's request")
+dialog_achievement(scene_univ_kitchen, 0x00C3, 5, "Sous-chef", "Complete the Chef's request", type="progression")
 
 // - Go to the trailer (road to the right of the fountain).
 // - Collect the [antenna].
@@ -615,7 +643,7 @@ dialog_achievement(scene_univ_kitchen, 0x00C3, 5, "Sous-chef", "Complete the Che
 // - Use the [rope] with the window.
 // - Use the window rope to go down.
 
-dialog_achievement(scene_univ_dantes_room, 0x01ED, 10, "Playing Dress-Up", "Distract Frau Kruger")
+dialog_achievement(scene_univ_hall_2F_E, 0x01ED, 10, "Playing Dress-Up", "Distract Frau Kruger")
 
 // - Once in the women's area, get the makeup [kit].
 // - Enter Mary Angel's room (1). Get the [bra].
@@ -643,7 +671,8 @@ dialog_achievement(scene_univ_principals_office, 0x0335, 10, "Be Kind, Rewind", 
 
 // - Talk to Beppo. Leave. It becomes night.
 
-dialog_achievement(scene_city_outside_beppos_night, 0x0974, 2, "Time Flies When You're Solving a Mystery", "Night has arrived")
+dialog_achievement(scene_city_outside_beppos_night, 0x0974, 2,
+    "Time Flies When You're Solving a Mystery", "Night has arrived", type="progression")
 
 // - Go to Xavoc. Talk to the club guard [3].
 // - Go back to the school library and use the [multi-use] with the red book to get the [pictures].
@@ -684,7 +713,7 @@ dialog_achievement(scene_univ_book_room, 0x0366, 5, "Not-so-safe", "Break into t
 // - Give Beppo the [multi-use] food processor.
 // - Beppo sends Fabropulos, Fritz and Dante to who knows where.
 
-dialog_achievement(scene_alt1_dantes_room, 0x09A6, 10, "Witchery!", "Arrive in another dimension")
+dialog_achievement(scene_alt1_dantes_room, 0x09A6, 10, "Witchery!", "Arrive in another dimension", type="progression")
 
 // - Take the [curtain].
 // - Go out and talk to Baron General Kruger.
@@ -718,7 +747,7 @@ dialog_achievement(scene_alt1_warehouse, 0x09A9, 5, "Proper Attire", "Find a mil
 
 // - Talk to Major Gaid, in what would be the principal's office.
 
-dialog_achievement(scene_alt1_major_gaids_office, 0x09F7, 10, "Major Help", "Return with Major Gaid")
+dialog_achievement(scene_alt1_major_gaids_office, 0x09F7, 10, "Major Help", "Return with Major Gaid", type="progression")
 
 // - Take the baseball [bat].
 // - In room 5, take the [suspenders].
@@ -765,7 +794,7 @@ dialog_achievement(scene_alt2_flowershop, 0x0740, 10, "Does it Blend?", "Give Be
 
 // - Give the [ants] to Beppo.
 
-dialog_achievement(scene_alt2_beppos, 0x06A1, 10, "Far Out, Man", "Return with Mark")
+dialog_achievement(scene_alt2_beppos, 0x06A1, 10, "Far Out, Man", "Return with Mark", type="progression")
 
 // - Take the [acetone].
 // - Go out and talk with Folder [any-3-2-any].
@@ -809,7 +838,8 @@ dialog_achievement(scene_alt3_outside_mummy, 0x0A59, 10, "The Haunting", "Scare 
 
 // - Go to the theater where we found Puse and give the new [gadget] to Beppo.
 
-dialog_achievement(scene_alt3_amplitheatre_depart, 0x0A75, 10, "A Great Performance", "Return with Puse")
+dialog_achievement(scene_alt3_amplitheatre_depart, 0x0A75, 10,
+    "A Great Performance", "Return with Puse", type="progression")
 
 // - Back in the original universe, Beppo gives you a [pan] and a [projector].
 // - Talk to principal Fisher in his office.
@@ -855,11 +885,12 @@ achievement(title = "Big Gray Door Opener", description = "Break into the barn",
 // - Go to the trailer and talk to the hackers.
 // - Give the [video] to the hackers.
 
-// ===== 09 - Spaceship =====
+// ===== 10 - Spaceship =====
 
 // - Give the [data sheet] to the hackers.
 
-dialog_achievement(scene_home_inside_trailer, 0x0834, 5, "Your Job Here is Done", "Send the alternate hackers home")
+dialog_achievement(scene_home_inside_trailer, 0x0834, 5,
+    "Your Job Here is Done", "Send the alternate hackers home", type="progression")
 
 // - Return to the barn. Enter the spaceship.
 // - Go in the first door. Pick up the fish bowl containing Mary's fish [palomo]
@@ -881,18 +912,21 @@ dialog_achievement(scene_ship_prison, 0x0877, 5, "Pod People", "Free the prisone
 
 // * Here you have the option to pull the lever. There is no apparent effect.
 
-dialog_achievement(scene_ship_cockpit, 0x0895, 2, "I Wonder What This Does", "Pull the lever in the spaceship cockpit")
+dialog_achievement(scene_ship_cockpit, 0x0895, 2,
+    "I Wonder What This Does", "Pull the lever in the spaceship cockpit", type="missable")
 
 // - Talk to the lead fish.
 
-dialog_achievement(scene_ship_cockpit, 0x089A, 10, "So Long, and Thanks for All the Fish", "Convince the aliens to leave")
+dialog_achievement(scene_ship_cockpit, 0x089A, 10,
+    "So Long, and Thanks for All the Fish", "Convince the aliens to leave", type="progression")
 
 // - Give the [pictures] to the man with the camera. Receive the [camera].
 // - Go back to the university and take a use the [camera] on Frau Kruger to get new [pictures].
 // - Go to the trailer and talk to the hackers. They change the [pictures] into [frauzilla].
 // - Go back to the lake and put [frauzilla] on the stone.
 
-dialog_achievement(scene_home_lake_frauzilla, 0x0AE0, 10, "It Came From the Dorms", "Prevent an all-out war")
+dialog_achievement(scene_ending_1, 0x0AE0, 10,
+    "It Came From the Dorms", "Prevent an all-out war", type="win_condition")
 
 // - After walking to the right through the credits seven times, there is something strange
 
