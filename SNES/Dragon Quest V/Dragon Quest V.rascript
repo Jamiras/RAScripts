@@ -378,13 +378,21 @@ story_achievement(location_reinhart, bit4(0x21BC), 5, "A Tale of Two Empresses",
 story_achievement(location_western_cave, bit7(0x21B2), 4, "Beware of Kitty", "Stop the beast terrorizing Kabochi")
 
 achievement(
-    title = "I Don't Want Your Help", points = 10, // The Untrusting
+    title = "I Don't Want Your Help", points = 10, type="missable",
     description = "Reunite with your kitty before recruiting any monsters",
     trigger = trigger_in_game() && 
-              trigger_when(current_location() == location_western_cave) && 
-              bit6(0x21B1) == 1 && // have wagon and spoke to monster gramps
-              trigger_when(bit6(0x21B2) == 1) && prev(bit6(0x21B2)) == 0 && // kitty joins the party
-              bit7(0x21B1) == 0 // recruit a monster
+              prev(bit6(0x21B2)) == 0 && // kitty joins the party
+              bit7(0x21B1) == 0 && // haven't recruited a monster
+              ((
+                  // subclause to show trigger once player is able to recruit
+                  trigger_when(current_location() == location_western_cave) && 
+                  trigger_when(bit6(0x21B2) == 1) && 
+                  bit6(0x21B1) == 1 // have wagon and spoke to monster gramps                  
+              ) || (
+                  // Ticket 99056: subclause to allow trigger if player never talks to monster gramps
+                  current_location() == location_western_cave && 
+                  bit6(0x21B2) == 1
+              ))
 )
 
 story_achievement(location_ruraphin, bit1(0x21BE), 3, "I'm Outta Here!", "Demonstrate your skill with the Return spell")
@@ -1114,7 +1122,7 @@ missing_bit(0x21B8, 40)
 // $21B8:08 - Bianca admires the view, Waterfall Cave (teen)
 // $21B8:04 - Bianca complains about man, Waterfall Cave (teen)
 // $21B8:02 - Bianca admires the view again, Waterfall Cave (teen)
-// $21B8:01 - Biance wonders about the underwater chest, Waterfall cave (teen)
+// $21B8:01 - Bianca wonders about the underwater chest, Waterfall cave (teen)
 
 // $21B9:80 - Bianca wonders about the elven medicine, Waterfall Cave (teen)
 // $21B9:40 - Bianca congradulates the hero, Waterfall Cave (teen)
