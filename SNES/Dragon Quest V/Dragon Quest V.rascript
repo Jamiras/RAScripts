@@ -88,7 +88,11 @@ function character_int(index) => byte(0x204A + index * 42)
 // xp = 24 bits @ 0x204B + character * 42
 function character_max_hp(index) => word(0x204E + index * 42)
 function character_max_mp(index) => word(0x2050 + index * 42)
-function character_level(index) => byte(0x2052 + index * 42)
+// NOTE: bit7 of character level indicates the player is wearing the Ring of Life,
+// which restores 10 HP on every step outside battle, or 10 HP after each round of battle.
+// Normally, the player loses the ring shortly after acquiring it yo reach Nadiria,
+// but you can go back to the cave north of El Heven to reclaim it afterwards.
+function character_level(index) => byte(0x2052 + index * 42) & 0x7F
 function character_battle_status(index) => byte(0x0765 + index * 12)
 
 function current_medals() => byte(0x203F)
@@ -267,13 +271,13 @@ rich_presence_display("A level {0} {1} is exploring {2}",
     rich_presence_lookup("Location", current_location(), locations)
 )
 
-function story_achievement(location, bit, points, title, description)
+function story_achievement(location, bit, points, title, description, type="progression")
 {
     trigger = trigger_in_game() && bit == 1 && prev(bit) == 0
     if (location != location_any)
         trigger = trigger && current_location() == location
         
-    achievement(title = title, points = points, description = description, trigger = trigger)
+    achievement(title = title, points = points, description = description, type=type, trigger = trigger)
 }
 
 function trigger_win_battle(location, monster_id)
@@ -307,9 +311,9 @@ function dialog_trigger(location, en_pointer, jp_pointer)
     return current_location() == location && (trigger_dialog_text(en_pointer) || trigger_dialog_text(jp_pointer))
 }
 
-function dialog_achievement(location, en_pointer, jp_pointer, points, title, description)
+function dialog_achievement(location, en_pointer, jp_pointer, points, title, description, type="progression")
 {
-    achievement(title = title, points = points, description = description,
+    achievement(title = title, points = points, description = description, type = type,
                 trigger = dialog_trigger(location, en_pointer, jp_pointer))        
 }
 
@@ -325,7 +329,8 @@ story_achievement(location_santa_rosa, bit7(0x2191), 4, "The Lost Herbologist", 
 
 // === 01 - Alcapa ====================
 
-story_achievement(location_castle_lenoire, bit1(0x219D), 3, "The Stalker", "Defeat the Walking Statue in Lenoire Castle") // missable?
+story_achievement(location_castle_lenoire, bit1(0x219D), 3, 
+                  "The Stalker", "Defeat the Walking Statue in Lenoire Castle", type="missable")
 story_achievement(location_castle_lenoire, bit6(0x2198), 5, "The Haunted Housekeeper", "Defeat the Boss Ghost in Lenoire Castle")
 
 // read note on wall - it thanks the hero and bianca
@@ -353,7 +358,7 @@ story_achievement(location_thieves_cave, bit4(0x219C), 5, "The Missing Prince", 
 
 story_achievement(location_great_temple, bit2(0x21BA), 3, "Ten Years Later", "Become a teenager")
 dialog_achievement(location_great_temple, 0x338517, 0x08A563, 2,  "What Did You Expect to Find?", 
-                   "Examine the pot in the sleeping quarters at the slavery camp.") // [missable]
+                   "Examine the pot in the sleeping quarters at the slavery camp.", type="missable")
 story_achievement(location_great_temple, bit5(0x21BE), 5, "Flushed", "Escape from the slavery camp") // TODO: trigger before Oracleberry?
 
 // === 05 - Oracleberry ===============
@@ -361,7 +366,7 @@ story_achievement(location_great_temple, bit5(0x21BE), 5, "Flushed", "Escape fro
 story_achievement(location_oracleberry, bit7(0x201C), 2, "Party Wagon", "Purchase the caravan")
 
 achievement(
-    title = "A Father's Legacy", points = 5,
+    title = "A Father's Legacy", points = 5, type="progression",
     description = "Collect the sword and the letter from Papas",
     trigger = trigger_in_game() && current_location() == location_santa_rosa_secret_cave && 
               bit3(0x223C) == 1 && bit2(0x223C) == 1 && 
@@ -397,35 +402,40 @@ achievement(
 
 story_achievement(location_ruraphin, bit1(0x21BE), 3, "I'm Outta Here!", "Demonstrate your skill with the Return spell")
 
-dialog_achievement(location_reinhart, 0x35B208, 0x09D8CA, 3, "A Pretty Little Thing", "Inquire about puff puff") // [missable]
+dialog_achievement(location_reinhart, 0x35B208, 0x09D8CA, 3, 
+                   "A Pretty Little Thing", "Inquire about puff puff", type="missable")
 
 // === 08 - Salabona ==================
 
 story_achievement(location_volcano, bit3(0x21AB), 5, "From the Heart of the Volcano", "Collect the Ring of Flames")
 story_achievement(location_waterfall_cave_entrance, bit1(0x223C), 3, "The Second Ring", "Collect the Ring of Water")
 
-story_achievement(location_oracleberry, bit5(0x21B6), 2, "You Are Here", "Purchase the Wayfarer's Map")
+story_achievement(location_oracleberry, bit5(0x21B6), 2, "You Are Here", "Purchase the Wayfarer's Map", type="")
 
 // === 08b - Pre-wedding ===============
 
 // when prompted to pick a wife, talk to Ludman
-dialog_achievement(location_salabona, 0x37A873, 0x0AE299, 2,  "I'm Flattered, But...", "Declare your love for another") // [missable]
+dialog_achievement(location_salabona, 0x37A873, 0x0AE299, 2,
+                   "I'm Flattered, But...", "Declare your love for another", type="missable")
 story_achievement(location_salabona, bit4(0x21AC), 5, "'Til Death Do Us Part", "Get married")
 
 // === 09 - Telepador ==================
 
-story_achievement(location_alcapa, bit2(0x21B7), 3, "Let's Cuddle", "Have a romantic getaway with Bianca") // [missable]
+story_achievement(location_alcapa, bit2(0x21B7), 3,
+                  "Let's Cuddle", "Have a romantic getaway with Bianca", type="missable")
 
-story_achievement(location_telepador, bit1(0x21D3), 3, "Not the Hero", "Try on the Zenithian Helm") // [missable?]
+story_achievement(location_telepador, bit1(0x21D3), 3,
+                  "Not the Hero", "Try on the Zenithian Helm", type="missable")
 
 achievement(
-    title = "Special Delivery", points = 3,
+    title = "Special Delivery", points = 3, type="missable",
     description = "Collect both presents sent by Ludman for marrying Flora",
     trigger = trigger_in_game() && bit7(0x2210) == 1 && bit7(0x2218) == 1 &&
               (prev(bit7(0x2210)) == 0 || prev(bit7(0x2218)) == 0)             
 )
 
-story_achievement(location_mountain_pass, bit0(0x21B2), 2, "What's That Sound?", "Spend the night deep under the mountain pass") // [missable?]
+story_achievement(location_mountain_pass, bit0(0x21B2), 2,
+                  "What's That Sound?", "Spend the night deep under the mountain pass", type="")
 
 achievement(
     title = "The Mimics of Mountain Pass", points = 5,
@@ -442,7 +452,8 @@ achievement(
 
 // Work your way to point U on this map: http://shrines.rpgclassics.com/snes/dq5/pathfromchizod.shtml
 // Then walk east or south into the blackness. The chest contains a Staff of Punishment
-story_achievement(location_mountain_pass_east, bit6(0x2216), 5, "Hidden Treasure - Mountain Pass", "Find the hidden treasure in Mountain Pass")
+story_achievement(location_mountain_pass_east, bit6(0x2216), 5,
+                  "Hidden Treasure - Mountain Pass", "Find the hidden treasure in Mountain Pass", type="")
 
 achievement(
     title = "Hidden Treasure - Granvania", points = 5,
@@ -456,7 +467,7 @@ story_achievement(location_demons_tower, bit7(0x21C1), 10, "Guardian of the Towe
 
 // === 10 - Eight Years Later =========
 
-story_achievement(location_reinhart, bit4(0x21D2), 4, "Just Like His Father", "Acquire the Hat of Wind")
+story_achievement(location_reinhart, bit4(0x21D2), 4, "Just Like His Father", "Acquire the Hat of Wind", type="")
 story_achievement(location_telepador, bit7(0x21D4), 3, "Bloodlines", "Acquire the Zenithian Helm")
 
 achievement(
@@ -512,11 +523,12 @@ achievement(
               (prev(bit0(0x219F)) == 0 || prev(bit1(0x219F)) == 0 || prev(bit2(0x219F)) == 0 || prev(bit3(0x219F)) == 0)
 )
 
-story_achievement(location_emblem_cave, bit6(0x223D), 4, "Sealed Away", "Acquire the Royal Cloak")
+story_achievement(location_emblem_cave, bit6(0x223D), 4, "Sealed Away", "Acquire the Royal Cloak", type="")
 
-story_achievement(location_castle_lenoire, bit2(0x21B6), 2, "A Warm Welcome", "Talk to the new inhabitants of the haunted castle")
+story_achievement(location_castle_lenoire, bit2(0x21B6), 2, 
+                  "A Warm Welcome", "Talk to the new inhabitants of the haunted castle", type="")
 
-story_achievement(location_ruraphin, bit0(0x21BD), 4, "Another Ancient Spell", "Learn the Chance spell")
+story_achievement(location_ruraphin, bit0(0x21BD), 4, "Another Ancient Spell", "Learn the Chance spell", type="")
 
 // === 14 - Tower of Boble =======
 
@@ -530,7 +542,7 @@ story_achievement(location_great_temple, bit3(0x223D), 3, "Power Armor", "Acquir
 
 // attempt to use the Staff of Stoross on the statue of your wife
 achievement(
-    title = "A Stronger Curse", points = 2,
+    title = "A Stronger Curse", points = 2, type="missable",
     description = "Attempt to free your wife as you were freed",
     trigger = byte(0x21C8) == 0x02 && // great temple "stage"
               dialog_trigger(location_great_temple, 0x34E073, 0x09A8C3)
@@ -549,7 +561,7 @@ achievement(
 enemy_ivol = 0xE6
 item_ivols_book = 0xD3
 achievement(
-    title = "Can I Have Your Autograph?", points = 4,
+    title = "Can I Have Your Autograph?", points = 4, type="missable",
     description = "Use Ivol's Book in the battle with Ivol",
     trigger = trigger_in_game() && trigger_in_battle() && enemy_type(0) == enemy_ivol && 
               ((trigger_battle_text(0x3ADDDB) && byte(0x1073) == item_ivols_book) || // en
@@ -586,7 +598,7 @@ achievement(
               (current_location() == location_shahanna && prev(bit5(0x21E0)) == 0))           // east side of Shahanna
 )
 
-story_achievement(location_evil_mountain_2, bit1(0x21E0), 4, "A Mother's Love", "Reunite with your mother")
+story_achievement(location_evil_mountain_2, bit1(0x21E0), 4, "A Mother's Love", "Reunite with your mother", type="")
 
 enemy_king_metal = 0xA2
 achievement(
@@ -597,13 +609,13 @@ achievement(
 )
 
 achievement(
-    title = "Sliding Puzzle", points = 3,
+    title = "Sliding Puzzle", points = 3, type="progression",
     description = "Solve the sliding puzzle",
     trigger = trigger_in_game() && word(0x21C7) == 0x115 && // sliding puzzle room
               dword(0x00C0) == 0x01451E78                   // hero X/Y within room    
 )
 
-story_achievement(location_evil_mountain_2, bit0(0x21E1), 10, "Demon Lord No More", "Defeat Mildrath")
+story_achievement(location_evil_mountain_2, bit0(0x21E1), 10, "Demon Lord No More", "Defeat Mildrath", type="win_condition")
 
 function trigger_no_non_monsters_in_party(slot)
 {
@@ -1871,7 +1883,7 @@ missing_bit(0x2241, 02)
 
 // === Recruiting =====================
 
-story_achievement(location_any, bit7(0x21B1), 2, "Monster Tamer", "Recruit your first wild monster")
+story_achievement(location_any, bit7(0x21B1), 2, "Monster Tamer", "Recruit your first wild monster", type="")
 
 // sprite_slime (0x82) => $29EC
 // sprite_nereus (0xA9) => $2A13
