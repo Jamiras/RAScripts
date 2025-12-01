@@ -278,7 +278,7 @@ leaderboard("Fastest First Loop", "Fastest time completing the first loop",
     cancel = !in_game() || current_life() == 0 || commit_suicide(),
     value = repeated(0, always_true() && never(!in_game())),
     format = "FRAMES",
-    lower_is_better = true,
+    lower_is_better = true
 )
 
 
