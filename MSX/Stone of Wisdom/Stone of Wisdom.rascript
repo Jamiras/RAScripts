@@ -304,7 +304,7 @@ leaderboard("Fastest First Loop", "Fastest time completing the first loop",
 // Select "Yes" (attack button) to start second loop
 
 achievement("Speedy Spelunking", "Complete the first loop in under 15 minutes", 10,
-    trigger = in_game() && 
+    trigger = never(!in_game()) && 
               once(current_room() == room_start && loop_counter() == 0) &&
               current_room() == room_end &&
               never(repeated(15*60*60, always_true()))
