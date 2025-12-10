@@ -307,12 +307,13 @@ achievement("Gladiator-in-Training", "Have at least 40 points after finishing Th
 
 function bracket_scroll_offset() => word(0x01ea)
 
-achievement("Champion Gladiator", "Win a Tournament", 10,
+achievement("Champion Gladiator", "Win a Tournament", 10, type="win_condition",
     trigger = round() == round_end_of_tournament && in_game() &&
               screen() == screen_gladiators_bracket && // wins doesn't get incremented until the bracket screen
-              bracket_scroll_offset() == 0x200 &&
-              wins() == 3
-)
+              wins() == 3 &&
+              (bracket_scroll_offset() == 0x200 || // bracket fully visible
+               byte(0x0b2e) == 2) // closing bracket screen
+) 
 
 leaderboard("Gladiator-in-Training", "Highest score after finishing the Eliminator",
     start = round() == round_end_of_tournament && in_game() &&
