@@ -460,6 +460,7 @@ function trigger_unlock(unlockable, race) => trigger_unlock_immediate(unlockable
                                              word(0x0F1334) == 0x0140 && 
                                              word(0x0F1336) != 0x0078 && 
                                              prev(word(0x0F1336)) == 0x0078
+function trigger_race_over() => word(0x0F1336) == 0x0078
 
 achievement(
     title = "Unlockables Checklist", points = 5,
@@ -670,7 +671,7 @@ achievement(
 achievement(
     title = "Hello There, Children", points = 10,
     description = "Deliver at least 15 candies during the Halloween championship race",
-    trigger = trigger_in_race(race_halloween) && trigger_start_race() &&
+    trigger = trigger_in_race(race_halloween) && trigger_start_race() && never(trigger_race_over()) &&
               player1.items_delivered() >= 15
 )
 
