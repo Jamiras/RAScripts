@@ -4718,16 +4718,17 @@ char_melvin = 5  // 0x111D8
 
 // ========================================================
 
-function story_achievement(location, bit, points, title, description)
+function story_achievement(location, bit, points, title, description, type="progression")
 {
     trigger = trigger_in_game() && bit == 1 && prev(bit) == 0
     if (location != location_any)
         trigger = trigger && current_location() == location
         
-    achievement(title = title, points = points, description = description, trigger = trigger)
+    achievement(title = title, points = points, description = description, type = type,
+                trigger = trigger)
 }
 
-function treasure_achievement(location, treasures, points, title, description)
+function treasure_achievement(location, treasures, points, title, description, type="")
 {
     trigger = trigger_in_game() && current_location() == location
     prev_clause = always_false()
@@ -4739,7 +4740,8 @@ function treasure_achievement(location, treasures, points, title, description)
     }
     
     trigger = trigger && (prev_clause)
-    achievement(title = title, points = points, description = description, trigger = trigger)   
+    achievement(title = title, points = points, description = description, type = type,
+                trigger = trigger)   
 }
 
 
@@ -4816,6 +4818,7 @@ story_achievement(location_dialac_past, bit4(0x10238), 5,
 // IMG: deathpal
 // $102C9:01 - Past Mt. Ceide - Defeat Deathpal
 achievement("The Last White Wolf", "Reverse the curse afflicting the people of Orph", 10,
+    type = "progression",
     trigger = trigger_in_game() && current_location() == location_mt_ceide_past &&
               bit7(0x102C8) == 1 && prev(bit7(0x102C8)) == 0 && // close the coffin lid (also flipped if player dies)
               bit0(0x102C9) == 1 // deathpal is dead (prevents trigger when player dies)
@@ -4874,7 +4877,8 @@ lake_cave_treasures = [
 ]
 // IMG: lake_cave_treasure2
 treasure_achievement(location_lake_cave_past, lake_cave_treasures, 10,
-    "Treasures of the Lake Cave", "Open all 20 chests in the lake cave (in the past)"
+    "Treasures of the Lake Cave", "Open all 20 chests in the lake cave (in the past)", 
+    type = "missable"
 )
 
 // IMG: lake_cave_terrabell
@@ -4936,7 +4940,9 @@ story_achievement(location_krage_past, bit2(0x10181), 5,
 // The party has broken the time loop and is about to head to the bridge for the ceremony
 
 // IMG: clock_tower
-achievement("A Brand New Day", "Break out of the time loop and celebrate the opening ceremony for the bridge", 10,
+achievement("A Brand New Day", 
+    "Break out of the time loop and celebrate the opening ceremony for the bridge", 10,
+    type = "progression",
     trigger = trigger_in_game() && 
               bit6(0x10154) == 1 && once(bit6(0x10154) == 0) && // remind Baloch about celebration
               bit3(0x102AD) == 1 && // wake up after celebration
@@ -4955,7 +4961,7 @@ story_achievement(location_geionne_past2, bit5(0x1023F), 5,
 
 // IMG: rose_trophy
 story_achievement(location_roses_house, bit2(0x10162), 5,
-    "I Hope it's Shatterproof", "Obtain the Glass Shoe"
+    "I Hope it's Shatterproof", "Obtain the Glass Shoe", type=""
 )
 
 // ===== C5 Jami Lv20 (31:16) === [ Part 13: Hamelia Region ] =======
@@ -4993,7 +4999,7 @@ story_achievement(location_tallest_tower, bit1(0x10190), 5,
 
 // IMG: smart_zombie
 story_achievement(location_hamelia, bit2(0x10113), 5,
-    "Brains...", "Recover and return the stolen Lore Hat"
+    "Brains...", "Recover and return the stolen Lore Hat", type=""
 )
 
 // ===== C10 Jami Lv22 (36:29) === [ Part 15: Probina Region ] ======
@@ -5031,11 +5037,12 @@ story_achievement(location_mardra_castle_past, bit3(0x102FC), 5,
 
 // IMG: staffmaker
 // $102B2 must be $2E or $2F to get the staff from the assistant. once it advances to $30, the achievement is missable
-achievement("The Staffmaker's Assistant [m]", "Obtain the Bolt Staff from Mardra", 5,
-    trigger_in_game() && current_location() == location_mardra_castle_past && 
-    bit3(0x102FC) == 1 && // only after defeating Zeppel (prevents trigger when getting the LightAqua)
-    ((bit2(0x102B5) == 1 && prev(bit2(0x102B5)) == 0) || // complete the quest 
-     (bit3(0x101B2) == 1 && prev(bit3(0x101B2)) == 0))   // get bolt staff directly from chest (quest no longer available)
+achievement("The Staffmaker's Assistant", "Obtain the Bolt Staff from Mardra", 5,
+    type = "missable",
+    trigger = trigger_in_game() && current_location() == location_mardra_castle_past && 
+        bit3(0x102FC) == 1 && // only after defeating Zeppel (prevents trigger when getting the LightAqua)
+        ((bit2(0x102B5) == 1 && prev(bit2(0x102B5)) == 0) || // complete the quest 
+         (bit3(0x101B2) == 1 && prev(bit3(0x101B2)) == 0))   // get bolt staff directly from chest (quest no longer available)
 )
 
 // ===== D1 Jami Lv26 (46:08) =======================================
@@ -5043,7 +5050,7 @@ achievement("The Staffmaker's Assistant [m]", "Obtain the Bolt Staff from Mardra
 
 // IMG: majustus_gravestone
 story_achievement(location_great_fane, bit5(0x10D48), 5,
-    "The Work of a Lifetime (or Two)", "Learn Gigastis"
+    "The Work of a Lifetime (or Two)", "Learn Gigastis", type=""
 )
 
 // ===== D2 Jami Lv26 (46:14) === [ Part 18: Lefa Region ] ==========
@@ -5073,7 +5080,7 @@ story_achievement(location_labres_past, bit7(0x102F3), 5,
 
 // IMG: colin_gravestone
 story_achievement(location_labres, bit4(0x101FF), 5,
-    "You Can't Take It With You", "Find the lost treasure of Colin the Adventurer"
+    "You Can't Take It With You", "Find the lost treasure of Colin the Adventurer", type=""
 )
 
 // ===== D7 Jami Lv27 (50:41) === [ Part 20: Coastal Region ] =======
@@ -5095,7 +5102,7 @@ story_achievement(location_great_lighthouse_past, bit4(0x102A8), 10,
 
 // IMG: puffpuff
 story_achievement(location_coastal, bit1(0x10288), 5,
-    "Members Only", "Partake in Puff-puff"
+    "Members Only", "Partake in Puff-puff", type=""
 )
 
 // IMG: skystone
@@ -5241,7 +5248,7 @@ treasure_achievement(location_crystal_palace, elemental_equipment, 5,
 // In phase 4, if the hero is not busy with Barrier or healing, cast MagicWall, Gigaslash, or QuadHits
 
 // IMG: orgodemir5
-achievement("Death and Decay", "Defeat the false god", 25,
+achievement("Death and Decay", "Defeat the false god", 25, type="win_condition",
     trigger = trigger_in_game() && 
               current_location() == location_crystal_palace &&
               current_map() == 0x06E1 && // prevents trigger if player dies
@@ -5284,7 +5291,8 @@ achievement("Take Your Insignificant Prize", "Defeat God and earn a prize", 50,
 
 // IMG: god_immigrant
 story_achievement(location_bonus_dungeon_2, bit2(0x11A00), 50,
-    "And On the Seventh Day He Rested", "Defeat the spirits and recruit the ultimate immigrant"
+    "And On the Seventh Day He Rested", "Defeat the spirits and recruit the ultimate immigrant",
+    type=""
 )
 
 // =========================================================
@@ -5428,9 +5436,11 @@ function trigger_serial_killer()
                 alt_clause = alt_clause || (measured(monster_kills(i) >= 100) && prev(monster_kills(i)) < 100)
             else
                 alt_clause = alt_clause || 
-                     (byte(0x11386 + i * 2) >= 0x91 &&
-                      low4(0x11386 + i * 2 + 1) == 1 &&
-                      prev(byte(0x11386 + i * 2)) != byte(0x11386 + i * 2))
+                    // explicitly mask off the hearts flags
+                    (measured((monster_data(i) & 0x0FFC) / 4 >= 100) && 
+                    // change from 99 to 100 would be 0x18C => 0x190.
+                    // make sure the 8 changed to a 9.
+                    high4(0x11386 + i * 2) > prev(high4(0x11386 + i * 2)))
         }
     }
     
@@ -5493,7 +5503,7 @@ function monster_achievement(title, description, points, monster)
     achievement(title, description, points,
         trigger = trigger_in_game() &&
                   bit0(0x11386 + monster * 2) == 1 && // monster seen
-                  monster_kills(monster) > prev(monster_kills(monster))
+                  monster_data(monster) > prev(monster_data(monster))
     )
 }
 
