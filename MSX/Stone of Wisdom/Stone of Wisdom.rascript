@@ -14,13 +14,14 @@
 // https://uniskie.hatenablog.com/?page=1537501158
 
 // passwords: (specific names). Press [caps+right alt] to enter KANA mode (not possible in core), then:
-// - Red Level   - [:]+[Y]+[D] -> 10 Pearls, 2xIntel, 2xPower, 2xLife
-// - Blue Level  - [U]+[E]+[S] -> 20 Pearls, 4xIntel, 4xPower, 4xLife
-// - Green Level - [Q]+[E]+[D] -> 30 Pearls, 6xIntel, 6xPower, 6xLife
-// - White Level - [6]+[6]+[E] -> 40 Pearls, 8xIntel, 8xPower, 8xLife
+// - Red Level   - [:]+[Y]+[D] "KYD" -> 10 Pearls, 2xIntel, 2xPower, 2xLife
+// - Blue Level  - [U]+[E]+[S] "UES" -> 20 Pearls, 4xIntel, 4xPower, 4xLife
+// - Green Level - [Q]+[E]+[D] "QED" -> 30 Pearls, 6xIntel, 6xPower, 6xLife
+// - White Level - [6]+[6]+[E] "OOE" -> 40 Pearls, 8xIntel, 8xPower, 8xLife
 // * passwords are given on death/completing the game and can be entered on the Trig/Space screen
 
 
+// invincibility:
 // https://web.archive.org/web/20031114210751/http://www.marsupone.com/marsupone/msxvalley/stone/stone.htm
 // * on the CASIO start screen, press CTRL, "Y" and SELECT simultaneously, then the space bar
 //   - SELECT should be mapped to the PGUP key.
@@ -51,9 +52,14 @@ function in_game() => byte(msx_address(0x2000)) == 1
 function in_game_and_not_cheating() => in_game() && !is_invincible()
 function commit_suicide() => byte(msx_address(0x21b3)) == 1
 
+function password_used_starting_level() => byte(msx_address(0x2053))
+
 function current_room() => byte(msx_address(0x203e))
 room_start = 0x00
 room_first_tablet = 0x10
+room_second_tablet = 0x20
+room_third_tablet = 0x29
+room_fourth_tablet = 0x37
 room_end = 0x39
 
 function tablet(index) => byte(msx_address(0x2058 + index))
@@ -123,15 +129,18 @@ rich_presence_display("Titles")
 // ------------------------------------
 
 achievement("Tablet I", "Collect the first tablet", 5, type="progression",
-    trigger = in_game_and_not_cheating() && tablet(0) == 1 && prev(tablet(0)) == 0
+    trigger = in_game_and_not_cheating() && current_room() == room_first_tablet &&
+              tablet(0) == 1 && prev(tablet(0)) == 0
 )
 
 achievement("Tablet II", "Collect the second tablet", 5, type="progression",
-    trigger = in_game_and_not_cheating() && tablet(1) == 1 && prev(tablet(1)) == 0
+    trigger = in_game_and_not_cheating() && current_room() == room_second_tablet &&
+              tablet(1) == 1 && prev(tablet(1)) == 0
 )
 
 achievement("Tablet III", "Collect the third tablet", 5, type="progression",
-    trigger = in_game_and_not_cheating() && tablet(2) == 1 && prev(tablet(2)) == 0
+    trigger = in_game_and_not_cheating() && current_room() == room_third_tablet &&
+              tablet(2) == 1 && prev(tablet(2)) == 0
 )
 
 achievement("Tablet IV", "Collect the fourth tablet", 5, type="progression",
@@ -238,24 +247,27 @@ power_achievement("Enemies Beware", "Purchse the enemy crits power", 4,
 
 // stats achievements (two blocks of each, four, six?)
 
-achievement("Studious", "Have two full bars of Intelligence", 5,
-    trigger = in_game_and_not_cheating() && current_intel() >= 0x10
+achievement("Studious", "Have two full bars of Intelligence without using a password", 5,
+    trigger = in_game_and_not_cheating() && current_intel() >= 0x10 &&
+              password_used_starting_level() == 0
 )
 
 //achievement("Scholarly", "Have four full bars of Intelligence", 5,
 //    trigger = in_game() && current_intel() >= 0x20
 //)
 
-achievement("Athletic", "Have two full bars of Power", 5,
-    trigger = in_game_and_not_cheating() && current_power() >= 0x10
+achievement("Athletic", "Have two full bars of Power without using a password", 5,
+    trigger = in_game_and_not_cheating() && current_power() >= 0x10 &&
+              password_used_starting_level() == 0
 )
 
 //achievement("Muscular", "Have four full bars of Power", 5,
 //    trigger = in_game() && current_power() >= 0x20
 //)
 
-achievement("Healthy", "Have two full bars of Life", 5,
-    trigger = in_game_and_not_cheating() && current_life() >= 0x10
+achievement("Healthy", "Have two full bars of Life without using a password", 5,
+    trigger = in_game_and_not_cheating() && current_life() >= 0x10 &&
+              password_used_starting_level() == 0
 )
 
 //achievement("Vigorous", "Have four full bars of Life", 5,
@@ -273,7 +285,8 @@ achievement("Healthy", "Have two full bars of Life", 5,
 // ------------------------------------
 
 leaderboard("Fastest First Loop", "Fastest time completing the first loop",
-    start = in_game_and_not_cheating() && current_room() == room_start && loop_counter() == 0,
+    start = in_game_and_not_cheating() && current_room() == room_start && 
+            loop_counter() == 0 && password_used_starting_level() == 0,
     submit = current_room() == room_end,
     cancel = !in_game() || current_life() == 0 || commit_suicide(),
     value = repeated(0, always_true() && never(!in_game())),
@@ -303,9 +316,10 @@ leaderboard("Fastest First Loop", "Fastest time completing the first loop",
 // - Tablet: ~12:30
 // Select "Yes" (attack button) to start second loop
 
-achievement("Speedy Spelunking", "Complete the first loop in under 15 minutes", 10,
+achievement("Speedy Spelunking", "Complete the entire first loop in under 15 minutes", 10,
     trigger = never(!in_game()) && 
-              once(current_room() == room_start && loop_counter() == 0) &&
+              once(current_room() == room_start && loop_counter() == 0 && 
+                   password_used_starting_level() == 0) &&
               current_room() == room_end &&
               never(repeated(15*60*60, always_true()))
 )
