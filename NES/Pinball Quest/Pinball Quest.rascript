@@ -203,49 +203,49 @@ rich_presence_display("{0}", rich_presence_lookup("Activity", table() * 16 + til
 achievement(
     title = "I Need Your Help",
     description = "Talk to the ghost to begin your quest",
-    points = 5,
+    points = 5, type="progression",
     trigger = table() == table_rpg_garden && byte(0x0000B9) == 1
 )
 
 achievement(
     title = "The Skeletal Knight",
     description = "Defeat the skeleton guard and enter the castle",
-    points = 5,
+    points = 5, type="progression",
     trigger = table() == table_rpg_garden && byte(0x000176) == 0xBF
 )
 
 achievement(
     title = "The Witch",
     description = "Defeat the witch and enter the mines",
-    points = 10,
+    points = 10, type="progression",
     trigger = table() == table_rpg_castle && byte(0x000176) == 0x95
 )
 
 achievement(
     title = "King of the Goblins",
     description = "Defeat the goblin king and proceed to the river",
-    points = 10,
+    points = 10, type="progression",
     trigger = table() == table_rpg_mines && byte(0x000176) == 0xD3
 )
 
 achievement(
     title = "Reanimated Armor",
     description = "Defeat the suits of armor and enter the throne room",
-    points = 10,
+    points = 10, type="progression",
     trigger = table() == table_rpg_river && byte(0x000176) == 0x41
 )
 
 achievement(
     title = "The Harpy",
     description = "Defeat the harpy and enter the basement",
-    points = 10,
+    points = 10, type="progression",
     trigger = table() == table_rpg_throne_room && byte(0x000176) == 0xC0
 )
 
 achievement(
     title = "The Dark Lord",
     description = "Defeat the dark lord and rescue the princess",
-    points = 25,
+    points = 25, type="win_condition",
     trigger = table() == table_rpg_basement && byte(0x0004D6) == 0x6A
 )
 
@@ -286,17 +286,21 @@ achievement(
               byte(0x0004BF) == 0 && byte(0x0004EF) == 0
 )
 
+candles = [
+    byte(0x00042F), byte(0x00045F), byte(0x00048F), // middle three
+    byte(0x00024F), byte(0x00027F), byte(0x0002AF), // top three on left
+    byte(0x0002DF), byte(0x00030F),                 // bottom two on left
+    byte(0x00033F), byte(0x00036F), byte(0x00039F), // top three on right
+    byte(0x0003CF), byte(0x0003FF)                  // bottom two on right
+]
+
 achievement(
     title = "Darkness",
     description = "Extinguish all 13 candles in the basement",
     points = 50,
     trigger = table() == table_rpg_basement && tileset() == tileset_rpg_basement &&
               once(byte(0x00042F) == 1) && never(tileset() != tileset_rpg_basement) &&
-              byte(0x00042F) == 0 && byte(0x00045F) == 0 && byte(0x00048F) == 0 && // middle three
-              byte(0x00024F) == 0 && byte(0x00027F) == 0 && byte(0x0002AF) == 0 && // top three on left
-              byte(0x0002DF) == 0 && byte(0x00030F) == 0 &&                        // bottom two on left
-              byte(0x00033F) == 0 && byte(0x00036F) == 0 && byte(0x00039F) == 0 && // top three on right
-              byte(0x0003CF) == 0 && byte(0x0003FF) == 0                           // bottom two on right
+              measured(byte(0x00b4) - 4 == 13, when=table() == table_rpg_basement)
 )
     
 //  20 Gated Garden - Leave the garden without letting your ball fall off the bottom of the table
@@ -418,7 +422,7 @@ achievement(
 
 achievement(
     title = "Rack 'em",
-    description = "Sink all four billiard balls on the Pop! Pop! table",
+    description = "Sink all four billiard balls without sinking the cue ball on the Pop! Pop! table",
     points = 5,
     trigger = table() == table_pop_pop && tileset() == tileset_pop_pop && byte(0x0000B7) == 2 // marker advances from 1K to 10K
 )
