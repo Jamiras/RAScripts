@@ -110,13 +110,13 @@ achievement(
 )
 
 achievement(
-    title = "Just An Average Kid", description = "Play as Timmy Turner", points = 20,
+    title = "Just An Average Kid", description = "Play as Timmy Turner", points = 10,
     id = 51488, badge = "52945", published = "8/5/2017 7:00:00 PM", modified = "8/5/2017 7:54:15 PM",
     trigger = trigger_in_game() && current_character() == character_timmy && trigger_rip_zippers(2)
 )
 
 achievement(
-    title = "No, This Is Patrick", description = "Play as Patrick Star", points = 20,
+    title = "No, This Is Patrick", description = "Play as Patrick Star", points = 10,
     id = 51489, badge = "52947", published = "8/5/2017 7:00:05 PM", modified = "8/5/2017 7:54:18 PM",
     trigger = trigger_in_game() && current_character() == character_patrick
 )
@@ -132,7 +132,7 @@ achievement(
 // Ticket 9375: Triggered as I started game
 //               MD5: 07f3b7415eb3779ff11e51a38d0ad3f8
 achievement(
-    title = "Ready For The New World", description = "Obtain your second Rip-Zipper and open the first barrier", points = 15,
+    title = "Ready For The New World", description = "Obtain your second Rip-Zipper and open the first barrier", points = 10,
     id = 51491, badge = "52959", published = "8/5/2017 7:00:12 PM", modified = "8/5/2017 7:54:26 PM",
     trigger = trigger_in_game() && trigger_rip_zippers(2)
 )
@@ -140,7 +140,7 @@ achievement(
 // Ticket 9376: Triggered as I started game
 //               MD5: 07f3b7415eb3779ff11e51a38d0ad3f8
 achievement(
-    title = "Stone Statue Pusher", description = "Obtain six Rip-Zippers and open the second barrier", points = 20,
+    title = "Stone Statue Pusher", description = "Obtain six Rip-Zippers and open the second barrier", points = 10,
     id = 51492, badge = "52971", published = "8/5/2017 7:00:15 PM", modified = "8/5/2017 7:54:29 PM",
     trigger = trigger_in_game() && trigger_rip_zippers(6)
 )
@@ -148,7 +148,7 @@ achievement(
 // Ticket 9377: Triggered as I started game
 //               MD5: 07f3b7415eb3779ff11e51a38d0ad3f8
 achievement(
-    title = "Time To Get Some Pants", description = "Obtain twelve Rip-Zippers and open the third barrier", points = 20,
+    title = "Time To Get Some Pants", description = "Obtain twelve Rip-Zippers and open the third barrier", points = 10,
     id = 51493, badge = "52958", published = "8/5/2017 7:00:18 PM", modified = "8/5/2017 7:54:31 PM",
     trigger = trigger_in_game() && trigger_rip_zippers(12)
 )
@@ -156,7 +156,7 @@ achievement(
 // Ticket 9378: Triggered as I started game
 //               MD5: 07f3b7415eb3779ff11e51a38d0ad3f8
 achievement(
-    title = "Prepare For Destruction", description = "Obtain eighteen Rip-Zippers and open the final barrier", points = 20,
+    title = "Prepare For Destruction", description = "Obtain eighteen Rip-Zippers and open the final barrier", points = 10,
     id = 51494, badge = "52955", published = "8/5/2017 7:00:20 PM", modified = "8/5/2017 7:54:33 PM",
     trigger = trigger_in_game() && trigger_rip_zippers(18)
 )
@@ -176,7 +176,7 @@ achievement(
 // Ticket 9379: Triggered as I started game
 //               MD5: 07f3b7415eb3779ff11e51a38d0ad3f8
 achievement(
-    title = "Just Getting Started", description = "Obtain forty Golden Hearts", points = 20,
+    title = "Just Getting Started", description = "Obtain forty Golden Hearts", points = 10,
     id = 51497, badge = "52964", published = "8/5/2017 7:00:27 PM", modified = "8/5/2017 7:54:39 PM",
     trigger = trigger_in_game() && trigger_golden_hearts(40)
 )
@@ -184,7 +184,7 @@ achievement(
 // Ticket 9380: Triggered as I started game
 //               MD5: 07f3b7415eb3779ff11e51a38d0ad3f8
 achievement(
-    title = "Over Half Way There", description = "Obtain sixty Golden Hearts", points = 20,
+    title = "Over Half Way There", description = "Obtain sixty Golden Hearts", points = 10,
     id = 51498, badge = "52966", published = "8/5/2017 7:00:29 PM", modified = "8/5/2017 7:54:41 PM",
     trigger = trigger_in_game() && trigger_golden_hearts(60)
 )
@@ -198,13 +198,13 @@ achievement(
 )
 
 achievement(
-    title = "That's Impressive!", description = "Obtain all Golden Hearts in the Game", points = 70,
+    title = "That's Impressive!", description = "Obtain all Golden Hearts in the Game", points = 50,
     id = 51500, badge = "52977", published = "8/5/2017 7:00:32 PM", modified = "8/5/2017 7:54:46 PM",
     trigger = trigger_in_game() && trigger_golden_hearts(115)
 )
 
 achievement(
-    title = "Five Of A Kind", description = "Obtain all five Golden Hearts in a level", points = 20,
+    title = "Five Of A Kind", description = "Obtain all five Golden Hearts in a level", points = 10,
     id = 51501, badge = "52968", published = "8/5/2017 7:00:34 PM", modified = "8/5/2017 7:54:48 PM",
     trigger = trigger_in_game() && current_hearts() == 5
 )

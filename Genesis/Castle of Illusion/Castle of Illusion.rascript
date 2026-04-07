@@ -76,19 +76,19 @@ rich_presence_display("Mickey is in {0} with {1} lives {2}",
 )
 
 achievement(
-    title = "High Powered Mouse", description = "Get a Power Level of 5 (Normal or Hard Difficulty)", points = 20,
+    title = "High Powered Mouse", description = "Get a Power Level of 5 (Normal or Hard Difficulty)", points = 10,
     id = 176, badge = "04979", published = "4/11/2013 6:36:49 PM", modified = "4/13/2016 12:41:15 PM",
     trigger = word(0x00F322) == 5 && current_difficulty() != 2
 )
 
 achievement(
-    title = "Lucky Seven", description = "Obtain 7 Lives", points = 20,
+    title = "Lucky Seven", description = "Obtain 7 Lives", points = 10,
     id = 177, badge = "04978", published = "4/11/2013 7:16:19 PM", modified = "1/4/2014 11:51:59 PM",
     trigger = word(0x00F324) >= 7
 )
 
 achievement(
-    title = "Keeps The Doctor Away", description = "Collect 30 apples", points = 20,
+    title = "Keeps The Doctor Away", description = "Collect 30 apples", points = 10,
     id = 58, badge = "04983", published = "12/1/2012 11:01:36 PM", modified = "1/4/2014 11:54:15 PM",
     trigger = byte(0x00F320) == 30 &&
               ((current_world() == 0) ||
@@ -96,7 +96,7 @@ achievement(
 )
 
 achievement(
-    title = "Losing Your Marbles", description = "Collect 30 marbles", points = 20,
+    title = "Losing Your Marbles", description = "Collect 30 marbles", points = 10,
     id = 4319, badge = "04946", published = "1/4/2014 12:42:17 AM", modified = "1/4/2014 11:51:55 PM",
     trigger = byte(0x00F320) == 30 &&
               ((current_world() == 1) ||
@@ -104,13 +104,13 @@ achievement(
 )
 
 achievement(
-    title = "Mickey Mage", description = "Collect 15 fireballs", points = 20,
+    title = "Mickey Mage", description = "Collect 15 fireballs", points = 10,
     id = 4343, badge = "04984", published = "1/4/2014 10:29:44 PM", modified = "1/5/2014 2:56:17 AM",
     trigger = byte(0x00F320) >= 15 && current_world() == 4
 )
 
 achievement(
-    title = "Hi Scoring Mouse", description = "Get Over 75000 Points", points = 20,
+    title = "Hi Scoring Mouse", description = "Get Over 75000 Points", points = 10,
     id = 4316, badge = "04944", published = "1/3/2014 11:54:58 PM", modified = "1/4/2014 11:51:51 PM",
     trigger = word(0x00F22E) >= 9464 && word(0x00F22C) >= 1
 )
@@ -122,7 +122,7 @@ achievement(
 )
 
 achievement(
-    title = "Taking The Mickey", description = "Get Over 250000 Points", points = 30,
+    title = "Taking The Mickey", description = "Get Over 250000 Points", points = 25,
     id = 4318, badge = "04980", published = "1/4/2014 12:06:47 AM", modified = "1/4/2014 11:56:45 PM",
     trigger = word(0x00F22E) >= 53392 && word(0x00F22C) >= 3
 )
@@ -134,67 +134,67 @@ achievement(
 )
 
 achievement(
-    title = "Secret Squeak", description = "Earn a Secret Bonus of over 25000", points = 20,
+    title = "Secret Squeak", description = "Earn a Secret Bonus of over 25000", points = 10,
     id = 4348, badge = "04982", published = "1/4/2014 11:42:36 PM", modified = "1/4/2014 11:51:15 PM",
     trigger = word(0x00F270) >= 25000
 )
 
 achievement(
-    title = "Technicallly Brilliant", description = "Earn a Technical Bonus of 10000", points = 20,
+    title = "Technicallly Brilliant", description = "Earn a Technical Bonus of 10000", points = 10,
     id = 4349, badge = "04981", published = "1/4/2014 11:47:49 PM", modified = "1/5/2014 2:27:33 AM",
     trigger = word(0x00F260) >= 10000
 )
 
 achievement(
-    title = "Red Gem", description = "Collect the Red Gem", points = 15,
+    title = "Red Gem", description = "Collect the Red Gem", points = 10,
     id = 4337, badge = "04971", published = "1/4/2014 7:26:57 PM", modified = "1/4/2014 11:51:40 PM",
     trigger = byte(0x00FF42) == 4 && byte(0x00F44E) == 1 && prev(byte(0x00F44E)) == 0
 )
 
 achievement(
-    title = "Orange Gem", description = "Collect the Orange Gem", points = 15,
+    title = "Orange Gem", description = "Collect the Orange Gem", points = 10,
     id = 4338, badge = "04962", published = "1/4/2014 7:32:08 PM", modified = "1/4/2014 11:51:37 PM",
     trigger = byte(0x00FF42) == 8 && byte(0x00F44E) == 1 && prev(byte(0x00F44E)) == 0
 )
 
 achievement(
-    title = "Yellow Gem", description = "Collect the Yellow Gem", points = 15,
+    title = "Yellow Gem", description = "Collect the Yellow Gem", points = 10,
     id = 4339, badge = "04970", published = "1/4/2014 7:37:51 PM", modified = "1/4/2014 11:51:35 PM",
     trigger = byte(0x00FF42) == 12 && byte(0x00F44E) == 1 && prev(byte(0x00F44E)) == 0
 )
 
 achievement(
-    title = "Green Gem", description = "Collect the Green Gem", points = 15,
+    title = "Green Gem", description = "Collect the Green Gem", points = 10,
     id = 4340, badge = "04968", published = "1/4/2014 7:52:14 PM", modified = "1/4/2014 11:51:33 PM",
     trigger = byte(0x00FF42) == 21 && byte(0x00F44E) == 1 && prev(byte(0x00F44E)) == 0
 )
 
 achievement(
-    title = "Blue Gem", description = "Collect the Blue Gem", points = 15,
+    title = "Blue Gem", description = "Collect the Blue Gem", points = 10,
     id = 4342, badge = "04973", published = "1/4/2014 10:21:23 PM", modified = "1/4/2014 11:51:32 PM",
     trigger = byte(0x00FF42) == 22 && byte(0x00F44E) == 1 && prev(byte(0x00F44E)) == 0
 )
 
 achievement(
-    title = "Indigo Gem", description = "Collect the Indigo Gem", points = 15,
+    title = "Indigo Gem", description = "Collect the Indigo Gem", points = 10,
     id = 4344, badge = "04974", published = "1/4/2014 10:33:13 PM", modified = "1/4/2014 11:51:29 PM",
     trigger = byte(0x00FF42) == 23 && byte(0x00F44E) == 1 && prev(byte(0x00F44E)) == 0
 )
 
 achievement(
-    title = "Violet Gem", description = "Collect the Violet Gem", points = 15,
+    title = "Violet Gem", description = "Collect the Violet Gem", points = 10,
     id = 4345, badge = "04975", published = "1/4/2014 10:52:09 PM", modified = "1/4/2014 11:51:27 PM",
     trigger = byte(0x00FF42) == 26 && byte(0x00F44E) == 1 && prev(byte(0x00F44E)) == 0
 )
 
 achievement(
-    title = "Save Minnie", description = "Rescue Minnie From Mizrabel", points = 30,
+    title = "Save Minnie", description = "Rescue Minnie From Mizrabel", points = 25,
     id = 4346, badge = "04976", published = "1/4/2014 11:17:53 PM", modified = "1/4/2014 11:51:21 PM",
     trigger = word(0x00F300) == 46
 )
 
 achievement(
-    title = "Mighty Mouse", description = "Rescue Minnie From Mizrabel on Hard Difficulty", points = 40,
+    title = "Mighty Mouse", description = "Rescue Minnie From Mizrabel on Hard Difficulty", points = 25,
     id = 4347, badge = "04977", published = "1/4/2014 11:24:42 PM", modified = "1/20/2014 12:55:20 AM",
     trigger = word(0x00F300) == 46 && current_difficulty() == 1
 )

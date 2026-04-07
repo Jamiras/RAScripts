@@ -44,7 +44,7 @@ weapon_darkfire = 4
 
 
 achievement(
-    title = "The Beginning of the Quest ", description = "Your Start in Eutruria", points = 8,
+    title = "The Beginning of the Quest ", description = "Your Start in Eutruria", points = 5,
     id = 15188, badge = "14679", published = "10/12/2014 3:46:24 PM", modified = "10/12/2014 4:04:02 PM",
     trigger = once(firebrand_state() == state_inching_forward) && 
               firebrand_state() == state_standing && 
@@ -52,7 +52,7 @@ achievement(
 )
 
 achievement(
-    title = "Time to Leave Etruria", description = "Defeat Nagus", points = 14,
+    title = "Time to Leave Etruria", description = "Defeat Nagus", points = 10,
     id = 15189, badge = "14779", published = "10/12/2014 3:46:49 PM", modified = "10/12/2014 4:04:04 PM",
     trigger = current_level() == 2 && current_scene() == 1 && 
               enemy_hp() == 0 && 
@@ -61,7 +61,7 @@ achievement(
 )
 
 achievement(
-    title = "Hinom Forest", description = "Defeat Death Ballon and learn the Magic Buster", points = 14,
+    title = "Hinom Forest", description = "Defeat Death Ballon and learn the Magic Buster", points = 10,
     id = 15190, badge = "14780", published = "10/12/2014 3:46:58 PM", modified = "10/12/2014 4:04:10 PM",
     trigger = current_level() == 7 && current_scene() == 2 && 
               enemy_hp() == 0 && 
@@ -71,7 +71,7 @@ achievement(
 )
 
 achievement(
-    title = "Desert Sittem", description = "Defeat the Sand Frog and learn the Magic Tornado", points = 14,
+    title = "Desert Sittem", description = "Defeat the Sand Frog and learn the Magic Tornado", points = 10,
     id = 15191, badge = "14782", published = "10/12/2014 3:47:07 PM", modified = "10/12/2014 4:04:15 PM",
     trigger = current_level() == 7 && current_scene() == 8 && 
               byte(0x00041C) == 0 && 
@@ -82,7 +82,7 @@ achievement(
 
 // 9973: Activated upon reentering the level after getting a game over against the boss  (RetroArch, FCEUmm)<br/>MD5: 95a84bf29a9de8db0d36cb62d6fe225d
 achievement(
-    title = "Removing the Sand", description = "Defeat the Sand Frog using only the Normal Attack (without dying)", points = 19,
+    title = "Removing the Sand", description = "Defeat the Sand Frog using only the Normal Attack (without dying)", points = 25,
     id = 15192, badge = "14783", published = "10/12/2014 3:47:14 PM", modified = "9/24/2015 7:38:33 AM",
     trigger = current_level() == 5 && 
               byte(0x00006B) == 2 && 
@@ -94,7 +94,7 @@ achievement(
 )
 
 achievement(
-    title = "Breaking the Barrier", description = "Raise the Jump to Lv.3", points = 14,
+    title = "Breaking the Barrier", description = "Raise the Jump to Lv.3", points = 10,
     id = 15193, badge = "14786", published = "10/12/2014 3:47:20 PM", modified = "10/12/2014 4:04:25 PM",
     trigger = current_level() == 15 && 
               once(byte(0x00007D) == 0x01) && 
@@ -103,7 +103,7 @@ achievement(
 
 // 9972: Activated upon restarting the fight after a loss (RetroArch, FCEUmm)<br/>MD5: 95a84bf29a9de8db0d36cb62d6fe225d
 achievement(
-    title = "King's Palace", description = "Defeat the Fake King", points = 14,
+    title = "King's Palace", description = "Defeat the Fake King", points = 10,
     id = 15194, badge = "14787", published = "10/12/2014 3:47:27 PM", modified = "10/12/2014 4:04:27 PM",
     trigger = byte(0x000040) == 0x17 && 
               byte(0x00006B) == 1 && 
@@ -113,7 +113,7 @@ achievement(
 )
 
 achievement(
-    title = "Mt. Imaus", description = "Defeat the Twin Guardian and get the Jump Upgrade", points = 19,
+    title = "Mt. Imaus", description = "Defeat the Twin Guardian and get the Jump Upgrade", points = 25,
     id = 15195, badge = "14792", published = "10/12/2014 3:47:38 PM", modified = "10/12/2014 4:04:30 PM",
     trigger = current_level() == 15 && 
               byte(0x00006B) == 2 && 
@@ -123,13 +123,13 @@ achievement(
 )
 
 achievement(
-    title = "Desert Near Topete", description = "Defeat the Outside Labyrinth", points = 19,
+    title = "Desert Near Topete", description = "Defeat the Outside Labyrinth", points = 25,
     id = 15196, badge = "14793", published = "10/12/2014 3:47:44 PM", modified = "10/12/2014 4:04:33 PM",
     trigger = byte(0x000040) == 0x1D && byte(0x000438) == 0
 )
 
 achievement(
-    title = "Praying Mantis", description = "Defeat the Outside Labyrinth using only the Normal Attack", points = 24,
+    title = "Praying Mantis", description = "Defeat the Outside Labyrinth using only the Normal Attack", points = 25,
     id = 15197, badge = "14794", published = "10/12/2014 3:47:48 PM", modified = "10/12/2014 4:04:35 PM",
     trigger = byte(0x000040) == 0x1D && byte(0x000438) == 0 && 
               never(current_weapon() != weapon_fire) &&    // using only the fire weapon
@@ -142,7 +142,7 @@ achievement(
 // 6069: Labyrinth popped halfway through the level, and the other 3 popped when I died against Goza and Breagar the first time. I'm using USA version.
 // 5825: Trigger before defeat Doppelganger
 achievement(
-    title = "Labyrinth", description = "Defeat the Doppelganger", points = 14,
+    title = "Labyrinth", description = "Defeat the Doppelganger", points = 10,
     id = 15198, badge = "14810", published = "10/12/2014 3:47:52 PM", modified = "10/12/2014 4:04:38 PM",
     trigger = byte(0x000040) == 7 &&
               once(enemy_hp() == 32) &&                    // from 32 health
@@ -151,7 +151,7 @@ achievement(
 )
 
 achievement(
-    title = "Fake Firebrand", description = "Defeat the Doppelganger using only the Normal Attack", points = 24,
+    title = "Fake Firebrand", description = "Defeat the Doppelganger using only the Normal Attack", points = 25,
     id = 15199, badge = "14809", published = "10/12/2014 3:47:56 PM", modified = "10/12/2014 4:04:40 PM",
     trigger = byte(0x000040) == 7 && 
               never(current_weapon() != weapon_fire) &&    // using only the normal attack
@@ -162,13 +162,13 @@ achievement(
 )
 
 achievement(
-    title = "The Power of the Queen", description = "Get the Magic Claw from the Queen", points = 9,
+    title = "The Power of the Queen", description = "Get the Magic Claw from the Queen", points = 10,
     id = 15200, badge = "14811", published = "10/12/2014 3:47:59 PM", modified = "10/12/2014 4:04:43 PM",
     trigger = once(bit3(0x000064) == 0x0) && bit3(0x000064) == 0x1 && byte(0x000040) == 0x02
 )
 
 achievement(
-    title = "The Power of the King", description = "Get the Hippogriff's Feather from the King", points = 9,
+    title = "The Power of the King", description = "Get the Hippogriff's Feather from the King", points = 10,
     id = 15201, badge = "14812", published = "10/12/2014 3:48:13 PM", modified = "10/12/2014 4:04:45 PM",
     trigger = byte(0x000040) == 2 && once(byte(0x000063) == 0x02) && byte(0x000063) == 0x03
 )
@@ -176,7 +176,7 @@ achievement(
 // 9979: Activated upon restarting the fight after a loss (RetroArch, FCEUmm)<br/>MD5: 95a84bf29a9de8db0d36cb62d6fe225d
 // 6070: Labyrinth popped halfway through the level, and the other 3 popped when I died against Goza and Breagar the first time. I'm using USA version.
 achievement(
-    title = "Goza's Palace", description = "Defeat Goza", points = 19,
+    title = "Goza's Palace", description = "Defeat Goza", points = 25,
     id = 15202, badge = "14815", published = "10/12/2014 3:48:22 PM", modified = "10/12/2014 4:04:48 PM",
     trigger = byte(0x000040) == 8 && 
               once(enemy_hp() == 120) &&                   // from 120 health
@@ -185,7 +185,7 @@ achievement(
 )
 
 achievement(
-    title = "More Powerful Than Goza", description = "Defeat Goza without taking damage", points = 24,
+    title = "More Powerful Than Goza", description = "Defeat Goza without taking damage", points = 25,
     id = 15203, badge = "14814", published = "10/12/2014 3:48:27 PM", modified = "10/12/2014 4:04:50 PM",
     trigger = byte(0x000040) == 8 && 
               once(enemy_hp() == 120) &&                       // from 120 health
@@ -199,7 +199,7 @@ achievement(
 // 6071: Labyrinth popped halfway through the level, and the other 3 popped when I died against Goza and Breagar the first time. I'm using USA version.
 // 930: triggered in last stage.
 achievement(
-    title = "Breager's Palace", description = "Defeat Breager", points = 24,
+    title = "Breager's Palace", description = "Defeat Breager", points = 25,
     id = 15204, badge = "14833", published = "10/12/2014 3:48:31 PM", modified = "10/12/2014 4:04:53 PM",
     trigger = byte(0x000040) == 9 && 
               once(enemy_hp() == 160) &&                   // from 160 health
@@ -212,7 +212,7 @@ achievement(
 // 6072: Labyrinth popped halfway through the level, and the other 3 popped when I died against Goza and Breagar the first time. I'm using USA version.
 // 931: triggered after die and restart on Breager.
 achievement(
-    title = "The Real Red Blaze", description = "Defeat Breager without taking damage", points = 29,
+    title = "The Real Red Blaze", description = "Defeat Breager without taking damage", points = 25,
     id = 15205, badge = "14834", published = "10/12/2014 3:48:35 PM", modified = "10/12/2014 4:04:56 PM",
     trigger = byte(0x000040) == 9 && 
               once(enemy_hp() == 160) &&                       // from 160 health
@@ -222,37 +222,37 @@ achievement(
 )
 
 achievement(
-    title = "The Human World", description = "A very Beatiful Land", points = 19,
+    title = "The Human World", description = "A very Beatiful Land", points = 25,
     id = 15206, badge = "14835", published = "10/12/2014 3:48:37 PM", modified = "10/12/2014 4:04:58 PM",
     trigger = once(byte(0x000040) == 0x02) && byte(0x000040) == 0x16 && byte(0x000063) == 0x04 && byte(0x00007D) == 0x04 && bit4(0x000064) == 0x1
 )
 
 achievement(
-    title = "Time to Rest", description = "It's a Long trip, so...", points = 9,
+    title = "Time to Rest", description = "It's a Long trip, so...", points = 10,
     id = 15207, badge = "14784", published = "10/12/2014 3:48:45 PM", modified = "10/12/2014 4:05:01 PM",
     trigger = once(firebrand_state() == state_standing) && firebrand_state() == state_sitting
 )
 
 achievement(
-    title = "Another Heart", description = "Get the first Life Upgrade", points = 9,
+    title = "Another Heart", description = "Get the first Life Upgrade", points = 10,
     id = 15208, badge = "14685", published = "10/12/2014 3:48:53 PM", modified = "10/12/2014 4:05:05 PM",
     trigger = once(max_health() == 0x03) && max_health() == 0x04 && current_health() == 0x04
 )
 
 achievement(
-    title = "Fallen Angel", description = "Raise the Wings to Lv.2", points = 9,
+    title = "Fallen Angel", description = "Raise the Wings to Lv.2", points = 10,
     id = 15209, badge = "14781", published = "10/12/2014 3:49:00 PM", modified = "10/12/2014 4:05:08 PM",
     trigger = current_level() == 15 && current_scene() == 1 && once(byte(0x000063) == 0) && byte(0x000063) == 0x01
 )
 
 achievement(
-    title = "Red Arremer", description = "A Perfect Gargoyle", points = 24,
+    title = "Red Arremer", description = "A Perfect Gargoyle", points = 25,
     id = 15210, badge = "14813", published = "10/12/2014 3:49:04 PM", modified = "10/12/2014 4:05:11 PM",
     trigger = bit3(0x000064) == 0x1 && bit4(0x000064) == 0x1 && byte(0x000063) == 0x04 && byte(0x00007D) == 0x04 && max_health() == 0x08
 )
 
 achievement(
-    title = "Very Few Vails", description = "Get the MAX of Vails", points = 19,
+    title = "Very Few Vails", description = "Get the MAX of Vails", points = 25,
     id = 15211, badge = "14790", published = "10/12/2014 3:49:07 PM", modified = "10/12/2014 4:05:14 PM",
     trigger = byte(0x00007E) == 0x99
 )

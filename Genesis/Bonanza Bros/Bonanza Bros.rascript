@@ -233,7 +233,7 @@ achievement(
 )
 
 achievement(
-    title = "Two Thief", points = 15,
+    title = "Two Thief", points = 10,
     description = "Beat The game in 2 player",
     id = 8533, badge = "08469", published = "5/25/2014 5:15:41 PM", modified = "5/25/2014 5:16:45 PM",
     trigger = stage() == 14 && once(byte(0x00C076) == 3)
@@ -247,7 +247,7 @@ achievement(
 )
 
 achievement(
-    title = "Two Thief Legendary", points = 40,
+    title = "Two Thief Legendary", points = 50,
     description = "Beat the game 2 player without lost continue and with hard difficulty",
     id = 8547, badge = "08484", published = "5/25/2014 5:16:04 PM", modified = "5/25/2014 5:17:06 PM",
     trigger = once(title_screen_pereira_s_checkpoint() == 2) && never(number_of_continues_remaining() == 2) && stage() == 14 && once(byte(0x00C076) ==

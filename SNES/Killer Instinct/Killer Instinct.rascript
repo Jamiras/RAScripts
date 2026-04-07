@@ -127,7 +127,7 @@ achievement(
 )
 
 achievement(
-    title = "Speed Demon", description = "Win a fight between 10 and 15 seconds", points = 15,
+    title = "Speed Demon", description = "Win a fight between 10 and 15 seconds", points = 10,
     id = 2386, published = "8/22/2013 6:06:22 AM", modified = "8/28/2013 10:58:39 PM",
     trigger = byte(0x0010DC) == 8 && byte(0x0010DC) < 9 && byte(0x0010DB) > 4 && current_screen() >= 34542 && current_opponent_health() == 0 && current_health() > 0 && byte(0x000248) == 0 && byte(0x000DEA) == 1 && word(0x000EC4) > 0 && byte(0x0010EC) == 9 && trigger_single_player() && current_screen() <= 34545
 )
@@ -207,19 +207,19 @@ achievement(
 )
 
 achievement(
-    title = "Champion", description = "Complete the game on default or higher difficulty", points = 15,
+    title = "Champion", description = "Complete the game on default or higher difficulty", points = 10,
     id = 2402, published = "8/22/2013 8:29:34 PM", modified = "8/23/2013 5:28:02 AM",
     trigger = current_battle_index() == 11 && current_difficulty() >= 3 && current_difficulty() < 6 && trigger_single_player()
 )
 
 achievement(
-    title = "Legend", description = "Complete the game on the highest difficulty", points = 30,
+    title = "Legend", description = "Complete the game on the highest difficulty", points = 25,
     id = 2403, published = "8/22/2013 8:29:36 PM", modified = "8/23/2013 5:27:53 AM",
     trigger = current_battle_index() == 11 && current_difficulty() == 5 && trigger_single_player()
 )
 
 achievement(
-    title = "Killer Instinct", description = "Complete the game without using a Continue on 4 Stars or higher difficulty", points = 15,
+    title = "Killer Instinct", description = "Complete the game without using a Continue on 4 Stars or higher difficulty", points = 10,
     id = 2404, published = "8/22/2013 8:46:41 PM", modified = "3/11/2014 3:58:50 AM",
     trigger = current_battle_index() == 11 && current_difficulty() < 6 && continues_used() == 0 && current_difficulty() > 2 && trigger_single_player()
 )
@@ -237,7 +237,7 @@ achievement(
 )
 
 achievement(
-    title = "Killer King", description = "Get over 500,000 Score in a single fight", points = 20,
+    title = "Killer King", description = "Get over 500,000 Score in a single fight", points = 10,
     id = 2416, published = "8/22/2013 11:01:50 PM", modified = "8/28/2013 10:41:31 PM",
     trigger = current_difficulty() < 6 && word(0x000EC4) >= 1953 && trigger_battle_screen()
 )

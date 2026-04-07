@@ -157,7 +157,7 @@ achievement(
 )
 
 achievement(
-    title = "It Was All A Dream", description = "Wake the Wind Fish from his slumber", points = 15,
+    title = "It Was All A Dream", description = "Wake the Wind Fish from his slumber", points = 10,
     id = 28827, badge = "29322", published = "9/16/2015 2:13:00 PM", modified = "12/7/2016 11:20:35 AM",
     trigger = once(byte(0x00D3CA) == 61) && once(byte(0x00D3CB) == 63) && once(byte(0x00D401) == 0) && 
               once(byte(0x00D402) == 0) && once(byte(0x00D403) == 0) && once(never(byte(0x00D401) != 0)) && 
@@ -167,7 +167,7 @@ achievement(
 // Ticket 6064: ugh, this trigerred wrongly too. disgusting
 // Ticket 3525: The achievements for beating the game without dying and waking the Wind Fish didn't trigger.
 achievement(
-    title = "A Dream Come True", description = "Help Marin fulfill her dream", points = 20,
+    title = "A Dream Come True", description = "Help Marin fulfill her dream", points = 10,
     id = 28828, badge = "29323", published = "9/16/2015 2:13:02 PM", modified = "12/7/2016 11:20:43 AM",
     trigger = once(byte(0x00D3CA) == 61) && 
               once(byte(0x00D3CB) == 63) && 
@@ -206,7 +206,7 @@ function trigger_damageless_boss(dungeon, room_before_boss) =>
 //    once(byte(0x00D34D) == 124)                       // pick up the heart
 
 achievement(
-    title = "Bested Moldorm", description = "Defeat Moldorm without being harmed", points = 15,
+    title = "Bested Moldorm", description = "Defeat Moldorm without being harmed", points = 10,
     id = 28829, badge = "29327", published = "9/16/2015 2:13:04 PM", modified = "12/7/2016 11:20:45 AM",
     trigger = trigger_damageless_boss(0, 38)
 )
@@ -220,7 +220,7 @@ achievement(
 //               time.
 // Ticket 4838: Broken achievement :(
 achievement( // F10
-    title = "Bested Genie", description = "Defeat Genie without being harmed", points = 15,
+    title = "Bested Genie", description = "Defeat Genie without being harmed", points = 10,
     id = 28830, badge = "29330", published = "9/16/2015 2:13:07 PM", modified = "12/7/2016 11:20:47 AM",
     trigger = trigger_damageless_boss(1, 38)
 )
@@ -235,7 +235,7 @@ achievement( // F10
 //               taking any damage,but I didn't get the achievment.
 // Ticket 3518: Bested Slime Eye didn't trigger for me when I beat him without damage.
 achievement( // F9
-    title = "Bested Slime Eye", description = "Defeat Slime Eye without being harmed", points = 15,
+    title = "Bested Slime Eye", description = "Defeat Slime Eye without being harmed", points = 10,
     id = 28831, badge = "29333", published = "9/16/2015 2:13:12 PM", modified = "12/7/2016 11:20:50 AM",
     trigger = trigger_damageless_boss(2, 62)
 )
@@ -245,7 +245,7 @@ achievement( // F9
 //               bosses before so I think it might apply to all bosses. In order to trigger you need to not take damage
 //               during the fight AND have all your hearts.
 achievement( // F8
-    title = "Bested Angler Fish", description = "Defeat Angler Fish without being harmed", points = 15,
+    title = "Bested Angler Fish", description = "Defeat Angler Fish without being harmed", points = 10,
     id = 28832, badge = "29400", published = "9/16/2015 2:13:15 PM", modified = "12/7/2016 11:20:53 AM",
     trigger = trigger_damageless_boss(3, 33)
 )
@@ -253,14 +253,14 @@ achievement( // F8
 // resetif (0xd402) != level is causing resetif when opening menu during fight
 
 achievement( // F7
-    title = "Bested Slime Eel", description = "Defeat Slime Eel without being harmed", points = 15,
+    title = "Bested Slime Eel", description = "Defeat Slime Eel without being harmed", points = 10,
     id = 28833, badge = "29401", published = "9/16/2015 2:13:18 PM", modified = "12/7/2016 11:20:55 AM",
     trigger = trigger_damageless_boss(4, 19)
 )
 
 // triggers even if taking damage
 achievement( // F6
-    title = "Bested Facade", description = "Defeat Facade without being harmed", points = 15,
+    title = "Bested Facade", description = "Defeat Facade without being harmed", points = 10,
     id = 28834, badge = "29406", published = "9/16/2015 2:13:20 PM", modified = "12/7/2016 11:20:58 AM",
     trigger = trigger_damageless_boss(5, 36) // room before boss is 36 - $D46C goes to 37 when picking up the heart
 )
@@ -269,7 +269,7 @@ achievement( // F6
 // Ticket 6044: I got hit a LOT of times. rom version 02
 // Ticket 4948: Win achievement with 13 hearts lost.
 achievement( // F5
-    title = "Bested Evil Eagle", description = "Defeat Evil Eagle without being harmed", points = 15,
+    title = "Bested Evil Eagle", description = "Defeat Evil Eagle without being harmed", points = 10,
     id = 28835, badge = "29408", published = "9/16/2015 2:13:23 PM", modified = "12/7/2016 11:21:00 AM",
     trigger = trigger_damageless_boss(6, 54) && once(byte(0xD401) == 2)
               // the room does not change when fighting the boss (it stays 54). instead, look at $D401
@@ -278,7 +278,7 @@ achievement( // F5
 )
 
 achievement( // F4
-    title = "Bested Hot Head", description = "Defeat Hot Head without being harmed", points = 15,
+    title = "Bested Hot Head", description = "Defeat Hot Head without being harmed", points = 10,
     id = 28836, badge = "29321", published = "9/16/2015 2:13:25 PM", modified = "12/7/2016 11:21:02 AM",
     trigger = trigger_damageless_boss(7, 19)
 )
@@ -288,7 +288,7 @@ achievement( // F4
 // Ticket 5668: I took a lot of damage during the fight, but the achievement triggered anyway.  I'll remove it from my
 //               achievements.  Not sure what I did to trigger it.
 achievement( // F3
-    title = "Bested Shadow Nightmares", description = "Defeat all 6 Shadow Nightmares without being harmed", points = 20,
+    title = "Bested Shadow Nightmares", description = "Defeat all 6 Shadow Nightmares without being harmed", points = 10,
     id = 28837, badge = "29325", published = "9/16/2015 2:13:28 PM", modified = "12/7/2016 11:21:05 AM",
     trigger = never(player_health() < prev(player_health())) && // without taking damage
               once(byte(0x00DB60) == 8) &&                      // dungeon 8
@@ -315,7 +315,7 @@ achievement( // F3
 //               the achievment just triggered,i didn't need to take care of not beeing hit.
 // Ticket 3529: The Bested Evil Orb achievement triggered when I did a save
 achievement( // F2
-    title = "Bested Evil Orb", description = "Defeat Evil Orb without being harmed", points = 20,
+    title = "Bested Evil Orb", description = "Defeat Evil Orb without being harmed", points = 10,
     id = 28908, badge = "29419", published = "9/18/2015 1:40:27 PM", modified = "12/7/2016 11:22:01 AM",
     trigger = never(player_health() < prev(player_health())) && // without taking damage
               byte(0x00DB60) == 255 &&                          // color dungeon
@@ -359,7 +359,7 @@ achievement(
 )
 
 achievement(
-    title = "Music Man", description = "Learn all 3 Ocarina songs", points = 15,
+    title = "Music Man", description = "Learn all 3 Ocarina songs", points = 10,
     id = 28842, badge = "29334", published = "9/16/2015 2:13:40 PM", modified = "12/7/2016 11:21:22 AM",
     trigger = byte(0x00DB49) == 7
 )
@@ -378,7 +378,7 @@ achievement(
 )
 
 achievement(
-    title = "Awaken My Heart", description = "Obtain all 14 Heart Containers", points = 15,
+    title = "Awaken My Heart", description = "Obtain all 14 Heart Containers", points = 10,
     id = 28845, badge = "29316", published = "9/16/2015 2:13:50 PM", modified = "12/7/2016 11:21:31 AM",
     trigger = once(player_max_health() == 14)
 )
@@ -397,7 +397,7 @@ achievement(
 )
 
 achievement(
-    title = "The Travels of THIEF", description = "Complete the Photo Album", points = 20,
+    title = "The Travels of THIEF", description = "Complete the Photo Album", points = 10,
     id = 31930, badge = "32674", published = "1/16/2016 6:26:02 PM", modified = "12/7/2016 11:25:57 AM",
     trigger = once(bit0(0x00DC0C) == 1) && once(bit1(0x00DC0C) == 1) && once(bit2(0x00DC0C) == 1) && 
               once(bit3(0x00DC0C) == 1) && once(bit4(0x00DC0C) == 1) && once(bit5(0x00DC0C) == 1) && 

@@ -38,7 +38,7 @@ mode_walking = 0x05 // both in dungeons and overworld
 
 // 6677: Recieved during first quest, Level 8, I had recently recieved "Dungeon Cartographer", as in I had all the maps and compasses for quest 1. I died in level 8 then recieved this achievement when I chooose to save.
 achievement(
-    title = "Dungeon Explorer", description = "Find all compasses and maps in the second quest", points = 8,
+    title = "Dungeon Explorer", description = "Find all compasses and maps in the second quest", points = 5,
     id = 22743, badge = "34716", published = "5/10/2015 7:23:19 PM", modified = "3/14/2016 10:25:58 AM",
     trigger = byte(0x000667) == 255 &&       // level 9 compass bits??
               byte(0x000668) == 255 &&       // level 9 map bits??
@@ -94,7 +94,7 @@ achievement(
 // 7398: I went through every known cave I could find in the first quest that had a moblin in it, but the achievement still didn't activate.
 // 14 moblins + a heart container??
 achievement(
-    title = "Bounty Hunter", description = "Receive money from every hidden moblin in the first quest", points = 7,
+    title = "Bounty Hunter", description = "Receive money from every hidden moblin in the first quest", points = 5,
     id = 33226, badge = "34098", published = "2/24/2016 8:35:56 PM", modified = "1/11/2017 1:09:58 PM",
     trigger = byte(0x0006E6) >= 144 &&  // 30 rupees, 0x67
               byte(0x00068E) >= 16 &&   // 100 rupees, 0x0F
@@ -132,7 +132,7 @@ achievement(
 
 // 8339: 	Full hearts, used bombs. Grabbed a heart. Didn't trigger. Should have gotten it 3 times already. Even tried without full health.
 achievement(
-    title = "Blue Darknut expert", description = "Clear the item room in level 5 without taking damage (not owning the magical sword and without leaving)", points = 6,
+    title = "Blue Darknut expert", description = "Clear the item room in level 5 without taking damage (not owning the magical sword and without leaving)", points = 5,
     id = 33339, badge = "34220", published = "2/26/2016 3:48:10 PM", modified = "3/15/2016 4:24:44 PM",
     trigger = never(current_location() != 5) &&                   // don't leave room
               current_dungeon_location() == 11 && 
@@ -165,7 +165,7 @@ achievement(
 
 // 7439: doesn't trigger if leave room and come back [05.sav]
 achievement(
-    title = "Darknut bombing expert", description = "Clear the item room in level 3 only using bombs (not owning magical sword and without leaving)", points = 6,
+    title = "Darknut bombing expert", description = "Clear the item room in level 3 only using bombs (not owning magical sword and without leaving)", points = 5,
     id = 33340, badge = "34099", published = "2/26/2016 3:49:42 PM", modified = "3/15/2016 4:24:35 PM",
     trigger = current_dungeon_location() == 116 && 
               never(current_location() != 105) &&                 // don't leave room

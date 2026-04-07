@@ -252,31 +252,31 @@ achievement(
 )
 
 achievement(
-    title = "Kobun Tiger!", description = "Learn [Judo Attack 1].", points = 15,
+    title = "Kobun Tiger!", description = "Learn [Judo Attack 1].", points = 10,
     id = 11705, badge = "11494", published = "8/19/2014 2:57:27 AM", modified = "8/19/2014 4:55:35 AM",
     trigger = byte(0x001AD6) == 1
 )
 
 achievement(
-    title = "Lightning Blaster!", description = "Learn [Judo Attack 2].", points = 15,
+    title = "Lightning Blaster!", description = "Learn [Judo Attack 2].", points = 10,
     id = 11706, badge = "11495", published = "8/19/2014 2:57:29 AM", modified = "8/19/2014 4:55:36 AM",
     trigger = byte(0x001AD8) == 1
 )
 
 achievement(
-    title = "Super Yin!", description = "Learn [Judo Attack 3].", points = 15,
+    title = "Super Yin!", description = "Learn [Judo Attack 3].", points = 10,
     id = 11707, badge = "11496", published = "8/19/2014 2:57:32 AM", modified = "8/19/2014 4:55:37 AM",
     trigger = byte(0x001ADA) == 1
 )
 
 achievement(
-    title = "Kabuki Quantum Yin!", description = "Learn [Judo Attack 4].", points = 15,
+    title = "Kabuki Quantum Yin!", description = "Learn [Judo Attack 4].", points = 10,
     id = 11708, badge = "11497", published = "8/19/2014 2:57:34 AM", modified = "8/19/2014 4:55:40 AM",
     trigger = byte(0x001ADC) == 1
 )
 
 achievement(
-    title = "Level 1", description = "Complete Warlock Zone 1.", points = 20,
+    title = "Level 1", description = "Complete Warlock Zone 1.", points = 10,
     id = 11702, badge = "11484", published = "8/18/2014 10:54:44 PM", modified = "8/19/2014 4:55:32 AM",
     trigger = byte(0x00CB70) == 79 && byte(0x00CB72) == 72 && byte(0x00CB74) == 32 && byte(0x00CB76) == 77 && 
               byte(0x00CB78) == 89 && byte(0x00CB7A) == 44 && byte(0x00CB7C) == 32 && byte(0x00CB7E) == 89 && 
@@ -284,7 +284,7 @@ achievement(
 )
 
 achievement(
-    title = "Level 2", description = "Complete Warlock Zone 2.", points = 20,
+    title = "Level 2", description = "Complete Warlock Zone 2.", points = 10,
     id = 11709, badge = "11499", published = "8/19/2014 3:08:50 AM", modified = "8/19/2014 4:55:38 AM",
     trigger = byte(0x00CC0C) == 75 && byte(0x00CC0E) == 79 && byte(0x00CC10) == 66 && byte(0x00CC12) == 65 && 
               byte(0x00CC14) == 78 && byte(0x00CC16) == 32 && byte(0x00CC18) == 67 && byte(0x00CC1A) == 65 && 
@@ -292,14 +292,14 @@ achievement(
 )
 
 achievement(
-    title = "Level 3", description = "Clear Warlock Zone 4.", points = 20,
+    title = "Level 3", description = "Clear Warlock Zone 4.", points = 10,
     id = 11714, badge = "11505", published = "8/19/2014 4:11:24 AM", modified = "8/19/2014 4:55:46 AM",
     trigger = byte(0x00CBBA) == 44 && byte(0x00CBBC) == 32 && byte(0x00CBBE) == 89 && byte(0x00CBC0) == 65 && 
               byte(0x00CBC2) == 69 && byte(0x00CBC4) == 46
 )
 
 achievement(
-    title = "Level 4", description = "Clear Warlock Zone 5.", points = 20,
+    title = "Level 4", description = "Clear Warlock Zone 5.", points = 10,
     id = 11720, badge = "11513", published = "8/19/2014 4:33:13 AM", modified = "8/19/2014 4:55:48 AM",
     trigger = byte(0x00CB70) == 65 && byte(0x00CB72) == 72 && byte(0x00CB74) == 72 && byte(0x00CB76) == 72 && 
               byte(0x00CB78) == 72 && byte(0x00CB7A) == 46 && byte(0x00CB7C) == 46 && byte(0x00CB7E) == 46

@@ -59,7 +59,7 @@ achievement(
 )
 
 achievement(
-    title = "Expert", description = "Complete Game A on level 5", points = 15,
+    title = "Expert", description = "Complete Game A on level 5", points = 10,
     id = 3393, badge = "03977", published = "10/29/2013 11:23:21 PM", modified = "11/17/2013 10:23:40 PM",
     trigger = once(byte(0x000402) == 5) && game_type() == 0
 )
@@ -71,13 +71,13 @@ achievement(
 )
 
 achievement(
-    title = "Intermediate B", description = "Complete Game B on level 3", points = 15,
+    title = "Intermediate B", description = "Complete Game B on level 3", points = 10,
     id = 3398, badge = "03982", published = "10/29/2013 11:23:43 PM", modified = "11/17/2013 10:32:59 PM",
     trigger = game_type() == 1 && byte(0x000402) == 3
 )
 
 achievement(
-    title = "Expert B", description = "Complete Game B on level 5", points = 20,
+    title = "Expert B", description = "Complete Game B on level 5", points = 10,
     id = 3399, badge = "03983", published = "10/29/2013 11:23:48 PM", modified = "11/17/2013 10:32:55 PM",
     trigger = game_type() == 1 && byte(0x000402) == 5
 )
@@ -164,7 +164,7 @@ achievement(
 )
 
 achievement(
-    title = "80k", description = "Score 80,000 points", points = 30,
+    title = "80k", description = "Score 80,000 points", points = 25,
     id = 3586, badge = "04188", published = "11/16/2013 3:04:26 PM", modified = "11/16/2013 3:09:39 PM",
     trigger = p1_score_10k() == 8
 )
@@ -194,7 +194,7 @@ achievement(
 //               I made it to the next level both of these triggered. I can only assume it's because I never lost any
 //               lives BESIDES the extra one.
 achievement(
-    title = "Unstoppable II", description = "Complete two playthroughs on Game B without dying", points = 30,
+    title = "Unstoppable II", description = "Complete two playthroughs on Game B without dying", points = 25,
     id = 3589, badge = "04191", published = "11/16/2013 3:04:39 PM", modified = "6/25/2015 12:31:20 PM",
     trigger = flawless_playthrough(2, type_b)
 )
@@ -206,7 +206,7 @@ achievement(
 // Ticket 3159: died one time at level 2 i think and i got to lvl 4 and died at scene 1 it said gameover and i got the
 //               achivement
 achievement(
-    title = "Invincible II", description = "Complete three playthroughs on Game B without dying", points = 35,
+    title = "Invincible II", description = "Complete three playthroughs on Game B without dying", points = 25,
     id = 3590, badge = "04193", published = "11/16/2013 3:04:43 PM", modified = "11/17/2013 10:30:08 PM",
     trigger = flawless_playthrough(3, type_b)
 )
@@ -216,7 +216,7 @@ achievement(
 // Ticket 5210: It triggered when I won the game.
 // Ticket 2831: Both of these achievements triggered when I died during stage 1 of the second loop of game A/B.
 achievement(
-    title = "Iron Man", description = "Complete one playthrough on Game A without dying", points = 15,
+    title = "Iron Man", description = "Complete one playthrough on Game A without dying", points = 10,
     id = 3581, badge = "04185", published = "11/16/2013 3:04:01 PM", modified = "11/16/2013 3:16:59 PM",
     trigger = flawless_playthrough(1, type_a)
 )
@@ -237,7 +237,7 @@ achievement(
 )
 
 achievement(
-    title = "Invincible", description = "Complete three playthroughs on Game A without dying", points = 35,
+    title = "Invincible", description = "Complete three playthroughs on Game A without dying", points = 25,
     id = 3584, badge = "04187", published = "11/16/2013 3:04:17 PM", modified = "11/17/2013 11:21:45 PM",
     trigger = flawless_playthrough(3, type_a)
 )

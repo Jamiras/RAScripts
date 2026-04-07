@@ -125,7 +125,7 @@ achievement(
 )
 
 achievement(
-    title = "I'm Master Puzzle", description = "Beat Game any character in Master Arcade", points = 40,
+    title = "I'm Master Puzzle", description = "Beat Game any character in Master Arcade", points = 25,
     id = 6152, badge = "06554", published = "3/12/2014 1:29:11 AM", modified = "3/13/2014 2:26:56 PM",
     trigger = arcade_difficulty() == 3 && byte(0x009E54) == 30 && byte(0x0045B4) == 0 && byte(0x0045B0) == 5
 )
@@ -141,13 +141,13 @@ achievement(
 //               RAVisualBoyAdvance 0.054.
 //               MD5: 14d0771c15676e2b3b75c4c149879586
 achievement(
-    title = "Danger Gems!!", description = "Drop 31 or more gems to the enemy", points = 15,
+    title = "Danger Gems!!", description = "Drop 31 or more gems to the enemy", points = 10,
     id = 6157, badge = "06559", published = "3/12/2014 10:00:14 PM", modified = "5/4/2015 5:41:39 AM",
     trigger = byte(0x002FE8) >= 31 && byte(0x0045B0) == 2 && byte(0x045DB) != 0
 )
 
 achievement(
-    title = "Yes! I'm Rock", description = "Get 5 combo chain", points = 15,
+    title = "Yes! I'm Rock", description = "Get 5 combo chain", points = 10,
     id = 6158, badge = "06560", published = "3/12/2014 10:00:17 PM", modified = "5/4/2015 5:41:43 AM",
     trigger = once(byte(0x003055) >= 5) && never(byte(0x0045B4) == 6)
 )
@@ -167,25 +167,25 @@ achievement(
 
 // Ticket 969: i beat the game with dan but the ryu achievement trigger instead
 achievement(
-    title = "Ryu", description = "Complete Arcade Mode as Ryu in Normal or Hard", points = 15,
+    title = "Ryu", description = "Complete Arcade Mode as Ryu in Normal or Hard", points = 10,
     id = 6133, badge = "06535", published = "3/12/2014 1:28:33 AM", modified = "3/12/2014 8:49:47 PM",
     trigger = trigger_arcade_victory(character_ryu)
 )
 
 achievement(
-    title = "Chun-Li", description = "Complete Arcade Mode as Chun-Li in Normal or Hard", points = 15,
+    title = "Chun-Li", description = "Complete Arcade Mode as Chun-Li in Normal or Hard", points = 10,
     id = 6134, badge = "06536", published = "3/12/2014 1:28:37 AM", modified = "3/14/2014 3:36:26 PM",
     trigger = trigger_arcade_victory(character_chunli)
 )
 
 achievement(
-    title = "Sakura", description = "Complete Arcade Mode as Sakura in Normal or Hard", points = 15,
+    title = "Sakura", description = "Complete Arcade Mode as Sakura in Normal or Hard", points = 10,
     id = 6135, badge = "06537", published = "3/12/2014 1:28:39 AM", modified = "3/12/2014 8:49:43 PM",
     trigger = trigger_arcade_victory(character_sakura)
 )
 
 achievement(
-    title = "Ken", description = "Complete Arcade Mode as Ken in Normal or Hard", points = 15,
+    title = "Ken", description = "Complete Arcade Mode as Ken in Normal or Hard", points = 10,
     id = 6136, badge = "06538", published = "3/12/2014 1:28:41 AM", modified = "3/12/2014 8:49:41 PM",
     trigger = trigger_arcade_victory(character_ken)
 )
@@ -195,25 +195,25 @@ achievement(
 //               MD5: 14d0771c15676e2b3b75c4c149879586
 // Ticket 2784: The end with morrigan unlock Dan trophy, and Dan end unlock nothing, so Morrigan trophy is broken.
 achievement(
-    title = "Morrigan ", description = "Complete Arcade Mode as Morrigan in Normal or Hard", points = 15,
+    title = "Morrigan ", description = "Complete Arcade Mode as Morrigan in Normal or Hard", points = 10,
     id = 6137, badge = "06539", published = "3/12/2014 1:28:43 AM", modified = "3/21/2014 9:40:06 PM",
     trigger = trigger_arcade_victory(character_morrigan)
 )
 
 achievement(
-    title = "Hsien-Ko", description = "Complete Arcade Mode as Hsien-Ko in Normal or Hard", points = 15,
+    title = "Hsien-Ko", description = "Complete Arcade Mode as Hsien-Ko in Normal or Hard", points = 10,
     id = 6138, badge = "06540", published = "3/12/2014 1:28:45 AM", modified = "3/12/2014 8:49:35 PM",
     trigger = trigger_arcade_victory(character_hsienko)
 )
 
 achievement(
-    title = "Donovan", description = "Complete Arcade Mode as Donovan in Normal or Hard", points = 15,
+    title = "Donovan", description = "Complete Arcade Mode as Donovan in Normal or Hard", points = 10,
     id = 6139, badge = "06541", published = "3/12/2014 1:28:47 AM", modified = "3/12/2014 8:49:34 PM",
     trigger = trigger_arcade_victory(character_donovan)
 )
 
 achievement(
-    title = "Felicia", description = "Complete Arcade Mode as Felicia in Normal or Hard", points = 15,
+    title = "Felicia", description = "Complete Arcade Mode as Felicia in Normal or Hard", points = 10,
     id = 6140, badge = "06542", published = "3/12/2014 1:28:49 AM", modified = "3/12/2014 8:49:32 PM",
     trigger = trigger_arcade_victory(character_felicia)
 )
@@ -224,21 +224,21 @@ achievement(
 // Ticket 3229: It triggered when i finished normal arcade mode with Morrigan, i didn't play as Dan.
 // Ticket 3059: Triggered when finishing with Morrigan in Normal Mode. :)
 achievement(
-    title = "Dan", description = "Complete Arcade Mode as Dan in Normal or Hard", points = 30,
+    title = "Dan", description = "Complete Arcade Mode as Dan in Normal or Hard", points = 25,
     id = 6141, badge = "06543", published = "3/12/2014 1:28:50 AM", modified = "5/5/2015 12:26:27 AM",
     trigger = trigger_arcade_victory(character_dan)
 )
 
 // Ticket 9276: //               MD5: 14d0771c15676e2b3b75c4c149879586
 achievement(
-    title = "Akuma", description = "Complete Arcade Mode as Akuma in Normal or Hard", points = 15,
+    title = "Akuma", description = "Complete Arcade Mode as Akuma in Normal or Hard", points = 10,
     id = 6142, badge = "06544", published = "3/12/2014 1:28:52 AM", modified = "5/5/2015 12:26:31 AM",
     trigger = trigger_arcade_victory(character_akuma)
 )
 
 // Ticket 9279: //               MD5: 14d0771c15676e2b3b75c4c149879586
 achievement(
-    title = "Devilot", description = "Complete Arcade Mode as Devilot in Normal or Hard", points = 15,
+    title = "Devilot", description = "Complete Arcade Mode as Devilot in Normal or Hard", points = 10,
     id = 6143, badge = "06545", published = "3/12/2014 1:28:54 AM", modified = "5/4/2015 5:41:48 AM",
     trigger = trigger_arcade_victory(character_devilot)
 )

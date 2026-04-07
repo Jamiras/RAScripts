@@ -163,14 +163,14 @@ achievement(
 )
 
 achievement(
-    title = "A Long Way Home", description = "Finish the Game", points = 20,
+    title = "A Long Way Home", description = "Finish the Game", points = 25,
     id = 715, badge = "00972", published = "5/10/2013 4:34:46 AM", modified = "5/10/2013 4:52:31 AM",
     trigger = byte(0x1E82) == 27 && byte(0x001E9C) == 2 && byte(0x001E9E) == 115 && 
               byte(0x001EA4) == 127 && byte(0x001E93) == 32 && byte(0x001EAA) == 90
 )
 
 achievement(
-    title = "A Long Way Home II", description = "Finish the Game on Hard Mode", points = 20,
+    title = "A Long Way Home II", description = "Finish the Game on Hard Mode", points = 25,
     id = 716, badge = "00972", published = "5/10/2013 4:38:48 AM", modified = "5/10/2013 5:13:05 AM",
     trigger = byte(0x1E82) == 27 && byte(0x001E9C) == 2 && byte(0x001E9E) == 115 && 
               byte(0x001EA4) == 127 && byte(0x001E93) == 32 && byte(0x001EAA) == 90 && 

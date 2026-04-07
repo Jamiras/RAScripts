@@ -133,49 +133,49 @@ achievement(
 )
 
 achievement(
-    title = "Below the Ceiling", description = "Beat the boss in Area A without taking damage", points = 15,
+    title = "Below the Ceiling", description = "Beat the boss in Area A without taking damage", points = 10,
     id = 20151, badge = "19394", published = "1/18/2015 10:41:05 PM", modified = "1/25/2015 5:58:07 AM",
     trigger = byte(0x000055) == 8 && once(byte(0x0006F0) == 32) && byte(0x0006F0) == 0 && 
               never(byte(0x0005C5) < prev(byte(0x0005C5))) && never(byte(0x0005C5) == 0)
 )
 
 achievement(
-    title = "Grounded Mines", description = "Beat the boss in Area C without taking damage", points = 15,
+    title = "Grounded Mines", description = "Beat the boss in Area C without taking damage", points = 10,
     id = 20153, badge = "19422", published = "1/18/2015 10:41:14 PM", modified = "1/25/2015 5:58:10 AM",
     trigger = byte(0x000055) == 18 && once(byte(0x0006F0) == 80) && byte(0x0006F0) == 0 && 
               never(byte(0x0005C5) < prev(byte(0x0005C5))) && never(byte(0x0005C5) == 0)
 )
 
 achievement(
-    title = "Where's the Gravity?", description = "Beat the boss in Area E without taking damage", points = 15,
+    title = "Where's the Gravity?", description = "Beat the boss in Area E without taking damage", points = 10,
     id = 20154, badge = "19426", published = "1/18/2015 10:41:17 PM", modified = "1/25/2015 5:58:12 AM",
     trigger = byte(0x000055) == 12 && once(byte(0x0006F0) == 32) && byte(0x0006F0) == 0 && 
               never(byte(0x0005C5) < prev(byte(0x0005C5))) && never(byte(0x0005C5) == 0)
 )
 
 achievement(
-    title = "Underwater Troubles", description = "Beat the boss in Area D without taking damage", points = 15,
+    title = "Underwater Troubles", description = "Beat the boss in Area D without taking damage", points = 10,
     id = 20155, badge = "19862", published = "1/18/2015 10:41:20 PM", modified = "1/25/2015 5:58:15 AM",
     trigger = byte(0x000055) == 17 && once(byte(0x0006F0) == 64) && byte(0x0006F0) == 0 && 
               never(byte(0x0005C5) < prev(byte(0x0005C5))) && never(byte(0x0005C5) == 0)
 )
 
 achievement(
-    title = "Sea of Fire", description = "Beat the boss in Area F without taking damage", points = 15,
+    title = "Sea of Fire", description = "Beat the boss in Area F without taking damage", points = 10,
     id = 20156, badge = "19866", published = "1/18/2015 10:41:25 PM", modified = "1/25/2015 5:58:18 AM",
     trigger = byte(0x000055) == 13 && once(byte(0x0006F0) == 64) && byte(0x0006F0) == 0 && 
               never(byte(0x0005C5) < prev(byte(0x0005C5))) && never(byte(0x0005C5) == 0)
 )
 
 achievement(
-    title = "The Secret Army", description = "Beat the boss in Area G without taking damage", points = 15,
+    title = "The Secret Army", description = "Beat the boss in Area G without taking damage", points = 10,
     id = 20157, badge = "19903", published = "1/18/2015 10:41:55 PM", modified = "1/25/2015 5:58:22 AM",
     trigger = byte(0x000055) == 19 && once(byte(0x0006F0) == 64) && byte(0x0006F0) == 0 && 
               never(byte(0x0005C5) < prev(byte(0x0005C5))) && never(byte(0x0005C5) == 0)
 )
 
 achievement(
-    title = "Coins Collector I", description = "Get more than 5000-G in Area A", points = 20,
+    title = "Coins Collector I", description = "Get more than 5000-G in Area A", points = 10,
     id = 20158, badge = "19395", published = "1/18/2015 10:42:26 PM", modified = "1/25/2015 5:58:25 AM",
     trigger = byte(0x000055) == 0 && word(0x0005C6) >= 500 && word(0x0005C6) <= 512
 )
@@ -186,19 +186,19 @@ achievement(
 //               beating the boss with no damage taken), i tried different versions of the game but the problem is the
 //               same.
 achievement(
-    title = "Coins Collector II", description = "Get more than 8000-G in Area C", points = 15,
+    title = "Coins Collector II", description = "Get more than 8000-G in Area C", points = 10,
     id = 20159, badge = "19417", published = "1/18/2015 10:42:41 PM", modified = "1/25/2015 5:58:27 AM",
     trigger = byte(0x000055) == 7 && word(0x0005C6) >= 800 && word(0x0005C6) <= 1024
 )
 
 achievement(
-    title = "Coins Collector III", description = "Reach the boss room in Area D with more than 6000-G", points = 15,
+    title = "Coins Collector III", description = "Reach the boss room in Area D with more than 6000-G", points = 10,
     id = 20160, badge = "19861", published = "1/18/2015 10:42:46 PM", modified = "1/25/2015 5:58:30 AM",
     trigger = byte(0x000055) == 17 && word(0x0005C6) >= 600 && word(0x0005C6) <= 768
 )
 
 achievement(
-    title = "Strongest Path", description = "Reach the boss room in Area F with more than 4000-G an full health", points = 15,
+    title = "Strongest Path", description = "Reach the boss room in Area F with more than 4000-G an full health", points = 10,
     id = 20161, badge = "19867", published = "1/18/2015 10:42:51 PM", modified = "1/25/2015 5:58:33 AM",
     trigger = word(0x0005C6) >= 400 && word(0x0005C6) <= 768 && byte(0x0005C5) == 8 && never(byte(0x0005C5) == 0) && 
               once(byte(0x000055) == 2) && byte(0x000055) == 13
@@ -206,7 +206,7 @@ achievement(
 
 // Ticket 5707: this  archievements are completly bugged and cant be obtained. please fix
 achievement(
-    title = "Strongest Path II", description = "Reach the boss room in Area G with more than 5500-G an full health", points = 15,
+    title = "Strongest Path II", description = "Reach the boss room in Area G with more than 5500-G an full health", points = 10,
     id = 20162, badge = "19904", published = "1/18/2015 10:42:57 PM", modified = "1/25/2015 5:58:36 AM",
     trigger = word(0x0005C6) >= 550 && word(0x0005C6) <= 768 && byte(0x0005C5) == 8 && never(byte(0x0005C5) == 0) && 
               once(byte(0x000055) == 16) && byte(0x000055) == 19
@@ -238,7 +238,7 @@ function with_effort(first_stage, boss_stage) => word(0x0005C6) == 0 && never(by
                                                  once(byte(0x000055) == first_stage) && byte(0x000055) == boss_stage &&
                                                  never(current_screen() == screen_scoring)
 achievement(
-    title = "Only with Effort I", description = "Reach the boss room in Area A with 0-G", points = 15,
+    title = "Only with Effort I", description = "Reach the boss room in Area A with 0-G", points = 10,
     id = 20166, badge = "19908", published = "1/18/2015 10:43:30 PM", modified = "3/1/2015 4:11:21 PM",
 //  trigger_before = word(0x0005C6) == 0 && never(byte(0x0005C5) == 0) && once(byte(0x000055) == 0) && byte(0x000055) == 8
     trigger = with_effort(0, 8)
@@ -248,7 +248,7 @@ achievement(
 //               of the stage no matter how much G i had.
 //               MD5: 96639d25a41e7563e4b6048984c796c3
 achievement(
-    title = "Only with Effort II", description = "Reach the boss room in Area B with 0-G", points = 15,
+    title = "Only with Effort II", description = "Reach the boss room in Area B with 0-G", points = 10,
     id = 20167, badge = "19909", published = "1/18/2015 10:43:32 PM", modified = "3/1/2015 4:11:14 PM",
 //  trigger_before = word(0x0005C6) == 0 && never(byte(0x0005C5) == 0) && once(byte(0x000055) == 0) && byte(0x000055) == 8
     trigger = with_effort(11, 14)
@@ -258,7 +258,7 @@ achievement(
 //               of the stage no matter how much G i had.
 //               MD5: 96639d25a41e7563e4b6048984c796c3
 achievement(
-    title = "Only with Effort III", description = "Reach the boss room in Area E with 0-G", points = 15,
+    title = "Only with Effort III", description = "Reach the boss room in Area E with 0-G", points = 10,
     id = 20168, badge = "19910", published = "1/18/2015 10:43:34 PM", modified = "3/1/2015 4:11:02 PM",
 //  trigger_before = word(0x0005C6) == 0 && never(byte(0x0005C5) == 0) && once(byte(0x000055) == 0) && byte(0x000055) == 8
     trigger = with_effort(7, 12)
@@ -268,14 +268,14 @@ achievement(
 //               of the stage no matter how much G i had.
 //               MD5: 96639d25a41e7563e4b6048984c796c3
 achievement(
-    title = "Only with Effort IV", description = "Reach the boss room in Area D with 0-G", points = 20,
+    title = "Only with Effort IV", description = "Reach the boss room in Area D with 0-G", points = 10,
     id = 20169, badge = "19911", published = "1/18/2015 10:43:36 PM", modified = "3/1/2015 4:10:53 PM",
 //  trigger_before = word(0x0005C6) == 0 && never(byte(0x0005C5) == 0) && once(byte(0x000055) == 0) && byte(0x000055) == 8
     trigger = with_effort(5, 17)
 )
 
 achievement(
-    title = "Only with Skill", description = "Reach the boss room in Area G with 0-G and full health", points = 15,
+    title = "Only with Skill", description = "Reach the boss room in Area G with 0-G and full health", points = 10,
     id = 20170, badge = "19912", published = "1/18/2015 10:43:38 PM", modified = "1/25/2015 5:58:59 AM",
     trigger = word(0x0005C6) == 0 && never(byte(0x0005C5) == 0) && once(byte(0x000055) == 16) && byte(0x000055) == 19 && 
               byte(0x0005C5) == 8
@@ -288,14 +288,14 @@ achievement(
 )
 
 achievement(
-    title = "Two in One", description = "Beat the boss in Area B without taking damage", points = 15,
+    title = "Two in One", description = "Beat the boss in Area B without taking damage", points = 10,
     id = 20152, badge = "19399", published = "1/18/2015 10:41:10 PM", modified = "1/25/2015 6:00:36 AM",
     trigger = byte(0x000055) == 14 && once(byte(0x0006F0) == 6) && byte(0x0006F0) == 0 && 
               never(byte(0x0005C5) < prev(byte(0x0005C5))) && never(byte(0x0005C5) == 0)
 )
 
 achievement(
-    title = "Shatter Soul", description = "Complete the game with the least amount of points that you can", points = 20,
+    title = "Shatter Soul", description = "Complete the game with the least amount of points that you can", points = 10,
     id = 20172, badge = "19907", published = "1/18/2015 10:43:43 PM", modified = "3/1/2015 4:06:24 PM",
     trigger = byte(0x000055) == 19 && once(byte(0x0006F0) == 64) && byte(0x0006F0) == 0 && byte(0x0005FE) <= 40
 )

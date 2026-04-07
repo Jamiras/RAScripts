@@ -388,7 +388,7 @@ achievement(
 )
 
 achievement(
-    title = "The Best Money Can Buy", description = "Find [Merlin's Mystery].", points = 15,
+    title = "The Best Money Can Buy", description = "Find [Merlin's Mystery].", points = 10,
     id = 13046, badge = "12943", published = "9/15/2014 1:24:17 AM", modified = "9/15/2014 8:00:23 AM",
     trigger = byte(0x004990) == 12 && byte(0x004991) == 0
 )
@@ -486,7 +486,7 @@ achievement(
 function trigger_beat_game() => byte(0x498C) == 0xF0 && current_difficulty() <= difficulty_crazy
 
 achievement(
-    title = "River City", description = "Beat the game on [Normal Difficulty] or Higher.", points = 20,
+    title = "River City", description = "Beat the game on [Normal Difficulty] or Higher.", points = 10,
     id = 13072, badge = "12952", published = "9/15/2014 5:12:59 AM", modified = "9/15/2014 5:16:28 AM",
     trigger = trigger_beat_game() && current_difficulty() >= difficulty_normal
 )

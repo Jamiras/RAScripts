@@ -205,7 +205,7 @@ achievement(
 // Ticket 19231: Some of these cheevos are broken for me. King of Collectors and Clear Stage 6 never popped for me and
 //               I did it twice now. Please fix.
 achievement(
-    title = "King of Collectors", description = "Have 80 silver bags", points = 20,
+    title = "King of Collectors", description = "Have 80 silver bags", points = 25,
     id = 60172, badge = "62976", published = "5/11/2018 8:50:52 PM", modified = "5/24/2018 3:52:17 PM",
     trigger = silver_coins() >= 80
 //    trigger = repeated(100, silver_coins() == 80)

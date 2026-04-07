@@ -63,7 +63,7 @@ achievement(
 )
 
 achievement(
-    title = "Ultimate Score", description = "Score 1000000 points", points = 15,
+    title = "Ultimate Score", description = "Score 1000000 points", points = 10,
     id = 14909, published = "10/9/2014 4:13:21 AM", modified = "10/9/2014 4:13:51 AM",
     trigger = trigger_score(1000000)
            // byte(0x001F1C) == 16 && byte(0x001F1B) >= 0

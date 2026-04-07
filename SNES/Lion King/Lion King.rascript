@@ -71,7 +71,7 @@ achievement(
 //               MD5:  I did not get the achievement
 //               Emulator: RASnes9x
 achievement(
-    title = "The Lion King", description = "Beat the game without losing any life", points = 45,
+    title = "The Lion King", description = "Beat the game without losing any life", points = 25,
     id = 12904, badge = "12779", published = "9/12/2014 3:33:38 AM", modified = "9/12/2014 6:45:46 PM",
     trigger = once(current_stage() == 0) && once(current_stage() == 1) && once(current_stage() == 2) && 
               once(current_stage() == 3) && once(current_stage() == 4) && once(current_stage() == 5) && 

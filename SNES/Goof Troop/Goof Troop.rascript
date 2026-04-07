@@ -161,7 +161,7 @@ function trigger_engage_boss(stage, room) => current_stage() == stage && never(c
                                              byte(0x0070) == 8 // halway through fade from black
 
 achievement(
-    title = "Professional Thrower", description = "Kill the First Boss Without Taking Damage (1P)", points = 20,
+    title = "Professional Thrower", description = "Kill the First Boss Without Taking Damage (1P)", points = 25,
     id = 22176, badge = "22102", published = "4/4/2015 1:41:47 AM", modified = "12/8/2016 12:19:43 AM",
     trigger = trigger_engage_boss(0, 14) && once(boss1_hp() == 7) && boss1_hp() == 0 && 
               trigger_no_damage() && trigger_1p_only()
@@ -175,7 +175,7 @@ achievement(
 //               get the cheevo. (later got the cheevo by doing it first try)
 //               MD5: bb6a1198e291c8ae58e9581a4296ed4d
 achievement(
-    title = "Firefighter", description = "Kill the Second Boss Without Taking Damage (1P)", points = 20,
+    title = "Firefighter", description = "Kill the Second Boss Without Taking Damage (1P)", points = 25,
     id = 22177, badge = "22103", published = "4/4/2015 1:41:53 AM", modified = "12/8/2016 12:19:48 AM",
     trigger = trigger_engage_boss(1, 15) && once(boss2_hp() == 48) && boss2_hp() == 0 && 
               trigger_no_damage() && trigger_1p_only()
@@ -191,7 +191,7 @@ achievement(
 // Ticket 10203: This achievement triggered when I landed the first hit at the start of the boss fight.
 //               MD5: bb6a1198e291c8ae58e9581a4296ed4d
 achievement(
-    title = "Bone Crusher", description = "Kill the Third Boss Without Taking Damage (1P)", points = 20,
+    title = "Bone Crusher", description = "Kill the Third Boss Without Taking Damage (1P)", points = 25,
     id = 22178, badge = "22104", published = "4/4/2015 1:41:57 AM", modified = "1/20/2017 12:48:49 AM",
     trigger = trigger_engage_boss(2, 25) && 
               once(boss2_hp() == 48) &&              // prevent trigger if kill while taking damage
@@ -203,7 +203,7 @@ achievement(
 )
 
 achievement(
-    title = "Mine Debugger", description = "Kill the Fourth Boss Without Taking Damage (1P)", points = 20,
+    title = "Mine Debugger", description = "Kill the Fourth Boss Without Taking Damage (1P)", points = 25,
     id = 22179, badge = "22105", published = "4/4/2015 1:42:02 AM", modified = "4/22/2015 12:43:41 AM",
     trigger = trigger_engage_boss(3, 25) && 
               once(byte(0x000298) == 10) && // prevent trigger on fade to black leaving previous room
@@ -223,7 +223,7 @@ achievement(
 // Ticket 11241: i haven't done the requirement for the achievement, and yet, it have been achieve
 //               MD5: bb6a1198e291c8ae58e9581a4296ed4d
 achievement(
-    title = "End of Piracy", description = "Kill the Final Boss Without Taking Damage (1P)", points = 20,
+    title = "End of Piracy", description = "Kill the Final Boss Without Taking Damage (1P)", points = 25,
     id = 22180, badge = "22106", published = "4/4/2015 1:42:06 AM", modified = "6/24/2017 1:13:43 AM",
     trigger = trigger_engage_boss(4, 25) && once(boss2_hp() == 56) && boss2_hp() == 0 && 
               trigger_no_damage() && trigger_1p_only()
@@ -246,7 +246,7 @@ achievement(
 )
 
 achievement(
-    title = "No Fruits Allowed 2", description = "Finish Stage 2 without eating any fruits and never have more than 2 lives (1P)", points = 15,
+    title = "No Fruits Allowed 2", description = "Finish Stage 2 without eating any fruits and never have more than 2 lives (1P)", points = 10,
     id = 22399, badge = "22332", published = "4/19/2015 3:28:36 PM", modified = "4/22/2015 12:35:04 AM",
     trigger = once(byte(0x01FF11) == 23) && never(current_hearts() > 0) && never(p1_lives() > 3) && 
               never(byte(0x01FF11) == 33) && byte(0x01FF11) == 28 && current_stage() == 1 && 
@@ -285,13 +285,13 @@ achievement(
 )
 
 achievement(
-    title = "Explorer", description = "Find 2 secret doors in the castle (1P-2P)", points = 15,
+    title = "Explorer", description = "Find 2 secret doors in the castle (1P-2P)", points = 10,
     id = 22406, badge = "22340", published = "4/20/2015 2:57:09 PM", modified = "12/8/2016 12:17:09 AM",
     trigger = bit2(0x001144) == 1 && bit6(0x001144) == 1 && current_stage() == 2 && byte(0x01FF11) == 18
 )
 
 achievement(
-    title = "Puzzle Master", description = "Completely unlock both paths on Stage 4 (1P-2P)", points = 15,
+    title = "Puzzle Master", description = "Completely unlock both paths on Stage 4 (1P-2P)", points = 10,
     id = 22407, badge = "22341", published = "4/20/2015 2:57:13 PM", modified = "4/22/2015 12:38:12 AM",
     trigger = bit4(0x001144) == 1 && bit5(0x001144) == 1 && bit6(0x001144) == 1 && bit7(0x001144) == 1 && 
               bit0(0x001145) == 1 && bit1(0x001145) == 1 && bit3(0x001145) == 1 && current_stage() == 3 && 
@@ -318,13 +318,13 @@ achievement(
 )
 
 achievement(
-    title = "Full of Goof", description = "First 9 Live in Game (1P-2P)", points = 15,
+    title = "Full of Goof", description = "First 9 Live in Game (1P-2P)", points = 10,
     id = 1467, badge = "03760", published = "5/30/2013 8:15:29 PM", modified = "12/8/2016 12:17:49 AM",
     trigger = p1_lives() == 10
 )
 
 achievement(
-    title = "Continuous", description = "Get 9 Continues (1P-2P)", points = 15,
+    title = "Continuous", description = "Get 9 Continues (1P-2P)", points = 10,
     id = 22409, badge = "22343", published = "4/20/2015 2:57:18 PM", modified = "4/22/2015 12:38:18 AM",
     trigger = continues() == 9
 )

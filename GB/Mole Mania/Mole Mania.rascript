@@ -104,63 +104,63 @@ achievement(
 //               MD5: Unknown
 //               Emulator: RetroArch ()
 achievement(
-    title = "Level 1 100 Percent", description = "Get 100 Points In Level 1", points = 15,
+    title = "Level 1 100 Percent", description = "Get 100 Points In Level 1", points = 10,
     id = 23527, badge = "56423", published = "6/8/2015 8:01:00 PM", modified = "11/23/2019 7:56:43 AM",
     trigger = score_lv1() == 100 && unless(once(byte(0x00D706) == 10))
 )
 
 achievement(
-    title = "Level 2 100 Percent", description = "Get 100 Points In Level 2", points = 15,
+    title = "Level 2 100 Percent", description = "Get 100 Points In Level 2", points = 10,
     id = 23528, badge = "56424", published = "6/8/2015 8:01:02 PM", modified = "11/23/2019 7:56:47 AM",
     trigger = score_lv2() == 100 && unless(once(byte(0x00D706) == 10))
 )
 
 achievement(
-    title = "Level 3 100 Percent", description = "Get 100 Points In Level 3", points = 15,
+    title = "Level 3 100 Percent", description = "Get 100 Points In Level 3", points = 10,
     id = 23529, badge = "56425", published = "6/8/2015 8:01:04 PM", modified = "11/23/2019 7:56:46 AM",
     trigger = score_lv3() == 100 && unless(once(byte(0x00D706) == 10))
 )
 
 achievement(
-    title = "Level 4 100 Percent", description = "Get 100 Points In Level 4", points = 15,
+    title = "Level 4 100 Percent", description = "Get 100 Points In Level 4", points = 10,
     id = 23530, badge = "56426", published = "6/8/2015 8:01:06 PM", modified = "11/23/2019 7:56:49 AM",
     trigger = byte(0x00A005) == 100 && unless(once(byte(0x00D706) == 10))
 )
 
 achievement(
-    title = "Level 5 100 Percent", description = "Get 100 Points In Level 5", points = 15,
+    title = "Level 5 100 Percent", description = "Get 100 Points In Level 5", points = 10,
     id = 23531, badge = "56427", published = "6/8/2015 8:01:08 PM", modified = "11/23/2019 7:56:52 AM",
     trigger = score_lv5() == 100 && unless(once(byte(0x00D706) == 10))
 )
 
 achievement(
-    title = "Level 6 100 Percent", description = "Get 100 Points In Level 6", points = 15,
+    title = "Level 6 100 Percent", description = "Get 100 Points In Level 6", points = 10,
     id = 23532, badge = "56428", published = "6/8/2015 8:01:10 PM", modified = "11/23/2019 7:56:50 AM",
     trigger = byte(0x00A007) == 100 && unless(once(byte(0x00D706) == 10))
 )
 
 achievement(
-    title = "Level 7 100 Percent", description = "Get 100 Points In Level 7", points = 15,
+    title = "Level 7 100 Percent", description = "Get 100 Points In Level 7", points = 10,
     id = 23533, badge = "56429", published = "6/8/2015 8:01:11 PM", modified = "11/23/2019 7:56:53 AM",
     trigger = score_lv7() == 100 && unless(once(byte(0x00D706) == 10))
 )
 
 achievement(
-    title = "Bested Kangaroon", description = "Beat Stage 1 Boss Without Taking Damage", points = 15,
+    title = "Bested Kangaroon", description = "Beat Stage 1 Boss Without Taking Damage", points = 10,
     id = 23534, badge = "56430", published = "6/8/2015 8:01:13 PM", modified = "11/23/2019 7:56:57 AM",
     trigger = once(map_id() == 7) && stage() == 0 && never(health() < prev(health())) && 
               game_state() == 19 && map_id() == 3 && unless(once(byte(0x00D706) == 10))
 )
 
 achievement(
-    title = "Bested Sundes", description = "Beat Stage 2 Boss Without Taking Damage", points = 15,
+    title = "Bested Sundes", description = "Beat Stage 2 Boss Without Taking Damage", points = 10,
     id = 23535, badge = "56431", published = "6/8/2015 8:01:15 PM", modified = "11/23/2019 7:56:56 AM",
     trigger = once(map_id() == 5) && stage() == 1 && never(health() < prev(health())) && 
               game_state() == 19 && map_id() == 2 && unless(once(byte(0x00D706) == 10))
 )
 
 achievement(
-    title = "Bested Funton", description = "Beat Stage 3 Boss Without Taking Damage", points = 15,
+    title = "Bested Funton", description = "Beat Stage 3 Boss Without Taking Damage", points = 10,
     id = 23536, badge = "56432", published = "6/8/2015 8:01:17 PM", modified = "11/23/2019 7:56:58 AM",
     trigger = once(map_id() == 11) && never(health() < prev(health())) && game_state() == 19 && 
               map_id() == 5 && unless(once(byte(0x00D706) == 10)) &&
@@ -169,7 +169,7 @@ achievement(
 )
 
 achievement(
-    title = "Bested Mad Wrencher", description = "Beat Stage 4 Boss Without Taking Damage", points = 15,
+    title = "Bested Mad Wrencher", description = "Beat Stage 4 Boss Without Taking Damage", points = 10,
     id = 23537, badge = "56433", published = "6/8/2015 8:01:18 PM", modified = "11/23/2019 7:57:00 AM",
     trigger = once(map_id() == 20) && stage() == 3 && never(health() < prev(health())) && 
               game_state() == 19 && map_id() == 15 && unless(once(byte(0x00D706) == 10))
@@ -189,7 +189,7 @@ achievement(
 //               MD5: f28ade3926852a8ad2e449c274683956
 //               Emulator: RAVBA
 achievement(
-    title = "Bested Big Mama", description = "Beat Stage 5 Boss Without Taking Damage", points = 15,
+    title = "Bested Big Mama", description = "Beat Stage 5 Boss Without Taking Damage", points = 10,
     id = 23538, badge = "56434", published = "6/8/2015 8:01:20 PM", modified = "11/23/2019 7:57:01 AM",
     trigger = once(map_id() == 8) && stage() == 4 && never(health() < prev(health())) && 
               game_state() == 19 && map_id() == 2 && unless(once(byte(0x00D706) == 10))
@@ -198,7 +198,7 @@ achievement(
 )
 
 achievement(
-    title = "Bested The Sammy Bros.", description = "Beat Stage 6 Boss Without Taking Damage", points = 15,
+    title = "Bested The Sammy Bros.", description = "Beat Stage 6 Boss Without Taking Damage", points = 10,
     id = 23539, badge = "56435", published = "6/8/2015 8:01:22 PM", modified = "11/23/2019 7:57:03 AM",
     trigger = once(map_id() == 16) && stage() == 5 && never(health() < prev(health())) && 
               game_state() == 19 && map_id() == 10 && unless(once(byte(0x00D706) == 10))
@@ -207,7 +207,7 @@ achievement(
 )
 
 achievement(
-    title = "Bested Snowman", description = "Beat Stage 7 Boss Without Taking Damage", points = 15,
+    title = "Bested Snowman", description = "Beat Stage 7 Boss Without Taking Damage", points = 10,
     id = 23540, badge = "56436", published = "6/8/2015 8:01:24 PM", modified = "11/23/2019 7:57:06 AM",
     trigger = once(map_id() == 31) && stage() == 14 && never(health() < prev(health())) && 
               game_state() == 19 && map_id() == 24 && unless(once(byte(0x00D706) == 10))
@@ -216,7 +216,7 @@ achievement(
 )
 
 achievement(
-    title = "Bested Jinbe", description = "Beat Stage 8 Boss Without Taking Damage", points = 35,
+    title = "Bested Jinbe", description = "Beat Stage 8 Boss Without Taking Damage", points = 25,
     id = 23541, badge = "56437", published = "6/8/2015 8:01:26 PM", modified = "11/23/2019 7:57:05 AM",
     trigger = once(map_id() == 7) && stage() == 7 && never(health() < prev(health())) && 
               game_state() == 19 && unless(once(byte(0x00D706) == 10))

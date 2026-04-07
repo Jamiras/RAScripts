@@ -23,7 +23,7 @@ function take_damage() => byte(0x0074) == 10 // countdown timer for immunity aft
 achievement(
     title = "Uncle Scrooge",
     description = "Win the game without spending money",
-    points = 30,
+    points = 25,
     trigger = once(current_scene() == 1) && current_scene() >= 55 && current_bgm() == bgm_ending &&
               never(purchase() == purchase_psycho_wave) &&
               never(purchase() == purchase_super_sonic) &&
@@ -40,7 +40,7 @@ function boss2_hp() => byte(0x0669)
 achievement(
     title = "Veggie Salad",
     description = "Beat second boss without taking damage",
-    points = 15,
+    points = 10,
     trigger = current_scene() == 8 && never(current_scene() != 8) && never(take_damage()) &&
               once(boss1_hp() == 40) && boss1_hp() > 250
 )
@@ -50,7 +50,7 @@ achievement(
 achievement(
     title = "Hero's Alter-Ego",
     description = "Beat Last Boss without taking damage on Normal",
-    points = 15,
+    points = 10,
     trigger = once(current_bgm() == bgm_final_boss_1) && never(current_scene() < 55) &&
               never(take_damage()) && 
               ((current_scene() == 55 && once(boss2_hp() == 64) && boss2_hp() > 250) ||

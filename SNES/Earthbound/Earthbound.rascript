@@ -539,7 +539,7 @@ achievement(
 )
 
 achievement(
-    title = "You Cannot Grasp the True Form of This Achievement", description = "Ending - Roam the Earth as ghost(s)", points = 20,
+    title = "You Cannot Grasp the True Form of This Achievement", description = "Ending - Roam the Earth as ghost(s)", points = 10,
     id = 15451, published = "10/15/2014 1:53:21 AM", modified = "11/3/2014 2:51:49 AM",
     trigger = word(0x009A15) == 0 && // ness's HP
               bit0(0x009C63) == 1 && // after defeating gigyas

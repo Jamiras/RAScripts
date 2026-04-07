@@ -141,7 +141,7 @@ achievement(
 // Ticket 1110: these triggered when reaching respective bosses stage rather than when beating them
 function trigger_mini_boss(stage) => never(current_stage() != stage) && byte(0x07D2) == 0 && once(byte(0x07D2) != 0) && byte(0x07B0) == 233
 achievement(
-    title = "Morning Star", description = "Defeat Hammer bomber on Stage 5", points = 20,
+    title = "Morning Star", description = "Defeat Hammer bomber on Stage 5", points = 10,
     id = 5678, badge = "06199", published = "2/27/2014 5:55:52 AM", modified = "2/27/2014 5:56:54 AM",
     trigger = trigger_mini_boss(32)
 )
@@ -151,28 +151,28 @@ achievement(
 //               Glove for throwing bombs (same) and Glove for punching bombs (same).
 //               MD5: df33e261104efee409de8f294d80ad6e
 achievement(
-    title = "Jet-Pack", description = "Defeat Jet bomber on Stage 5", points = 20,
+    title = "Jet-Pack", description = "Defeat Jet bomber on Stage 5", points = 10,
     id = 5679, badge = "06200", published = "2/27/2014 5:55:57 AM", modified = "2/27/2014 5:56:57 AM",
     trigger = trigger_mini_boss(33)
 )
 
 // Ticket 1111: these triggered when reaching respective bosses stage rather than when beating them
 achievement(
-    title = "Fire Lasers", description = "Defeat Lady bomber on Stage 5", points = 20,
+    title = "Fire Lasers", description = "Defeat Lady bomber on Stage 5", points = 10,
     id = 5680, badge = "06201", published = "2/27/2014 5:56:00 AM", modified = "2/27/2014 5:56:59 AM",
     trigger = trigger_mini_boss(34)
 )
 
 // Ticket 1112: these triggered when reaching respective bosses stage rather than when beating them
 achievement(
-    title = "Flame Thrower", description = "Defeat Bazooka bomber on Stage 5", points = 20,
+    title = "Flame Thrower", description = "Defeat Bazooka bomber on Stage 5", points = 10,
     id = 5681, badge = "06202", published = "2/27/2014 5:56:04 AM", modified = "2/27/2014 5:57:02 AM",
     trigger = trigger_mini_boss(35)
 )
 
 // Ticket 1113: these triggered when reaching respective bosses stage rather than when beating them
 achievement(
-    title = "Great Bomber", description = "Defeat Great bomber", points = 30,
+    title = "Great Bomber", description = "Defeat Great bomber", points = 25,
     id = 5682, badge = "06203", published = "2/27/2014 5:56:07 AM", modified = "2/27/2014 5:57:05 AM",
     trigger = trigger_mini_boss(36)
 )
@@ -199,7 +199,7 @@ achievement(
 )
 
 achievement(
-    title = "BOSS 4", description = "Defeat Boss on World 4", points = 15,
+    title = "BOSS 4", description = "Defeat Boss on World 4", points = 10,
     id = 6045, badge = "06496", published = "3/10/2014 11:01:32 PM", modified = "3/11/2014 8:56:01 PM",
     trigger = trigger_boss(31) && byte(0x001659) == 0 && 
               byte(0x0016B9) == 0 && byte(0x001719) == 0 && byte(0x001779) == 0 && byte(0x001599) == 0
@@ -224,14 +224,14 @@ achievement(
 )
 
 achievement(
-    title = "Super Challenge Bomber [4]", description = "Defeat Boss 4 on World 5 - 6", points = 15,
+    title = "Super Challenge Bomber [4]", description = "Defeat Boss 4 on World 5 - 6", points = 10,
     id = 6049, badge = "06496", published = "3/10/2014 11:03:04 PM", modified = "3/10/2014 11:06:48 PM",
     trigger = current_stage() == 37 && byte(0x00021A) == 5
 )
 
 // Ticket 1114: these trigger on the the second to last phase of the final boss
 achievement(
-    title = "Bagular Head", description = "Defeat Bagular Head on World 5", points = 15,
+    title = "Bagular Head", description = "Defeat Bagular Head on World 5", points = 10,
     id = 6050, badge = "06499", published = "3/10/2014 11:04:05 PM", modified = "3/10/2014 11:06:53 PM",
     trigger = current_stage() == 37 && never(byte(0x00021A) != 5) && byte(0x001B99) == 0 && byte(0x00CC) == 1
 )
@@ -247,7 +247,7 @@ function complete_game() => current_stage() == 37 &&   // 5-6
                             byte(0x00021A) == 5 &&     // bagular head
                             byte(0x00C1) == 255        // ending cinematic
 achievement(
-    title = "THE END", description = "Beat The Game", points = 15,
+    title = "THE END", description = "Beat The Game", points = 10,
     id = 6051, badge = "06492", published = "3/10/2014 11:04:09 PM", modified = "3/11/2014 10:44:17 PM",
     trigger = complete_game()
 )

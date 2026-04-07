@@ -65,14 +65,14 @@ achievement(
 )
 
 achievement(
-    title = "Stage 6 - Basement", description = "Beat Stage 6", points = 20,
+    title = "Stage 6 - Basement", description = "Beat Stage 6", points = 10,
     id = 4816, badge = "05468", published = "2/8/2014 2:37:21 PM", modified = "1/21/2018 11:13:40 PM",
     trigger = repeated(10, byte(0x0000E0) == 9) && repeated(10, byte(0x000060) == 12) && 
               repeated(10, stage() == 5) && never(stage() != 5) && never(byte(0x000060) != 12)
 )
 
 achievement(
-    title = "Popcorn Pete", description = "Reach Popcorn Pete Without Taking Damage - Stage 1", points = 15,
+    title = "Popcorn Pete", description = "Reach Popcorn Pete Without Taking Damage - Stage 1", points = 10,
     id = 5267, badge = "05447", published = "2/19/2014 10:33:57 AM", modified = "10/20/2019 11:22:01 PM",
     trigger = repeated(10, screen() == 6) && never(hp() < prev(hp())) && 
               never(lives() < prev(lives())) && repeated(10, checkpoint() == 0) && repeated(10, checkpoint() == 1) && 
@@ -80,7 +80,7 @@ achievement(
 )
 
 achievement(
-    title = "Microwave Mick", description = "Reach Microwave Mick Without Taking Damage - Stage 2", points = 20,
+    title = "Microwave Mick", description = "Reach Microwave Mick Without Taking Damage - Stage 2", points = 10,
     id = 5268, badge = "05453", published = "2/19/2014 10:34:04 AM", modified = "10/14/2019 9:38:01 PM",
     trigger = repeated(10, screen() == 6) && never(hp() < prev(hp())) && 
               never(lives() < prev(lives())) && repeated(10, checkpoint() == 0) && repeated(10, checkpoint() == 1) && 
@@ -92,7 +92,7 @@ achievement(
 //               MD5: Unknown
 //               Emulator: RANes
 achievement(
-    title = "Willy Wok", description = "Reach Willy Wok Without Taking Damage - Stage 3", points = 20,
+    title = "Willy Wok", description = "Reach Willy Wok Without Taking Damage - Stage 3", points = 10,
     id = 5269, badge = "05457", published = "2/19/2014 10:34:07 AM", modified = "10/24/2019 12:19:01 AM",
     trigger = once(screen() == 6) && once(stage() == 2) && never(stage() != 2) && 
               never(hp() < prev(hp())) && never(lives() < prev(lives())) && once(checkpoint() == 0) && once(checkpoint() == 1) && 
@@ -101,7 +101,7 @@ achievement(
 )
 
 achievement(
-    title = "Patty O'Burger", description = "Reach Patty O'Burger Without Taking Damage - Stage 4", points = 20,
+    title = "Patty O'Burger", description = "Reach Patty O'Burger Without Taking Damage - Stage 4", points = 10,
     id = 5270, badge = "05461", published = "2/19/2014 10:34:12 AM", modified = "10/24/2019 12:19:01 AM",
     trigger = repeated(10, screen() == 6) && never(hp() < prev(hp())) && 
               never(lives() < prev(lives())) && repeated(10, checkpoint() == 0) && repeated(10, checkpoint() == 1) && 
@@ -110,7 +110,7 @@ achievement(
 )
 
 achievement(
-    title = "Frozen Fritta", description = "Reach Frozen Fritta Without Taking Damage - Stage 5", points = 20,
+    title = "Frozen Fritta", description = "Reach Frozen Fritta Without Taking Damage - Stage 5", points = 10,
     id = 5271, badge = "05464", published = "2/19/2014 10:34:15 AM", modified = "10/14/2019 9:38:01 PM",
     trigger = repeated(10, screen() == 6) && never(hp() < prev(hp())) && 
               never(lives() < prev(lives())) && repeated(10, checkpoint() == 0) && repeated(10, checkpoint() == 1) && 
@@ -119,7 +119,7 @@ achievement(
 )
 
 achievement(
-    title = "Ohdove - The Mad Chef", description = "Reach Ohdove Without Taking Damage - Stage 6", points = 30,
+    title = "Ohdove - The Mad Chef", description = "Reach Ohdove Without Taking Damage - Stage 6", points = 10,
     id = 5272, badge = "05466", published = "2/19/2014 10:34:19 AM", modified = "10/24/2019 12:19:01 AM",
     trigger = repeated(10, screen() == 6) && never(hp() < prev(hp())) && 
               never(lives() < prev(lives())) && repeated(10, checkpoint() == 0) && repeated(10, checkpoint() == 1) && 
@@ -128,7 +128,7 @@ achievement(
 )
 
 achievement(
-    title = "Forkin' About", description = "Defeat Microwave Mick With a Fork", points = 40,
+    title = "Forkin' About", description = "Defeat Microwave Mick With a Fork", points = 25,
     id = 5266, badge = "05846", published = "2/19/2014 10:30:58 AM", modified = "10/24/2019 12:19:01 AM",
     trigger = repeated(10, checkpoint() == 3) && never(checkpoint() != 3) && repeated(10, stage() == 1) && 
               never(stage() != 1) && repeated(10, boss_hp() == 255) && repeated(10, item() == 3) && never(item() != 3)
@@ -160,7 +160,7 @@ achievement(
 )
 
 achievement(
-    title = "Awesome Score", description = "Reach 200.000 Score", points = 20,
+    title = "Awesome Score", description = "Reach 200.000 Score", points = 10,
     id = 5265, badge = "05844", published = "2/19/2014 10:30:20 AM", modified = "12/10/2019 8:37:00 PM",
     trigger = never(once(score_low() < 7)) &&
               ((once(score_high() >= 208)) ||

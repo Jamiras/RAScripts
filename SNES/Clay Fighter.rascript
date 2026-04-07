@@ -62,7 +62,7 @@ achievement(
 )
 
 achievement(
-    title = "Clay Harder", description = "Beat the Game on Hard Mode", points = 20,
+    title = "Clay Harder", description = "Beat the Game on Hard Mode", points = 10,
     id = 17817, badge = "17238", published = "11/25/2014 12:36:18 AM", modified = "11/25/2014 1:36:11 AM",
     trigger = once(byte(0x003A8B) == 0x02) && never(byte(0x003A8B) < 0x02) && never(byte(0x003A8B) > 0x02) && 
               once(byte(0x003BD1) == 0x0B) && never(byte(0x003BD1) < 0x0B) && never(byte(0x003BD1) > 0x0B) && 
@@ -151,73 +151,73 @@ function trigger_damageless_level(level) => byte(0x3BD1) == level && // on corre
                                             opponent_is_cpu()
 
 achievement(
-    title = "Opera House", description = "Beat Level 1 without being hit ", points = 20,
+    title = "Opera House", description = "Beat Level 1 without being hit ", points = 10,
     id = 17833, badge = "17251", published = "11/25/2014 1:28:26 AM", modified = "11/25/2014 1:35:01 AM",
     trigger = trigger_damageless_level(0) && word(0x3A80) > 0 // damage done (prevents trigger on starting game after playing vs)
 )
 
 achievement(
-    title = "Haunted House", description = "Beat Level 2 without being hit ", points = 20,
+    title = "Haunted House", description = "Beat Level 2 without being hit ", points = 10,
     id = 17834, badge = "17252", published = "11/25/2014 1:28:30 AM", modified = "11/25/2014 1:35:05 AM",
     trigger = trigger_damageless_level(1)
 )
 
 achievement(
-    title = "Taffy Factory", description = "Beat Level 3 without being hit ", points = 20,
+    title = "Taffy Factory", description = "Beat Level 3 without being hit ", points = 10,
     id = 17835, badge = "17253", published = "11/25/2014 1:28:33 AM", modified = "11/25/2014 1:35:08 AM",
     trigger = trigger_damageless_level(2)
 )
 
 achievement(
-    title = "Sideshow", description = "Beat Level 4 without being hit ", points = 20,
+    title = "Sideshow", description = "Beat Level 4 without being hit ", points = 10,
     id = 17836, badge = "17255", published = "11/25/2014 1:28:37 AM", modified = "11/25/2014 1:35:12 AM",
     trigger = trigger_damageless_level(3)
 )
 
 achievement(
-    title = "Boxing Ring", description = "Beat Level 5 without being hit ", points = 20,
+    title = "Boxing Ring", description = "Beat Level 5 without being hit ", points = 10,
     id = 17837, badge = "17256", published = "11/25/2014 1:28:40 AM", modified = "11/25/2014 1:35:16 AM",
     trigger = trigger_damageless_level(4)
 )
 
 achievement(
-    title = "Elvis In Town", description = "Beat Level 6 without being hit ", points = 20,
+    title = "Elvis In Town", description = "Beat Level 6 without being hit ", points = 10,
     id = 17838, badge = "17259", published = "11/25/2014 1:28:43 AM", modified = "11/25/2014 1:35:19 AM",
     trigger = trigger_damageless_level(5)
 )
 
 achievement(
-    title = "Taffy Factory Again...", description = "Beat Level 7 without being hit ", points = 20,
+    title = "Taffy Factory Again...", description = "Beat Level 7 without being hit ", points = 10,
     id = 17839, badge = "17260", published = "11/25/2014 1:28:47 AM", modified = "11/25/2014 1:35:24 AM",
     trigger = trigger_damageless_level(6)
 )
 
 achievement(
-    title = "It's Christmas", description = "Beat Level 8 without being hit ", points = 20,
+    title = "It's Christmas", description = "Beat Level 8 without being hit ", points = 10,
     id = 17840, badge = "17262", published = "11/25/2014 1:28:50 AM", modified = "11/25/2014 1:35:28 AM",
     trigger = trigger_damageless_level(7)
 )
 
 achievement(
-    title = "A Day At The Swamp", description = "Beat Level 9 without being hit ", points = 20,
+    title = "A Day At The Swamp", description = "Beat Level 9 without being hit ", points = 10,
     id = 17841, badge = "17263", published = "11/25/2014 1:28:54 AM", modified = "11/25/2014 1:35:32 AM",
     trigger = trigger_damageless_level(8)
 )
 
 achievement(
-    title = "Colosseum", description = "Beat Level 10 without being hit ", points = 20,
+    title = "Colosseum", description = "Beat Level 10 without being hit ", points = 10,
     id = 17842, badge = "17264", published = "11/25/2014 1:28:58 AM", modified = "11/25/2014 1:35:35 AM",
     trigger = trigger_damageless_level(9)
 )
 
 achievement(
-    title = "A Cute Duck!", description = "Beat Level 11 without being hit ", points = 20,
+    title = "A Cute Duck!", description = "Beat Level 11 without being hit ", points = 10,
     id = 17843, badge = "17266", published = "11/25/2014 1:29:02 AM", modified = "11/25/2014 1:35:41 AM",
     trigger = trigger_damageless_level(10)
 )
 
 achievement(
-    title = "The Boss With No Name", description = "Beat Level Final Level without being hit ", points = 20,
+    title = "The Boss With No Name", description = "Beat Level Final Level without being hit ", points = 10,
     id = 17844, badge = "17267", published = "11/25/2014 1:29:06 AM", modified = "11/25/2014 1:35:45 AM",
     trigger = trigger_damageless_level(11)
 )

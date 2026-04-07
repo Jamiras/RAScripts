@@ -91,7 +91,7 @@ achievement(
 //               MD5: Unknown
 //               Emulator: RetroArch ()
 achievement(
-    title = "Dribble Stone", description = "Defeat the Boss of Dribble Fountain.", points = 20,
+    title = "Dribble Stone", description = "Defeat the Boss of Dribble Fountain.", points = 10,
     id = 15568, badge = "15215", published = "10/16/2014 5:20:08 AM", modified = "10/21/2014 7:38:41 AM",
     trigger = byte(0x00CA8A) < 26 && bit4(0x00CB38) == 1 && byte(0x00CA7D) != 244
 )
@@ -100,7 +100,7 @@ achievement(
 //               MD5: Unknown
 //               Emulator: RetroArch ()
 achievement(
-    title = "Golem Stone", description = "Defeat the Boss of Golem Mine.", points = 20,
+    title = "Golem Stone", description = "Defeat the Boss of Golem Mine.", points = 10,
     id = 15569, badge = "15216", published = "10/16/2014 5:20:10 AM", modified = "10/21/2014 7:38:43 AM",
     trigger = byte(0x00CA8A) < 26 && bit5(0x00CB38) == 1 && byte(0x00CA7D) != 244
 )
@@ -109,7 +109,7 @@ achievement(
 //               MD5: Unknown
 //               Emulator: RetroArch ()
 achievement(
-    title = "Simmer Stone", description = "Defeat the Boss of Cackle Mound.", points = 20,
+    title = "Simmer Stone", description = "Defeat the Boss of Cackle Mound.", points = 10,
     id = 15570, badge = "15217", published = "10/16/2014 5:20:12 AM", modified = "10/21/2014 7:38:45 AM",
     trigger = byte(0x00CA8A) < 26 && bit6(0x00CB38) == 1 && byte(0x00CA7D) != 244
 )
@@ -118,7 +118,7 @@ achievement(
 //               MD5: Unknown
 //               Emulator: RetroArch ()
 achievement(
-    title = "Twinkle Stone", description = "Defeat the Boss of Twinkle Palace.", points = 20,
+    title = "Twinkle Stone", description = "Defeat the Boss of Twinkle Palace.", points = 10,
     id = 15571, badge = "15219", published = "10/16/2014 5:20:13 AM", modified = "10/21/2014 7:38:47 AM",
     trigger = byte(0x00CA8A) < 26 && bit7(0x00CB38) == 1 && byte(0x00CA7D) != 244
 )

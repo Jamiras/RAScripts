@@ -24,7 +24,7 @@ function current_stage2() => word(0x01B534)
 // Ticket 24446: Triggers if you grab the 1-up at the end of the boss level after beating the boss<br>MD5:
 //               f5889db38b2152fde80258c3a89f6a83<br>Emulator: RetroArch (RA-1.7.8.4, Bnes 094 Balanced)
 achievement(
-    title = "Bested Octopus", description = "Eliminate the octopus with full health", points = 20,
+    title = "Bested Octopus", description = "Eliminate the octopus with full health", points = 10,
     id = 34841, badge = "35943", published = "4/20/2016 6:28:11 PM", modified = "3/11/2019 9:18:51 AM",
     trigger = boss_id() == 1 && boss_health() == 0 && current_stage() == 40 && current_stage2() == 40 && 
               current_health() == 4 && never(cheat_mode() == 1)

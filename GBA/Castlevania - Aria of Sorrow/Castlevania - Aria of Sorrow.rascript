@@ -174,7 +174,7 @@ achievement(
 )
 
 achievement(
-    title = "Deep Pockets", description = "Obtained 200,000 Gold", points = 20,
+    title = "Deep Pockets", description = "Obtained 200,000 Gold", points = 25,
     id = 3132, badge = "03600", published = "10/3/2013 2:10:58 AM", modified = "10/4/2013 5:41:06 AM",
     trigger = current_gold() >= 0x0D40 && word(0x01B292) >= 0x0003
 )
@@ -189,19 +189,19 @@ achievement(
 )
 
 achievement(
-    title = "Level 50", description = "You've Reached Soma's LV50", points = 20,
+    title = "Level 50", description = "You've Reached Soma's LV50", points = 25,
     id = 3135, badge = "03611", published = "10/3/2013 4:41:08 AM", modified = "9/24/2014 11:24:02 AM",
     trigger = soma_lv() >= 0x32
 )
 
 achievement(
-    title = "Level 40", description = "You've Reached Soma's LV40", points = 20,
+    title = "Level 40", description = "You've Reached Soma's LV40", points = 25,
     id = 3136, badge = "03610", published = "10/3/2013 4:41:12 AM", modified = "10/4/2013 5:41:19 AM",
     trigger = soma_lv() >= 0x28
 )
 
 achievement(
-    title = "Level 30", description = "You've Reached Soma's LV30", points = 15,
+    title = "Level 30", description = "You've Reached Soma's LV30", points = 10,
     id = 3137, badge = "03609", published = "10/3/2013 4:41:16 AM", modified = "6/17/2015 7:43:11 PM",
     trigger = soma_lv() >= 0x1E
 )

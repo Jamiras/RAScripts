@@ -44,7 +44,7 @@ function trigger_defeat_boss(scene) => never(current_scene() != scene) && boss_h
 //               MD5: Unknown
 //               Emulator: RetroArch ()
 achievement(
-    title = "Hickboy", description = "Defeat Hickboy, the first game boss", points = 30,
+    title = "Hickboy", description = "Defeat Hickboy, the first game boss", points = 25,
     id = 30618, badge = "31365", published = "12/5/2015 2:55:18 PM", modified = "12/6/2015 10:33:42 PM",
     trigger = trigger_defeat_boss(9)
 )
@@ -53,14 +53,14 @@ achievement(
 //               MD5: 148dbe529816bb0721190b1d4b7af4f4
 // Ticket 7992: Both triggered before the fight
 achievement(
-    title = "Revolta", description = "Defeat Revolta, the second game boss", points = 30,
+    title = "Revolta", description = "Defeat Revolta, the second game boss", points = 25,
     id = 30619, badge = "31366", published = "12/5/2015 3:21:25 PM", modified = "12/6/2015 10:33:45 PM",
     trigger = trigger_defeat_boss(15)
 )
 
 // Ticket 7993: Both triggered before the fight
 achievement(
-    title = "Flyboy", description = "Defeat Flyboy, the third game boss", points = 30,
+    title = "Flyboy", description = "Defeat Flyboy, the third game boss", points = 25,
     id = 30620, badge = "31368", published = "12/5/2015 3:59:17 PM", modified = "12/6/2015 10:33:47 PM",
     trigger = trigger_defeat_boss(21)
 )
@@ -69,7 +69,7 @@ achievement(
 //               MD5: 148dbe529816bb0721190b1d4b7af4f4
 //               Emulator: RetroArch ()
 achievement(
-    title = "Deodor Ant", description = "Defeat Deodor Ant, the fourth game boss", points = 35,
+    title = "Deodor Ant", description = "Defeat Deodor Ant, the fourth game boss", points = 25,
     id = 30621, badge = "31369", published = "12/5/2015 4:18:00 PM", modified = "12/6/2015 10:33:49 PM",
     trigger = trigger_defeat_boss(28)
 )
@@ -78,7 +78,7 @@ achievement(
 //               MD5: 148dbe529816bb0721190b1d4b7af4f4
 //               Emulator: RetroArch ()
 achievement(
-    title = "Booger King", description = "Defeat Booger Meister and beat the game", points = 40,
+    title = "Booger King", description = "Defeat Booger Meister and beat the game", points = 25,
     id = 30622, badge = "31370", published = "12/5/2015 4:27:08 PM", modified = "12/6/2015 10:33:51 PM",
     trigger = current_scene() == 33 && boss_health() <= 0 && once(boss_health() >= 1)
 )
@@ -87,7 +87,7 @@ achievement(
 //               MD5: Unknown
 //               Emulator: RetroArch ()
 achievement(
-    title = "Red Hot Chili Pepper", description = "Collect a pepper", points = 20,
+    title = "Red Hot Chili Pepper", description = "Collect a pepper", points = 10,
     id = 30650, badge = "31391", published = "12/6/2015 10:32:06 PM", modified = "12/6/2015 10:35:38 PM",
     trigger = byte(0x00022A) >= 1 && !trigger_in_demo()
 )

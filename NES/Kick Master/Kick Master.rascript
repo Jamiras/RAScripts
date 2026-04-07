@@ -37,19 +37,19 @@ achievement(
 )
 
 achievement(
-    title = "And now i'm dirty...", description = "Across the swamps", points = 15,
+    title = "And now i'm dirty...", description = "Across the swamps", points = 10,
     id = 7895, badge = "07954", published = "5/2/2014 12:37:07 PM", modified = "5/4/2014 2:41:55 PM",
     trigger = byte(0x0000FB) == 99 && never(byte(0x0000FB) != 99) && trigger_reach_stage(147)
 )
 
 achievement(
-    title = "I'm so close", description = "A long way from home", points = 15,
+    title = "I'm so close", description = "A long way from home", points = 10,
     id = 7896, badge = "07955", published = "5/2/2014 12:37:09 PM", modified = "5/4/2014 2:42:14 PM",
     trigger = byte(0x0000FB) == 171 && never(byte(0x0000FB) != 171) && trigger_reach_stage(149)
 )
 
 achievement(
-    title = "Are you afraid of dark?", description = "Reach Belzed's haunted tower", points = 15,
+    title = "Are you afraid of dark?", description = "Reach Belzed's haunted tower", points = 10,
     id = 7897, badge = "07958", published = "5/2/2014 12:37:11 PM", modified = "5/4/2014 3:08:10 PM",
     trigger = byte(0x0000FB) == 36 && never(byte(0x0000FB) != 36) && trigger_reach_stage(152)
 )
@@ -79,7 +79,7 @@ achievement(
 )
 
 achievement(
-    title = "Dancing like ballerina", description = "Learn High Kick To Roundhouse", points = 8,
+    title = "Dancing like ballerina", description = "Learn High Kick To Roundhouse", points = 5,
     id = 7927, badge = "07965", published = "5/3/2014 10:28:49 AM", modified = "5/6/2014 5:09:44 PM",
     trigger = current_level() == 4
 )
@@ -91,13 +91,13 @@ achievement(
 )
 
 achievement(
-    title = "Aerial twine", description = "Learn Double Butterfly Kick", points = 12,
+    title = "Aerial twine", description = "Learn Double Butterfly Kick", points = 10,
     id = 7929, badge = "07963", published = "5/3/2014 10:28:52 AM", modified = "5/6/2014 5:09:47 PM",
     trigger = current_level() == 6
 )
 
 achievement(
-    title = "Flip Throw in", description = "Learn Blazing Flip Kick", points = 15,
+    title = "Flip Throw in", description = "Learn Blazing Flip Kick", points = 10,
     id = 7930, badge = "07962", published = "5/3/2014 10:28:54 AM", modified = "5/6/2014 5:15:53 PM",
     trigger = current_level() == 7 && 
               once(never(low4(0x0000EC) == 9)) && 
@@ -148,7 +148,7 @@ achievement(
 )
 
 achievement(
-    title = "Element of Magic", description = "Find all Magic", points = 15,
+    title = "Element of Magic", description = "Find all Magic", points = 10,
     id = 7936, badge = "07974", published = "5/3/2014 10:29:14 AM", modified = "5/3/2014 10:30:04 AM",
     trigger = current_skills() == 255 && byte(0x0006BF) == 15
 )
@@ -164,7 +164,7 @@ achievement(
 
 // 10164: Didn't trigger, had 9999 EXP and 999 MP on the last stage.<br/>MD5: b167c3d23b3bd2f0759e5901d6ec7ebb
 achievement(
-    title = "Your magic is ready!", description = "Have 999 MP", points = 15,
+    title = "Your magic is ready!", description = "Have 999 MP", points = 10,
     id = 7938, badge = "07987", published = "5/3/2014 10:29:20 AM", modified = "5/5/2014 10:42:17 AM",
     trigger = current_mp() == 9 && 
               low4(0x0000EB) == 9 && low4(0x0000EC) == 9 && 
@@ -178,7 +178,7 @@ achievement(
 // 9387: <br/>MD5: b167c3d23b3bd2f0759e5901d6ec7ebb
 // 4902: didn't unlocked with or without using password
 achievement(
-    title = "Over 9000!", description = "Have 9999 EXP", points = 15,
+    title = "Over 9000!", description = "Have 9999 EXP", points = 10,
     id = 7939, badge = "07988", published = "5/3/2014 10:29:21 AM", modified = "5/5/2014 10:41:38 AM",
     trigger = low4(0x0000ED) == 9 && low4(0x0000EE) == 9 && low4(0x0000EF) == 9 && low4(0x0000F0) == 9 && 
               never(current_lives() == 10) && 
@@ -186,7 +186,7 @@ achievement(
 )
 
 achievement(
-    title = "Karate Kid", description = "Win the game on 4th Quest", points = 70,
+    title = "Karate Kid", description = "Win the game on 4th Quest", points = 50,
     id = 7941, badge = "07967", published = "5/3/2014 10:29:25 AM", modified = "5/7/2014 11:21:41 AM",
     trigger = once(byte(0x0000B6) == 229) && once(byte(0x0000B6) == 247) && 
               once(byte(0x0000B6) == 238) && once(byte(0x0000B6) == 9) && 

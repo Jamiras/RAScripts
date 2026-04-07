@@ -93,7 +93,7 @@ achievement(
 )
 
 achievement(
-    title = "That was easy", description = "Complete the Game without additional help", points = 30,
+    title = "That was easy", description = "Complete the Game without additional help", points = 25,
     id = 23591, badge = "23988", published = "6/10/2015 3:25:44 PM", modified = "6/10/2015 3:25:50 PM",
     trigger = prev(current_world()) == 1281 && current_world() == 2049 && byte(0x000202) == 0
 )
@@ -164,7 +164,7 @@ achievement(
 
 // Ticket 5611: All I know is they don't trigger when passing the level in question without being hit.
 achievement(
-    title = "Level 24 - OBOY", description = "Finish Level 24 without beeing hit, without additional help", points = 15,
+    title = "Level 24 - OBOY", description = "Finish Level 24 without beeing hit, without additional help", points = 10,
     id = 23627, badge = "24045", published = "6/11/2015 10:51:47 AM", modified = "7/4/2015 9:34:06 PM",
     trigger = once(prev(byte(0x001AA2)) != 89) && prev(byte(0x001AA2)) == 89 && byte(0x001AA2) == 58 && 
               byte(0x000202) == 0 && byte(0x001A93) == 4 && trigger_no_damage()
@@ -184,7 +184,7 @@ achievement(
 // Ticket 4326: I finished both levels with full (but not shielded) health, yet they didn't work. As always, I used
 //               Hardcore and the recommended ROM type.
 achievement(
-    title = "Level 25 - HOM3", description = "Finish Level 25 without beeing hit, without additional help", points = 20,
+    title = "Level 25 - HOM3", description = "Finish Level 25 without beeing hit, without additional help", points = 10,
     id = 23628, badge = "24046", published = "6/11/2015 10:51:48 AM", modified = "5/5/2016 4:01:57 AM",
     trigger = once(prev(byte(0x001AA2)) != 58) && prev(byte(0x001AA2)) == 58 && byte(0x001AA2) == 47 && 
               byte(0x000202) == 0 && never(byte(0x001AA2) > 58) && never(byte(0x001AA2) < 47) && 
@@ -195,7 +195,7 @@ achievement(
 // Ticket 4327: I finished both levels with full (but not shielded) health, yet they didn't work. As always, I used
 //               Hardcore and the recommended ROM type.
 achievement(
-    title = "Level 26 - SHCK", description = "Finish Level 26 without beeing hit, without additional help", points = 15,
+    title = "Level 26 - SHCK", description = "Finish Level 26 without beeing hit, without additional help", points = 10,
     id = 23629, badge = "24047", published = "6/11/2015 10:51:49 AM", modified = "5/5/2016 4:01:53 AM",
     trigger = once(prev(byte(0x001AA2)) != 101) && prev(byte(0x001AA2)) == 101 && byte(0x001AA2) == 97 && 
               byte(0x000202) == 0 && byte(0x001A93) == 5 && never(byte(0x001AA2) > 101) && never(byte(0x001AA2) < 97) && 
@@ -209,7 +209,7 @@ achievement(
 // Ticket 5614: All I know is they don't trigger when passing the level in question without being hit.
 // Ticket 4328: This one didn't work either.
 achievement(
-    title = "Level 27 - TNNL", description = "Finish Level 27 without beeing hit, without additional help", points = 15,
+    title = "Level 27 - TNNL", description = "Finish Level 27 without beeing hit, without additional help", points = 10,
     id = 23630, badge = "24048", published = "6/11/2015 10:51:51 AM", modified = "5/5/2016 4:01:49 AM",
     trigger = once(prev(byte(0x001AA2)) != 97) && prev(byte(0x001AA2)) == 97 && byte(0x001AA2) == 99 && 
               byte(0x000202) == 0 && byte(0x001A93) == 5 && never(byte(0x001AA2) > 99) && never(byte(0x001AA2) < 97) && 
@@ -218,7 +218,7 @@ achievement(
 
 // Ticket 5615: All I know is they don't trigger when passing the level in question without being hit.
 achievement(
-    title = "Level 28 - H3LL", description = "Finish Level 28 without beeing hit, without additional help", points = 20,
+    title = "Level 28 - H3LL", description = "Finish Level 28 without beeing hit, without additional help", points = 10,
     id = 23631, badge = "24049", published = "6/11/2015 10:51:52 AM", modified = "6/11/2015 10:53:12 AM",
     trigger = once(prev(byte(0x001AA2)) != 99) && prev(byte(0x001AA2)) == 99 && byte(0x001AA2) == 103 && 
               byte(0x000202) == 0 && byte(0x001A93) == 5 && never(byte(0x001AA2) > 103) && never(byte(0x001AA2) < 99) && 
@@ -229,7 +229,7 @@ achievement(
 // Ticket 4350: This didn't trigger, despite finishing with starting health. I DID use some food, but that didn't seem
 //               to matter for the "No Hit" cheevs I already got.
 achievement(
-    title = "Level 29 - 4RGH", description = "Finish Level 29 without beeing hit, without additional help", points = 20,
+    title = "Level 29 - 4RGH", description = "Finish Level 29 without beeing hit, without additional help", points = 10,
     id = 23632, badge = "24050", published = "6/11/2015 10:51:53 AM", modified = "5/5/2016 4:01:44 AM",
     trigger = once(prev(byte(0x001AA2)) != 103) && prev(byte(0x001AA2)) == 103 && byte(0x001AA2) == 105 && 
               byte(0x000202) == 0 && byte(0x001A93) == 5 && never(byte(0x001AA2) > 105) && never(byte(0x001AA2) < 103) && 

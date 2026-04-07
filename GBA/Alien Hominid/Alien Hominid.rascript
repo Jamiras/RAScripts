@@ -139,73 +139,73 @@ achievement(
 )
 
 achievement(
-    title = "Soviet Nuke Master", description = "Travel more than 3000 KM in Super Soviet Missile Mastar.", points = 15,
+    title = "Soviet Nuke Master", description = "Travel more than 3000 KM in Super Soviet Missile Mastar.", points = 10,
     id = 15227, badge = "14849", published = "10/12/2014 10:30:10 PM", modified = "10/12/2014 10:53:44 PM",
     trigger = trigger_mastar(3000)
 )
 
 achievement(
-    title = "Crash Landing", description = "Clear Level 1-1", points = 20,
+    title = "Crash Landing", description = "Clear Level 1-1", points = 10,
     id = 15212, badge = "14842", published = "10/12/2014 8:33:41 PM", modified = "10/12/2014 10:30:26 PM",
     trigger = current_level() == 1 && current_difficulty() < 4
 )
 
 achievement(
-    title = "Frantic", description = "Clear Level 1-2", points = 20,
+    title = "Frantic", description = "Clear Level 1-2", points = 10,
     id = 15213, badge = "14842", published = "10/12/2014 8:33:42 PM", modified = "10/12/2014 10:30:30 PM",
     trigger = current_level() == 2 && current_difficulty() < 4
 )
 
 achievement(
-    title = "Tank", description = "Clear Level 1-3", points = 20,
+    title = "Tank", description = "Clear Level 1-3", points = 10,
     id = 15214, badge = "14842", published = "10/12/2014 8:33:44 PM", modified = "10/12/2014 10:30:37 PM",
     trigger = current_level() == 3 && current_difficulty() < 4
 )
 
 achievement(
-    title = "Get To The Choppa!", description = "Clear Level 1-4", points = 20,
+    title = "Get To The Choppa!", description = "Clear Level 1-4", points = 10,
     id = 15215, badge = "14842", published = "10/12/2014 8:33:46 PM", modified = "10/12/2014 10:30:41 PM",
     trigger = current_level() == 4 && current_difficulty() < 4
 )
 
 achievement(
-    title = "Blade", description = "Clear Level 2-1", points = 20,
+    title = "Blade", description = "Clear Level 2-1", points = 10,
     id = 15216, badge = "14842", published = "10/12/2014 8:33:48 PM", modified = "10/12/2014 10:30:45 PM",
     trigger = current_level() == 5 && current_difficulty() < 4
 )
 
 achievement(
-    title = "Mammoth", description = "Clear Level 2-2", points = 20,
+    title = "Mammoth", description = "Clear Level 2-2", points = 10,
     id = 15217, badge = "14842", published = "10/12/2014 8:33:50 PM", modified = "10/12/2014 10:30:49 PM",
     trigger = current_level() == 6 && current_difficulty() < 4
 )
 
 achievement(
-    title = "Puzzle", description = "Clear Level 2-3", points = 20,
+    title = "Puzzle", description = "Clear Level 2-3", points = 10,
     id = 15218, badge = "14842", published = "10/12/2014 8:33:52 PM", modified = "10/12/2014 10:30:52 PM",
     trigger = current_level() == 7 && current_difficulty() < 4
 )
 
 achievement(
-    title = "Shield Spawner", description = "Clear Level 2-4", points = 20,
+    title = "Shield Spawner", description = "Clear Level 2-4", points = 10,
     id = 15219, badge = "14842", published = "10/12/2014 8:33:53 PM", modified = "10/12/2014 10:30:56 PM",
     trigger = current_level() == 8 && current_difficulty() < 4
 )
 
 achievement(
-    title = "Scorpion Horde", description = "Clear Level 3-1", points = 20,
+    title = "Scorpion Horde", description = "Clear Level 3-1", points = 10,
     id = 15220, badge = "14842", published = "10/12/2014 8:33:55 PM", modified = "10/12/2014 10:31:02 PM",
     trigger = current_level() == 9 && current_difficulty() < 4
 )
 
 achievement(
-    title = "Dig And Be Eaten", description = "Clear Level 3-2", points = 20,
+    title = "Dig And Be Eaten", description = "Clear Level 3-2", points = 10,
     id = 15221, badge = "14842", published = "10/12/2014 8:33:56 PM", modified = "10/12/2014 10:31:05 PM",
     trigger = current_level() == 10 && current_difficulty() < 4
 )
 
 achievement(
-    title = "Crushers", description = "Clear Level 3-3", points = 20,
+    title = "Crushers", description = "Clear Level 3-3", points = 10,
     id = 15222, badge = "14842", published = "10/12/2014 8:33:58 PM", modified = "10/12/2014 10:31:09 PM",
     trigger = current_level() == 11 && current_difficulty() < 4
 )
@@ -218,7 +218,7 @@ function trigger_end_game() => once(enemy_hp() == 200) && enemy_hp() == 0 &&
 // Ticket 12870: Cheevo didn't triggered after doing the requisites, more than 3 times.
 //               MD5: 18ef4ec828a4bf14b6fd241230bb349a
 achievement(
-    title = "Phone Home", description = "Complete Alien Hominid.. It's Harder than you think.", points = 30,
+    title = "Phone Home", description = "Complete Alien Hominid.. It's Harder than you think.", points = 25,
     id = 15223, badge = "14843", published = "10/12/2014 8:33:59 PM", modified = "5/17/2018 10:00:25 PM",
     trigger = trigger_end_game() && current_difficulty() < 4
 )
@@ -229,7 +229,7 @@ achievement(
 //               And i finish it a second time by deleting my save and restart the game and it did'nt trigger at all
 // Ticket 4067: in hard mode was not unlocked
 achievement(
-    title = "The Behemoth", description = "Beat Alien Hominid on Hard Difficulty.", points = 80,
+    title = "The Behemoth", description = "Beat Alien Hominid on Hard Difficulty.", points = 50,
     id = 15224, badge = "14841", published = "10/12/2014 8:34:03 PM", modified = "5/17/2018 10:00:27 PM",
     trigger = trigger_end_game() && current_difficulty() == 3
 )

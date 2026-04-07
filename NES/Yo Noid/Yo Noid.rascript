@@ -109,7 +109,7 @@ achievement(
 )
 
 achievement(
-    title = "Stage 9", description = "Complete Stage 9 (without warp).", points = 15,
+    title = "Stage 9", description = "Complete Stage 9 (without warp).", points = 10,
     id = 23454, badge = "23848", published = "6/6/2015 8:53:37 PM", modified = "6/7/2015 8:39:55 PM",
     trigger = trigger_complete_stage(9) && stage_progress() == 62
 //    trigger = current_stage() == 9 && never(current_stage() != 9) && repeated(500, end_stage() == 255) && 
@@ -117,7 +117,7 @@ achievement(
 )
 
 achievement(
-    title = "Stage 10", description = "Complete Stage 10", points = 15,
+    title = "Stage 10", description = "Complete Stage 10", points = 10,
     id = 23455, badge = "23849", published = "6/6/2015 9:37:18 PM", modified = "6/7/2015 8:39:57 PM",
     trigger = trigger_complete_stage(10)
 //    trigger = current_stage() == 10 && never(current_stage() != 10) && repeated(500, end_stage() == 255) && 
@@ -125,7 +125,7 @@ achievement(
 )
 
 achievement(
-    title = "Stage 11", description = "Complete Stage 11", points = 15,
+    title = "Stage 11", description = "Complete Stage 11", points = 10,
     id = 23456, badge = "23850", published = "6/6/2015 9:37:19 PM", modified = "6/7/2015 8:39:58 PM",
     trigger = trigger_complete_stage(11)
 //    trigger = current_stage() == 11 && never(current_stage() != 11) && repeated(500, end_stage() == 255) && 
@@ -133,7 +133,7 @@ achievement(
 )
 
 achievement(
-    title = "Stage 12", description = "Complete Stage 12", points = 15,
+    title = "Stage 12", description = "Complete Stage 12", points = 10,
     id = 23457, badge = "23851", published = "6/6/2015 9:37:21 PM", modified = "10/21/2019 12:38:01 AM",
     trigger = trigger_complete_stage(12)
 //    trigger = current_stage() == 12 && never(current_stage() != 12) && repeated(500, end_stage() == 255) && 
@@ -141,7 +141,7 @@ achievement(
 )
 
 achievement(
-    title = "Stage 13", description = "Complete Stage 13", points = 20,
+    title = "Stage 13", description = "Complete Stage 13", points = 10,
     id = 23458, badge = "23852", published = "6/6/2015 9:45:38 PM", modified = "6/7/2015 8:40:00 PM",
     trigger = trigger_complete_stage(13)
 //    trigger = current_stage() == 13 && never(current_stage() != 13) && repeated(500, end_stage() == 255) && 
@@ -149,7 +149,7 @@ achievement(
 )
 
 achievement(
-    title = "Complete the game!", description = "Complete Stage 14 and the Boss!", points = 30,
+    title = "Complete the game!", description = "Complete Stage 14 and the Boss!", points = 25,
     id = 23459, badge = "23855", published = "6/6/2015 10:01:36 PM", modified = "6/7/2015 8:40:02 PM",
     trigger = trigger_complete_stage(14)
 //    trigger = current_stage() == 14 && never(current_stage() != 14) && repeated(500, end_stage() == 255) && 
@@ -159,7 +159,7 @@ achievement(
 // Ticket 24666: I completed the game with either 19 or 20 lives but the achievement didn't trigger for me at
 //               all.<br>MD5: 9f6699315a98a17f953eef92f179992b
 achievement(
-    title = "Hardcore Noid!!!", description = "Complete the game with 15 or more remaining lives!!!", points = 70,
+    title = "Hardcore Noid!!!", description = "Complete the game with 15 or more remaining lives!!!", points = 50,
     id = 23507, badge = "23901", published = "6/7/2015 7:47:48 PM", modified = "10/21/2019 12:38:01 AM",
     trigger = trigger_complete_stage(1) && (lives_tens() >= 2 || (lives_tens() == 1 && lives_ones() >= 5))
 //    trigger = current_stage() == 14 && never(current_stage() != 14) && repeated(500, end_stage() == 255) && 
@@ -168,19 +168,19 @@ achievement(
 )
 
 achievement(
-    title = "100K", description = "Get 100.000 points!!!", points = 30,
+    title = "100K", description = "Get 100.000 points!!!", points = 25,
     id = 23509, badge = "23902", published = "6/7/2015 8:10:42 PM", modified = "10/5/2019 8:43:02 PM",
     trigger = score_hundred_thousands() == 49 && never(score_hundred_thousands() != 49)
 )
 
 achievement(
-    title = "200K", description = "Get 200.000 points!!!", points = 40,
+    title = "200K", description = "Get 200.000 points!!!", points = 25,
     id = 23510, badge = "23903", published = "6/7/2015 8:10:43 PM", modified = "10/17/2019 11:44:01 PM",
     trigger = score_hundred_thousands() == 50 && never(score_hundred_thousands() != 50)
 )
 
 achievement(
-    title = "A High Score for REAL!!!", description = "Get an impressive score!!!", points = 60,
+    title = "A High Score for REAL!!!", description = "Get an impressive score!!!", points = 50,
     id = 23511, badge = "23904", published = "6/7/2015 8:10:45 PM", modified = "10/21/2019 12:38:01 AM",
     trigger = score_hundred_thousands() == 52 && never(score_hundred_thousands() != 52)
 )

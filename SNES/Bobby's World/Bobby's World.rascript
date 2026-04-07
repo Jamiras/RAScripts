@@ -72,7 +72,7 @@ achievement(
 )
 
 achievement(
-    title = "Webbly first", description = "Block 10 enemies hits", points = 20,
+    title = "Webbly first", description = "Block 10 enemies hits", points = 25,
     id = 41405, badge = "42631", published = "10/26/2016 1:36:55 AM", modified = "10/26/2016 1:38:29 AM",
     trigger = repeated(10, byte(0x001AF1) == 26)
 )
@@ -108,19 +108,19 @@ achievement(
 )
 
 achievement(
-    title = "Just a dream", description = "Clear stage 2", points = 15,
+    title = "Just a dream", description = "Clear stage 2", points = 10,
     id = 41411, badge = "42627", published = "10/26/2016 1:37:27 AM", modified = "10/26/2016 2:38:05 AM",
     trigger = byte(0x007AA5) == 1
 )
 
 achievement(
-    title = "Krusty Krab", description = "Clear stage 3", points = 20,
+    title = "Krusty Krab", description = "Clear stage 3", points = 25,
     id = 41412, badge = "42629", published = "10/26/2016 1:37:30 AM", modified = "10/26/2016 2:38:16 AM",
     trigger = current_stage() == stage_wildwest
 )
 
 achievement(
-    title = "Sunset Riders", description = "Clear stage 4", points = 20,
+    title = "Sunset Riders", description = "Clear stage 4", points = 25,
     id = 41413, badge = "42633", published = "10/26/2016 1:37:32 AM", modified = "10/26/2016 2:38:25 AM",
     trigger = current_stage() == stage_closet
 )
@@ -128,19 +128,19 @@ achievement(
 function trigger_win_game() => byte(0x0007BC) == 1 && current_stage() == stage_closet && byte(0x0007F0) == 0
 
 achievement(
-    title = "It's Halloween", description = "Clear stage 5", points = 35,
+    title = "It's Halloween", description = "Clear stage 5", points = 25,
     id = 41414, badge = "42635", published = "10/26/2016 1:37:34 AM", modified = "10/26/2016 2:38:45 AM",
     trigger = trigger_win_game()
 )
 
 achievement(
-    title = "All Clean!", description = "Beat the game", points = 30,
+    title = "All Clean!", description = "Beat the game", points = 25,
     id = 41415, badge = "42638", published = "10/26/2016 1:37:37 AM", modified = "10/26/2016 2:28:39 AM",
     trigger = trigger_win_game()
 )
 
 achievement(
-    title = "Easier than my homework", description = "Beat the game without use continues", points = 40,
+    title = "Easier than my homework", description = "Beat the game without use continues", points = 50,
     id = 41416, badge = "42637", published = "10/26/2016 1:37:39 AM", modified = "10/26/2016 2:29:03 AM",
     trigger = trigger_win_game() && current_continues() == 3
 )
@@ -151,7 +151,7 @@ achievement(
 // Ticket 8749: //               MD5: 6452748e3042c9b7a4ff37dde5e9e69b
 // Ticket 6869: I did these achievements and i did not get it.
 achievement(
-    title = "Shining Bedroom", description = "Beat the game without using passwords", points = 40,
+    title = "Shining Bedroom", description = "Beat the game without using passwords", points = 50,
     id = 41417, badge = "42640", published = "10/26/2016 1:37:42 AM", modified = "10/26/2016 2:30:52 AM",
     trigger = trigger_win_game() &&                        // beat game
               never(byte(0x000673) == 1) &&                // reset at title screen (game over)
@@ -169,7 +169,7 @@ achievement(
 //               second "world", in the beginning, suddenly this one triggered.
 //               MD5: cb2b41d01a37860539192a2c9034264c
 achievement(
-    title = "Sick!", description = "Beat the first boss without taking damage", points = 30,
+    title = "Sick!", description = "Beat the first boss without taking damage", points = 25,
     id = 41419, badge = "42642", published = "10/26/2016 1:37:47 AM", modified = "10/26/2016 1:38:52 AM",
     trigger = never(current_stage() != stage_outerspace) && once(boss_hp() == 20) && boss_hp() == 255 && 
               never(current_hearts() < prev(current_hearts()))
@@ -179,7 +179,7 @@ achievement(
 // Ticket 11439: I beat the second boss TAKING damage at 3-4, then at the beginning of 4-1 this one triggered.
 //               MD5: cb2b41d01a37860539192a2c9034264c
 achievement(
-    title = "Holly Krab", description = "Beat the second boss without taking damage", points = 30,
+    title = "Holly Krab", description = "Beat the second boss without taking damage", points = 25,
     id = 41418, badge = "42643", published = "10/26/2016 1:37:44 AM", modified = "10/26/2016 1:38:51 AM",
     trigger = never(current_stage() != stage_underwater) && once(boss_hp() == 20) && boss_hp() == 255 && 
               never(current_hearts() < prev(current_hearts()))
@@ -191,7 +191,7 @@ achievement(
 //               Besides that, achievement didn't trigger.
 //               MD5: cb2b41d01a37860539192a2c9034264c
 achievement(
-    title = "Friday 13th", description = "Beat the third boss without taking damage", points = 30,
+    title = "Friday 13th", description = "Beat the third boss without taking damage", points = 25,
     id = 41420, badge = "42644", published = "10/26/2016 1:38:05 AM", modified = "10/26/2016 2:29:17 AM",
     trigger = never(current_stage() != stage_closet) && once(boss_hp() == 20) && boss_hp() == 255 && 
               never(current_hearts() < prev(current_hearts()))

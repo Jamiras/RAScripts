@@ -1365,7 +1365,7 @@ achievement(
 // 29 - Point of No Return
 
 achievement(
-    title = "So Long and Thanks for All the Fish", description = "Clear the game with all the fish!", points = 20,
+    title = "So Long and Thanks for All the Fish", description = "Clear the game with all the fish!", points = 10,
     id = 6889, badge = "07282", published = "4/5/2014 3:06:21 AM", modified = "4/24/2014 1:59:00 AM",
     trigger = once(monster_formation() == 471) && once(monster_formation() == 512) && 
               once(monster_formation() == 513) && battle_background() <= 51 && once(enemy_dies() == 49535) && 
@@ -1376,7 +1376,7 @@ achievement(
 )
 
 achievement(
-    title = "LLG", description = "Clear the game with no character exceeding level 30", points = 40,
+    title = "LLG", description = "Clear the game with no character exceeding level 30", points = 25,
     id = 7296, badge = "07756", published = "4/12/2014 4:27:43 PM", modified = "9/2/2014 7:53:58 AM",
     trigger = once(monster_formation() == 471) && once(monster_formation() == 512) && 
               once(monster_formation() == 513) && battle_background() == 51 && once(enemy_dies() == 49535) && 
