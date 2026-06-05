@@ -182,22 +182,22 @@ function player_token_floating(player) => byte(0x0421 + player) > 0 // 0x422 con
 function trigger_complete_board(board) => player_board_space(0) == 0x2F && prev(player_board(0)) == board
 
 achievement(
-    title = "Completed the Circle", description = "Complete the first board", points = 5,
+    title = "Completed the Circle", description = "Complete the first board", points = 1, type="progression",
     trigger = trigger_complete_board(0)
 )
 
 achievement(
-    title = "Survived the Square", description = "Complete the second board", points = 5,
+    title = "Survived the Square", description = "Complete the second board", points = 2, type="progression",
     trigger = trigger_complete_board(1)
 )
 
 achievement(
-    title = "Passed the Pentagon", description = "Complete the third board", points = 5,
+    title = "Passed the Pentagon", description = "Complete the third board", points = 3, type="progression",
     trigger = player_board_space(0) == 0x2F && prev(player_board_space(0)) >= 0x20 && prev(player_board_space(0)) <= 0x2E
 )
 
 achievement(
-    title = "Hopped the Holes", description = "Complete the fourth board", points = 10,
+    title = "Hopped the Holes", description = "Complete the fourth board", points = 5,
     trigger = trigger_complete_board(3)
 )
 
@@ -217,37 +217,41 @@ function trigger_win_against_cpu_players(cpu_players) =>
     trigger_win_game() && human_players() == 1 && computer_players() == cpu_players + 1
 
 achievement(
-    title = "That Was Easy", description = "Win a game on Easy against at least one CPU", points = 10,
+    title = "That Was Easy", description = "Win a game on Easy against at least one CPU",points = 5,
+    type="win_condition",
     trigger = trigger_win_on_difficulty(difficulty_easy) && computer_players() > 1
 )
 
 achievement(
-    title = "Winner's Circle", description = "Win a game on Medium against at least one CPU", points = 10,
+    title = "Winner's Circle", description = "Win a game on Medium against at least one CPU",points = 5,
+    type="win_condition",
     trigger = trigger_win_on_difficulty(difficulty_medium) && computer_players() > 1
 )
 
 achievement(
-    title = "Not So Hard", description = "Win a game on Hard against at least one CPU", points = 25,
+    title = "Not So Hard", description = "Win a game on Hard against at least one CPU",points = 10,
+    type="win_condition",
     trigger = trigger_win_on_difficulty(difficulty_hard) && computer_players() > 1
 )
 
 achievement(
     title = "What a Challenge", description = "Win a game on Very Hard against at least one CPU", points = 25,
+    type="win_condition",
     trigger = trigger_win_on_difficulty(difficulty_very_hard) && computer_players() > 1
 )
 
 achievement(
-    title = "Versus Victory", description = "Win a game against one CPU", points = 10,
+    title = "Versus Victory", description = "Win a game against one CPU", points = 5,
     trigger = trigger_win_against_cpu_players(1)
 )
 
 achievement(
-    title = "Threesome", description = "Win a game against two CPUs", points = 10,
+    title = "Threesome", description = "Win a game against two CPUs", points = 5,
     trigger = trigger_win_against_cpu_players(2)
 )
 
 achievement(
-    title = "Full Party", description = "Win a game against three CPUs", points = 10,
+    title = "Full Party", description = "Win a game against three CPUs", points = 5,
     trigger = trigger_win_against_cpu_players(3)
 )
 
@@ -273,14 +277,14 @@ achievement(
 )
 
 achievement(
-    title = "Shut Out", description = "Win a game against three CPUs without letting any CPU player solve a puzzle", points = 25,
+    title = "Shut Out", description = "Win a game against three CPUs without letting any CPU player solve a puzzle", points = 10,
     trigger = trigger_win_against_cpu_players(3) && 
               player_board(1) == 0 && player_board(2) == 0 && player_board(3) == 0 &&
               dword(0x0433) == 0 && dword(0x0437) == 0 && dword(0x043B) == 0 && dword(0x043F) == 0
 )
 
 achievement(
-    title = "Controlling Your Destiny", description = "Win a game by solving a puzzle selected using a gray tile", points = 10,
+    title = "Controlling Your Destiny", description = "Win a game by solving a puzzle selected using a gray tile", points = 5,
     trigger = once(current_puzzle_color() == color_gray) &&
               player_has_color(0, color_yellow) &&
               player_has_color(0, color_blue) &&
@@ -296,7 +300,7 @@ achievement(
 )
 
 achievement(
-    title = "Score!", description = "Win a game with at least 600 points", points = 25,
+    title = "Score!", description = "Win a game with at least 600 points", points = 10,
     trigger = trigger_win_game() && byte(0x0573) >= 0xF6
 )
 
@@ -321,22 +325,22 @@ function trigger_win_puzzle() => guess_player() == 0 && byte(0x008A) == 3 && pre
 function dots_visible() => current_puzzle_difficulty() <= 1
 
 achievement(
-    title = "Who Needs a Keyboard", description = "Enter a four letter or longer answer in under five seconds", points = 5,
+    title = "Who Needs a Keyboard", description = "Enter a four letter or longer answer in under five seconds", points = 3,
     trigger = trigger_win_puzzle() && current_puzzle_length() >= 4 && current_guess_timer() >= 20
 )
 
 achievement(
-    title = "Buzzer Beater", description = "Solve a puzzle just before the die turns to zero", points = 5,
+    title = "Buzzer Beater", description = "Solve a puzzle just before the die turns to zero", points = 3,
     trigger = trigger_win_puzzle() && current_die_face() == 1 && die_countdown_timer() < 40
 )
 
 achievement(
-    title = "Connect the Dots", description = "Solve a dot puzzle before any lines have been drawn", points = 10,
+    title = "Connect the Dots", description = "Solve a dot puzzle before any lines have been drawn", points = 5,
     trigger = trigger_win_puzzle() && dots_visible() && !drawing_started()
 )
 
 achievement(
-    title = "Intuition", description = "Solve a non-dot puzzle when the die is on five or six", points = 10,
+    title = "Intuition", description = "Solve a non-dot puzzle when the die is on five or six", points = 5,
     trigger = trigger_win_puzzle() && !dots_visible() && current_die_face() >= 5
 )
 
@@ -346,7 +350,7 @@ achievement(
 //)
 
 achievement(
-    title = "Something Abstract", description = "Solve a Whatchamacallit puzzle", points = 10,
+    title = "Something Abstract", description = "Solve a Whatchamacallit puzzle", points = 4,
     trigger = trigger_win_puzzle() && current_puzzle_category() == category_whatchamacallit
 )
 
@@ -361,7 +365,7 @@ achievement(
 //  5 - That's Not a Valid Space - Fall off the fourth board
 
 achievement(
-    title = "Perfect Board", description = "Complete a board in only four puzzles", points = 10,
+    title = "Perfect Board", description = "Complete a board in only four puzzles", points = 5,
     trigger = once(!player_has_color(0, color_yellow)) &&
               once(!player_has_color(0, color_blue)) &&
               once(!player_has_color(0, color_green)) &&
@@ -377,7 +381,7 @@ achievement(
 )
 
 achievement(
-    title = "Surplus", description = "Collect a color that you already have", points = 2,
+    title = "Surplus", description = "Collect a color that you already have", points = 1,
     trigger = trigger_win_puzzle() &&
               ((current_puzzle_color() == color_yellow && player_has_color(0, color_yellow)) ||
                (current_puzzle_color() == color_blue && player_has_color(0, color_blue)) ||
@@ -399,12 +403,12 @@ achievement(
 // 10 points are awared for each roll of a 1 on the first three puzzles, then 40 points for advancing to the
 // next board, regardless of the roll on the fourth puzzle.
 achievement(
-    title = "Puzzle Pauper", description = "Complete the first board with only 70 points", points = 10,
+    title = "Puzzle Pauper", description = "Complete the first board with only 70 points", points = 5,
     trigger = trigger_complete_board(0) && byte(0x0573) == 0xF0 && byte(0x0577) == 0xF3
 )
 
 achievement(
-    title = "To Your Corners", description = "Land on all four corners of the second board", points = 10,
+    title = "To Your Corners", description = "Land on all four corners of the second board", points = 5,
     trigger = repeated(250, player_board_space(0) == 16) &&
               repeated(250, player_board_space(0) == 20) &&
               repeated(250, player_board_space(0) == 24) &&
@@ -414,7 +418,7 @@ achievement(
 )
 
 achievement(
-    title = "Making the Rounds", description = "Land on all three gray squares on the third board in one turn", points = 10,
+    title = "Making the Rounds", description = "Land on all three gray squares on the third board in one turn", points = 5,
     trigger = repeated(60, player_board_space(0) == 34) &&
               repeated(60, player_board_space(0) == 39) &&
               repeated(60, player_board_space(0) == 44) &&
