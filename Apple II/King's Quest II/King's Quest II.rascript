@@ -332,9 +332,9 @@ rich_presence_display("Graham is {0}, {1} of 185 points",
 
 function trigger_flag(flag_address) => byte(flag_address) == 1 && prev(byte(flag_address)) == 0 && !is_debug_mode()
 
-function flag_achievement(title, description, points, scene, flag_address)
+function flag_achievement(title, description, points, scene, flag_address, type = "")
 {
-    achievement(title, description, points,
+    achievement(title, description, points, type=type,
         trigger = current_scene() == scene && trigger_flag(flag_address)
     )
 }
@@ -494,7 +494,7 @@ achievement("From One King to Another", "Trade for the first key", 5,
 )
 
 // BOTH
-flag_achievement("A Door Within a Door", "Open the first door", 10, scene_door, 0xFC56)
+flag_achievement("A Door Within a Door", "Open the first door", 10, scene_door, 0xFC56, type="progression")
 
 // EITHER - dwarf
 achievement("I Wasn't Done With That", "Retrieve a stolen treasure from the dwarf", 5,
@@ -516,7 +516,7 @@ flag_achievement("Serpent Slayer", "Defeat the viper", 5, scene_mountain_top_2, 
 flag_achievement("A Horse of a Different Color", "Reveal the viper's true form", 10, scene_mountain_top_2, 0xFC77)
 
 // BOTH
-flag_achievement("What's Behind Door Number Two?", "Open the second door", 10, scene_door, 0xFC57)
+flag_achievement("What's Behind Door Number Two?", "Open the second door", 10, scene_door, 0xFC57, type="progression")
 
 // MIN
 achievement("The Ferryman's Toll", "Pay for passage across the poisonous lake", 5,
@@ -555,7 +555,7 @@ achievement("Through the Brambles", "Escape the island with the third key withou
 )
 
 // BOTH
-flag_achievement("It's Bigger on the Inside", "Open the third door", 10, scene_door, 0xFC58)
+flag_achievement("It's Bigger on the Inside", "Open the third door", 10, scene_door, 0xFC58, type="progression")
 
 // BOTH
 function delayed_scene(scene) => repeated(150, current_scene() == scene) && unless(scene_loading())
@@ -567,7 +567,8 @@ achievement("Galloping Guppy", "Get a ride across the enchanted ocean", 5, id = 
 )
 
 // BOTH
-flag_achievement("The Guardian Subdued", "Find your way into the room at the top of the tower", 5, scene_tower_valanice, 0xFCD1)
+flag_achievement("The Guardian Subdued", "Find your way into the room at the top of the tower", 5,
+                 scene_tower_valanice, 0xFCD1, type="progression")
 
 // EITHER
 achievement("Love at First Sight", "Show the woman you just met how much she means to you", 5, 
@@ -587,7 +588,7 @@ achievement("Blessed Union", "Make it all the way to the wedding with the fairy'
 )
 
 // BOTH
-achievement("Happily Ever After... For Now", "Get married and return home", 10,
+achievement("Happily Ever After... For Now", "Get married and return home", 10, type="win_condition",
     trigger = trigger_complete_game()
 )
 
