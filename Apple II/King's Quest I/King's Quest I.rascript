@@ -373,9 +373,9 @@ rich_presence_display("Graham is {0}, {1} of 158 points",
 // this is just the "restore game" prompt - the user can still cancel here, but its the best I could find
 function load_game() => byte(0x00EC) == 3
 
-function flag_achievement(points, title, description, scene, flag_address)
+function flag_achievement(points, title, description, scene, flag_address, type="")
 {
-    achievement(title, description, points,
+    achievement(title, description, points, type=type,
         trigger = current_scene() == scene &&
                   pointed_at_byte(flag_address) == 1 && prev(pointed_at_byte(flag_address)) == 0
     ) 
@@ -410,13 +410,13 @@ achievement("Sneaky Little Mouse", "Use a protective spell to get the cheese", 5
 flag_achievement(10, "Is It Hot Enough For You?", "Eliminate the witch", scene_inside_witchs_house, 0x6E37)
 
 // MAX / MIN
-flag_achievement(3, "Fly the Friendly Skies", "Hitch a ride with the condor", scene_cave, 0x6E9B)
+flag_achievement(3, "Fly the Friendly Skies", "Hitch a ride with the condor", scene_cave, 0x6E9B, type="progression")
 
 // MAX
 flag_achievement(10, "What Was Left Behind is Now Mine", "Acquire the sceptre", scene_leprechaun_cave5, 0x6EDC)
 
 // MAX / MIN
-flag_achievement(5, "The Royal Buckler", "Acquire the magic shield", scene_leprechaun_cave5, 0x6EDA)
+flag_achievement(5, "The Royal Buckler", "Acquire the magic shield", scene_leprechaun_cave5, 0x6EDA, type="progression")
 
 // MAX
 flag_achievement(10, "Just a Big Lizard", "Make the dragon leave", scene_dragon_cave_east, 0x6EAE)
@@ -479,8 +479,8 @@ flag_achievement( 5, "Goliath Has Fallen", "Kill the giant", scene_clouds_north,
 function trigger_complete_game() => current_scene() == scene_castle_throne_room && 
                                          pointed_at_byte(0x6EBC) == 1 && pointed_at_byte(0x6E26) == 2
 // MAX / MIN
-achievement("It's Good to Be the King", "Complete the quest", 10, 
-            trigger_complete_game())
+achievement("It's Good to Be the King", "Complete the quest", 10, type="win_condition",
+            trigger = trigger_complete_game())
 
 // MAX
 achievement("Restocked the Treasury", "Complete the quest with all of the optional treasures", 10,
