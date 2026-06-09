@@ -434,16 +434,16 @@ function trigger_get_item(item, scene) => in_game() &&
 function bit_changed(flag) => flag == 1 && prev(flag) != 1
 function trigger_flag(flag) => in_game() && bit_changed(flag)
 
-function flag_achievement(title, description, points, scene, flag)
+function flag_achievement(title, description, points, scene, flag, type="")
 {
-    achievement(title, description, points,
+    achievement(title, description, points, type=type,
         trigger = in_game() && current_scene() == scene && trigger_flag(flag)
     )
 }
 
-function spell_achievement(title, description, points, scene, flag)
+function spell_achievement(title, description, points, scene, flag, type="")
 {
-    achievement(title, description, points,
+    achievement(title, description, points, type=type,
         trigger = // the 4am crack messes with this value when scenes are being loaded
                   // from disk. it will briefly change to 0, which is used by in_game()
                   // to prevent false triggers when resetting the game. since the spell
@@ -616,7 +616,7 @@ achievement("Cartographer", "Fully fill in the map for Llewdor", 5,
 )
 
 // MIN/MAX
-achievement("Gwydion's Day Out", "Walk away from the mountain", 5,
+achievement("Gwydion's Day Out", "Walk away from the mountain", 5, type="progression",
     trigger = !is_debug_mode() &&
                // room 17 map flag gets set before leaving the first scene
               ((current_scene() == scene_lower_mountain_path && 
@@ -647,7 +647,7 @@ spell_achievement("It's No Babel Fish", "Complete the Understanding the Language
 // MIN/MAX
 // eagle feather/fly wings, pinch of saffron, rose petal essence
 spell_achievement("Look Ma, No Hands", "Complete the Flight spell", 5,
-    scene_spell_book, bit7(0xFEF3)
+    scene_spell_book, bit7(0xFEF3), type="progression"
 )
 
 // MAX
@@ -665,7 +665,7 @@ spell_achievement("Pleasant Dreams", "Complete the Sleeping Powder spell", 5,
 // MIN/MAX
 // mandrake root powder (@), cat hair, fish oil ($)
 spell_achievement("Kitty Cookie", "Complete the Transforming Another spell", 5,
-    scene_spell_book, bit4(0xFEF3)
+    scene_spell_book, bit4(0xFEF3), type="progression"
 )
 
 // MIN/MAX
@@ -677,7 +677,7 @@ spell_achievement("Lightning in a Bottle", "Complete the Brewing a Storm spell",
 // MIN/MAX
 // lard ($), cactus, toad spittle (@)
 spell_achievement("Now You See Me, Now You Don't", "Complete the Becoming Invisible spell", 5,
-    scene_spell_book, bit2(0xFEF3)
+    scene_spell_book, bit2(0xFEF3), type="progression"
 )
 
 // MIN
@@ -693,7 +693,7 @@ achievement("House of Magic", "Complete a spell before going down the mountain",
 function trigger_defeat_manannan() => in_game() &&
                                       current_scene() == scene_dining_room &&
                                       byte(0xFF80) == 0x14 && prev(byte(0xFF80)) != 0x14
-achievement("Command Me, No More", "Defeat Manannan", 10,
+achievement("Command Me, No More", "Defeat Manannan", 10, type="progression",
     trigger = trigger_defeat_manannan()
 )
 
@@ -704,18 +704,18 @@ achievement("Everything in One Trip", "Defeat Manannan in under 35 minutes", 10,
 
 // MIN/MAX
 flag_achievement("The Prophecy", "Hear the Oracle's Tale", 5,
-    scene_oracle_cave, bit7(0xFEF6)
+    scene_oracle_cave, bit7(0xFEF6), type="progression"
 )
 
 // MIN/MAX
-achievement("This Isn't What I Paid For", "Board the Boat", 5,
+achievement("This Isn't What I Paid For", "Board the Boat", 5, type="progression",
     trigger = in_game() && 
               current_scene() == scene_ship_cargo_hold_west && 
               prev(current_scene()) == scene_ocean_infinite
 )
 
 // MIN/MAX
-achievement("Overboard", "Escape from the pirates", 10,
+achievement("Overboard", "Escape from the pirates", 10, type="progression",
     trigger = !is_debug_mode() &&
               bit_changed(bit1(0xFEE6)) &&   // enter room 48 or 148
               (prior(current_scene()) == scene_ocean_infinite ||
@@ -738,7 +738,7 @@ achievement("Far Thither", "Reach the far side of the mountain without eluding t
 )
 
 // MIN/MAX
-achievement("A Kingdom of Disrepair", "Arrive in Daventry", 5,
+achievement("A Kingdom of Disrepair", "Arrive in Daventry", 5, type="progression",
     trigger = in_game() &&
               prior(current_scene()) == scene_mountain_path2 &&
               (trigger_flag(bit2(0xFEE6)))   // enter room 61
@@ -746,14 +746,14 @@ achievement("A Kingdom of Disrepair", "Arrive in Daventry", 5,
 
 // MIN/MAX
 flag_achievement("Three Heads Are Not Better Than One", "Defeat the dragon", 10,
-    scene_storm_clouds_dragon, bit0(0xFEF6)
+    scene_storm_clouds_dragon, bit0(0xFEF6), type="progression"
 )
 
 function complete_game() => current_scene() == scene_daventry_castle_throne &&
                             trigger_flag(bit2(0xFEFB))
 
 // MIN/MAX
-achievement("A Family Reunited", "Return home with your sister", 10,
+achievement("A Family Reunited", "Return home with your sister", 10, type="win_condition",
     trigger = complete_game()
 )
 
