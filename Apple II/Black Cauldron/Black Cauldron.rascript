@@ -417,7 +417,8 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 195 poin
               !is_resetting_game() &&
             // -- jump in cauldron --
             ((trigger_scene(scene_castle_crypt_cauldron) &&
-              word(0x8072) == 0x1EDB &&                    // text pointer - immediately following "We hope you'll try again and again."
+              word(0x8072) == 0x1EDB &&                    // text pointer - immediately following 
+                                                           // "We hope you'll try again and again."
               byte(0x7f69) == 1) ||                        // ??
             // -- use mirror, but don't accept sword --
              (trigger_scene(scene_epilogue) && 
@@ -536,10 +537,10 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 195 poin
 // Walk west, then north 
 //   If you see a gwythaint, leave and return
 //   (8) LOOK in the hole in the tree
-//   (6) GET LUTE {A}
+//   (6) GET LUTE
 // Walk north twice
 //   If the thugs appear, quickly change screens and return
-// Enter the hidden area behind the middle-back briar [4>9]
+// Enter the hidden area behind the middle-back briar [4>9] {A}
 //   (6) OPEN DOOR
 //   Gwystal will protect Hen Wen [20>29]*
 //   (6) OPEN CUPBOARD
@@ -553,28 +554,29 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 195 poin
 //   - https://gamerwalkthroughs.com/wp-content/uploads/2017/06/The-Black-Cauldron-Walkthrough-Rock-Maze-480x264.jpg
 // Walk up to the left side of the branch/tree.
 //   (4) USE ROPE
-//   (6) CLIMB ROPE [5>39] (use diagonal button - ;)
+//   (6) CLIMB ROPE [5>39] (use diagonal button - ';' to go up and left)
 // Climb to the top of the cliff [6>45], then go north.
+//   - feel free to use a temporary save {B} while doing this
 // Continue north through the winding bridge [5>50]. Go west.
-//   if the cart's not there, leave and return {B}
+//   - if the cart's not there, leave and return {B}
 //   (6) HIDE IN THE CART [18>68]*
 // Inside the castle:
 //   (6) EXIT THE CART
 // Walk north into the wine cellar
 //   Stand between the back casks on the right and you'll fall into the dungeons [6>74]
 //   Princess Eilonwy will talk to you [10>84]
-// Go south, west twice, and north
+// Go south, west twice, and north {C}
 //   (6) PUSH STONES on the far wall (repeat four times)
 // Go north [10>94]
 //   Princess will escape*
 //   (6) GET SWORD [8>102]
 // Go south twice and east
-//   (4) USE STATUE
+//   (6) USE STATUE
 // Climb ladder, walk north
 //   If the henchman in there (4) USE SWORD
 //   (6) GET KEYS
 //   (4) USE KEYS on northern door
-// Head inside {C}
+// Head inside {D}
 //   (4) USE KEYS to rescue Fflewddur Fflam [9>111]*, he'll give you a harp
 //   Note: easter egg in the east wall, just above the bench - all you have to do is walk up to it
 // Walk south, west, up the stairs, then east. Go south twice.
@@ -583,7 +585,7 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 195 poin
 // Descend back down the mountain, go east, south twice, and east twice (east of the brambles, south of the bridge).
 //   if gurgi doesn't appear, go east - he's sometimes there. come back here afterwards.
 //   (4) GIVE APPLE [10>134]
-// Go south, cross the lower side of the screen and stand near the edge of the waterfall {D}
+// Go south, cross the lower side of the screen and stand near the edge of the waterfall {E}
 //   (4) USE MAGIC WORD
 // Enter the cave, walk around until you fall in the hole [13>147]*
 //   (6) TALK TO KING
@@ -597,27 +599,27 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 195 poin
 // Cross the water to the sandy beach on the left [15>172]
 // Wait for the flying dust to wear off
 //   (6) OPEN DOOR
-// Go inside
-//   (6) OPEN CHEST {E}
+// Go inside {F}
+//   (6) OPEN CHEST 
 //   (6) TALK TO WITCHES (may need to approach them)
 //       if you attempt to (4) USE SWORD before talking to them, a cauldron will fly at you. You can 
 //       (4) USE SWORD to destroy it
 //   (4) GIVE SWORD TO WITCHES [18>190]*
-// You'll automatically go outside. Approach the cauldron {F}
+// You'll automatically go outside. Approach the cauldron {G}
 //   (6) TAKE CAULDRON - a Gwythaint will steal it.
 // Make your way back to the castle and go inside (using the dust to cross the swamp)
 // Inside the castle, go north and take the secret path between the casks to fall to the crypts
 // Walk south
-//   SAVE {G}
+//   SAVE {H}
 // Walk east
 //   When the Horned King approaches, (4) USE MIRROR [25>215]*
 // The castle will collapse and you'll be washed down the stream
 // Wait until the witches offer you the magic sword [15>230]
 // You'll automatically pick it up and walk off into the sunset.
 
-//   LOAD
+//   LOAD {H}
 // Walk west, climb the ladder, and walk north
-//   (6) MOVE GRATE {H}
+//   (6) MOVE GRATE {I}
 //   (6) JUMP IN CAULDRON - Gurgi will save you [20>210]
 // Wait until the witches offer to resurrect Gurgi [15>225]*
 
@@ -647,11 +649,11 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 195 poin
 //   (6) CLIMB ROPE [5>15]
 // Climb to the top of the cliff [6>21], then go north [5>26].
 // Hide in the cart [18>44]
-// Inside the castle {I}, walk north into the wine cellar
+// Inside the castle {J}, walk north into the wine cellar
 //   Stand between the back casks on the right and you'll fall into the dungeons [6>50]
 //   Princess Eilonwy will talk to you [10>60]
 // Go south, west twice, and north
-//   (6) PUSH STONES on the far wall (repeat four times) {J}
+//   (6) PUSH STONES on the far wall (repeat four times) {K}
 // Go north [10>70]
 //   (6) GET SWORD [8>78]
 //   Leave before the Princess escapes
@@ -659,28 +661,29 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 195 poin
 //   (6) USE STATUE
 // Climb ladder, walk north
 //   If the henchman in there (4) USE SWORD
-// Go west, up the stairs twice, and east twice {K}
+// Go west, up the stairs twice, and east twice {L}
 //   Wait for Hen Wen to start prophecizing
 //   (6) JUMP OFF THE BALCONY
 //   (6) TALK TO HEN WEN
-// Go west twice, up, west twice {L}
+// Go west twice, up, west twice {M}
 //   (6) THROW HENWEN over balcony* [20>98]
 //   (6) JUMP over balcony
-// Go south twice, east, south, descend back down the mountain, east, south, east, north twice (near the right side of the screen)
+// Go south twice, east, south, descend back down the mountain, east, south, east, north twice 
+//   - stand near the right side of the screen.
 //   (6) LOOK IN TREE
 //   (6) GET LUTE from tree
-// Go north, then east {M}
+// Go north, then east {N}
 //   (6) JUMP ROCKS (R, R, D, R, U, R)
 // Fall into the Fairy Kingdom [13>111]*
 //   (6) TALK TO KING
 //   (4) GIVE LUTE [10>121]*
 //   (4) USE FLYING DUST and go up
-// Go west twice, north, then west near the top of the screen {N}
+// Go west twice, north, then west near the top of the screen {O}
 //   Jump across rocks (L, D, R, D, R, D, D, L)*
 // Go south [15>136]
 //   (6) OPEN DOOR
 // Go inside
-//   (6) OPEN CHEST (must have seen eidelowg) {O}
+//   (6) OPEN CHEST (must have seen eidelowg) {P}
 //   (6) TALK TO WITCHES
 //   (4) GIVE SWORD TO WITCHES [18>154]
 // Approach the cauldron - a Gwythaint will steal it.
@@ -688,9 +691,9 @@ achievement("Skipped a Few Chapters", "Complete the game with less than 195 poin
 // Fly north, then east, and wait for it to wear off. Then go north
 //   (6) GET DAGGER
 // Make your way back to the castle (north, west, up the cliff).
-// Swim across the moat {P}, climb the wall
+// Swim across the moat {Q}, climb the wall
 //   (6) USE DAGGER to break into window*
-// Go east, downstairs twice, east {Q}
+// Go east, downstairs twice, east {R}
 //   (6) MOVE GRATE
 //   (6) JUMP IN CAULDRON [25>179]*
 
