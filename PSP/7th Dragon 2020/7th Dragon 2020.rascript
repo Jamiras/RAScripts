@@ -1409,7 +1409,7 @@ achievement("Cultivation Set 1", "Receive the reward for rescuing 15 people", 5,
 
 // ----- Ikebukuro Railcage, Hub -----
 // * Head north and you'll encounter a Thunder Dragon.
-// * Behind it, to the east is a woman across a gap. Talk to her to rescue her.
+// * Behind it, to the east is a woman across a gap. Talk to her to rescue her (thoughtless woman).
 // * Go west, and get jumped by a Hover Dragon.
 // * Continue south and rescue Mishima to the east.
 // * Go back to the fork, north, west, and south to a chest containing SP Up 100 [bit1(0xa987b6)].
@@ -1556,7 +1556,10 @@ quest_achievement("Medicine Running Low", 2, location_clinic_2f_sick_room, bit0(
 // * Go to the control room on 5F (left side) and search the bookshelf in the lower left.
 // * Go to the meeting room (7F) and give the book to Kirino.
 
-quest_achievement("Look for a Book", 2, location_meeting_room_7f_meeting_room, bit2(0xa986e9))
+quest_achievement2("Look for a Book", 2, 
+    location_meeting_room_7f_meeting_room,
+    location_meeting_room_7f_meeting_room_renovated,
+    bit2(0xa986e9))
 
 // * Go to Residential A. Talk to the MANIC manager in the southwest corner.
 // * Leave City Hall
@@ -1682,6 +1685,9 @@ story_achievement("Moonlit Massacre", "Defeat Lore-a-Lua", 10,
 
 // ----- City Hall -----
 // * Cutscene where you hand the sample to Natsume.
+//   !! NOTE: 13 rescuable people disappear when moving into chapter 4. 
+//   !!       If you haven't rescued them, you can't get the achievement for rescuing all 75 people.
+//   !!       You should have 33 people rescued at this point.
 // * Go to your room and grab the bento off the table, then rest.
 // * Cutscene
 
@@ -1883,7 +1889,7 @@ quest_achievement("MIA", 2, location_barracks_3f_strategy_room, bit5(0xa986ea))
 // * Go back to the donut area.
 // * Head north and kill three Hazard Dragons. Attack the back one first to minimize the
 //   extra encounters.
-// * Head west and rescue Mustu.
+// * Head west and rescue Mutsu.
 // * Go back to the middle and head north (there's nothing east) and go up the ladder.
 // * Equip Frost Guard/Frost cut gear.
 //   - Grind to 38
@@ -2062,7 +2068,7 @@ quest_achievement("Monsters in Kokubunji", 3, location_barracks_3f_lounge, bit4(
 // * Work your way to the save point, then open the grating.
 
 // ===== Shibuya, Sewers =====
-// * Talk to the nearby man to rescue him.
+// * Talk to the nearby man to rescue him (Oga).
 // * Head west a bit, then across the bridge.
 // * Go east for a chest containing Heal Aero III x4 [bit3(0xa9879e)].
 // * Go west, then up the ladder.
