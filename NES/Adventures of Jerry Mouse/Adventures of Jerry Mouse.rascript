@@ -97,8 +97,8 @@ function tom_achievement(world, level, points, type="progression")
         points = points,
         type = type,
         trigger = never(current_world() != world) && never(current_level() != level) &&
-                  once(tom_health() != 0) && 
-                  byte(0x00f0) == 8 // music buffer
+                  once(tom_health() != 0) &&
+                  bit7(0x00f2) == 1 // tom defeated
     )
 }
 
