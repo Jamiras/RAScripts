@@ -118,7 +118,7 @@ function enemy_group_count(index) => byte(0x1005 + index)
 function trigger_in_battle() => byte(0x00A0) == 0
 function trigger_battle_over() => dword(0x1005) == 0
 
-function trigger_in_game() => byte(0x182F) != 0
+function trigger_in_game() => byte(0x182F) == 1
 
 function trigger_dialog_window_open() => byte(0x0B06) == 2
 
